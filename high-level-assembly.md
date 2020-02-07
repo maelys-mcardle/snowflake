@@ -17,14 +17,16 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 02   OUT        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
 03   IN         DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
 04   STO        BANK    LITERAL Store LITERAL in BANK.
-05   MOV        BANK1   BANK2   Copy BANK1 contents to BANK2.
+05   MOV        BANK1   BANK2   Copy BANK2 contents to BANK1.
 06   JMP        LITERAL         Jumps to a LINE NUMBER or LABEL defined in the LITERAL.
 10   IFEQ       BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
-11   IFGT       BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
-20   ADD        BANK1   BANK2   Add BANK1 to BANK2, store result in BANK2.
-21   SUB        BANK1   BANK2   Subtract BANK2 from BANK1, store result in BANK2.
-22   MUL        BANK1   BANK2   Multiply BANK1 with BANK2, store result in BANK2.
-23   DIV        BANK1   BANK2   Divide BANK2 by BANK1, store result in BANK2.
+11   IFNE       BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
+12   IFGT       BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
+13   IFLT       BANK1   BANK2   If BANK1 is less than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
+20   ADD        BANK1   BANK2   Add BANK2 to BANK1.
+21   SUB        BANK1   BANK2   Subtract BANK2 from BANK1.
+22   MUL        BANK1   BANK2   Multiply BANK2 with BANK1. Store in BANK1.
+23   DIV        BANK1   BANK2   Divide BANK1 by BANK2, store result in BANK1.
 24   FLR        BANK            Converts BANK into an INT, gets the floor of the value.
 ```
 
