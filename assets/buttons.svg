@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -402,12 +402,12 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="13.478437"
-       y="294.09988"
+       y="293.04153"
        id="text4800-6-26"><tspan
          sodipodi:role="line"
          id="tspan4798-7-5"
          x="13.478437"
-         y="294.09988"
+         y="293.04153"
          style="font-size:4.93888903px;stroke-width:0.26458332">0</tspan></text>
     <text
        xml:space="preserve"
@@ -575,5 +575,27 @@
        inkscape:transform-center-x="-0.0039329128"
        inkscape:transform-center-y="-0.1402943"
        transform="matrix(0.51682645,0.00370631,-0.00997256,0.18409126,32.471454,233.21278)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="11.822722"
+       y="295.87793"
+       id="text4670-6-5-0-1-2-0-7"><tspan
+         sodipodi:role="line"
+         id="tspan4668-3-3-1-1-9-8-4"
+         x="11.822722"
+         y="295.87793"
+         style="font-size:2.82222223px;stroke-width:0.26458332">.:-+/</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="1.9795541"
+       y="265.85599"
+       id="text4670-0"><tspan
+         sodipodi:role="line"
+         id="tspan4668-8"
+         x="1.9795541"
+         y="265.85599"
+         style="font-size:2.82222223px;stroke-width:0.26458332">_!?#</tspan></text>
   </g>
 </svg>
