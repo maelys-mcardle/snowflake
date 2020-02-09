@@ -39,11 +39,11 @@ BRANCHING
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-20   GO         LABEL           Jumps to a LABEL.
-21   IF         BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
-22   IFN        BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
-23   IFG        BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
-24   IFL        BANK1   BANK2   If BANK1 is less than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
+20   -->        LABEL           Jumps to a LABEL.
+21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
+22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
+23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
+24   IF<        BANK1   BANK2   If BANK1 is less than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
 ```
 
 ```
@@ -124,9 +124,9 @@ The interpreter would replace the above with mnemonics as the user typed:
 ```
 VAR BANK-00 ENTER NUMBER  ;; Store string "ENTER NUMBER" in Bank 00
 OUT LCD BANK-00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
-IN  BTN BANK-01           ;; Store the button presses to Bank 01
+ IN BTN BANK-01           ;; Store the button presses to Bank 01
 OUT LCD BANK-00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
-IN  BTN BANK-02           ;; Store the button presses to Bank 02
+ IN BTN BANK-02           ;; Store the button presses to Bank 02
 ADD BANK-01 BANK-02       ;; Add Bank 02 to Bank 01
 OUT LCD BANK-01           ;; Output the contents of Bank 01 (the sum of the addition)
 ```
@@ -158,9 +158,9 @@ The interpreter would replace the above with mnemonics as the user typed:
 ::: BANK-02 B          ;; Name Bank 02 "B"
 VAR MSG ENTER NUMBER   ;; Store string "ENTER NUMBER" in MSG
 OUT LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
-IN  BTN A              ;; Store the button presses to Bank 01
+ IN BTN A              ;; Store the button presses to Bank 01
 OUT LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
-IN  BTN B              ;; Store the button presses to Bank 02
+ IN BTN B              ;; Store the button presses to Bank 02
 ADD A B                ;; Add Bank 02 to Bank 01
 OUT LCD A              ;; Output the contents of Bank 01 (the sum of the addition)
 ```
@@ -200,13 +200,13 @@ The interpreter would replace the above with mnemonics as the user typed:
 STR MSG HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 00
 INT ADULT 18          ;; Store 18 (age of adulthood) in Bank 01  
 OUT LCD MSG           ;; Display the message "HOW OLD ARE YOU"
-IN BTN AGE            ;; Store the button input in Bank 02 (your age)
-IFL AGE ADULT         ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
-GO IS ADULT           ;; ...Jump to label 01.
-GO IS MINOR           ;; ...Otherwise jump to label 00.
+ IN BTN AGE            ;; Store the button input in Bank 02 (your age)
+IF< AGE ADULT         ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
+--> IS ADULT           ;; ...Jump to label 01.
+--> IS MINOR           ;; ...Otherwise jump to label 00.
 ### 00 IS ADULT       ;; Label 00 (for adults)
 STR MSG YOU ARE ADULT ;; Store "YOU ARE ADULT" in Bank 00
-GO END                ;; Jump to label 02 (end).
+--> END                ;; Jump to label 02 (end).
 ### 01 IS MINOR       ;; Label 01 (for minors)
 STR MSG YOU ARE MINOR ;; Store "YOU ARE MINOR" in Bank 00
 ### 02 END            ;; Label 02 (end)
@@ -236,17 +236,17 @@ The following calculates the Fibonacci Sequence up to a user-defined number.
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
-IN BTN 00  ;; User enters MAX. Stored in Bank 00.
+ IN BTN 00  ;; User enters MAX. Stored in Bank 00.
 INT 01 01  ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT 02 01  ;; LAST NUMBER (Bank 02) is set to 1.
 ### 00     ;; Start of loop
 MOV 03 01  ;; SUM = CURRENT NUMBER
 ADD 03 02  ;; SUM = SUM + LAST NUMBER
 OUT LCD 03 ;; Output value of SUM
-IFG 03 00  ;; If SUM > MAX
-GO 01      ;; ...go to end.
+IF> 03 00  ;; If SUM > MAX
+--> 01      ;; ...go to end.
 MOV 02 01  ;; CURRENT NUMBER becomes LAST NUMBER
 MOV 03 02  ;; SUM becomes CURRENT NUMBER
-GO 00      ;; Start loop over.
+--> 00      ;; Start loop over.
 ### 01     ;; End
 ```
