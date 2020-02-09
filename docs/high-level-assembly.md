@@ -15,9 +15,9 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 00   ###        LABEL   LITERAL Assign a name to a LABEL. If no LITERAL is specified, LABEL acts as a comment.
 01   :::        BANK    LITERAL Assign a name to a BANK. This is then substituted by the interpreter like the mnemonics.
-02   OUT        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
+02    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
                                 Each invocation of OUT is on its own new line.
-03   IN         DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
+03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
                                 The value is stored in the BANK after the ENTER key is pressed.
 04   =          BANK1   BANK2   Copy BANK2 contents to BANK1. If BANK2 is not specified, clears BANK1.
 ```
@@ -123,12 +123,12 @@ The interpreter would replace the above with mnemonics as the user typed:
 
 ```
 VAR BANK-00 ENTER NUMBER  ;; Store string "ENTER NUMBER" in Bank 00
-OUT LCD BANK-00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
- IN BTN BANK-01           ;; Store the button presses to Bank 01
-OUT LCD BANK-00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
- IN BTN BANK-02           ;; Store the button presses to Bank 02
-ADD BANK-01 BANK-02       ;; Add Bank 02 to Bank 01
-OUT LCD BANK-01           ;; Output the contents of Bank 01 (the sum of the addition)
+ << LCD BANK-00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ >> BTN BANK-01           ;; Store the button presses to Bank 01
+ << LCD BANK-00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ >> BTN BANK-02           ;; Store the button presses to Bank 02
+  + BANK-01 BANK-02       ;; Add Bank 02 to Bank 01
+ << LCD BANK-01           ;; Output the contents of Bank 01 (the sum of the addition)
 ```
 
 ### Add Two Numbers (with named banks)
@@ -157,12 +157,12 @@ The interpreter would replace the above with mnemonics as the user typed:
 ::: BANK-01 A          ;; Name Bank 01 "A"
 ::: BANK-02 B          ;; Name Bank 02 "B"
 VAR MSG ENTER NUMBER   ;; Store string "ENTER NUMBER" in MSG
-OUT LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
- IN BTN A              ;; Store the button presses to Bank 01
-OUT LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
- IN BTN B              ;; Store the button presses to Bank 02
+ << LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ >> BTN A              ;; Store the button presses to Bank 01
+ << LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ >> BTN B              ;; Store the button presses to Bank 02
   + A B                ;; Add Bank 02 to Bank 01
-OUT LCD A              ;; Output the contents of Bank 01 (the sum of the addition)
+ << LCD A              ;; Output the contents of Bank 01 (the sum of the addition)
 ```
 
 ### Are you an Adult
@@ -199,8 +199,8 @@ The interpreter would replace the above with mnemonics as the user typed:
 ::: 02 AGE            ;; Name Bank 02 "AGE"
 STR MSG HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 00
 INT ADULT 18          ;; Store 18 (age of adulthood) in Bank 01  
-OUT LCD MSG           ;; Display the message "HOW OLD ARE YOU"
- IN BTN AGE           ;; Store the button input in Bank 02 (your age)
+ << LCD MSG           ;; Display the message "HOW OLD ARE YOU"
+ >> BTN AGE           ;; Store the button input in Bank 02 (your age)
 IF< AGE ADULT         ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
  -> IS ADULT          ;; ...Jump to label 01.
  -> IS MINOR          ;; ...Otherwise jump to label 00.
@@ -210,7 +210,7 @@ STR MSG YOU ARE ADULT ;; Store "YOU ARE ADULT" in Bank 00
 ### IS MINOR          ;; Label 01 (for minors)
 STR MSG YOU ARE MINOR ;; Store "YOU ARE MINOR" in Bank 00
 ### END               ;; Label 02 (end)
-OUT LCD MSG           ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
+ << LCD MSG           ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
 ```
 
 ### Fibonacci Sequence
@@ -236,13 +236,13 @@ The following calculates the Fibonacci Sequence up to a user-defined number.
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
- IN BTN 00 ;; User enters MAX. Stored in Bank 00.
+ >> BTN 00 ;; User enters MAX. Stored in Bank 00.
 INT 01 01  ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT 02 01  ;; LAST NUMBER (Bank 02) is set to 1.
 ### 00     ;; Start of loop
   = 03 01  ;; SUM = CURRENT NUMBER
   + 03 02  ;; SUM = SUM + LAST NUMBER
-OUT LCD 03 ;; Output value of SUM
+ << LCD 03 ;; Output value of SUM
 IF> 03 00  ;; If SUM > MAX
  -> 01     ;; ...go to end.
   = 02 01  ;; CURRENT NUMBER becomes LAST NUMBER
