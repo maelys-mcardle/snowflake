@@ -204,12 +204,12 @@ OUT LCD MSG           ;; Display the message "HOW OLD ARE YOU"
 IF< AGE ADULT         ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
  -> IS ADULT          ;; ...Jump to label 01.
  -> IS MINOR          ;; ...Otherwise jump to label 00.
-### 00 IS ADULT       ;; Label 00 (for adults)
+### IS ADULT          ;; Label 00 (for adults)
 STR MSG YOU ARE ADULT ;; Store "YOU ARE ADULT" in Bank 00
  -> END               ;; Jump to label 02 (end).
-### 01 IS MINOR       ;; Label 01 (for minors)
+### IS MINOR          ;; Label 01 (for minors)
 STR MSG YOU ARE MINOR ;; Store "YOU ARE MINOR" in Bank 00
-### 02 END            ;; Label 02 (end)
+### END               ;; Label 02 (end)
 OUT LCD MSG           ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
 ```
 
