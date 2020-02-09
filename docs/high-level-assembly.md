@@ -19,7 +19,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
                                 Each invocation of OUT is on its own new line.
 03   IN         DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
                                 The value is stored in the BANK after the ENTER key is pressed.
-04   MOV        BANK1   BANK2   Copy BANK2 contents to BANK1. If BANK2 is not specified, clears BANK1.
+04   =          BANK1   BANK2   Copy BANK2 contents to BANK1. If BANK2 is not specified, clears BANK1.
 ```
 
 ```
@@ -51,11 +51,11 @@ MATH
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-30   ADD        BANK1   BANK2   Add BANK2 to BANK1.
-31   SUB        BANK1   BANK2   Subtract BANK2 from BANK1.
-32   MUL        BANK1   BANK2   Multiply BANK2 with BANK1. Store in BANK1.
-33   DIV        BANK1   BANK2   Divide BANK1 by BANK2, store result in BANK1.
-34   POW        BANK1   BANK2   BANK1 to the power of BANK2, stored in BANK1.
+30   +          BANK1   BANK2   Add BANK2 to BANK1.
+31   -          BANK1   BANK2   Subtract BANK2 from BANK1.
+32   *          BANK1   BANK2   Multiply BANK2 with BANK1. Store in BANK1.
+33   /          BANK1   BANK2   Divide BANK1 by BANK2, store result in BANK1.
+34   **         BANK1   BANK2   BANK1 to the power of BANK2, stored in BANK1.
 ```
 
 ```
@@ -161,7 +161,7 @@ OUT LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMB
  IN BTN A              ;; Store the button presses to Bank 01
 OUT LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  IN BTN B              ;; Store the button presses to Bank 02
-ADD A B                ;; Add Bank 02 to Bank 01
+  + A B                ;; Add Bank 02 to Bank 01
 OUT LCD A              ;; Output the contents of Bank 01 (the sum of the addition)
 ```
 
@@ -240,13 +240,13 @@ The interpreter would replace the above with mnemonics as the user typed:
 INT 01 01  ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT 02 01  ;; LAST NUMBER (Bank 02) is set to 1.
 ### 00     ;; Start of loop
-MOV 03 01  ;; SUM = CURRENT NUMBER
-ADD 03 02  ;; SUM = SUM + LAST NUMBER
+  = 03 01  ;; SUM = CURRENT NUMBER
+  + 03 02  ;; SUM = SUM + LAST NUMBER
 OUT LCD 03 ;; Output value of SUM
 IF> 03 00  ;; If SUM > MAX
  -> 01     ;; ...go to end.
-MOV 02 01  ;; CURRENT NUMBER becomes LAST NUMBER
-MOV 03 02  ;; SUM becomes CURRENT NUMBER
+  = 02 01  ;; CURRENT NUMBER becomes LAST NUMBER
+  = 03 02  ;; SUM becomes CURRENT NUMBER
  -> 00     ;; Start loop over.
 ### 01     ;; End
 ```
