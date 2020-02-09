@@ -39,7 +39,7 @@ BRANCHING
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-20   -->        LABEL           Jumps to a LABEL.
+20   ->         LABEL           Jumps to a LABEL.
 21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
 22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
 23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
@@ -152,7 +152,7 @@ Banks can also be given names, for readability:
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
-### ADD TWO NUMBERS      ;; Comment describing program
+### ADD TWO NUMBERS    ;; Comment describing program
 ::: BANK-00 MSG        ;; Name Bank 00 "MSG"
 ::: BANK-01 A          ;; Name Bank 01 "A"
 ::: BANK-02 B          ;; Name Bank 02 "B"
@@ -200,13 +200,13 @@ The interpreter would replace the above with mnemonics as the user typed:
 STR MSG HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 00
 INT ADULT 18          ;; Store 18 (age of adulthood) in Bank 01  
 OUT LCD MSG           ;; Display the message "HOW OLD ARE YOU"
- IN BTN AGE            ;; Store the button input in Bank 02 (your age)
+ IN BTN AGE           ;; Store the button input in Bank 02 (your age)
 IF< AGE ADULT         ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
---> IS ADULT           ;; ...Jump to label 01.
---> IS MINOR           ;; ...Otherwise jump to label 00.
+ -> IS ADULT          ;; ...Jump to label 01.
+ -> IS MINOR          ;; ...Otherwise jump to label 00.
 ### 00 IS ADULT       ;; Label 00 (for adults)
 STR MSG YOU ARE ADULT ;; Store "YOU ARE ADULT" in Bank 00
---> END                ;; Jump to label 02 (end).
+ -> END               ;; Jump to label 02 (end).
 ### 01 IS MINOR       ;; Label 01 (for minors)
 STR MSG YOU ARE MINOR ;; Store "YOU ARE MINOR" in Bank 00
 ### 02 END            ;; Label 02 (end)
@@ -236,7 +236,7 @@ The following calculates the Fibonacci Sequence up to a user-defined number.
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
- IN BTN 00  ;; User enters MAX. Stored in Bank 00.
+ IN BTN 00 ;; User enters MAX. Stored in Bank 00.
 INT 01 01  ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT 02 01  ;; LAST NUMBER (Bank 02) is set to 1.
 ### 00     ;; Start of loop
@@ -244,9 +244,9 @@ MOV 03 01  ;; SUM = CURRENT NUMBER
 ADD 03 02  ;; SUM = SUM + LAST NUMBER
 OUT LCD 03 ;; Output value of SUM
 IF> 03 00  ;; If SUM > MAX
---> 01      ;; ...go to end.
+ -> 01     ;; ...go to end.
 MOV 02 01  ;; CURRENT NUMBER becomes LAST NUMBER
 MOV 03 02  ;; SUM becomes CURRENT NUMBER
---> 00      ;; Start loop over.
+ -> 00     ;; Start loop over.
 ### 01     ;; End
 ```
