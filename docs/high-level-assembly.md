@@ -28,7 +28,7 @@ TYPES
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-10   VAR        BANK            Clears BANK.
+10   CLR        BANK            Clears contents of a BANK.
 11   BLN        BANK            Converts BANK into a boolean.
 12   INT        BANK            Converts BANK into an integer.
 13   FLT        BANK            Converts BANK into a float.
