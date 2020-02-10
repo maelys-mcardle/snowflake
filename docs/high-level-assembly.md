@@ -13,7 +13,7 @@ BASIC I/O
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-00   ###        LABEL   LITERAL Assign a name to a LABEL. If no LITERAL is specified, LABEL acts as a comment.
+00   ###        LABEL   LITERAL Assign a name to a LABEL. If no LITERAL is specified, and LABEL is not an integer, LABEL acts as a comment.
 01   :::        BANK    LITERAL Assign a name to a BANK. This is then substituted by the interpreter like the mnemonics.
 02    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
                                 Each invocation of OUT is on its own new line.
@@ -190,7 +190,7 @@ VAR MSG ENTER NUMBER   ;; Store string "ENTER NUMBER" in MSG
 This program asks for your age, then tells you if you're an adult or a minor.
 
 ```
-00 ARE YOU AN ADULT ;; Label describing program.
+00 ARE YOU AN ADULT ;; Comment describing program.
 01 00 MSG           ;; Name Bank 00 "MSG"
 01 01 ADULT         ;; Name Bank 01 "ADULT"
 01 02 AGE           ;; Name Bank 02 "AGE"
@@ -213,7 +213,7 @@ This program asks for your age, then tells you if you're an adult or a minor.
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
-### ARE YOU AN ADULT  ;; Label describing program.
+### ARE YOU AN ADULT  ;; Comment describing program.
 ::: 00 MSG            ;; Name Bank 00 "MSG"
 ::: 01 ADULT          ;; Name Bank 01 "ADULT"
 ::: 02 AGE            ;; Name Bank 02 "AGE"
@@ -259,7 +259,7 @@ The interpreter would replace the above with mnemonics as the user typed:
  >> BTN @00  ;; User enters MAX. Stored in Bank 00.
 INT @01 01   ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT @02 01   ;; LAST NUMBER (Bank 02) is set to 1.
-### 00       ;; Start of loop
+### #00      ;; Start of loop
   = @03 @01  ;; SUM = CURRENT NUMBER
   + @03 @02  ;; SUM = SUM + LAST NUMBER
  << LCD @03  ;; Output value of SUM
@@ -268,7 +268,7 @@ IF> @03 @00  ;; If SUM > MAX
   = @02 @01  ;; CURRENT NUMBER becomes LAST NUMBER
   = @03 @02  ;; SUM becomes CURRENT NUMBER
  -> #00      ;; Start loop over.
-### 01       ;; End
+### #01      ;; End
 ```
 
 This code is a little confusing to look at. Naming banks and labels would bring clarity:
