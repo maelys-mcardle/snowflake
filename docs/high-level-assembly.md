@@ -1,6 +1,6 @@
 # High Level Assembly
 
-**High Level Assembly** is a language designed for the microprocessor trainer, to make coding a little easier. It is designed for a system that has at a minimum a 2-line display of 20 character length, with a 4 x 4 button matrix for input. In this input system, typing numbers is easy, but letters is more arduous.
+**High Level Assembly** is a language designed for the microprocessor trainer, to make coding a little easier. It is designed for a system that has a 20 character length display with a 4 x 4 button matrix for input. In this input system, typing numbers is easy, but letters is presumed to be arduous.
 
 It uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, or string. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names.
 
@@ -19,7 +19,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
                                 Each invocation of OUT is on its own new line.
 03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
                                 The value is stored in the BANK after the ENTER key is pressed.
-04   =          BANK1   BANK2   Copy BANK2 contents to BANK1. If BANK2 is not specified, clears BANK1.
+04     =        BANK1   BANK2   Copy BANK2 contents to BANK1. If BANK2 is not specified, clears BANK1.
 ```
 
 ```
@@ -40,10 +40,10 @@ BRANCHING
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 20   ->         LABEL           Jumps to a LABEL.
-21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
-22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a JMP), otherwise go to the instruction after.
-23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
-24   IF<        BANK1   BANK2   If BANK1 is less than BANK2, run the next instruction (often a JMP), otherwise go to the instruction after
+21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a jump), otherwise go to the instruction after.
+22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a jump), otherwise go to the instruction after.
+23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a jump), otherwise go to the instruction after
+24   IF<        BANK1   BANK2   If BANK1 is less than BANK2, run the next instruction (often a jump), otherwise go to the instruction after
 ```
 
 ```
@@ -63,10 +63,10 @@ LOGICAL
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-40   NOT        BANK            Logical NOT. Inverts the value of BANK.
-41   AND        BANK1   BANK2   Logical AND. Result stored in BANK1.
-42   OR         BANK1   BANK2   Logical OR. Result stored in BANK1.
-43   XOR        BANK1   BANK2   Logical XOR. Result stored in BANK1.
+40   !          BANK            Logical NOT. Inverts the value of BANK.
+41   &          BANK1   BANK2   Logical AND. Result stored in BANK1.
+42   |          BANK1   BANK2   Logical OR. Result stored in BANK1.
+43   ^          BANK1   BANK2   Logical XOR. Result stored in BANK1.
 ```
 
 ### Literals
