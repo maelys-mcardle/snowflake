@@ -14,7 +14,7 @@ BASIC I/O
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 00   ###        LABEL   LITERAL Assign a name to a LABEL. If no LITERAL is specified, and LABEL is not an integer, LABEL acts as a comment.
-01   :::        BANK    LITERAL Assign a name to a BANK. This is then substituted by the interpreter like the mnemonics.
+01              BANK    LITERAL Assign a name to a BANK. This is then substituted by the interpreter like the mnemonics.
 02    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
                                 Each invocation of OUT is on its own new line.
 03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
@@ -173,9 +173,9 @@ The interpreter would replace the above with mnemonics as the user typed:
 
 ```
 ### ADD TWO NUMBERS    ;; Comment describing program
-::: @00 MSG            ;; Name Bank 00 "MSG"
-::: @01 A              ;; Name Bank 01 "A"
-::: @02 B              ;; Name Bank 02 "B"
+    @00 MSG            ;; Name Bank 00 "MSG"
+    @01 A              ;; Name Bank 01 "A"
+    @02 B              ;; Name Bank 02 "B"
 VAR MSG ENTER NUMBER   ;; Store string "ENTER NUMBER" in MSG
  << LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >> BTN A              ;; Store the button presses to Bank 01
@@ -214,9 +214,9 @@ The interpreter would replace the above with mnemonics as the user typed:
 
 ```
 ### ARE YOU AN ADULT  ;; Comment describing program.
-::: @00 MSG            ;; Name Bank 00 "MSG"
-::: @01 ADULT          ;; Name Bank 01 "ADULT"
-::: @02 AGE            ;; Name Bank 02 "AGE"
+    @00 MSG            ;; Name Bank 00 "MSG"
+    @01 ADULT          ;; Name Bank 01 "ADULT"
+    @02 AGE            ;; Name Bank 02 "AGE"
 STR MSG HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 00
 INT ADULT 18          ;; Store 18 (age of adulthood) in Bank 01  
  << LCD MSG           ;; Display the message "HOW OLD ARE YOU"
@@ -296,10 +296,10 @@ This code is a little confusing to look at. Naming banks and labels would bring 
 ...which would produce the following:
 
 ```
-::: @00 MAX             ;; Name Bank 00 "MAX".
-::: @01 CURRENT         ;; Name Bank 01 "CURRENT"
-::: @02 LAST            ;; Name Bank 02 "LAST"
-::: @03 SUM             ;; Name Bank 03 "SUM"
+    @00 MAX             ;; Name Bank 00 "MAX".
+    @01 CURRENT         ;; Name Bank 01 "CURRENT"
+    @02 LAST            ;; Name Bank 02 "LAST"
+    @03 SUM             ;; Name Bank 03 "SUM"
  >> BTN MAX             ;; User enters MAX. Stored in Bank 00.
 INT CURRENT 01          ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT LAST 01             ;; LAST NUMBER (Bank 02) is set to 1.
