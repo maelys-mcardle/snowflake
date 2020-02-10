@@ -271,7 +271,7 @@ IF> @03 @00  ;; If SUM > MAX
 ### 01       ;; End
 ```
 
-This code is a little confusing to look at. Naming banks would bring clarity:
+This code is a little confusing to look at. Naming banks and labels would bring clarity:
 
 ```
 01 00 MAX-NUMBER     ;; Name Bank 00 "MAX-NUMBER".
