@@ -13,8 +13,9 @@ BASIC I/O
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-00   ###        LABEL   LITERAL Assign a name to a LABEL. LITERAL is optional; acts as alias. LABEL can double as a comment.
-01              BANK    LITERAL Assign a name to a BANK. This is then substituted by the interpreter like the mnemonics.
+00   ###        LITERAL         Code comment.
+00   ###        LABEL   LITERAL Assign a name to a LABEL.
+01              BANK    LITERAL Assign a name to a BANK.
 02    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
                                 Each invocation of OUT is on its own new line.
 03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
@@ -27,11 +28,16 @@ TYPES
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-10   VAR        BANK LITERAL    Stores LITERAL in BANK. Type is inferred. If LITERAL is unspecified, clears BANK.
-11   BLN        BANK LITERAL    Stores LITERAL into BANK as boolean. If LITERAL is unspecified, converts BANK into a boolean.
-12   INT        BANK LITERAL    Stores LITERAL into BANK as integer. If LITERAL is unspecified, converts BANK into a integer.
-13   FLT        BANK LITERAL    Stores LITERAL into BANK as float. If LITERAL is unspecified, converts BANK into a float.
-14   STR        BANK LITERAL    Stores LITERAL into BANK as string. If LITERAL is unspecified, converts BANK into a string.
+10   VAR        BANK            Clears BANK.
+10   VAR        BANK LITERAL    Stores LITERAL in BANK. Type is inferred.
+11   BLN        BANK            Converts BANK into a boolean.
+11   BLN        BANK LITERAL    Stores LITERAL into BANK as boolean.
+12   INT        BANK            Converts BANK into an integer.
+12   INT        BANK LITERAL    Stores LITERAL into BANK as integer.
+13   FLT        BANK            Converts BANK into a float.
+13   FLT        BANK LITERAL    Stores LITERAL into BANK as float.
+14   STR        BANK            Converts BANK into a string.
+14   STR        BANK LITERAL    Stores LITERAL into BANK as string.
 ```
 
 ```
@@ -40,10 +46,14 @@ BRANCHING
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 20    ->        LABEL           Jumps to a LABEL.
-21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a jump), otherwise go to the instruction after.
-22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a jump), otherwise go to the instruction after.
-23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a jump), otherwise go to the instruction after
-24   IF<        BANK1   BANK2   If BANK1 is less than BANK2, run the next instruction (often a jump), otherwise go to the instruction after
+21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a jump), 
+                                otherwise, skip the next instruction.
+22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a jump), 
+                                otherwise skip the next instruction.
+23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a jump),
+                                otherwise skip the next instruction.
+24   IF<        BANK1   BANK2   If BANK1 is less than BANK2, run the next instruction (often a jump),
+                                otherwise skip the next instruction.
 ```
 
 ```
@@ -121,9 +131,11 @@ VAR @00 HELLO WORLD!
  << LCD @00
 ```
 
-An `@` in front of the `@00` denotes that it's referring to Bank 00.
-An `:` in front of the `:00` denotes that it's referring to Label 00.
-A lack of `@` or `:` in front of a number/string denotes that it's referring to a literal.
+**Note:**
+
+* An `@` in front of the `@00` denotes that it's referring to Bank 00.
+* An `:` in front of the `:00` denotes that it's referring to Label 00.
+* A lack of `@` or `:` in front of a number/string denotes that it's referring to a literal.
 
 ### Add Two Numbers
 
