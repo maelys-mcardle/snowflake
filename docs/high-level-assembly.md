@@ -105,6 +105,26 @@ DEVICE  MNEMONIC  DESCRIPTION
 
 ## Sample Code
 
+### Hello World
+
+This program outputs "Hello World!" to the LCD:
+
+```
+10 00 HELLO WORLD!
+02 00 00
+```
+
+The interpreter would replace the above with mnemonics as the user typed:
+
+```
+VAR @00 HELLO WORLD!
+ << LCD @00
+```
+
+An `@` in front of the `@00` denotes that it's referring to Bank 00.
+An `#` in front of the `#00` denotes that it's referring to Label 00.
+A lack of `@` or `#` in front of a number/string denotes that it's referring to a literal.
+
 ### Add Two Numbers
 
 Here's a basic program that adds two numbers, as entered by the user:
@@ -122,13 +142,13 @@ Here's a basic program that adds two numbers, as entered by the user:
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
-VAR BANK-00 ENTER NUMBER  ;; Store string "ENTER NUMBER" in Bank 00
- << LCD BANK-00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
- >> BTN BANK-01           ;; Store the button presses to Bank 01
- << LCD BANK-00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
- >> BTN BANK-02           ;; Store the button presses to Bank 02
-  + BANK-01 BANK-02       ;; Add Bank 02 to Bank 01
- << LCD BANK-01           ;; Output the contents of Bank 01 (the sum of the addition)
+VAR @00 ENTER NUMBER  ;; Store string "ENTER NUMBER" in Bank 00
+ << LCD @00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ >> BTN @01           ;; Store the button presses to Bank 01
+ << LCD @00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ >> BTN @02           ;; Store the button presses to Bank 02
+  + @01 @02           ;; Add Bank 02 to Bank 01
+ << LCD @01           ;; Output the contents of Bank 01 (the sum of the addition)
 ```
 
 ### Add Two Numbers (with named banks)
@@ -153,9 +173,9 @@ The interpreter would replace the above with mnemonics as the user typed:
 
 ```
 ### ADD TWO NUMBERS    ;; Comment describing program
-::: BANK-00 MSG        ;; Name Bank 00 "MSG"
-::: BANK-01 A          ;; Name Bank 01 "A"
-::: BANK-02 B          ;; Name Bank 02 "B"
+::: @00 MSG            ;; Name Bank 00 "MSG"
+::: @01 A              ;; Name Bank 01 "A"
+::: @02 B              ;; Name Bank 02 "B"
 VAR MSG ENTER NUMBER   ;; Store string "ENTER NUMBER" in MSG
  << LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >> BTN A              ;; Store the button presses to Bank 01
@@ -236,17 +256,17 @@ The following calculates the Fibonacci Sequence up to a user-defined number.
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
- >> BTN 00 ;; User enters MAX. Stored in Bank 00.
-INT 01 01  ;; CURRENT NUMBER (Bank 01) is set to 1.
-INT 02 01  ;; LAST NUMBER (Bank 02) is set to 1.
-### 00     ;; Start of loop
-  = 03 01  ;; SUM = CURRENT NUMBER
-  + 03 02  ;; SUM = SUM + LAST NUMBER
- << LCD 03 ;; Output value of SUM
-IF> 03 00  ;; If SUM > MAX
- -> 01     ;; ...go to end.
-  = 02 01  ;; CURRENT NUMBER becomes LAST NUMBER
-  = 03 02  ;; SUM becomes CURRENT NUMBER
- -> 00     ;; Start loop over.
-### 01     ;; End
+ >> BTN @00  ;; User enters MAX. Stored in Bank 00.
+INT @01 01   ;; CURRENT NUMBER (Bank 01) is set to 1.
+INT @02 01   ;; LAST NUMBER (Bank 02) is set to 1.
+### 00       ;; Start of loop
+  = @03 @01  ;; SUM = CURRENT NUMBER
+  + @03 @02  ;; SUM = SUM + LAST NUMBER
+ << LCD @03  ;; Output value of SUM
+IF> @03 @00  ;; If SUM > MAX
+ -> #01      ;; ...go to end.
+  = @02 @01  ;; CURRENT NUMBER becomes LAST NUMBER
+  = @03 @02  ;; SUM becomes CURRENT NUMBER
+ -> #00      ;; Start loop over.
+### 01       ;; End
 ```
