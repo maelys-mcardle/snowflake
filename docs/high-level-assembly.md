@@ -19,8 +19,9 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 02    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
                                 Each invocation of OUT is on its own new line.
 03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
-                                The value is stored in the BANK after the ENTER key is pressed.
-04     =        BANK1   BANK2   Copy BANK2 contents to BANK1. If BANK2 is not specified, clears BANK1.
+                                The value is stored in the BANK after the ENTER key is pressed.              
+04     =        BANK1   BANK2   Copy BANK2 contents to BANK1.
+05   CLR        BANK            Clears contents of a BANK.         
 ```
 
 ```
@@ -28,7 +29,7 @@ TYPES
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-10   CLR        BANK            Clears contents of a BANK.
+10   VAR        BANK            Converts BANK into the type that's inferred.
 11   BLN        BANK            Converts BANK into a boolean.
 12   INT        BANK            Converts BANK into an integer.
 13   FLT        BANK            Converts BANK into a float.
