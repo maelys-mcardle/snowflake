@@ -29,14 +29,17 @@ TYPES
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 10   VAR        BANK            Clears BANK.
-10   VAR        BANK LITERAL    Stores LITERAL in BANK. Type is inferred.
 11   BLN        BANK            Converts BANK into a boolean.
-11   BLN        BANK LITERAL    Stores LITERAL into BANK as boolean.
 12   INT        BANK            Converts BANK into an integer.
-12   INT        BANK LITERAL    Stores LITERAL into BANK as integer.
 13   FLT        BANK            Converts BANK into a float.
-13   FLT        BANK LITERAL    Stores LITERAL into BANK as float.
 14   STR        BANK            Converts BANK into a string.
+
+CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
+---  ---------  --------------  -----------
+10   VAR        BANK LITERAL    Stores LITERAL in BANK. Type is inferred.
+11   BLN        BANK LITERAL    Stores LITERAL into BANK as boolean.
+12   INT        BANK LITERAL    Stores LITERAL into BANK as integer.
+13   FLT        BANK LITERAL    Stores LITERAL into BANK as float.
 14   STR        BANK LITERAL    Stores LITERAL into BANK as string.
 ```
 
