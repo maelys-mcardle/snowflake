@@ -122,8 +122,8 @@ VAR @00 HELLO WORLD!
 ```
 
 An `@` in front of the `@00` denotes that it's referring to Bank 00.
-An `#` in front of the `#00` denotes that it's referring to Label 00.
-A lack of `@` or `#` in front of a number/string denotes that it's referring to a literal.
+An `:` in front of the `:00` denotes that it's referring to Label 00.
+A lack of `@` or `:` in front of a number/string denotes that it's referring to a literal.
 
 ### Add Two Numbers
 
@@ -259,16 +259,16 @@ The interpreter would replace the above with mnemonics as the user typed:
  >> BTN @00  ;; User enters MAX. Stored in Bank 00.
 INT @01 01   ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT @02 01   ;; LAST NUMBER (Bank 02) is set to 1.
-### #00      ;; Start of loop
+### :00      ;; Start of loop
   = @03 @01  ;; SUM = CURRENT NUMBER
   + @03 @02  ;; SUM = SUM + LAST NUMBER
  << LCD @03  ;; Output value of SUM
 IF> @03 @00  ;; If SUM > MAX
- -> #01      ;; ...go to end.
+ -> :01      ;; ...go to end.
   = @02 @01  ;; CURRENT NUMBER becomes LAST NUMBER
   = @03 @02  ;; SUM becomes CURRENT NUMBER
- -> #00      ;; Start loop over.
-### #01      ;; End
+ -> :00      ;; Start loop over.
+### :01      ;; End
 ```
 
 This code is a little confusing to look at. Naming banks and labels would bring clarity:
