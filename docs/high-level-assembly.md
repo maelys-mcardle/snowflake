@@ -214,9 +214,9 @@ The interpreter would replace the above with mnemonics as the user typed:
 
 ```
 ### ARE YOU AN ADULT  ;; Comment describing program.
-::: 00 MSG            ;; Name Bank 00 "MSG"
-::: 01 ADULT          ;; Name Bank 01 "ADULT"
-::: 02 AGE            ;; Name Bank 02 "AGE"
+::: @00 MSG            ;; Name Bank 00 "MSG"
+::: @01 ADULT          ;; Name Bank 01 "ADULT"
+::: @02 AGE            ;; Name Bank 02 "AGE"
 STR MSG HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 00
 INT ADULT 18          ;; Store 18 (age of adulthood) in Bank 01  
  << LCD MSG           ;; Display the message "HOW OLD ARE YOU"
