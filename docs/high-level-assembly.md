@@ -13,7 +13,7 @@ BASIC I/O
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-00   ###        LABEL   LITERAL Assign a name to a LABEL. If no LITERAL is specified, and LABEL is not an integer, LABEL acts as a comment.
+00   ###        LABEL   LITERAL Assign a name to a LABEL. LITERAL is optional; acts as alias. LABEL can double as a comment.
 01              BANK    LITERAL Assign a name to a BANK. This is then substituted by the interpreter like the mnemonics.
 02    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
                                 Each invocation of OUT is on its own new line.
