@@ -39,7 +39,7 @@ BRANCHING
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-20   ->         LABEL           Jumps to a LABEL.
+20    ->        LABEL           Jumps to a LABEL.
 21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a jump), otherwise go to the instruction after.
 22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a jump), otherwise go to the instruction after.
 23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a jump), otherwise go to the instruction after
