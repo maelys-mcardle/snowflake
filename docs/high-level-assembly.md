@@ -49,13 +49,17 @@ BRANCHING
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 20    ->        LABEL           Jumps to a LABEL.
-21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, run the next instruction (often a jump), 
+21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, 
+                                run the next instruction (often a jump), 
                                 otherwise, skip the next instruction.
-22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2, run the next instruction (often a jump), 
+22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2,
+                                run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
-23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2, run the next instruction (often a jump),
+23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2,
+                                run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
-24   IF<        BANK1   BANK2   If BANK1 is less than BANK2, run the next instruction (often a jump),
+24   IF<        BANK1   BANK2   If BANK1 is less than BANK2,
+                                run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
 ```
 
@@ -302,7 +306,7 @@ This code is a little confusing to look at. Naming banks and labels would bring 
 02 00 03    ;; Output value of SUM
 23 03 00    ;; If SUM > MAX
 20 01       ;; ...go to end.
-04 02 01    ;; CURRENT NUMBER becomes LAST NUMBER
+04 02 01    ;; ...otherwise CURRENT NUMBER becomes LAST NUMBER
 04 03 02    ;; SUM becomes CURRENT NUMBER
 20 00       ;; Start loop over.
 00 01 END   ;; End
@@ -324,7 +328,7 @@ INT LAST 01             ;; LAST NUMBER (Bank 02) is set to 1.
  << LCD SUM             ;; Output value of SUM
 IF> SUM MAX             ;; If SUM > MAX
  -> END                 ;; ...go to end.
-  = LAST CURRENT        ;; CURRENT NUMBER becomes LAST NUMBER
+  = LAST CURRENT        ;; ...otherwise CURRENT NUMBER becomes LAST NUMBER
   = CURRENT SUM         ;; SUM becomes CURRENT NUMBER
  -> START               ;; Start loop over.
 ### END                 ;; End
