@@ -2,10 +2,6 @@
 
 **High Level Assembly** is a language designed for the microprocessor trainer, to make coding a little easier. It is designed for a system that has a 20 character length display with a 4 x 4 button matrix for input. In this input system, typing numbers is easy, but letters is presumed to be arduous.
 
-It uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, or string. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
-
-It uses the concept of a **Label** for jumping between different points in the code. Labels can be any type, but are usually an integer. These can also be given names. The interpreter will substitute the label for a name, if one is provided. The `20` instruction (mnemonic: `->`) is used to point to one of these labels; making the following instruction executed by the interpreter the one at that label. 
-
 ## Reference
 
 ### Instruction Set
@@ -90,6 +86,12 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 43   ^          BANK1   BANK2   Logical XOR. Result stored in BANK1.
 ```
 
+## Banks and Labels
+
+It uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, or string. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
+
+It uses the concept of a **Label** for jumping between different points in the code. Labels can be any type, but are usually an integer. These can also be given names. The interpreter will substitute the label for a name, if one is provided. The `20` instruction (mnemonic: `->`) is used to point to one of these labels; making the following instruction executed by the interpreter the one at that label. 
+
 ### Literals
 
 `LITERAL` can be boolean, integer, floating point, or string.
@@ -98,12 +100,6 @@ If literals are inferred, it's according to the following rules:
 * If 0-9 is entered, its stored as an INTEGER.
 * If 0-9 with a . is entered, its stored as a FLOAT.
 * If any other characters are entered, its stored as a STRING.
-
-### Labels
-
-Labels can be any literal value.
-
-As it's easier in this device to enter integers, it's most commonly integers.
 
 ### Boolean Values
 
