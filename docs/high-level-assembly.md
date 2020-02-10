@@ -127,15 +127,15 @@ DEVICE  MNEMONIC  DESCRIPTION
 This program outputs "Hello World!" to the LCD:
 
 ```
-10 00 HELLO WORLD!
-02 00 00
+10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
+02 00 00              ;; Output the contents of Bank 00 to the LCD
 ```
 
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
-VAR @00 HELLO WORLD!
- << LCD @00
+VAR @00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
+ << LCD @00             ;; Output the contents of Bank 00 to the LCD
 ```
 
 **Note:**
@@ -232,24 +232,24 @@ This program asks for your age, then tells you if you're an adult or a minor.
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
-### ARE YOU AN ADULT  ;; Comment describing program.
-    @00 MSG            ;; Name Bank 00 "MSG"
-    @01 ADULT          ;; Name Bank 01 "ADULT"
-    @02 AGE            ;; Name Bank 02 "AGE"
+### ARE YOU AN ADULT    ;; Comment describing program.
+    @00 MSG             ;; Name Bank 00 "MSG"
+    @01 ADULT           ;; Name Bank 01 "ADULT"
+    @02 AGE             ;; Name Bank 02 "AGE"
 STR MSG HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 00
-INT ADULT 18          ;; Store 18 (age of adulthood) in Bank 01  
- << LCD MSG           ;; Display the message "HOW OLD ARE YOU"
- >> BTN AGE           ;; Store the button input in Bank 02 (your age)
-IF< AGE ADULT         ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
- -> IS ADULT          ;; ...Jump to label 01.
- -> IS MINOR          ;; ...Otherwise jump to label 00.
-### IS ADULT          ;; Label 00 (for adults)
-STR MSG YOU ARE ADULT ;; Store "YOU ARE ADULT" in Bank 00
- -> END               ;; Jump to label 02 (end).
-### IS MINOR          ;; Label 01 (for minors)
-STR MSG YOU ARE MINOR ;; Store "YOU ARE MINOR" in Bank 00
-### END               ;; Label 02 (end)
- << LCD MSG           ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
+INT ADULT 18            ;; Store 18 (age of adulthood) in Bank 01  
+ << LCD MSG             ;; Display the message "HOW OLD ARE YOU"
+ >> BTN AGE             ;; Store the button input in Bank 02 (your age)
+IF< AGE ADULT           ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
+ -> IS ADULT            ;; ...Jump to label 01.
+ -> IS MINOR            ;; ...Otherwise jump to label 00.
+### IS ADULT            ;; Label 00 (for adults)
+STR MSG YOU ARE ADULT   ;; Store "YOU ARE ADULT" in Bank 00
+ -> END                 ;; Jump to label 02 (end).
+### IS MINOR            ;; Label 01 (for minors)
+STR MSG YOU ARE MINOR   ;; Store "YOU ARE MINOR" in Bank 00
+### END                 ;; Label 02 (end)
+ << LCD MSG             ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
 ```
 
 ### Fibonacci Sequence
@@ -297,19 +297,19 @@ This code is a little confusing to look at. Naming banks and labels would bring 
 01 01 CURRENT ;; Name Bank 01 "CURRENT"
 01 02 LAST    ;; Name Bank 02 "LAST"
 01 03 SUM     ;; Name Bank 03 "SUM"
-03 01 00    ;; User enters MAX. Stored in Bank 00.
-12 01 01    ;; CURRENT NUMBER (Bank 01) is set to 1.
-12 02 01    ;; LAST NUMBER (Bank 02) is set to 1.
-00 00 START ;; Start of loop
-04 03 01    ;; SUM = CURRENT NUMBER
-30 03 02    ;; SUM = SUM + LAST NUMBER
-02 00 03    ;; Output value of SUM
-23 03 00    ;; If SUM > MAX
-20 01       ;; ...go to end.
-04 02 01    ;; ...otherwise CURRENT NUMBER becomes LAST NUMBER
-04 03 02    ;; SUM becomes CURRENT NUMBER
-20 00       ;; Start loop over.
-00 01 END   ;; End
+03 01 00      ;; User enters MAX. Stored in Bank 00.
+12 01 01      ;; CURRENT NUMBER (Bank 01) is set to 1.
+12 02 01      ;; LAST NUMBER (Bank 02) is set to 1.
+00 00 START   ;; Start of loop
+04 03 01      ;; SUM = CURRENT NUMBER
+30 03 02      ;; SUM = SUM + LAST NUMBER
+02 00 03      ;; Output value of SUM
+23 03 00      ;; If SUM > MAX
+20 01         ;; ...go to end.
+04 02 01      ;; ...otherwise CURRENT NUMBER becomes LAST NUMBER
+04 03 02      ;; SUM becomes CURRENT NUMBER
+20 00         ;; Start loop over.
+00 01 END     ;; End
 ```
 
 ...which would produce the following:
