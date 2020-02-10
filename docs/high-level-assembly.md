@@ -13,7 +13,8 @@ BASIC I/O
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-00   ###        LITERAL         Code comment.
+00   ###        COMMENT         Code comment.         
+00   ###        LABEL           Jump point.
 00   ###        LABEL   LITERAL Assign a name to a LABEL.
 01              BANK    LITERAL Assign a name to a BANK.
 02    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
