@@ -20,8 +20,8 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
                                 Each invocation of OUT is on its own new line.
 03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
                                 The value is stored in the BANK after the ENTER key is pressed.              
+04   CLR        BANK            Clears contents of a BANK.         
 04     =        BANK1   BANK2   Copy BANK2 contents to BANK1.
-05   CLR        BANK            Clears contents of a BANK.         
 ```
 
 ```
