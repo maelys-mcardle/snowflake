@@ -86,7 +86,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 43   ^          BANK1   BANK2   Logical XOR. Result stored in BANK1.
 ```
 
-## Banks and Labels
+### Banks and Labels
 
 It uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, or string. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
