@@ -274,10 +274,10 @@ IF> @03 @00  ;; If SUM > MAX
 This code is a little confusing to look at. Naming banks and labels would bring clarity:
 
 ```
-01 00 MAX-NUMBER     ;; Name Bank 00 "MAX-NUMBER".
-01 01 CURRENT-NUMBER ;; Name Bank 01 "CURRENT-NUMBER"
-01 02 LAST-NUMBER    ;; Name Bank 02 "LAST-NUMBER"
-01 03 SUM            ;; Name Bank 03 "SUM"
+01 00 MAX     ;; Name Bank 00 "MAX".
+01 01 CURRENT ;; Name Bank 01 "CURRENT"
+01 02 LAST    ;; Name Bank 02 "LAST"
+01 03 SUM     ;; Name Bank 03 "SUM"
 03 01 00    ;; User enters MAX. Stored in Bank 00.
 12 01 01    ;; CURRENT NUMBER (Bank 01) is set to 1.
 12 02 01    ;; LAST NUMBER (Bank 02) is set to 1.
@@ -296,21 +296,21 @@ This code is a little confusing to look at. Naming banks and labels would bring 
 ...which would produce the following:
 
 ```
-::: @00 MAX-NUMBER      ;; Name Bank 00 "MAX-NUMBER".
-::: @01 CURRENT-NUMBER  ;; Name Bank 01 "CURRENT-NUMBER"
-::: @02 LAST-NUMBER     ;; Name Bank 02 "LAST-NUMBER"
+::: @00 MAX             ;; Name Bank 00 "MAX".
+::: @01 CURRENT         ;; Name Bank 01 "CURRENT"
+::: @02 LAST            ;; Name Bank 02 "LAST"
 ::: @03 SUM             ;; Name Bank 03 "SUM"
- >> BTN MAX-NUMBER      ;; User enters MAX. Stored in Bank 00.
-INT CURRENT-NUMBER 01   ;; CURRENT NUMBER (Bank 01) is set to 1.
-INT LAST-NUMBER 01      ;; LAST NUMBER (Bank 02) is set to 1.
+ >> BTN MAX             ;; User enters MAX. Stored in Bank 00.
+INT CURRENT 01          ;; CURRENT NUMBER (Bank 01) is set to 1.
+INT LAST 01             ;; LAST NUMBER (Bank 02) is set to 1.
 ### START               ;; Start of loop
-  = SUM CURRENT-NUMBER  ;; SUM = CURRENT NUMBER
-  + SUM LAST-NUMBER     ;; SUM = SUM + LAST NUMBER
+  = SUM CURRENT         ;; SUM = CURRENT NUMBER
+  + SUM LAST            ;; SUM = SUM + LAST NUMBER
  << LCD SUM             ;; Output value of SUM
-IF> SUM MAX-NUMBER      ;; If SUM > MAX
+IF> SUM MAX             ;; If SUM > MAX
  -> END                 ;; ...go to end.
-  = LAST-NUMBER CURRENT-NUMBER  ;; CURRENT NUMBER becomes LAST NUMBER
-  = CURRENT-NUMBER SUM  ;; SUM becomes CURRENT NUMBER
+  = LAST CURRENT        ;; CURRENT NUMBER becomes LAST NUMBER
+  = CURRENT SUM         ;; SUM becomes CURRENT NUMBER
  -> START               ;; Start loop over.
 ### END                 ;; End
 ```
