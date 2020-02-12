@@ -51,16 +51,17 @@ BRANCHING
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 20    ->        LABEL           Jumps to a LABEL.
-21   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, 
+21    ->        BANK            Jumps to the LABEL as stored in a BANK. 
+22   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, 
                                 run the next instruction (often a jump), 
                                 otherwise, skip the next instruction.
-22   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2,
+23   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2,
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
-23   IF>        BANK1   BANK2   If BANK1 is greater than BANK2,
+24   IF>        BANK1   BANK2   If BANK1 is greater than BANK2,
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
-24   IF<        BANK1   BANK2   If BANK1 is less than BANK2,
+25   IF<        BANK1   BANK2   If BANK1 is less than BANK2,
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
 ```
@@ -236,7 +237,7 @@ This program asks for your age, then tells you if you're an adult or a minor.
 12 01 18            ;; Store 18 (age of adulthood) in Bank 01  
 02 00 00            ;; Display the message "HOW OLD ARE YOU"
 03 01 02            ;; Store the button input in Bank 02 (your age)
-24 02 01            ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
+25 02 01            ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
 20 01               ;; ...Jump to label 01.
 20 00               ;; ...Otherwise jump to label 00.
 00 00 IS ADULT      ;; Label 00 (for adults)
@@ -283,7 +284,7 @@ The following calculates the Fibonacci Sequence up to a user-defined number.
 04 03 01  ;; SUM = CURRENT NUMBER
 30 03 02  ;; SUM = SUM + LAST NUMBER
 02 00 03  ;; Output value of SUM
-23 03 00  ;; If SUM > MAX
+24 03 00  ;; If SUM > MAX
 20 01     ;; ...go to end.
 04 02 01  ;; CURRENT NUMBER becomes LAST NUMBER
 04 03 02  ;; SUM becomes CURRENT NUMBER
@@ -323,7 +324,7 @@ This code is a little confusing to look at. Naming banks and labels would bring 
 04 03 01      ;; SUM = CURRENT NUMBER
 30 03 02      ;; SUM = SUM + LAST NUMBER
 02 00 03      ;; Output value of SUM
-23 03 00      ;; If SUM > MAX
+24 03 00      ;; If SUM > MAX
 20 01         ;; ...go to end.
 04 02 01      ;; ...otherwise CURRENT NUMBER becomes LAST NUMBER
 04 03 02      ;; SUM becomes CURRENT NUMBER
