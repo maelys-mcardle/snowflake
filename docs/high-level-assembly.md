@@ -102,8 +102,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 55   []-        BANK            Removes the item at the end of the BANK.
 56   [>]        BANK1   BANK2   Moves the first item of the BANK1 array to the index specified in BANK2.
 57   [<]        BANK1   BANK2   Moves an item at the index specified in BANK2 to the first item of the array of BANK1.
-58   [-]        BANK1   BANK2   Deletes the item at the index specified in BANK2 from the BANK1 array.
-59   [?]        BANK1   BANK2   Stores the length of the BANK2 array into BANK1.
+58   [?]        BANK1   BANK2   Stores the length of the BANK2 array into BANK1.
 ```
 
 ### Banks and Labels
