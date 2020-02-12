@@ -42,7 +42,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 12   INT        BANK LITERAL    Stores LITERAL into BANK as integer.
 13   FLT        BANK LITERAL    Stores LITERAL into BANK as float.
 14   STR        BANK LITERAL    Stores LITERAL into BANK as string.
-15   ARR        BANK1 BANK2     Appends the contents of BANK2 to the BANK1 array.
+15   ARR        BANK LITERAL    Stores LITERAL in BANK array. Type is inferred.
 ```
 
 ```
