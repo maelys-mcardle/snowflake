@@ -20,7 +20,8 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
                                 The value is stored in the BANK after the ENTER key is pressed.             
 04     =        BANK1   BANK2   Copy BANK2 contents to BANK1.
-05   CLR        BANK            Clears contents of a BANK.         
+05   CLR        BANK            Clears contents of a BANK.
+06   TYP        BANK1   BANK2   Stores the TYPE of BANK2 into BANK1. Corresponds to codes 11-15 below.
 ```
 
 ```
