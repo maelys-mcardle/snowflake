@@ -20,7 +20,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
                                 The value is stored in the BANK after the ENTER key is pressed.             
 04     =        BANK1   BANK2   Copy BANK2 contents to BANK1.
-05   CLR        BANK            Clears contents of a BANK.
+05   DEL        BANK            Deletes all data associated with BANK.
 06   TYP        BANK1   BANK2   Stores the TYPE of BANK2 into BANK1. Corresponds to codes 11-15 below.
 ```
 
@@ -34,7 +34,9 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 12   INT        BANK            Converts BANK into an integer.
 13   FLT        BANK            Converts BANK into a float.
 14   STR        BANK            Converts BANK into a string.
-15   ARR        BANK            Converts BANK into an array.
+15   ARR        BANK            Converts BANK into an array. 
+                                Whatever is contained in the BANK previously becomes
+                                the first item of this array.
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
@@ -94,14 +96,15 @@ ARRAYS
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-50   +[]        BANK1   BANK2   Appends the contents of BANK2 to the start of the BANK1 array.
-51   []+        BANK1   BANK2   Appends the contents of BANK2 to the end of the BANK1 array.
-52   -[]        BANK1   BANK2   Removes the item at the start of the BANK2 array and stores it into BANK1.
-53   []-        BANK1   BANK2   Removes the item at the end of the BANK2 array and stores it into BANK1.
-54   [>]        BANK1   BANK2   Moves the first item of the BANK1 array to the index specified in BANK2.
-55   [<]        BANK1   BANK2   Moves the last item of the BANK1 array to the index specified in BANK2.
-56   [-]        BANK1   BANK2   Deletes the item at the index specified in BANK2 from the BANK1 array.
-57   [?]        BANK1   BANK2   Stores the length of the BANK2 array into BANK1.
+50   []         BANK            Sets BANK to be an empty array.
+51   +[]        BANK1   BANK2   Appends the contents of BANK2 to the start of the BANK1 array.
+52   []+        BANK1   BANK2   Appends the contents of BANK2 to the end of the BANK1 array.
+53   -[]        BANK1   BANK2   Removes the item at the start of the BANK2 array and stores it into BANK1.
+54   []-        BANK1   BANK2   Removes the item at the end of the BANK2 array and stores it into BANK1.
+55   [>]        BANK1   BANK2   Moves the first item of the BANK1 array to the index specified in BANK2.
+56   [<]        BANK1   BANK2   Moves the last item of the BANK1 array to the index specified in BANK2.
+57   [-]        BANK1   BANK2   Deletes the item at the index specified in BANK2 from the BANK1 array.
+58   [?]        BANK1   BANK2   Stores the length of the BANK2 array into BANK1.
 ```
 
 ### Banks and Labels
