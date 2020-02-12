@@ -34,7 +34,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 12   INT        BANK            Converts BANK into an integer.
 13   FLT        BANK            Converts BANK into a float.
 14   STR        BANK            Converts BANK into a string.
-15   ARR        BANK            Converts BANK into an empty array.
+15    []        BANK            Converts BANK into an empty array.
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
@@ -94,6 +94,7 @@ ARRAYS
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
+15    []        BANK            Converts BANK into an empty array.
 50   +[]        BANK1   BANK2   Appends the contents of BANK2 to the start of the BANK1 array.
 51   []+        BANK1   BANK2   Appends the contents of BANK2 to the end of the BANK1 array.
 52   ?[]        BANK1   BANK2   Reads the first item of the BANK1 array and stores it into BANK2.
