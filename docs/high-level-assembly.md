@@ -33,6 +33,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 12   INT        BANK            Converts BANK into an integer.
 13   FLT        BANK            Converts BANK into a float.
 14   STR        BANK            Converts BANK into a string.
+15   ARR        BANK            Converts BANK into an array.
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
@@ -41,6 +42,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 12   INT        BANK LITERAL    Stores LITERAL into BANK as integer.
 13   FLT        BANK LITERAL    Stores LITERAL into BANK as float.
 14   STR        BANK LITERAL    Stores LITERAL into BANK as string.
+15   ARR        BANK1 BANK2     Appends the contents of BANK2 to the BANK1 array.
 ```
 
 ```
@@ -84,6 +86,17 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 41   &          BANK1   BANK2   Logical AND. Result stored in BANK1.
 42   |          BANK1   BANK2   Logical OR. Result stored in BANK1.
 43   ^          BANK1   BANK2   Logical XOR. Result stored in BANK1.
+```
+
+```
+ARRAYS 
+
+CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
+---  ---------  --------------  -----------
+50   +[]        BANK1   BANK2   Appends the contents of BANK2 to the start of the BANK1 array.
+51   []+        BANK1   BANK2   Appends the contents of BANK2 to the end of the BANK1 array.
+52   -[]        BANK1   BANK2   Removes the item at the start of the BANK2 array and stores it into BANK1.
+53   []-        BANK1   BANK2   Removes the item at the end of the BANK2 array and stores it into BANK1.
 ```
 
 ### Banks and Labels
