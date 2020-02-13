@@ -181,4 +181,4 @@ Any whitespace in a literal field is treated as part of that literal.
 ```
 
 Anything that follows the last `;;` is treated as a comment and ignored. These comments
-may not be displayed in an interpreter.
+may not be displayed in an interpreter. Empty lines are ignored.
