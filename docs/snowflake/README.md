@@ -165,3 +165,20 @@ VAR @00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
 * An `:` in front of the `:00` denotes that it's referring to Label 00.
 * A lack of `@` or `:` in front of a number/string denotes that it's referring to a literal.
 
+## File Format
+
+Snowflake programs are stored in plaintext UTF-8 as `.sn` files. 
+
+The different fields are separated by whitespace.
+
+Mnemonics are not used in `.sn` files.
+
+Any whitespace in a literal field is treated as part of that literal.
+
+```
+10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
+02 00 00              ;; Output the contents of Bank 00 to the LCD
+```
+
+Anything that follows the last `;;` is treated as a comment and ignored. These comments
+may not be displayed in an interpreter.
