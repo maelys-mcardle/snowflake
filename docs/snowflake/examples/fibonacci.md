@@ -21,7 +21,7 @@ The following calculates the Fibonacci Sequence up to a user-defined number.
 The interpreter would replace the above with mnemonics as the user typed:
 
 ```
- >> BTN @00  ;; User enters MAX. Stored in Bank 00.
+ >>  IN @00  ;; User enters MAX. Stored in Bank 00.
 INT @01 01   ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT @02 01   ;; LAST NUMBER (Bank 02) is set to 1.
 ### :00      ;; Start of loop
@@ -65,7 +65,7 @@ This code is a little confusing to look at. Naming banks and labels would bring 
     @01 CURRENT         ;; Name Bank 01 "CURRENT"
     @02 LAST            ;; Name Bank 02 "LAST"
     @03 SUM             ;; Name Bank 03 "SUM"
- >> BTN MAX             ;; User enters MAX. Stored in Bank 00.
+ >>  IN MAX             ;; User enters MAX. Stored in Bank 00.
 INT CURRENT 01          ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT LAST 01             ;; LAST NUMBER (Bank 02) is set to 1.
 ### START               ;; Start of loop
