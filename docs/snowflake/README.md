@@ -11,14 +11,22 @@ BASIC I/O
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-00   ###        LABEL           A label.
-00   ###        LABEL   LITERAL Assign a name to a LABEL.
-00   ###        LITERAL         Code comment.
-01              BANK    LITERAL Assign a name to a BANK.
+00   ###        LABEL           A label. 
+                                Labels are positive integers.
+00   ###        LABEL   LITERAL Assign a name to a LABEL. 
+                                Labels are positive integers.
+                                Names are strings.
+00   ###        LITERAL         Code comment. 
+                                Comments are strings.
+01              BANK    LITERAL Assign a name to a BANK. 
+                                Banks are positive integers.
+                                Names are strings.
 02    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
                                 Each invocation of OUT is on its own new line.
+                                Devices are positive integers.
 03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
-                                The value is stored in the BANK after the ENTER key is pressed.             
+                                The value is stored in the BANK after the ENTER key is pressed.
+                                Devices are positive integers.
 04     =        BANK1   BANK2   Copy BANK2 contents to BANK1.
 05   DEL        BANK            Deletes all data associated with BANK.
 06   TYP        BANK1   BANK2   Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
