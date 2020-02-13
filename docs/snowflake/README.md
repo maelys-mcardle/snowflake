@@ -1,6 +1,6 @@
 # Snowflake
 
-**Snowflake** is a language designed for the microprocessor trainer, to make coding a little easier. It is designed for a system that has a 20 character length display with a number pad for input. In this input system, typing digits is easy, but letters is presumed to be arduous.
+**Snowflake** is a language designed for the microprocessor trainer, to make coding a little easier. It is designed for a system with kilobytes of memory that has a 20 character length display with a number pad for input. In this input system, typing digits is easy, but letters is presumed to be arduous.
 
 ## Reference
 
