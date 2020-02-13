@@ -35,7 +35,6 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 13   FLT        BANK            Converts BANK into a float.
 14   STR        BANK            Converts BANK into a string.
 15    []        BANK            Converts BANK into an empty array.
-16   LBL        BANK            Converts BANK into a label (positive integer).
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
@@ -45,7 +44,6 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 13   FLT        BANK LITERAL    Stores LITERAL into BANK as a float.
 14   STR        BANK LITERAL    Stores LITERAL into BANK as a string.
 15   (RESERVED)
-16   LBL        BANK LITERAL    Stores LITERAL into BANK as a label.
 ```
 
 ```
