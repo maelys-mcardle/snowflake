@@ -33,7 +33,7 @@ The interpreter would replace the above with mnemonics as the user typed:
 STR MSG HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 00
 INT ADULT 18            ;; Store 18 (age of adulthood) in Bank 01  
  << LCD MSG             ;; Display the message "HOW OLD ARE YOU"
- >> BTN AGE             ;; Store the button input in Bank 02 (your age)
+ >>  IN AGE             ;; Store the button input in Bank 02 (your age)
 IF< AGE ADULT           ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
  -> IS ADULT            ;; ...Jump to label 01.
  -> IS MINOR            ;; ...Otherwise jump to label 00.
