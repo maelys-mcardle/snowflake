@@ -173,7 +173,7 @@ The different fields are separated by whitespace.
 
 Mnemonics are not used in `.sn` files.
 
-Any whitespace in a literal field is treated as part of that literal.
+Any whitespace in a literal field is treated as part of that literal, except for the whitespace at the start or end. It is trimmed.
 
 ```
 10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
