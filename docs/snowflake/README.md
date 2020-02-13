@@ -25,7 +25,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
                                 Each invocation of OUT is on its own new line.
                                 Devices are positive integers.
 03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
-                                The value is stored in the BANK after the ENTER key is pressed.
+                                The value is stored in the BANK after the OK key is pressed.
                                 Devices are positive integers.
 04     =        BANK1   BANK2   Copy BANK2 contents to BANK1.
 05   DEL        BANK            Deletes all data associated with BANK.
@@ -147,7 +147,10 @@ DEVICE  MNEMONIC  DESCRIPTION
 00      LCD       LCD Display
 01      BTN       Buttons
 02      PRT       Thermal Printer
+03      KEY       Key Press
 ```
+
+**The difference between `BTN` and `KEY`:** `BTN` stores the input to a BANK after the `OK` button is pressed. This can contain multiple characters. The `KEY` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed. When this instruction is used, only the `RUN/EDIT` button will stop execution.
 
 ## Sample Code
 
