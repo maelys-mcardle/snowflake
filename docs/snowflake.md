@@ -1,6 +1,6 @@
-# High Level Assembly
+# Snowflake
 
-**High Level Assembly** is a language designed for the microprocessor trainer, to make coding a little easier. It is designed for a system that has a 20 character length display with a 4 x 4 button matrix for input. In this input system, typing numbers is easy, but letters is presumed to be arduous.
+**Snowflake** is a language designed for the microprocessor trainer, to make coding a little easier. It is designed for a system that has a 20 character length display with a 4 x 4 button matrix for input. In this input system, typing numbers is easy, but letters is presumed to be arduous.
 
 ## Reference
 
