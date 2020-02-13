@@ -147,10 +147,10 @@ DEVICE  MNEMONIC  DESCRIPTION
 00      LCD       LCD Display
 01       IN       Input from Keyboard
 02      PRT       Thermal Printer
-03      KEY       Key Press
+03      BTN       Button Press
 ```
 
-**The difference between `IN` and `KEY`:** `IN` stores the input to a BANK after the `OK` button is pressed. This can contain multiple characters. The `KEY` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed. When this instruction is used, only the `RUN/EDIT` button will stop execution.
+**The difference between `IN` and `BTN`:** `IN` stores the input to a BANK after the `OK` button is pressed. This can contain multiple characters. The `BTN` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed. When this instruction is used, only the `RUN/EDIT` button will stop execution.
 
 ## Sample Code
 
