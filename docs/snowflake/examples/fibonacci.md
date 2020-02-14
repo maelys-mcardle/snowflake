@@ -27,7 +27,7 @@ INT @02 01   ;; LAST NUMBER (Bank 02) is set to 1.
 ### :00      ;; Start of loop
   = @03 @01  ;; SUM = CURRENT NUMBER
   + @03 @02  ;; SUM = SUM + LAST NUMBER
- << LCD @03  ;; Output value of SUM
+ << OUT @03  ;; Output value of SUM
 IF> @03 @00  ;; If SUM > MAX
  -> :01      ;; ...go to end.
   = @02 @01  ;; CURRENT NUMBER becomes LAST NUMBER
@@ -71,7 +71,7 @@ INT LAST 01             ;; LAST NUMBER (Bank 02) is set to 1.
 ### START               ;; Start of loop
   = SUM CURRENT         ;; SUM = CURRENT NUMBER
   + SUM LAST            ;; SUM = SUM + LAST NUMBER
- << LCD SUM             ;; Output value of SUM
+ << OUT SUM             ;; Output value of SUM
 IF> SUM MAX             ;; If SUM > MAX
  -> END                 ;; ...go to end.
   = LAST CURRENT        ;; ...otherwise CURRENT NUMBER becomes LAST NUMBER
