@@ -35,16 +35,20 @@ char get_instruction()
   instruction[1] = getchar();
 }
 
-void instruction_mnemonic(char instruction, char *mnemonic)
+int instruction_mnemonic(char instruction, char *mnemonic)
 {  
   switch (instruction) {
     case 00:
       copy_mnemonic(mnemonic, "###");
       break;
     default:
+      // No mnemonic exists.
       copy_mnemonic(mnemonic, "   ");
-      break;
+      return 0;
   }
+  
+  // Mnemonic exists.
+  return 1;
 }
 
 void copy_mnemonic(char *output, char *input)
