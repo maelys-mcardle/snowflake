@@ -368,7 +368,7 @@
          x="34.818436"
          y="265.16159"
          style="font-size:2.82222223px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-         id="tspan4958">EDIT</tspan></text>
+         id="tspan4958">STOP</tspan></text>
     <rect
        style="fill:none;stroke:#000000;stroke-width:0.26458332;stroke-opacity:1"
        id="rect4960"
@@ -409,17 +409,6 @@
          x="13.478437"
          y="293.04153"
          style="font-size:4.93888903px;stroke-width:0.26458332">0</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="4.9336033"
-       y="293.49515"
-       id="text4670-6-4-0-9"><tspan
-         sodipodi:role="line"
-         x="4.9336033"
-         y="293.49515"
-         style="font-size:2.82222223px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-         id="tspan4958-7-5">DEL</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -597,5 +586,30 @@
          x="1.9795541"
          y="265.85599"
          style="font-size:2.82222223px;stroke-width:0.26458332">_!?#</tspan></text>
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.3042227;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect896"
+       width="3.9197528"
+       height="0.97993833"
+       x="3.674768"
+       y="291.64957" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path903"
+       sodipodi:sides="3"
+       sodipodi:cx="5.5562501"
+       sodipodi:cy="292.42862"
+       sodipodi:r1="2.9398148"
+       sodipodi:r2="1.4699075"
+       sodipodi:arg1="3.1415927"
+       sodipodi:arg2="4.1887902"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 2.6164353,292.42862 4.4097223,-2.54595 -2e-7,5.0919 z"
+       inkscape:transform-center-x="0.26539997"
+       transform="matrix(0.36111113,0,0,0.44670599,1.1424441,161.42664)"
+       inkscape:transform-center-y="-2.398634e-06" />
   </g>
 </svg>
