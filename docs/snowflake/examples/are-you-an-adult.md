@@ -32,7 +32,7 @@ The interpreter would replace the above with mnemonics as the user typed:
     @02 AGE             ;; Name Bank 02 "AGE"
 STR MSG HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 00
 INT ADULT 18            ;; Store 18 (age of adulthood) in Bank 01  
- << LCD MSG             ;; Display the message "HOW OLD ARE YOU"
+ << OUT MSG             ;; Display the message "HOW OLD ARE YOU"
  >>  IN AGE             ;; Store the button input in Bank 02 (your age)
 IF< AGE ADULT           ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
  -> IS ADULT            ;; ...Jump to label 01.
@@ -43,5 +43,5 @@ STR MSG YOU ARE ADULT   ;; Store "YOU ARE ADULT" in Bank 00
 ### IS MINOR            ;; Label 01 (for minors)
 STR MSG YOU ARE MINOR   ;; Store "YOU ARE MINOR" in Bank 00
 ### END                 ;; Label 02 (end)
- << LCD MSG             ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
+ << OUT MSG             ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
 ```
