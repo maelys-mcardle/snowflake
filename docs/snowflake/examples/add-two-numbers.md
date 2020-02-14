@@ -16,12 +16,12 @@ The interpreter would replace the above with mnemonics as the user typed:
 
 ```
 VAR @00 ENTER NUMBER  ;; Store string "ENTER NUMBER" in Bank 00
- << LCD @00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ << OUT @00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >>  IN @01           ;; Store the button presses to Bank 01
- << LCD @00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ << OUT @00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >>  IN @02           ;; Store the button presses to Bank 02
   + @01 @02           ;; Add Bank 02 to Bank 01
- << LCD @01           ;; Output the contents of Bank 01 (the sum of the addition)
+ << OUT @01           ;; Output the contents of Bank 01 (the sum of the addition)
 ```
 
 # Add Two Numbers (with named banks)
@@ -50,10 +50,10 @@ The interpreter would replace the above with mnemonics as the user typed:
     @01 A              ;; Name Bank 01 "A"
     @02 B              ;; Name Bank 02 "B"
 VAR MSG ENTER NUMBER   ;; Store string "ENTER NUMBER" in MSG
- << LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ << OUT MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >>  IN A              ;; Store the button presses to Bank 01
- << LCD MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
+ << OUT MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >>  IN B              ;; Store the button presses to Bank 02
   + A B                ;; Add Bank 02 to Bank 01
- << LCD A              ;; Output the contents of Bank 01 (the sum of the addition)
+ << OUT A              ;; Output the contents of Bank 01 (the sum of the addition)
 ```
