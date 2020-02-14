@@ -154,7 +154,7 @@ DEVICE  MNEMONIC  DESCRIPTION
 03      BTN       Button Press
 ```
 
-**The difference between `IN` and `BTN`:** `IN` stores the input to a BANK after the `OK` button is pressed. This can contain multiple characters. The `BTN` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed. When this instruction is used, only the `RUN/EDIT` button will stop execution.
+**The difference between `IN` and `BTN`:** `IN` stores the input to a BANK after the `OK` button is pressed. This can contain multiple characters. The `BTN` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed. When this instruction is used, only the `RUN/STOP` button will stop execution.
 
 ## Sample Code
 
