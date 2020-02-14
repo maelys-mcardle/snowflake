@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include "snowflake.h"
@@ -48,17 +49,17 @@ char get_instruction()
  * CONVERT TO STRING
  */
 
-int label_to_string(char label, char *label_string)
+bool label_to_string(char label, char *label_string)
 {
-  return 1;
+  return true;
 }
 
-int bank_to_string(char bank, char *bank_string)
+bool bank_to_string(char bank, char *bank_string)
 {
-  return 1;
+  return true;
 }
 
-int instruction_to_string(char instruction, char *instruction_string)
+bool instruction_to_string(char instruction, char *instruction_string)
 {  
   switch (instruction) {
     case 00:
@@ -67,11 +68,11 @@ int instruction_to_string(char instruction, char *instruction_string)
     default:
       // No instruction exists.
       copy_mnemonic(instruction_string, "   ");
-      return 0;
+      return false;
   }
   
   // Instruction exists.
-  return 1;
+  return true;
 }
 
 void copy_mnemonic(char *output, char *input)
