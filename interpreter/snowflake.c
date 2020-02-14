@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include "snowflake.h"
+#define MNEMONIC_LENGTH 3
+
+/*
+ * REPL LOGIC 
+ */
 
 /* Starting point of the program. */
 int main () 
@@ -35,24 +40,41 @@ char get_instruction()
   instruction[1] = getchar();
 }
 
-int instruction_mnemonic(char instruction, char *mnemonic)
+/*
+ * EXECUTE INSTRUCTIONS
+ */
+
+/*
+ * CONVERT TO STRING
+ */
+
+int label_to_string(char label, char *label_string)
+{
+  return 1;
+}
+
+int bank_to_string(char bank, char *bank_string)
+{
+  return 1;
+}
+
+int instruction_to_string(char instruction, char *instruction_string)
 {  
   switch (instruction) {
     case 00:
-      copy_mnemonic(mnemonic, "###");
+      copy_mnemonic(instruction_string, "###");
       break;
     default:
-      // No mnemonic exists.
-      copy_mnemonic(mnemonic, "   ");
+      // No instruction exists.
+      copy_mnemonic(instruction_string, "   ");
       return 0;
   }
   
-  // Mnemonic exists.
+  // Instruction exists.
   return 1;
 }
 
 void copy_mnemonic(char *output, char *input)
 {
-  int mnemonic_length = 3;
-  strncpy(output, input, mnemonic_length);
+  strncpy(output, input, MNEMONIC_LENGTH);
 }
