@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.16"
-     inkscape:cx="157.15223"
+     inkscape:cx="81.920749"
      inkscape:cy="180.1576"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -567,14 +567,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="11.822722"
+       x="11.293556"
        y="295.87793"
        id="text4670-6-5-0-1-2-0-7"><tspan
          sodipodi:role="line"
          id="tspan4668-3-3-1-1-9-8-4"
-         x="11.822722"
+         x="11.293556"
          y="295.87793"
-         style="font-size:2.82222223px;stroke-width:0.26458332">.:-+/</tspan></text>
+         style="font-size:2.82222223px;stroke-width:0.26458332">.:-+/*</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -592,7 +592,7 @@
        width="3.9197528"
        height="0.97993833"
        x="3.674768"
-       y="291.64957" />
+       y="290.59122" />
     <path
        sodipodi:type="star"
        style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -609,7 +609,18 @@
        inkscape:randomized="0"
        d="m 2.6164353,292.42862 4.4097223,-2.54595 -2e-7,5.0919 z"
        inkscape:transform-center-x="0.26539997"
-       transform="matrix(0.36111113,0,0,0.44670599,1.1424441,161.42664)"
+       transform="matrix(0.36111113,0,0,0.44670599,1.1424441,160.3683)"
        inkscape:transform-center-y="-2.398634e-06" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="1.5669082"
+       y="295.77625"
+       id="text4670-6-5-0-1-2-0-7-0"><tspan
+         sodipodi:role="line"
+         id="tspan4668-3-3-1-1-9-8-4-4"
+         x="1.5669082"
+         y="295.77625"
+         style="font-size:2.82222223px;stroke-width:0.26458332">()@$</tspan></text>
   </g>
 </svg>
