@@ -148,8 +148,8 @@ VALUE   MEANING
 ```
 DEVICE  MNEMONIC  DESCRIPTION 
 ------  --------  -----------
-00      LCD       LCD Display
-01       IN       Input from Keyboard
+00      OUT       Default output device (LCD Display)
+01       IN       Default input device (Input from Keyboard)
 02      PRT       Thermal Printer
 03      BTN       Button Press
 ```
@@ -185,7 +185,7 @@ The interpreter would replace the above with mnemonics as the user typed:
 
 ```
 VAR @00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
- << LCD @00             ;; Output the contents of Bank 00 to the LCD
+ << OUT @00             ;; Output the contents of Bank 00 to the LCD
 ```
 
 **Note:**
