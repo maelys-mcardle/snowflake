@@ -82,6 +82,30 @@ bool bank_to_string(char bank, char *bank_string)
   return true;
 }
 
+bool device_to_string(char device, char *device_string)
+{
+    switch (device) {
+    case 00:
+      copy_mnemonic(device_string, "OUT");
+      break;
+    case 01:
+      copy_mnemonic(device_string, " IN");
+      break;
+    case 02:
+      copy_mnemonic(device_string, "PRT");
+      break;
+    case 03:
+      copy_mnemonic(device_string, "BTN");
+      break;
+    default:
+      // No device exists.
+      return false;
+  }
+  
+  // Device exists.
+  return true;
+}
+
 bool instruction_to_string(char instruction, char *instruction_string)
 {  
   switch (instruction) {
