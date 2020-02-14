@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "snowflake.h"
+#define INSTRUCTION_LENGTH 256
 #define MNEMONIC_LENGTH 3
 
 /*
@@ -25,8 +26,30 @@ int main ()
 /* The main REPL loop. */
 void run_interpreter_loop()
 {
-  printf("> ");
-  char instruction = get_instruction();
+  prog *program = NULL;
+  inst *instruction = NULL;
+  char stdin_string[INSTRUCTION_LENGTH];
+  
+  do 
+  {
+    printf("> ");
+    
+    if (gets_s(stdin_string, INSTRUCTION_LENGTH) != NULL) {
+    
+      inst *instruction = parse_instruction(stdin_string);
+
+      append_instruction(program, instruction);
+
+      show_instruction_plaintext(program, instruction);
+    }
+    
+  } while (instruction != NULL);
+  
+  show_program_plaintext(program);
+  
+  execute_program(program);
+    
+  free_program(program);
 }
 
 /* Returns the instruction code. */
