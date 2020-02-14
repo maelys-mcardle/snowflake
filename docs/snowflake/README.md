@@ -115,15 +115,13 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 58   [#]        BANK1   BANK2   Stores the length of the BANK1 array into BANK2.
 ```
 
-**Arrays can have up to 256 items.**
-
 ### Banks and Labels
 
 It uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, or string. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
 It uses the concept of a **Label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
-**Values for Banks and Labels range from 0 - 256.**
+**There are 256 banks and labels.**
 
 ### Literals
 
