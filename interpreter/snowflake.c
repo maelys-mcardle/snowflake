@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "snowflake.h"
 
 /* Starting point of the program. */
@@ -35,12 +36,19 @@ char get_instruction()
 }
 
 void instruction_mnemonic(char instruction, char *mnemonic)
-{
+{  
   switch (instruction) {
     case 00:
-      mnemonic = "###";
+      copy_mnemonic(mnemonic, "###");
       break;
     default:
-      mnemonic = "";
+      copy_mnemonic(mnemonic, "   ");
+      break;
   }
+}
+
+void copy_mnemonic(char *output, char *input)
+{
+  int mnemonic_length = 3;
+  strncpy(output, input, mnemonic_length);
 }
