@@ -1,0 +1,1 @@
+#define MNEMONIC_LENGTH 3
