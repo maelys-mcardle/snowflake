@@ -38,7 +38,7 @@ int process_snowflake_file(const char *filename)
 
   // Parse the file line by line.
   while (fgets(line, MAX_LINE_LENGTH, file)) {
-    load_line_into_program(&program, line);
+    load_line_into_program(&program, line, MAX_LINE_LENGTH);
   }
 
   // Free the program, close the file, and 

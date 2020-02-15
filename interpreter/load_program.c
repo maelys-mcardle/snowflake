@@ -3,7 +3,7 @@
 #include "structures.h"
 
 /* Loads a line of text into the program. */
-bool load_line_into_program(SnowflakeProgram *program, char *line)
+bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_length)
 {
     // Programs are of the format:
     //
@@ -22,18 +22,45 @@ bool load_line_into_program(SnowflakeProgram *program, char *line)
     // * If there is one parameter:
     //     - the whitespace belongs to the first parameter
     // * Exception:
-    //     - everything after the whitespace that precedes ";;" is ignored
+    //     - everything after the whitespace that precedes the first ";;" is ignored
     //
 
-    discard_comment(line);
+    // Remove comments from the line.
+    discard_comment(line, max_line_length);
 
     printf("%s", line);
 
     return true;
 }
 
-void discard_comment(char *line)
+/* Discards the comment on the line. 
+ * @return true if comment was removed, false otherwise.
+*/
+bool discard_comment(char *line, int max_line_length)
 {
+    bool last_char_is_semicolon = false;
     // Remove anything that follows the ";;"
-    
+    for (int index = 0; index < max_line_length; index++) {
+
+        // Second ";" found.
+        if (line[index] == COMMENT_SYMBOL &&
+            last_char_is_semicolon) {
+
+            // End the line here.
+            line[index-1] = '\0';
+            return true;
+        }
+
+        // First ";" found.
+        else if (line[index] == COMMENT_SYMBOL) {
+            last_char_is_semicolon = true;
+        }
+
+        // Any other character found.
+        else {
+            last_char_is_semicolon = false;
+        }
+    }
+
+    return false;
 }
