@@ -61,31 +61,3 @@ void free_program(SnowflakeProgram *program)
 {
   return;
 }
-
-/* The main REPL loop. */
-/*
-void run_interpreter_loop()
-{
-  prog *program = NULL;
-  inst *instruction = NULL;
-  char stdin_string[INSTRUCTION_LENGTH];
-  
-  do 
-  { 
-    if (gets_s(stdin_string, INSTRUCTION_LENGTH) != NULL) {
-    
-      inst *instruction = parse_instruction(stdin_string);
-
-      append_instruction(program, instruction);
-
-      show_instruction_plaintext(program, instruction);
-    }
-    
-  } while (instruction != NULL);
-  
-  show_program_plaintext(program);
-  
-  execute_program(program);
-    
-  free_program(program);
-}*/
