@@ -96,6 +96,8 @@ int parse_instruction(char *line, int max_line_length, char *instruction)
     int end = parse_field(line, max_line_length, true, 
         0, instruction_string, max_instruction_size);
 
+    printf("INSTRUCTION: %s\n", instruction_string);
+
     return end;
 }
 
@@ -107,6 +109,9 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
 {
     int index = start;
     char output_index = 0;
+
+    // Terminate the tring, in case nothing is loaded.
+    output[0] = CHAR_END_STRING;
 
     // Remove anything that follows the ";;"
     for (index; index < max_line_length; index++) {
@@ -121,7 +126,7 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
         }
 
         // Ignore whitespace before instruction.
-        if (output_index == 0 &&
+        else if (output_index == 0 &&
             is_whitespace(character))
         {
             // do nothing.
