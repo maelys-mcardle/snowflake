@@ -1,1 +1,2 @@
-interpreter/a.out
+interpreter/snowflake
+interpreter/*.o

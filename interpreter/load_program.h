@@ -5,5 +5,6 @@
 #include "structures.h"
 
 bool load_line_into_program(SnowflakeProgram *program, char *line);
+void discard_comment(char *line);
 
 #endif
