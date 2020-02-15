@@ -1,3 +1,6 @@
+#ifndef STRUCTURES_H
+#define STRUCTURES_H
+
 typedef union {
     bool b;
     int i;
@@ -23,12 +26,12 @@ typedef struct {
     char instruction;
     SnowflakeVariable *first;
     SnowflakeVariable *second;
-} Instruction;
+} SnowflakeInstruction;
 
 typedef struct {
-    int instruction_count;
-    Instruction *instructions;
-} AllInstructions;
+    int count;
+    SnowflakeInstruction *instructions;
+} SnowflakeInstructionList;
 
 typedef struct {
     SnowflakeVariable variable;
@@ -44,15 +47,17 @@ typedef struct {
     int index;
     int value;
     void *next;
-} BankLabelItem;
+} SnowflakeIdentifier;
 
 typedef struct {
     int count;
-    BankLabelItem *items;
-} BankLabelList;
+    SnowflakeIdentifier *identifier;
+} SnowflakeIdentifierList;
 
 typedef struct {
-    BankLabelList labels;
-    BankLabelList banks;
-    AllInstructions instructions;
-} Program;
+    SnowflakeIdentifierList labels;
+    SnowflakeIdentifierList banks;
+    SnowflakeInstructionList instructions;
+} SnowflakeProgram;
+
+#endif
