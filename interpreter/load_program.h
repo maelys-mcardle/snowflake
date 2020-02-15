@@ -11,10 +11,11 @@
 
 bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_length);
 bool discard_comment(char *line, int max_line_length);
-int parse_instruction(char *line, int max_line_length, char *instruction);
+int parse_instruction(char *line, int max_line_length, int *instruction);
 int parse_field(char *line, int max_line_length, bool stop_at_whitespace, 
     int start, char *output, int max_output_size);
 bool is_whitespace(char character);
 bool is_string_end(char character);
+int parse_integer(bool *ok, char *string);
 
 #endif

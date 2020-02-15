@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
 #include "load_program.h"
 #include "structures.h"
 
@@ -31,10 +33,12 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
     discard_comment(line, max_line_length);
 
     // Load the instruction.
-    char instruction;
+    int instruction;
     int cursor = parse_instruction(line, max_line_length, &instruction);
 
-    printf("%s", line);
+    if (instruction >= 0) {
+        printf("%s", line);   
+    }
 
     return true;
 }
@@ -86,19 +90,56 @@ bool discard_comment(char *line, int max_line_length)
 /* Extracts the instruction from the line.
  * @return the last character with the position.
  */
-int parse_instruction(char *line, int max_line_length, char *instruction)
+int parse_instruction(char *line, int max_line_length, int *instruction)
 {
     int index = 0;
     char max_instruction_size = 3;
     char instruction_string[max_instruction_size];
     char instruction_index = 0;
 
+    // Load instruction text.
     int end = parse_field(line, max_line_length, true, 
         0, instruction_string, max_instruction_size);
 
-    printf("INSTRUCTION: %s\n", instruction_string);
+    // If text associated with an instruction was loaded, parse it.
+    if (!is_string_end(instruction_string[0])) 
+    {
+        // Parse the instruction from text to an integer.
+        bool instruction_ok = false;
+        *instruction = parse_integer(&instruction_ok, instruction_string);
+
+        // Could not parse instruction into an integer.
+        if (!instruction_ok) {
+            *instruction = -1;
+        }
+
+    // No text was loaded.
+    } else {
+        *instruction = -1;
+    }
 
     return end;
+}
+
+int parse_integer(bool *ok, char *string)
+{
+    int integer;
+    char *end_pointer;
+
+    // Reset errno. If strtol fails this will change.
+    errno = 0;
+
+    // Parse the string into an integer.
+    integer = strtol(string,  &end_pointer, 10);
+
+    // Indicate error.
+    if (end_pointer == string || errno != 0) {
+        *ok = false;
+    } else {
+        *ok = true;
+    }
+
+    return integer;
 }
 
 /* Extracts the instruction from the line.
@@ -151,6 +192,11 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
     }        
 
     return index;
+}
+
+bool strip_end_whitespace(char *string, int max_string_length)
+{
+    int whitespace_start = 0;
 }
 
 bool is_whitespace(char character)
