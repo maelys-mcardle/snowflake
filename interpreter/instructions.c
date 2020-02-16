@@ -19,113 +19,251 @@ InstructionInfo get_instruction_info(char instruction, bool *exists)
       info.parameters.first = PARAMETER_LABEL;
       info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
       break;
-        /*
-    case 01:
-      copy_mnemonic(instruction_string, "   ");
-      break;
     case 02:
-      copy_mnemonic(instruction_string, " <<");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = ' ';
+      info.mnemonic[2] = ' ';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_LITERAL;
       break;
     case 03:
-      copy_mnemonic(instruction_string, " >>");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = '<';
+      info.mnemonic[2] = '<';
+      info.parameters.first = PARAMETER_DEVICE;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 04:
-      copy_mnemonic(instruction_string, "  =");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = '>';
+      info.mnemonic[2] = '>';
+      info.parameters.first = PARAMETER_DEVICE;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 05:
-      copy_mnemonic(instruction_string, "DEL");
+      info.mnemonic[0] = 'D';
+      info.mnemonic[1] = 'E';
+      info.mnemonic[2] = 'L';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_NONE;
       break;
     case 06:
-      copy_mnemonic(instruction_string, "TYP");
+      info.mnemonic[0] = 'T';
+      info.mnemonic[1] = 'Y';
+      info.mnemonic[2] = 'P';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 10:
-      copy_mnemonic(instruction_string, "VAR");
+      info.mnemonic[0] = 'V';
+      info.mnemonic[1] = 'A';
+      info.mnemonic[2] = 'R';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
       break;
     case 11:
-      copy_mnemonic(instruction_string, "BLN");
+      info.mnemonic[0] = 'B';
+      info.mnemonic[1] = 'L';
+      info.mnemonic[2] = 'N';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
       break;
     case 12:
-      copy_mnemonic(instruction_string, "INT");
+      info.mnemonic[0] = 'I';
+      info.mnemonic[1] = 'N';
+      info.mnemonic[2] = 'T';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
       break;
     case 13:
-      copy_mnemonic(instruction_string, "FLT");
+      info.mnemonic[0] = 'F';
+      info.mnemonic[1] = 'L';
+      info.mnemonic[2] = 'T';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
       break;
     case 14:
-      copy_mnemonic(instruction_string, "STR");
+      info.mnemonic[0] = 'S';
+      info.mnemonic[1] = 'T';
+      info.mnemonic[2] = 'R';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
       break;
     case 15:
-      copy_mnemonic(instruction_string, " []");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = '[';
+      info.mnemonic[2] = ']';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_NONE;
       break;
     case 20:
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = '-';
+      info.mnemonic[2] = '>';
+      info.parameters.first = PARAMETER_LABEL;
+      info.parameters.second = PARAMETER_NONE;
+      break;
     case 21:
-      copy_mnemonic(instruction_string, " ->");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = '-';
+      info.mnemonic[2] = '>';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_NONE;
       break;
     case 22:
-      copy_mnemonic(instruction_string, "IF=");
+      info.mnemonic[0] = 'I';
+      info.mnemonic[1] = 'F';
+      info.mnemonic[2] = '=';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 23:
-      copy_mnemonic(instruction_string, "IF!");
-      break;
-    case 23:
-      copy_mnemonic(instruction_string, "IF>");
+      info.mnemonic[0] = 'I';
+      info.mnemonic[1] = 'F';
+      info.mnemonic[2] = '!';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 24:
-      copy_mnemonic(instruction_string, "IF<");
+      info.mnemonic[0] = 'I';
+      info.mnemonic[1] = 'F';
+      info.mnemonic[2] = '>';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
+      break;
+    case 25:
+      info.mnemonic[0] = 'I';
+      info.mnemonic[1] = 'F';
+      info.mnemonic[2] = '<';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 30:
-      copy_mnemonic(instruction_string, "  +");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = ' ';
+      info.mnemonic[2] = '+';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 31:
-      copy_mnemonic(instruction_string, "  -");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = ' ';
+      info.mnemonic[2] = '-';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 32:
-      copy_mnemonic(instruction_string, "  *");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = ' ';
+      info.mnemonic[2] = '*';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 33:
-      copy_mnemonic(instruction_string, "  /");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = ' ';
+      info.mnemonic[2] = '/';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 34:
-      copy_mnemonic(instruction_string, " **");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = '*';
+      info.mnemonic[2] = '*';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 40:
-      copy_mnemonic(instruction_string, "  !");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = ' ';
+      info.mnemonic[2] = '!';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_NONE;
       break;
     case 41:
-      copy_mnemonic(instruction_string, "  &");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = ' ';
+      info.mnemonic[2] = '&';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 42:
-      copy_mnemonic(instruction_string, "  |");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = ' ';
+      info.mnemonic[2] = '|';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 43:
-      copy_mnemonic(instruction_string, "  ^");
+      info.mnemonic[0] = ' ';
+      info.mnemonic[1] = ' ';
+      info.mnemonic[2] = '^';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 50:
-      copy_mnemonic(instruction_string, "+[]");
+      info.mnemonic[0] = '[';
+      info.mnemonic[1] = '#';
+      info.mnemonic[2] = ']';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 51:
-      copy_mnemonic(instruction_string, "[]+");
+      info.mnemonic[0] = '+';
+      info.mnemonic[1] = '[';
+      info.mnemonic[2] = ']';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 52:
-      copy_mnemonic(instruction_string, "?[]");
+      info.mnemonic[0] = '[';
+      info.mnemonic[1] = ']';
+      info.mnemonic[2] = '+';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 53:
-      copy_mnemonic(instruction_string, "[]?");
+      info.mnemonic[0] = '?';
+      info.mnemonic[1] = '[';
+      info.mnemonic[2] = ']';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 54:
-      copy_mnemonic(instruction_string, "-[]");
+      info.mnemonic[0] = '[';
+      info.mnemonic[1] = ']';
+      info.mnemonic[2] = '?';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 55:
-      copy_mnemonic(instruction_string, "[]-");
+      info.mnemonic[0] = '-';
+      info.mnemonic[1] = '[';
+      info.mnemonic[2] = ']';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 56:
-      copy_mnemonic(instruction_string, "[>]");
+      info.mnemonic[0] = '[';
+      info.mnemonic[1] = ']';
+      info.mnemonic[2] = '-';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 57:
-      copy_mnemonic(instruction_string, "[<]");
+      info.mnemonic[0] = '[';
+      info.mnemonic[1] = '>';
+      info.mnemonic[2] = ']';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
       break;
     case 58:
-      copy_mnemonic(instruction_string, "[#]");
-      break;*/
+      info.mnemonic[0] = '[';
+      info.mnemonic[1] = '<';
+      info.mnemonic[2] = ']';
+      info.parameters.first = PARAMETER_BANK;
+      info.parameters.second = PARAMETER_BANK;
+      break;
     default:
       // No instruction exists.
       *exists = false;
