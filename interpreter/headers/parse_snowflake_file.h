@@ -3,12 +3,14 @@
 
 #include <stdbool.h>
 #include "structures.h"
+#define MAX_LINE_LENGTH 256
 #define CHAR_COMMENT ';'
 #define CHAR_NEWLINE '\n'
 #define CHAR_SPACE ' '
 #define CHAR_TAB '\t'
 #define CHAR_END_STRING '\0'
 
+int process_snowflake_file(SnowflakeProgram *program, const char *filename);
 bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_length);
 bool discard_comment(char *line, int max_line_length);
 int extract_instruction(char *line, int max_line_length, int *instruction);

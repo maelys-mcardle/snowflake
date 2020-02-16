@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "headers/main.h"
+#include "headers/errors.h"
 #include "headers/parse_snowflake_file.h"
 
 /* Starting point of the program. */
@@ -14,38 +15,16 @@ int main (int argc, char **argv)
     return ERROR_CODE_NO_FILE_SPECIFIED;
   }
 
-  // Exit with the return code supplied by processing
-  // the snowflake file.
-  return process_snowflake_file(argv[1]);
-}
-
-/* Process a snowflake file. */
-int process_snowflake_file(const char *filename)
-{
-  char line[MAX_LINE_LENGTH];
   SnowflakeProgram program;
-  FILE* file = fopen(filename, "r");
-
-  // Try to open the file.
-  // Return on error.
-  if (file == NULL) {
-    printf(ERROR_MESG_COULD_NOT_OPEN_FILE);
-    return ERROR_CODE_COULD_NOT_OPEN_FILE;
-  }
 
   // Initialize the program.
   initialize_program(&program);
-
-  // Parse the file line by line.
-  while (fgets(line, MAX_LINE_LENGTH, file)) {
-    load_line_into_program(&program, line, MAX_LINE_LENGTH);
-  }
-
-  // Free the program, close the file, and 
-  // denote success.
+  int return_code = process_snowflake_file(&program, argv[1]);
   free_program(&program);
-  fclose(file);
-  return SUCCESS;
+
+  // Exit with the return code supplied by processing
+  // the snowflake file.
+  return return_code;
 }
 
 /* Initialize the Program. */

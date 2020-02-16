@@ -2,8 +2,33 @@
 #include <stdlib.h>
 #include <errno.h>
 #include "headers/parse_snowflake_file.h"
+#include "headers/errors.h"
 #include "headers/structures.h"
 #include "headers/instructions.h"
+
+/* Process a snowflake file. */
+int process_snowflake_file(SnowflakeProgram *program, const char *filename)
+{
+  char line[MAX_LINE_LENGTH];
+  FILE* file = fopen(filename, "r");
+
+  // Try to open the file.
+  // Return on error.
+  if (file == NULL) {
+    printf(ERROR_MESG_COULD_NOT_OPEN_FILE);
+    return ERROR_CODE_COULD_NOT_OPEN_FILE;
+  }
+
+  // Parse the file line by line.
+  while (fgets(line, MAX_LINE_LENGTH, file)) {
+    load_line_into_program(program, line, MAX_LINE_LENGTH);
+  }
+
+  // Free the program, close the file, and 
+  // denote success.
+  fclose(file);
+  return SUCCESS;
+}
 
 /* Loads a line of text into the program.
  * @return true if a line contained an instruction, false if not.
@@ -38,7 +63,7 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
     //  * Information about that instruction is retrieved.
     int instruction;
     bool instruction_exists;
-    int cursor = extract_instruction(line, max_line_length, &instruction);
+    int line_cursor = extract_instruction(line, max_line_length, &instruction);
     InstructionInfo instruction_info = get_instruction_info(instruction, &instruction_exists);
 
     // Instruction exists.
