@@ -1,4 +1,4 @@
-snowflake: snowflake.o load_program.o
+snowflake: snowflake.o load_program.o instructions.o
 	cc -o snowflake snowflake.o load_program.o instructions.o
 
 snowflake.o: snowflake.c snowflake.h

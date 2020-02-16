@@ -35,11 +35,12 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
 
     // Load the instruction.
     int instruction;
-    int cursor = parse_instruction(line, max_line_length, &instruction);
-
-    if (instruction >= 0) {
-        printf("%s", line);
-
+    bool instruction_exists;
+    int cursor = extract_instruction(line, max_line_length, &instruction);
+    InstructionInfo instruction_info = get_instruction_info(instruction, &instruction_exists);
+    
+    if (instruction_exists) {
+        printf("%s", instruction_info.mnemonic);
         return true;
     }
 
@@ -94,7 +95,7 @@ bool discard_comment(char *line, int max_line_length)
 /* Extracts the instruction from the line.
  * @return the last character with the position.
  */
-int parse_instruction(char *line, int max_line_length, int *instruction)
+int extract_instruction(char *line, int max_line_length, int *instruction)
 {
     int index = 0;
     char max_instruction_size = 3;

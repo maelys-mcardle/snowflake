@@ -1,6 +1,6 @@
 #include "instructions.h"
 
-InstructionInfo get_instruction_info(char instruction, bool *exists)
+InstructionInfo get_instruction_info(int instruction, bool *exists)
 {  
   InstructionInfo info;
 
@@ -267,6 +267,7 @@ InstructionInfo get_instruction_info(char instruction, bool *exists)
     default:
       // No instruction exists.
       *exists = false;
+      return info;
   }
   
   // Instruction exists.

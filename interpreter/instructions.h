@@ -21,4 +21,6 @@ typedef struct {
     Parameters parameters;
 } InstructionInfo;
 
+InstructionInfo get_instruction_info(int instruction, bool *exists);
+
 #endif
