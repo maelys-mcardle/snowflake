@@ -37,10 +37,13 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
     int cursor = parse_instruction(line, max_line_length, &instruction);
 
     if (instruction >= 0) {
-        printf("%s", line);   
+        printf("%s", line);
+
+        return true;
     }
 
-    return true;
+    // No instruction parsed.
+    return false;
 }
 
 /* Discards the comment on the line. 
