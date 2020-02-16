@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "headers/snowflake.h"
-#include "headers/load_program.h"
+#include "headers/parse_snowflake_file.h"
 
 /* Starting point of the program. */
 int main (int argc, char **argv) 
