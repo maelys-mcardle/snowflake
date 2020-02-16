@@ -11,20 +11,19 @@ BASIC I/O
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-00   ###        LABEL           A label. 
+00   !!!        LITERAL         Code comment. 
+01   ###        LABEL           A label. 
                                 Labels are positive integers.
-00   ###        LABEL   LITERAL Assign a name to a LABEL. 
+01   ###        LABEL   LITERAL Assign a name to a LABEL. 
                                 Labels are positive integers.
                                 Names are strings.
-00   ###        LITERAL         Code comment. 
-                                Comments are strings.
-01              BANK    LITERAL Assign a name to a BANK. 
+02              BANK    LITERAL Assign a name to a BANK. 
                                 Banks are positive integers.
                                 Names are strings.
-02    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
+03    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
                                 Each invocation of OUT is on its own new line.
                                 Devices are positive integers.
-03    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
+04    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
                                 The value is stored in the BANK after the OK key is pressed.
                                 Devices are positive integers.
 04     =        BANK1   BANK2   Copy BANK2 contents to BANK1.
@@ -178,7 +177,7 @@ This program outputs "Hello World!" to the LCD:
 
 ```
 10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
-02 00 00              ;; Output the contents of Bank 00 to the LCD
+03 00 00              ;; Output the contents of Bank 00 to the LCD
 ```
 
 The interpreter would replace the above with mnemonics as the user typed:
@@ -206,7 +205,7 @@ Any whitespace in a literal field is treated as part of that literal, except for
 
 ```
 10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
-02 00 00              ;; Output the contents of Bank 00 to the LCD
+03 00 00              ;; Output the contents of Bank 00 to the LCD
 ```
 
 Anything that follows the last `;;` is treated as a comment and ignored. These comments
