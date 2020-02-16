@@ -1,8 +1,20 @@
+;;
+;; This is a test file, used to check that the Snowflake
+;; interpreter is able to process files correctly.
+;;
+
+;; -------------
 ;; TEST COMMENTS
-;; --------------
+;; -------------
 
 ;; Line with a comment.
    ;; Line with a comment.
 00 TEST PROGRAM ;; Comment.
+
+;; ---------------------
+;; TEST BAD INSTRUCTIONS
+;; ---------------------
+
 XX BAD INSTRUCTION
 XXXX OTHER BAD INSTRUCTION
+99 BAD INSTRUCTION
