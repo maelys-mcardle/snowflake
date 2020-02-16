@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include "load_program.h"
-#include "structures.h"
-#include "instructions.h"
+#include "headers/load_program.h"
+#include "headers/structures.h"
+#include "headers/instructions.h"
 
 /* Loads a line of text into the program.
  * @return true if a line contained an instruction, false if not.

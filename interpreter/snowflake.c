@@ -1,8 +1,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
-#include "snowflake.h"
-#include "load_program.h"
+#include "headers/snowflake.h"
+#include "headers/load_program.h"
 
 /* Starting point of the program. */
 int main (int argc, char **argv) 
