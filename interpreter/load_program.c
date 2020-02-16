@@ -34,13 +34,21 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
     discard_comment(line, max_line_length);
 
     // Load the instruction.
+    //  * The instruction is extracted from the line of text.
+    //  * Information about that instruction is retrieved.
     int instruction;
     bool instruction_exists;
     int cursor = extract_instruction(line, max_line_length, &instruction);
     InstructionInfo instruction_info = get_instruction_info(instruction, &instruction_exists);
-    
+
+    // Instruction exists.
     if (instruction_exists) {
         printf("%s", instruction_info.mnemonic);
+
+        // Load first parameter.
+
+        // Load second parameter.
+
         return true;
     }
 
