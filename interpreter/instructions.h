@@ -1,17 +1,23 @@
 #ifndef LOAD_INSTRUCTIONS_H
 #define LOAD_INSTRUCTIONS_H
+#include <stdbool.h>
 
 typedef enum {
-    INSTRUCTION_TYPE_NONE,
-    INSTRUCTION_TYPE_LABEL,
-    INSTRUCTION_TYPE_BANK,
-    INSTRUCTION_TYPE_LITERAL
-} InstructionType;
+    PARAMETER_NONE,
+    PARAMETER_LABEL,
+    PARAMETER_BANK,
+    PARAMETER_LITERAL,
+    PARAMETER_OPTIONAL = 0b10000
+} ParameterType;
+
+typedef struct {
+    ParameterType first;
+    ParameterType second;
+} Parameters;
 
 typedef struct {
     char mnemonic[3];
-    InstructionType first_parameter;
-    InstructionType second_parameter;
+    Parameters parameters;
 } InstructionInfo;
 
 #endif

@@ -1,15 +1,25 @@
 #include "instructions.h"
 
-
-InstructionInfo get_instruction_info(char instruction)
+InstructionInfo get_instruction_info(char instruction, bool *exists)
 {  
+  InstructionInfo info;
+
   switch (instruction) {
     case 00:
-        return {
-            "###",
-            INSTRUCTION_TYPE_LABEL,
-            INSTRUCTION_TYPE_NONE
-        };
+      info.mnemonic[0] = '!';
+      info.mnemonic[1] = '!';
+      info.mnemonic[2] = '!';
+      info.parameters.first = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
+      info.parameters.second = PARAMETER_NONE;
+      break;
+    case 01:
+      info.mnemonic[0] = '#';
+      info.mnemonic[1] = '#';
+      info.mnemonic[2] = '#';
+      info.parameters.first = PARAMETER_LABEL;
+      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
+      break;
+        /*
     case 01:
       copy_mnemonic(instruction_string, "   ");
       break;
@@ -115,12 +125,13 @@ InstructionInfo get_instruction_info(char instruction)
       break;
     case 58:
       copy_mnemonic(instruction_string, "[#]");
-      break;
+      break;*/
     default:
       // No instruction exists.
-      return false;
+      *exists = false;
   }
   
   // Instruction exists.
-  return true;
+  *exists = true;
+  return info;
 }

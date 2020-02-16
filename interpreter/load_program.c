@@ -3,6 +3,7 @@
 #include <errno.h>
 #include "load_program.h"
 #include "structures.h"
+#include "instructions.h"
 
 /* Loads a line of text into the program.
  * @return true if a line contained an instruction, false if not.
