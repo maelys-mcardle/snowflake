@@ -14,7 +14,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 00   !!!        LITERAL         Code comment. 
 01   ###        LABEL           A label. 
                                 Labels are positive integers.
-01   ###        LABEL   LITERAL Assign a name to a LABEL. 
+01   ###        LABEL   LITERAL LABEL with a name assigned.
                                 Labels are positive integers.
                                 Names are strings.
 02              BANK    LITERAL Assign a name to a BANK. 
