@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
-#include "headers/snowflake.h"
+#include "headers/main.h"
 #include "headers/parse_snowflake_file.h"
 
 /* Starting point of the program. */
