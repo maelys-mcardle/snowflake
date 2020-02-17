@@ -45,14 +45,14 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
     //     - the first non-whitespace text is the instruction
     //     - the instruction ends at the first whitespace
     //     - only the first three characters are looked at
-    // * Instructions determine how many parameters are taken.
-    // * If there are two parameters: 
-    //     - the first whitespace separates the first parameter from the second
-    //     - the second whitespace to the end belongs to the second parameter
-    // * If there is one parameter:
-    //     - the whitespace belongs to the first parameter
-    // * Exception:
-    //     - everything after the whitespace that precedes the first ";;" is ignored
+    //     - instructions determine how many parameters are taken.
+    // * Parameters:
+    //     - LABEL/BANK/DEVICE are read up to the first whitespace
+    //     - Only the first three characters are looked at
+    //     - LITERALs consume all the whitespace
+    //     - Whitespace at the end of a LITERAL is ignored
+    // * Comments:
+    //     - everything after ";;" is ignored
     //
 
     // Remove comments from the line.
