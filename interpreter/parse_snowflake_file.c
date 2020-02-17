@@ -68,7 +68,10 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
 
     // Instruction exists.
     if (instruction_exists) {
-        printf("%s", instruction_info.mnemonic);
+        printf("%c%c%c\n", 
+            instruction_info.mnemonic[0],
+            instruction_info.mnemonic[1],
+            instruction_info.mnemonic[2]);
 
         // Load first parameter.
 
