@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include "structures.h"
+#include "instructions.h"
 #define MAX_LINE_LENGTH 256
 #define CHAR_COMMENT ';'
 #define CHAR_NEWLINE '\n'
@@ -14,6 +15,9 @@ int process_snowflake_file(SnowflakeProgram *program, const char *filename);
 bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_length);
 bool discard_comment(char *line, int max_line_length);
 int extract_instruction(char *line, int max_line_length, int *instruction);
+int extract_parameter(char *line, int max_line_length, int start,
+    ParameterType parameter_type, ParameterValue *parameter_value, bool *ok);
+
 int parse_field(char *line, int max_line_length, bool stop_at_whitespace, 
     int start, char *output, int max_output_size);
 bool is_whitespace(char character);

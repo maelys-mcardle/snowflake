@@ -23,7 +23,7 @@ typedef struct {
 } SnowflakeVariable;
 
 typedef struct {
-    char instruction;
+    int instruction;
     SnowflakeVariable *first;
     SnowflakeVariable *second;
 } SnowflakeInstruction;

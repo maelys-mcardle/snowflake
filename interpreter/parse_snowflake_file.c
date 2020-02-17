@@ -61,27 +61,41 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
     // Load the instruction.
     //  * The instruction is extracted from the line of text.
     //  * Information about that instruction is retrieved.
-    int instruction;
-    bool instruction_exists;
-    int line_cursor = extract_instruction(line, max_line_length, &instruction);
-    InstructionInfo instruction_info = get_instruction_info(instruction, &instruction_exists);
+    Instruction instruction;
+    bool instruction_exists = false;
+    int line_cursor = extract_instruction(line, max_line_length, &(instruction.instruction));
+    instruction.info = get_instruction_info(instruction.instruction, &instruction_exists);
 
     // Instruction exists.
     if (instruction_exists) {
-        printf("%c%c%c\n", 
-            instruction_info.mnemonic[0],
-            instruction_info.mnemonic[1],
-            instruction_info.mnemonic[2]);
+
+        // Keep track of whether parameters were parsed ok.
+        bool first_parameter_ok = false;
+        bool second_parameter_ok = false;
 
         // Load first parameter.
+        line_cursor = extract_parameter(line, max_line_length, line_cursor,
+            instruction.info.parameters.first, &(instruction.parameters.first),
+            &first_parameter_ok);
 
         // Load second parameter.
+        line_cursor = extract_parameter(line, max_line_length, line_cursor,
+            instruction.info.parameters.second, &(instruction.parameters.second),
+            &second_parameter_ok);
 
-        return true;
+        // Return if parameters were ok.
+        return first_parameter_ok && second_parameter_ok;
     }
 
     // No instruction parsed.
     return false;
+}
+
+int extract_parameter(char *line, int max_line_length, int start,
+            ParameterType parameter_type, ParameterValue *parameter_value,
+            bool *ok)
+{
+    return start;
 }
 
 /* Discards the comment on the line. 

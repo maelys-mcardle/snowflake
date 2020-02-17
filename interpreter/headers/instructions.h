@@ -14,12 +14,28 @@ typedef enum {
 typedef struct {
     ParameterType first;
     ParameterType second;
-} Parameters;
+} ParameterInfo;
 
 typedef struct {
     char mnemonic[3];
-    Parameters parameters;
+    ParameterInfo parameters;
 } InstructionInfo;
+
+typedef union {
+    int i;
+    char *string;
+} ParameterValue;
+
+typedef struct {
+    ParameterValue first;
+    ParameterValue second;
+} Parameters;
+
+typedef struct {
+    int instruction;
+    InstructionInfo info;
+    Parameters parameters;
+} Instruction;
 
 InstructionInfo get_instruction_info(int instruction, bool *exists);
 
