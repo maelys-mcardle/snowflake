@@ -1,6 +1,8 @@
 # Snowflake
 
-**Snowflake** is a programming language designed for the microprocessor trainer. It is designed for a system with kilobytes worth of memory, a 20 character length display for output, and a number pad for input. In this input system, typing digits is presumed to be easy, but letters is arduous. This programming language is Turing-complete and uses the Polish notation.
+**Snowflake** is a programming language designed for the microprocessor trainer. It is designed for a system with kilobytes worth of memory, a 20 character length display for output, and a number pad for input. In this input system, typing digits is presumed to be easy, but letters is arduous.
+
+This programming language is designed to mimic assembly, to act as a stepping stone towards programming in it. Snowflake is Turing-complete and uses the Polish notation.
 
 ## Reference
 
