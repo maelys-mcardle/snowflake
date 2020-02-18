@@ -1,5 +1,5 @@
-#ifndef LOAD_INSTRUCTIONS_H
-#define LOAD_INSTRUCTIONS_H
+#ifndef SNOWFLAKE_INSTRUCTIONS_H
+#define SNOWFLAKE_INSTRUCTIONS_H
 #include <stdbool.h>
 
 typedef enum {
