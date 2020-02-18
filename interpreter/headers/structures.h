@@ -1,5 +1,5 @@
-#ifndef STRUCTURES_H
-#define STRUCTURES_H
+#ifndef SNOWFLAKE_STRUCTURES_H
+#define SNOWFLAKE_STRUCTURES_H
 
 typedef union {
     bool b;
