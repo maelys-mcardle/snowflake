@@ -1,5 +1,5 @@
-#ifndef ERRORS_H
-#define ERRORS_H
+#ifndef SNOWFLAKE_ERRORS_H
+#define SNOWFLAKE_ERRORS_H
 
 #define SUCCESS 0
 #define ERROR_CODE_NO_FILE_SPECIFIED -1
