@@ -1,5 +1,5 @@
 # Microprocessor Trainer
-This project is to make a calculator-sized device that's somewhere between a microprocessor trainer in the spirit of the [KIM-1][1] and a [1980's pocket computer][2].
+This project is to make a calculator-sized device that's somewhere between a [KIM-1][1] and a [1980's pocket computer][2].
 
 This project is a collaboration between Jamie and Maëlys.
 
