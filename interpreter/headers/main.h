@@ -1,5 +1,5 @@
-#ifndef SNOWFLAKE_H
-#define SNOWFLAKE_H
+#ifndef SNOWFLAKE_MAIN_H
+#define SNOWFLAKE_MAIN_H
 
 #include "structures.h"
 
