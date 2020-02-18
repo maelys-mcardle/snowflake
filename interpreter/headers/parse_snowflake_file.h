@@ -1,5 +1,5 @@
-#ifndef LOAD_PROGRAM_H
-#define LOAD_PROGRAM_H
+#ifndef SNOWFLAKE_PARSE_SNOWFLAKE_FILE_H
+#define SNOWFLAKE_PARSE_SNOWFLAKE_FILE_H
 
 #include <stdbool.h>
 #include "structures.h"
