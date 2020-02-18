@@ -1,5 +1,5 @@
 # Microprocessor Trainer
-This project is to make a calculator-sized device that's somewhere between a [KIM-1][1] and a [1980's pocket computer][2].
+This project is to make a calculator-sized device that's somewhere between a microprocesser trainer like the [KIM-1][1] and a 1980's pocket computer like the [Sharp PC-1500][2].
 
 This project is a collaboration between Jamie and Maëlys.
 
@@ -16,7 +16,7 @@ A high-level programming language called [Snowflake][5] was developed to allow f
 * In interpreter, make sure parameter handling handles line ends that occured before invoking call.
 
 [1]: https://en.wikipedia.org/wiki/KIM-1
-[2]: https://en.wikipedia.org/wiki/Pocket_computer
+[2]: https://en.wikipedia.org/wiki/Sharp_PC-1500
 [3]: https://www.amazon.ca/Quimat-Serial-Module-Shield-Arduino/dp/B0719R3JP7/
 [4]: https://www.amazon.ca/RobotDyn-module-Compatible-Raspberry-Assembled/dp/B071KB7RZ5/
 [5]: docs/snowflake/
