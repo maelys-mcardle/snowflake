@@ -73,21 +73,22 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
     if (instruction_exists) {
 
         // Keep track of whether parameters were parsed ok.
-        bool first_parameter_ok = false;
-        bool second_parameter_ok = false;
+        bool first_parameter_missing = true;
+        bool second_parameter_missing = true;
 
         // Load first parameter.
         line_cursor = extract_parameter(line, max_line_length, line_cursor,
             instruction->info.parameters.first, &(instruction->parameters.first),
-            &first_parameter_ok);
+            &first_parameter_missing);
 
         // Load second parameter.
         line_cursor = extract_parameter(line, max_line_length, line_cursor,
             instruction->info.parameters.second, &(instruction->parameters.second),
-            &second_parameter_ok);
+            &second_parameter_missing);
 
         // Return if parameters were ok.
-        return first_parameter_ok && second_parameter_ok;
+        bool parameter_missing = first_parameter_missing || second_parameter_missing;
+        return !parameter_missing;
     }
 
     // No instruction parsed.
