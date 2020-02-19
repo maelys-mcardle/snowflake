@@ -2,13 +2,21 @@
 #define SNOWFLAKE_INSTRUCTIONS_H
 #include <stdbool.h>
 
+#define MAX_INSTRUCTION_SIZE 3
+#define MAX_PARAMETER_SIZE 256
+#define MAX_LABEL_SIZE 4
+#define MAX_BANK_SIZE 4
+#define MAX_DEVICE_SIZE 4
+#define MAX_LITERAL_SIZE 256
+
 typedef enum {
-    PARAMETER_NONE,
+    PARAMETER_NONE = 0,
     PARAMETER_LABEL,
     PARAMETER_BANK,
     PARAMETER_DEVICE,
     PARAMETER_LITERAL,
-    PARAMETER_OPTIONAL = 0b10000
+    PARAMETER_OPTIONAL = 0b1000000,
+    PARAMETER_WITHOUT_FLAGS = 0b0111111
 } ParameterType;
 
 typedef struct {
@@ -22,7 +30,7 @@ typedef struct {
 } InstructionInfo;
 
 typedef union {
-    int i;
+    int integer;
     char *string;
 } ParameterValue;
 

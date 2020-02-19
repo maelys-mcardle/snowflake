@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <errno.h>
 #include "headers/parse_snowflake_file.h"
 #include "headers/errors.h"
@@ -21,7 +22,8 @@ int process_snowflake_file(SnowflakeProgram *program, const char *filename)
 
   // Parse the file line by line.
   while (fgets(line, MAX_LINE_LENGTH, file)) {
-    load_line_into_program(program, line, MAX_LINE_LENGTH);
+    Instruction instruction;
+    bool instruction_valid = parse_instruction_from_line(&instruction, line, MAX_LINE_LENGTH);
   }
 
   // Free the program, close the file, and 
@@ -33,7 +35,7 @@ int process_snowflake_file(SnowflakeProgram *program, const char *filename)
 /* Loads a line of text into the program.
  * @return true if a line contained an instruction, false if not.
  */
-bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_length)
+bool parse_instruction_from_line(Instruction *instruction, char *line, int max_line_length)
 {
     // Programs are of the format:
     //
@@ -61,10 +63,9 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
     // Load the instruction.
     //  * The instruction is extracted from the line of text.
     //  * Information about that instruction is retrieved.
-    Instruction instruction;
     bool instruction_exists = false;
-    int line_cursor = extract_instruction(line, max_line_length, &(instruction.instruction));
-    instruction.info = get_instruction_info(instruction.instruction, &instruction_exists);
+    int line_cursor = extract_instruction(line, max_line_length, &(instruction->instruction));
+    instruction->info = get_instruction_info(instruction->instruction, &instruction_exists);
 
     // Instruction exists.
     if (instruction_exists) {
@@ -75,12 +76,12 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
 
         // Load first parameter.
         line_cursor = extract_parameter(line, max_line_length, line_cursor,
-            instruction.info.parameters.first, &(instruction.parameters.first),
+            instruction->info.parameters.first, &(instruction->parameters.first),
             &first_parameter_ok);
 
         // Load second parameter.
         line_cursor = extract_parameter(line, max_line_length, line_cursor,
-            instruction.info.parameters.second, &(instruction.parameters.second),
+            instruction->info.parameters.second, &(instruction->parameters.second),
             &second_parameter_ok);
 
         // Return if parameters were ok.
@@ -91,11 +92,66 @@ bool load_line_into_program(SnowflakeProgram *program, char *line, int max_line_
     return false;
 }
 
-int extract_parameter(char *line, int max_line_length, int start,
+int extract_parameter(char *line, int max_line_length, int start_position,
             ParameterType parameter_type, ParameterValue *parameter_value,
-            bool *ok)
+            bool *parameter_missing)
 {
-    return start;
+    // No parameter to process.
+    if (parameter_type == PARAMETER_NONE) {
+        *parameter_missing = false;
+        return start_position;
+    }
+
+    // Stop at whitespace for all parameter types except literals.
+    bool is_literal = (PARAMETER_LITERAL == (parameter_type & PARAMETER_WITHOUT_FLAGS));
+    bool stop_at_whitespace = !is_literal;
+    size_t max_parameter_size = MAX_PARAMETER_SIZE;
+    char parameter_string[max_parameter_size];
+
+    // Parse the field. Start at the starting point.
+    int end_position = parse_field(line, max_line_length, stop_at_whitespace, 
+        start_position, parameter_string, max_parameter_size);
+
+    // Trim whitespace.
+    strip_end_whitespace(parameter_string, max_parameter_size);
+    
+    // Has a parameter.
+    bool has_parameter_string = !is_string_end(parameter_string[0]);
+    bool stored_parameter = false;
+    if (has_parameter_string) {
+
+        // Store the parameter.
+        // * Literals are stored as strings.
+        // * Banks, devices, labels as integers.
+        if (is_literal) {
+            // If it's a literal, allocate memory, and copy the string.
+            size_t allocation_size = strnlen(parameter_string, max_parameter_size);
+            parameter_value->string = malloc(allocation_size + 1);
+            if (parameter_value->string != NULL) {
+                strncpy(parameter_value->string, parameter_string, allocation_size);
+                stored_parameter = true;
+            } else {
+                // error: could not allocate memory for string.
+            }
+        } else {
+            // If it's any other value (banks, devices, labels) interpret as integer.
+            bool parsed_integer_ok;
+            parameter_value->integer = parse_integer(&parsed_integer_ok, parameter_string);
+            if (parsed_integer_ok) {
+                stored_parameter = true;
+            } else {
+                // error: could not parse integer.
+            } 
+        }
+    }
+
+    // Determine if the parameter is missing.
+    bool parameter_required = ((parameter_type & PARAMETER_OPTIONAL) == 0);
+    if (stored_parameter == false && parameter_required) {
+        *parameter_missing = true;
+    }
+
+    return end_position;
 }
 
 /* Discards the comment on the line. 
@@ -148,7 +204,7 @@ bool discard_comment(char *line, int max_line_length)
 int extract_instruction(char *line, int max_line_length, int *instruction)
 {
     int index = 0;
-    char max_instruction_size = 3;
+    char max_instruction_size = MAX_INSTRUCTION_SIZE;
     char instruction_string[max_instruction_size];
     char instruction_index = 0;
 
@@ -203,22 +259,29 @@ int parse_integer(bool *ok, char *string)
 int parse_field(char *line, int max_line_length, bool stop_at_whitespace, 
     int start, char *output, int max_output_size)
 {
-    int index = start;
+    int index = 0;
     char output_index = 0;
 
     // Terminate the tring, in case nothing is loaded.
     output[0] = CHAR_END_STRING;
 
     // Remove anything that follows the ";;"
-    for (index; index < max_line_length; index++) {
+    for (index = 0; index < max_line_length; index++) {
         char character = line[index];
 
         // Stop at newline or break.
         if (is_string_end(character) ||
+            index == max_line_length - 1 ||
             output_index == max_output_size - 1)
         {
             output[output_index] = CHAR_END_STRING;
             return index;
+        }
+
+        // If this is before the line start, ignore it.
+        // This is only to capture newlines.
+        else if (index < start) {
+            continue;
         }
 
         // Ignore whitespace before instruction.
@@ -251,7 +314,29 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
 
 bool strip_end_whitespace(char *string, int max_string_length)
 {
+    int index = 0;
     int whitespace_start = 0;
+    int last_non_whitespace_character = 0;
+
+    // Find the last non-whitespace character.
+    for (index; index < max_string_length; index++) {
+        char character = string[index];
+        if (is_string_end(character)) {
+            break;
+        }
+        else if (!is_whitespace(character)) {
+            last_non_whitespace_character = index;
+        }
+    }
+
+    // Whitespace removed.
+    if (last_non_whitespace_character + 1 < index) {
+        string[last_non_whitespace_character + 1] = CHAR_END_STRING;
+        return true;
+    }
+
+    // No whitespace removed.
+    return false;
 }
 
 bool is_whitespace(char character)
