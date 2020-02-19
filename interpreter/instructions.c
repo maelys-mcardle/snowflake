@@ -59,35 +59,35 @@ InstructionInfo get_instruction_info(int instruction, bool *exists)
       info.mnemonic[1] = 'A';
       info.mnemonic[2] = 'R';
       info.parameters.first = PARAMETER_BANK;
-      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
+      info.parameters.second = PARAMETER_LITERAL;
       break;
     case 11:
       info.mnemonic[0] = 'B';
       info.mnemonic[1] = 'L';
       info.mnemonic[2] = 'N';
       info.parameters.first = PARAMETER_BANK;
-      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
+      info.parameters.second = PARAMETER_LITERAL;
       break;
     case 12:
       info.mnemonic[0] = 'I';
       info.mnemonic[1] = 'N';
       info.mnemonic[2] = 'T';
       info.parameters.first = PARAMETER_BANK;
-      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
+      info.parameters.second = PARAMETER_LITERAL;
       break;
     case 13:
       info.mnemonic[0] = 'F';
       info.mnemonic[1] = 'L';
       info.mnemonic[2] = 'T';
       info.parameters.first = PARAMETER_BANK;
-      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
+      info.parameters.second = PARAMETER_LITERAL;
       break;
     case 14:
       info.mnemonic[0] = 'S';
       info.mnemonic[1] = 'T';
       info.mnemonic[2] = 'R';
       info.parameters.first = PARAMETER_BANK;
-      info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
+      info.parameters.second = PARAMETER_LITERAL;
       break;
     case 15:
       info.mnemonic[0] = ' ';
