@@ -114,9 +114,9 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 
 Snowflake uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, or string. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
-When a value is taken from a literal or another bank into a bank, the destination bank determines the type. So if a string is added to an integer, and the value is to be stored in a bank that's been allocated to an integer, then the result will be an integer. This process is refered to as [type coersion][1].
+When a value is taken from a literal or another bank into a bank, the destination bank determines the type. So if a string is added to an integer, and the value is to be stored in a bank that's been allocated to an integer, then the result will be an integer. This process is refered to as [type coersion][3].
 
-[1]: https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion
+[3]: https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion
 
 ## Labels
 
