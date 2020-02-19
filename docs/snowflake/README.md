@@ -14,26 +14,25 @@ This programming language is designed to mimic assembly, to act as a stepping st
 ```
 BASIC I/O
 
-CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
----  ---------  --------------  -----------
-00   !!!        LITERAL         Code comment. 
-01   ###        LABEL           A label. 
-                                Labels are positive integers.
-01   ###        LABEL   LITERAL LABEL with a name assigned.
-                                Labels are positive integers.
-                                Names are strings.
-02              BANK    LITERAL Assign a name to a BANK. 
-                                Banks are positive integers.
-                                Names are strings.
-03    <<        DEVICE  BANK    Ouput to LCD / Printer / etc, as defined by DEVICE.
-                                Each invocation of OUT is on its own new line.
-                                Devices are positive integers.
-04    >>        DEVICE  BANK    Input from Buttons / etc, as defined by DEVICE.
-                                The value is stored in the BANK after the OK key is pressed.
-                                Devices are positive integers.
-04     =        BANK1   BANK2   Copy BANK2 contents to BANK1.
-05   DEL        BANK            Deletes all data associated with BANK.
-06   TYP        BANK1   BANK2   Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
+CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
+---  ---------  --------------   -----------
+00   !!!        [LITERAL]        A comment.
+                                 Defining a comment is optional.
+01   ###        LABEL  [LITERAL] A label. 
+                                 Labels are positive integers.
+                                 Names are optional. They are strings when defined.
+02              BANK    LITERAL  Assign a name to a BANK. 
+                                 Banks are positive integers.
+                                 Names are strings.
+03    <<        DEVICE  BANK     Ouput to LCD / Printer / etc, as defined by DEVICE.
+                                 Each invocation of OUT is on its own new line.
+                                 Devices are positive integers.
+04    >>        DEVICE  BANK     Input from Buttons / etc, as defined by DEVICE.
+                                 The value is stored in the BANK after the OK key is pressed.
+                                 Devices are positive integers.
+04     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
+05   DEL        BANK             Deletes all data associated with BANK.
+06   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
 ```
 
 ```
