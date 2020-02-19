@@ -16,14 +16,16 @@ int process_snowflake_file(SnowflakeProgram *program, const char *filename)
   // Try to open the file.
   // Return on error.
   if (file == NULL) {
-    printf(ERROR_MESG_COULD_NOT_OPEN_FILE);
+    printf(ERROR_MESG_COULD_NOT_OPEN_FILE, filename);
     return ERROR_CODE_COULD_NOT_OPEN_FILE;
   }
 
   // Parse the file line by line.
+  int line_number = 1;
   while (fgets(line, MAX_LINE_LENGTH, file)) {
     Instruction instruction;
     bool instruction_valid = parse_instruction_from_line(&instruction, line, MAX_LINE_LENGTH);
+    line_number++;
   }
 
   // Free the program, close the file, and 
@@ -131,7 +133,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
                 strncpy(parameter_value->string, parameter_string, allocation_size);
                 stored_parameter = true;
             } else {
-                // error: could not allocate memory for string.
+                printf(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
             }
         } else {
             // If it's any other value (banks, devices, labels) interpret as integer.
@@ -140,7 +142,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
             if (parsed_integer_ok) {
                 stored_parameter = true;
             } else {
-                // error: could not parse integer.
+                printf(ERROR_MESG_COULD_NOT_PARSE_INTEGER, parameter_string);
             } 
         }
     }
