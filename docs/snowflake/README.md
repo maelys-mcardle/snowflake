@@ -2,7 +2,10 @@
 
 **Snowflake** is a programming language designed for the microprocessor trainer. It is designed for a system with kilobytes worth of memory, a 20 character length display for output, and a number pad for input. In this input system, typing digits is presumed to be easy, but letters is arduous.
 
-This programming language is designed to mimic assembly, to act as a stepping stone towards programming in it. Snowflake is Turing-complete and uses the Polish notation.
+This programming language is designed to mimic assembly, to act as a stepping stone towards programming in it. Snowflake is [Turing-complete][1] and uses the [Polish notation][2].
+
+[1]: https://en.wikipedia.org/wiki/Turing_completeness
+[2]: https://en.wikipedia.org/wiki/Polish_notation
 
 ## Reference
 
@@ -107,13 +110,17 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 58   [<]        BANK1   BANK2   Moves an item at the index specified in BANK2 to the first item of the array BANK1.
 ```
 
-### Banks and Labels
+### Banks
 
-It uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, or string. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
+Snowflake uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, or string. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
-It uses the concept of a **Label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
+When a value is taken from a literal or another bank into a bank, the destination bank determines the type. So if a string is added to an integer, and the value is to be stored in a bank that's been allocated to an integer, then the result will be an integer. This process is refered to as [type coersion][1].
 
-**There are 256 banks and labels.**
+[1]: https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion
+
+## Labels
+
+Snowflake uses the concept of a **Label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
 ### Literals
 
