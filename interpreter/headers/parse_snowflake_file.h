@@ -17,7 +17,7 @@ bool discard_comment(char *line, int max_line_length);
 int extract_instruction(char *line, int max_line_length, int *instruction);
 int extract_parameter(char *line, int max_line_length, int start,
     ParameterType parameter_type, ParameterValue *parameter_value, 
-    bool *has_parameter);
+    bool *parameter_missing);
 int parse_field(char *line, int max_line_length, bool stop_at_whitespace, 
     int start, char *output, int max_output_size);
 bool is_whitespace(char character);
