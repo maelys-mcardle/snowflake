@@ -12,9 +12,6 @@ This is the hardware used on this project:
 # Software
 A high-level programming language called [Snowflake][5] was developed to allow for programming the device using its numeric keypad. An [interpreter][6] has been developed to simulate programming on the device locally.
 
-# To-Do
-* Add null value to parameter value; to distinguish between INT BANK and INT BANK 0. What about STR BANK and STR BANK "" ? 
-
 [1]: https://en.wikipedia.org/wiki/KIM-1
 [2]: https://en.wikipedia.org/wiki/Sharp_PC-1500
 [3]: https://www.amazon.ca/Quimat-Serial-Module-Shield-Arduino/dp/B0719R3JP7/
