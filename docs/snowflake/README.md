@@ -118,7 +118,7 @@ When a value is taken from a literal or another bank into a bank, the destinatio
 
 [3]: https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion
 
-## Labels
+### Labels
 
 Snowflake uses the concept of a **Label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
