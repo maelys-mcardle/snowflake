@@ -11,6 +11,7 @@ void free_instruction(Instruction *instruction)
 {
   if (instruction != NULL)
   {
+    //TODO: Free parameter.
     free(instruction);
   }
 }

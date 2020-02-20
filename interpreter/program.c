@@ -19,6 +19,17 @@ void free_program(Program *program)
 {
     if (program != NULL)
     {
+        // Free all the instructions.
+        if (program->instructions.instructions != NULL && 
+            program->instructions.count > 0)
+        {
+            for (int i = 0; i < program->instructions.count; i++)
+            {
+                free_instruction(program->instructions.instructions[i]);
+            }
+        }
+
+        // Free the program.
         free(program);
     }
 }
