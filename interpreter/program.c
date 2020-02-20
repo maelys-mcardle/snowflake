@@ -96,11 +96,7 @@ void print_parameter(ParameterType type, ParameterValue value)
         case PARAMETER_LABEL:
             print(":%02i ", value.integer);
         case PARAMETER_DEVICE:
-            if (value.integer == 0) print("OUT ");
-            else if (value.integer == 1) print("IN ");
-            else if (value.integer == 2) print("PRT ");
-            else if (value.integer == 3) print("BTN ");
-            else print("??? ");
+            print_device(value.integer);
             break;
         case PARAMETER_LITERAL:
             print("%s ", value.string);
@@ -108,4 +104,13 @@ void print_parameter(ParameterType type, ParameterValue value)
         default:
             break;
     }
+}
+
+void print_device(int device)
+{
+    if (device == 0) print("OUT ");
+    else if (device == 1) print("IN ");
+    else if (device == 2) print("PRT ");
+    else if (device == 3) print("BTN ");
+    else print("??? ");
 }
