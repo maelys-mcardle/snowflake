@@ -126,7 +126,7 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
             &first_parameter_missing);
 
         if (first_parameter_missing) {
-            log_error(ERROR_MESG_PARAMETER_MISSING, 1);
+            log_error(ERROR_MESG_PARAMETER_MISSING, instruction->instruction, 1);
         }
 
         // Load second parameter.
@@ -135,7 +135,7 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
             &second_parameter_missing);
 
         if (second_parameter_missing) {
-            log_error(ERROR_MESG_PARAMETER_MISSING, 2);
+            log_error(ERROR_MESG_PARAMETER_MISSING, instruction->instruction, 2);
         }
 
         // Return if parameters were ok.
