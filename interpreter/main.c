@@ -18,8 +18,14 @@ int main (int argc, char **argv)
 
   // Initialize the program.
   Program *program = new_program();
+ 
+  // Load the snowflake code.
   int return_code = parse_snowflake_file(program, argv[1]);
+  
+  // Print out the code.
   print_snowflake_program(program);
+  
+  // Free the memory allocated to the program.
   free_program(program);
 
   // Exit with the return code supplied by processing
