@@ -23,15 +23,27 @@ int parse_snowflake_file(Program *program, const char *filename)
 
     // Parse the file line by line.
     int line_number = 1;
+    int instructions_parsed = 0;
     while (fgets(line, max_line_length, file)) {
         log_debug("[Line %02i] %s\n", line_number, line);
-        parse_line(program, line, max_line_length);
+        bool has_instruction = parse_line(program, line, max_line_length);
+        if (has_instruction) {
+            instructions_parsed++;
+        }
         line_number++;
     }
-
-    // Free the program, close the file, and 
-    // denote success.
+    
+    // Close the file.
     fclose(file);
+    
+    // File had no instructions!
+    if (instructions_parsed == 0)
+    {
+        log_error(ERROR_MESG_FILE_HAD_NO_CODE, filename);
+        return ERROR_CODE_FILE_HAD_NO_CODE;
+    }
+
+    // Denote the success.
     return SUCCESS;
 }
 
