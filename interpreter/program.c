@@ -57,7 +57,7 @@ void print_snowflake_program(Program *program)
             Instruction *instruction = program->instructions.instructions[i];
 
             // Print mnemonic.
-            print("%c%c%c",
+            print("%c%c%c ",
                 instruction->info.mnemonic[0],
                 instruction->info.mnemonic[1],
                 instruction->info.mnemonic[2]);
@@ -67,6 +67,9 @@ void print_snowflake_program(Program *program)
                 instruction->parameters.first);
             print_parameter(instruction->info.parameters.second, 
                 instruction->parameters.second);
+
+            // Print end of line.
+            print("\n");
         }
     }
 }
@@ -77,19 +80,19 @@ void print_parameter(ParameterType type, ParameterValue value)
     switch (type_without_flags)
     {
         case PARAMETER_BANK:
-            print("@%02i", value.integer);
+            print("@%02i ", value.integer);
             break;
         case PARAMETER_LABEL:
-            print(":%02i", value.integer);
+            print(":%02i ", value.integer);
         case PARAMETER_DEVICE:
-            if (value.integer == 0) print("OUT");
-            else if (value.integer == 1) print("IN");
-            else if (value.integer == 2) print("PRT");
-            else if (value.integer == 3) print("BTN");
-            else print("???");
+            if (value.integer == 0) print("OUT ");
+            else if (value.integer == 1) print("IN ");
+            else if (value.integer == 2) print("PRT ");
+            else if (value.integer == 3) print("BTN ");
+            else print("??? ");
             break;
         case PARAMETER_LITERAL:
-            print("%s", value.string);
+            print("%s ", value.string);
             break;
         default:
             break;
