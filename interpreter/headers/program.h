@@ -17,5 +17,6 @@ void free_program(Program *program);
 bool append_instruction_to_program(Program *program, Instruction *instruction);
 void print_snowflake_program(Program *program);
 void print_parameter(ParameterType type, ParameterValue value);
+void print_device(int device);
 
 #endif
