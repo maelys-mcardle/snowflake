@@ -54,10 +54,4 @@ typedef struct {
     SnowflakeIdentifier *identifier;
 } SnowflakeIdentifierList;
 
-typedef struct {
-    SnowflakeIdentifierList labels;
-    SnowflakeIdentifierList banks;
-    SnowflakeInstructionList instructions;
-} SnowflakeProgram;
-
 #endif

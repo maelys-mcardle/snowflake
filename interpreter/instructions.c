@@ -1,4 +1,19 @@
+#include <stdlib.h>
 #include "headers/instructions.h"
+
+Instruction *new_instruction()
+{
+  Instruction *instruction = (Instruction *) malloc(sizeof(Instruction));
+  return instruction;
+}
+
+void free_instruction(Instruction *instruction)
+{
+  if (instruction != NULL)
+  {
+    free(instruction);
+  }
+}
 
 InstructionInfo get_instruction_info(int instruction, bool *exists)
 {  

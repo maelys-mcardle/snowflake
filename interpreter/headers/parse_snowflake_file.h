@@ -2,6 +2,7 @@
 #define SNOWFLAKE_PARSE_SNOWFLAKE_FILE_H
 
 #include <stdbool.h>
+#include "program.h"
 #include "structures.h"
 #include "instructions.h"
 #define MAX_LINE_LENGTH 256
@@ -11,7 +12,8 @@
 #define CHAR_TAB '\t'
 #define CHAR_END_STRING '\0'
 
-int process_snowflake_file(SnowflakeProgram *program, const char *filename);
+int parse_snowflake_file(Program *program, const char *filename);
+bool parse_line(Program *program, char *line, int max_line_length);
 bool parse_instruction_from_line(Instruction *instruction, char *line, int max_line_length);
 bool discard_comment(char *line, int max_line_length);
 int extract_instruction(char *line, int max_line_length, int *instruction);

@@ -8,30 +8,49 @@
 #include "headers/instructions.h"
 
 /* Process a snowflake file. */
-int process_snowflake_file(SnowflakeProgram *program, const char *filename)
+int parse_snowflake_file(Program *program, const char *filename)
 {
-  char line[MAX_LINE_LENGTH];
-  FILE* file = fopen(filename, "r");
+    int max_line_length = MAX_LINE_LENGTH;
+    char line[max_line_length];
+    FILE* file = fopen(filename, "r");
 
-  // Try to open the file.
-  // Return on error.
-  if (file == NULL) {
-    printf(ERROR_MESG_COULD_NOT_OPEN_FILE, filename);
-    return ERROR_CODE_COULD_NOT_OPEN_FILE;
-  }
+    // Try to open the file.
+    // Return on error.
+    if (file == NULL) {
+        log_error(ERROR_MESG_COULD_NOT_OPEN_FILE, filename);
+        return ERROR_CODE_COULD_NOT_OPEN_FILE;
+    }
 
-  // Parse the file line by line.
-  int line_number = 1;
-  while (fgets(line, MAX_LINE_LENGTH, file)) {
-    Instruction instruction;
-    bool instruction_valid = parse_instruction_from_line(&instruction, line, MAX_LINE_LENGTH);
-    line_number++;
-  }
+    // Parse the file line by line.
+    int line_number = 1;
+    while (fgets(line, max_line_length, file)) {
+        parse_line(program, line, max_line_length);
+    }
 
-  // Free the program, close the file, and 
-  // denote success.
-  fclose(file);
-  return SUCCESS;
+    // Free the program, close the file, and 
+    // denote success.
+    fclose(file);
+    return SUCCESS;
+}
+
+/* Parses the line, and if its a valid instruction, appends it to the program. */
+bool parse_line(Program *program, char *line, int max_line_length)
+{
+    Instruction *instruction = new_instruction();
+    if (instruction != NULL) {
+        bool instruction_valid = parse_instruction_from_line(instruction, line, max_line_length);
+
+        if (instruction_valid) {
+            bool appended_instruction = append_instruction_to_program(program, instruction);
+            return appended_instruction;
+        } else {
+            free_instruction(instruction);
+        }
+    } else {
+        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+    }
+
+    return false;
 }
 
 /* Loads a line of text into the program.
@@ -134,7 +153,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
                 strncpy(parameter_value->string, parameter_string, allocation_size);
                 stored_parameter = true;
             } else {
-                printf(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+                log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
             }
         } else {
             // If it's any other value (banks, devices, labels) interpret as integer.
@@ -143,7 +162,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
             if (parsed_integer_ok) {
                 stored_parameter = true;
             } else {
-                printf(ERROR_MESG_COULD_NOT_PARSE_INTEGER, parameter_string);
+                log_error(ERROR_MESG_COULD_NOT_PARSE_INTEGER, parameter_string);
             } 
         }
     }
