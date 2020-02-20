@@ -18,6 +18,8 @@
 #define ERROR_MESG_COULD_NOT_APPEND_INSTRUCTION "Could not append the instruction\n"
 #define ERROR_CODE_PARAMETER_MISSING 6
 #define ERROR_MESG_PARAMETER_MISSING "Parameter #%i missing\n"
+#define ERROR_CODE_FILE_HAD_NO_CODE 7
+#define ERROR_MESG_FILE_HAD_NO_CODE "File '%s' contained no Snowflake code.\n"
 
 void log_error( const char * format, ... );
 void log_debug( const char * format, ... );
