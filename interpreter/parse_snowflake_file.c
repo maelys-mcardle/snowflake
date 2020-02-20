@@ -24,7 +24,9 @@ int parse_snowflake_file(Program *program, const char *filename)
     // Parse the file line by line.
     int line_number = 1;
     while (fgets(line, max_line_length, file)) {
+        log_debug("[Line %02i] %s\n", line_number, line);
         parse_line(program, line, max_line_length);
+        line_number++;
     }
 
     // Free the program, close the file, and 
@@ -39,11 +41,15 @@ bool parse_line(Program *program, char *line, int max_line_length)
     Instruction *instruction = new_instruction();
     if (instruction != NULL) {
         bool instruction_valid = parse_instruction_from_line(instruction, line, max_line_length);
-
         if (instruction_valid) {
             bool appended_instruction = append_instruction_to_program(program, instruction);
+            if (!appended_instruction) {
+                log_error(ERROR_MESG_COULD_NOT_APPEND_INSTRUCTION);
+                free_instruction(instruction);
+            }
             return appended_instruction;
         } else {
+            log_debug("Invalid instruction: line ignored.\n");
             free_instruction(instruction);
         }
     } else {
@@ -91,6 +97,13 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
     // Instruction exists.
     if (instruction_exists) {
 
+        // Note instruction exists.
+        log_debug("Found instruction %02i ('%c%c%c')\n", 
+            instruction->instruction,
+            instruction->info.mnemonic[0],
+            instruction->info.mnemonic[1],
+            instruction->info.mnemonic[2]);
+
         // Keep track of whether parameters were parsed ok.
         bool first_parameter_missing = true;
         bool second_parameter_missing = true;
@@ -100,10 +113,18 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
             instruction->info.parameters.first, &(instruction->parameters.first),
             &first_parameter_missing);
 
+        if (first_parameter_missing) {
+            log_error(ERROR_MESG_PARAMETER_MISSING, 1);
+        }
+
         // Load second parameter.
         line_cursor = extract_parameter(line, max_line_length, line_cursor,
             instruction->info.parameters.second, &(instruction->parameters.second),
             &second_parameter_missing);
+
+        if (second_parameter_missing) {
+            log_error(ERROR_MESG_PARAMETER_MISSING, 2);
+        }
 
         // Return if parameters were ok.
         bool parameter_missing = first_parameter_missing || second_parameter_missing;
