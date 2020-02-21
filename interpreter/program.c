@@ -102,6 +102,8 @@ bool print_parameter(ParameterType type, ParameterValue value)
     ParameterType type_without_flags = type & PARAMETER_WITHOUT_FLAGS;
     switch (type_without_flags)
     {
+        case PARAMETER_NONE:
+            return false;
         case PARAMETER_BANK:
             print("@%02i", value.integer);
             return true;
