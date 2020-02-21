@@ -65,7 +65,7 @@ bool append_instruction_to_program(Program *program, Instruction *instruction)
 }
 
 /* Prints an entire Snowflake program. */
-void print_snowflake_program(Program *program)
+void print_program(Program *program)
 {
     if (program != NULL && 
         program->instructions.instructions != NULL && 
