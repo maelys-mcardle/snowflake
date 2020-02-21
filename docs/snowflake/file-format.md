@@ -2,7 +2,9 @@
 
 Snowflake programs are stored in plaintext ASCII as `.sn` files. 
 
-The different fields are separated by whitespace.
+The different fields are separated by spaces or tabs.
+
+The different instructions are separated by a newline.
 
 Mnemonics are not used in `.sn` files.
 
