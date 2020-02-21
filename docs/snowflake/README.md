@@ -21,7 +21,7 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
 01   ###        LABEL  [LITERAL] A label. 
                                  Labels are positive integers.
                                  Names are optional. They are strings when defined.
-                                 Labels should only be defined once.
+                                 Individual labels should only be assigned once.
 02              BANK    LITERAL  Assign a name to a BANK. 
                                  Banks are positive integers.
                                  Names are strings.
