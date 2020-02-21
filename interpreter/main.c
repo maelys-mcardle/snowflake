@@ -24,7 +24,7 @@ int main (int argc, char **argv)
   int return_code = parse_snowflake_file(program, argv[1]);
   
   // Print out the code.
-  print_snowflake_program(program);
+  print_program(program);
   
   // Free the memory allocated to the program.
   free_program(program);
