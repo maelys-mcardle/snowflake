@@ -75,8 +75,13 @@ void print_snowflake_program(Program *program)
                 instruction->info.mnemonic[2]);
 
             // Print parameter.
-            print_parameter(instruction->info.parameters.first, 
+            bool has_parameter = print_parameter(instruction->info.parameters.first, 
                 instruction->parameters.first);
+            
+            if (has_parameter) {
+                print(" ");
+            }
+            
             print_parameter(instruction->info.parameters.second, 
                 instruction->parameters.second);
 
@@ -86,45 +91,45 @@ void print_snowflake_program(Program *program)
     }
 }
 
-void print_parameter(ParameterType type, ParameterValue value)
+bool print_parameter(ParameterType type, ParameterValue value)
 {
     ParameterType type_without_flags = type & PARAMETER_WITHOUT_FLAGS;
     switch (type_without_flags)
     {
         case PARAMETER_BANK:
-            print("@%02i ", value.integer);
-            break;
+            print("@%02i", value.integer);
+            return true;
         case PARAMETER_LABEL:
-            print(":%02i ", value.integer);
+            print(":%02i", value.integer);
+            return true;
         case PARAMETER_DEVICE:
             print_device(value.integer);
-            print(" ");
-            break;
+            return true;
         case PARAMETER_LITERAL:
-            print("%s ", value.string);
-            break;
+            print("%s", value.string);
+            return true;
         default:
-            break;
+            return false;
     }
 }
 
-void print_device(int device)
+bool print_device(int device)
 {
     switch (device)
     {
         case 0:
             print("OUT");
-            break;
+            return true;
         case 1:
             print(" IN");
-            break;
+            return true;
         case 2:
             print("PRT");
-            break;
+            return true;
         case 3:
             print("BTN");
-            break;
+            return true;
         default:
-            print("???");
+            return false;
     }
 }
