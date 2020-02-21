@@ -4,6 +4,9 @@
 #include "headers/errors.h"
 #include "headers/output.h"
 
+/* Creates a new program and allocates memory.
+ * @return The initialized program.
+ */
 Program *new_program()
 {
     Program *program = (Program *) malloc(sizeof(Program));
@@ -35,6 +38,9 @@ void free_program(Program *program)
     }
 }
 
+/* Adds an instruction to the program.
+ * @return True if the instruction was added, false if not.
+ */
 bool append_instruction_to_program(Program *program, Instruction *instruction)
 {
     int new_count = program->instructions.count + 1;
@@ -58,6 +64,7 @@ bool append_instruction_to_program(Program *program, Instruction *instruction)
     }
 }
 
+/* Prints an entire Snowflake program. */
 void print_snowflake_program(Program *program)
 {
     if (program != NULL && 
@@ -72,6 +79,7 @@ void print_snowflake_program(Program *program)
     }
 }
 
+/* Prints a line of Snowflake. */
 void print_snowflake_instruction(Instruction *instruction)
 {
     // Print mnemonic.
@@ -81,7 +89,8 @@ void print_snowflake_instruction(Instruction *instruction)
         instruction->info.mnemonic[2]);
 
     // Print first parameter.
-    bool has_parameter = print_parameter(instruction->info.parameters.first, 
+    bool has_parameter = print_parameter(
+        instruction->info.parameters.first, 
         instruction->parameters.first);
 
     // Print the space that separates the parameter.
@@ -90,13 +99,17 @@ void print_snowflake_instruction(Instruction *instruction)
     }
 
     // Print second parameter.
-    print_parameter(instruction->info.parameters.second, 
+    print_parameter(
+        instruction->info.parameters.second, 
         instruction->parameters.second);
 
     // Print end of line.
     print("\n");
 }
 
+/* Prints a parameter, if one is defined.
+ * @return True if a parameter is defined; false if not.
+ */
 bool print_parameter(ParameterType type, ParameterValue value)
 {
     ParameterType type_without_flags = type & PARAMETER_WITHOUT_FLAGS;
@@ -120,6 +133,9 @@ bool print_parameter(ParameterType type, ParameterValue value)
     }
 }
 
+/* Prints a device, if one is defined.
+ * @return True if a device is defined; false if not.
+ */
 bool print_device(int device)
 {
     switch (device)
