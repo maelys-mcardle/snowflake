@@ -67,29 +67,34 @@ void print_snowflake_program(Program *program)
         for (int i = 0; i < program->instructions.count; i++)
         {
             Instruction *instruction = program->instructions.instructions[i];
-
-            // Print mnemonic.
-            print("%c%c%c ",
-                instruction->info.mnemonic[0],
-                instruction->info.mnemonic[1],
-                instruction->info.mnemonic[2]);
-
-            // Print parameter.
-            bool has_parameter = print_parameter(instruction->info.parameters.first, 
-                instruction->parameters.first);
-            
-            // Print the space that separates the parameter.
-            if (has_parameter) {
-                print(" ");
-            }
-            
-            print_parameter(instruction->info.parameters.second, 
-                instruction->parameters.second);
-
-            // Print end of line.
-            print("\n");
+            void print_snowflake_line(instruction)
         }
     }
+}
+
+void print_snowflake_line(Instruction *instruction)
+{
+    // Print mnemonic.
+    print("%c%c%c ",
+        instruction->info.mnemonic[0],
+        instruction->info.mnemonic[1],
+        instruction->info.mnemonic[2]);
+
+    // Print first parameter.
+    bool has_parameter = print_parameter(instruction->info.parameters.first, 
+        instruction->parameters.first);
+
+    // Print the space that separates the parameter.
+    if (has_parameter) {
+        print(" ");
+    }
+
+    // Print second parameter.
+    print_parameter(instruction->info.parameters.second, 
+        instruction->parameters.second);
+
+    // Print end of line.
+    print("\n");
 }
 
 bool print_parameter(ParameterType type, ParameterValue value)
