@@ -116,7 +116,7 @@ void print_device(int device)
             print("OUT");
             break;
         case 1:
-            print("IN");
+            print(" IN");
             break;
         case 2:
             print("PRT");

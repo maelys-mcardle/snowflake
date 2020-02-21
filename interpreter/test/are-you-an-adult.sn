@@ -1,0 +1,23 @@
+;;
+;; This is a test file, used to check that the Snowflake
+;; interpreter is able to process files correctly.
+;;
+
+00 ARE YOU AN ADULT ;; Comment describing program.
+02 00 MSG           ;; Name Bank 00 "MSG"
+02 01 ADULT         ;; Name Bank 01 "ADULT"
+02 02 AGE           ;; Name Bank 02 "AGE"
+14 00 HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 01 00 MSG
+12 01 18            ;; Store 18 (age of adulthood) in Bank 01  
+03 00 00            ;; Display the message "HOW OLD ARE YOU"
+04 01 02            ;; Store the button input in Bank 02 (your age)
+25 02 01            ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
+20 01               ;; ...Jump to label 01.
+20 00               ;; ...Otherwise jump to label 00.
+01 00 IS ADULT      ;; Label 00 (for adults)
+14 00 YOU ARE ADULT ;; Store "YOU ARE ADULT" in Bank 00
+20 02               ;; Jump to label 02 (end).
+01 01 IS MINOR      ;; Label 01 (for minors)
+14 00 YOU ARE MINOR ;; Store "YOU ARE MINOR" in Bank 00
+01 02 END           ;; Label 02 (end)
+03 00 00            ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")

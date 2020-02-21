@@ -1,0 +1,18 @@
+;;
+;; This is a test file, used to check that the Snowflake
+;; interpreter is able to process files correctly.
+;;
+
+04 01 00  ;; User enters MAX. Stored in Bank 00.
+12 01 01  ;; CURRENT NUMBER (Bank 01) is set to 1.
+12 02 01  ;; LAST NUMBER (Bank 02) is set to 1.
+01 00     ;; Start of loop
+05 03 01  ;; SUM = CURRENT NUMBER
+30 03 02  ;; SUM = SUM + LAST NUMBER
+03 00 03  ;; Output value of SUM
+24 03 00  ;; If SUM > MAX
+20 01     ;; ...go to end.
+05 02 01  ;; CURRENT NUMBER becomes LAST NUMBER
+05 03 02  ;; SUM becomes CURRENT NUMBER
+20 00     ;; Start loop over.
+01 01     ;; End

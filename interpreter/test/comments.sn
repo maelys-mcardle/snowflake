@@ -10,11 +10,3 @@
 ;; Line with a comment.
    ;; Line with a comment.
 00 TEST PROGRAM ;; Comment.
-
-;; ---------------------
-;; TEST BAD INSTRUCTIONS
-;; ---------------------
-
-XX BAD INSTRUCTION
-XXXX OTHER BAD INSTRUCTION
-99 BAD INSTRUCTION
