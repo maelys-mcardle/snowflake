@@ -78,6 +78,7 @@ void print_snowflake_program(Program *program)
             bool has_parameter = print_parameter(instruction->info.parameters.first, 
                 instruction->parameters.first);
             
+            // Print the space that separates the parameter.
             if (has_parameter) {
                 print(" ");
             }
