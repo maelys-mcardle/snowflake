@@ -1,19 +1,37 @@
 #include <stdlib.h>
 #include "headers/instructions.h"
+#include "headers/output.h"
 
 Instruction *new_instruction()
 {
-  Instruction *instruction = (Instruction *) malloc(sizeof(Instruction));
-  return instruction;
+    Instruction *instruction = (Instruction *) malloc(sizeof(Instruction));
+    return instruction;
 }
 
 void free_instruction(Instruction *instruction)
 {
-  if (instruction != NULL)
-  {
-    //TODO: Free parameter.
-    free(instruction);
-  }
+    if (instruction != NULL)
+    {
+        free_parameter(
+            instruction->info.parameters.first, 
+            instruction->parameters.first);
+
+        free_parameter(
+            instruction->info.parameters.second, 
+            instruction->parameters.second);
+
+        free(instruction);
+    }
+}
+
+void free_parameter(ParameterType type, ParameterValue value)
+{
+    ParameterType type_without_flags = type & PARAMETER_WITHOUT_FLAGS;
+    if (type_without_flags == PARAMETER_LITERAL &&
+        value.string != NULL)
+    {
+      free(value.string);
+    }
 }
 
 InstructionInfo get_instruction_info(int instruction, bool *exists)
@@ -340,8 +358,12 @@ bool print_parameter(ParameterType type, ParameterValue value)
         case PARAMETER_DEVICE:
             return print_device(value.integer);
         case PARAMETER_LITERAL:
-            print("%s", value.string);
-            return true;
+            if (value.string != NULL)
+            {
+                print("%s", value.string);
+                return true;
+            }
+            return false;
         default:
             return false;
     }

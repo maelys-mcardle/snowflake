@@ -74,7 +74,7 @@ void print_program(Program *program)
         for (int i = 0; i < program->instructions.count; i++)
         {
             Instruction *instruction = program->instructions.instructions[i];
-            print_instruction(instruction)
+            print_instruction(instruction);
         }
     }
 }
