@@ -103,8 +103,7 @@ bool print_parameter(ParameterType type, ParameterValue value)
             print(":%02i", value.integer);
             return true;
         case PARAMETER_DEVICE:
-            print_device(value.integer);
-            return true;
+            return print_device(value.integer);
         case PARAMETER_LITERAL:
             print("%s", value.string);
             return true;
