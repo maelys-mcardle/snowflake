@@ -94,7 +94,8 @@ void print_snowflake_instruction(Instruction *instruction)
         instruction->parameters.first);
 
     // Print the space that separates the parameter.
-    if (has_parameter) {
+    if (has_parameter)
+    {
         print(" ");
     }
 
