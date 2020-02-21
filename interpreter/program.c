@@ -67,12 +67,12 @@ void print_snowflake_program(Program *program)
         for (int i = 0; i < program->instructions.count; i++)
         {
             Instruction *instruction = program->instructions.instructions[i];
-            void print_snowflake_line(instruction)
+            void print_snowflake_instruction(instruction)
         }
     }
 }
 
-void print_snowflake_line(Instruction *instruction)
+void print_snowflake_instruction(Instruction *instruction)
 {
     // Print mnemonic.
     print("%c%c%c ",
