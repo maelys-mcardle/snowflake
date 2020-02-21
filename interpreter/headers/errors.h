@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#define DEBUG_MODE 0
 #define SUCCESS 0
 #define ERROR_CODE_NO_FILE_SPECIFIED 1
 #define ERROR_MESG_NO_FILE_SPECIFIED "Please specify a file to open.\n"
@@ -20,9 +19,5 @@
 #define ERROR_MESG_PARAMETER_MISSING "Instruction %02i is missing parameter #%i\n"
 #define ERROR_CODE_FILE_HAD_NO_CODE 7
 #define ERROR_MESG_FILE_HAD_NO_CODE "File '%s' contained no Snowflake code.\n"
-
-void log_error( const char * format, ... );
-void log_debug( const char * format, ... );
-void print( const char * format, ... );
 
 #endif

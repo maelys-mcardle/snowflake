@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "headers/program.h"
 #include "headers/errors.h"
+#include "headers/output.h"
 
 Program *new_program()
 {

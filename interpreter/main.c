@@ -5,6 +5,7 @@
 #include "headers/errors.h"
 #include "headers/parse_snowflake_file.h"
 #include "headers/program.h"
+#include "headers/output.h"
 
 /* Starting point of the program. */
 int main (int argc, char **argv) 

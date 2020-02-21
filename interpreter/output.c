@@ -1,4 +1,4 @@
-#include "headers/errors.h"
+#include "headers/output.h"
 
 void log_debug(const char * format, ... )
 {
