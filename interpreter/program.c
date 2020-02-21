@@ -74,7 +74,7 @@ void print_snowflake_program(Program *program)
         for (int i = 0; i < program->instructions.count; i++)
         {
             Instruction *instruction = program->instructions.instructions[i];
-            void print_instruction(instruction)
+            print_instruction(instruction)
         }
     }
 }
