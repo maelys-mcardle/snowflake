@@ -11,20 +11,27 @@
 bool parse_line(Program *program, char *line, int max_line_length)
 {
     Instruction *instruction = new_instruction();
-    if (instruction != NULL) {
+    if (instruction != NULL)
+    {
         bool instruction_valid = parse_instruction_from_line(instruction, line, max_line_length);
-        if (instruction_valid) {
+        if (instruction_valid)
+        {
             bool appended_instruction = append_instruction_to_program(program, instruction);
-            if (!appended_instruction) {
+            if (!appended_instruction)
+            {
                 log_error(ERROR_MESG_COULD_NOT_APPEND_INSTRUCTION);
                 free_instruction(instruction);
             }
             return appended_instruction;
-        } else {
+        }
+        else
+        {
             log_debug("Invalid instruction: line ignored.\n");
             free_instruction(instruction);
         }
-    } else {
+    }
+    else
+    {
         log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
     }
 
@@ -67,8 +74,8 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
     instruction->info = get_instruction_info(instruction->instruction, &instruction_exists);
 
     // Instruction exists.
-    if (instruction_exists) {
-
+    if (instruction_exists)
+    {
         // Note instruction exists.
         log_debug("Found instruction %02i ('%c%c%c')\n", 
             instruction->instruction,
@@ -85,7 +92,8 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
             instruction->info.parameters.first, &(instruction->parameters.first),
             &first_parameter_missing);
 
-        if (first_parameter_missing) {
+        if (first_parameter_missing)
+        {
             log_error(ERROR_MESG_PARAMETER_MISSING, instruction->instruction, 1);
         }
 
@@ -94,7 +102,8 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
             instruction->info.parameters.second, &(instruction->parameters.second),
             &second_parameter_missing);
 
-        if (second_parameter_missing) {
+        if (second_parameter_missing)
+        {
             log_error(ERROR_MESG_PARAMETER_MISSING, instruction->instruction, 2);
         }
 
@@ -112,7 +121,8 @@ int extract_parameter(char *line, int max_line_length, int start_position,
             bool *parameter_missing)
 {
     // No parameter to process.
-    if (parameter_type == PARAMETER_NONE) {
+    if (parameter_type == PARAMETER_NONE)
+    {
         *parameter_missing = false;
         return start_position;
     }
@@ -133,28 +143,39 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     // Has a parameter.
     bool has_parameter_string = !is_string_end(parameter_string[0]);
     bool stored_parameter = false;
-    if (has_parameter_string) {
-
+    if (has_parameter_string)
+    {
         // Store the parameter.
         // * Literals are stored as strings.
         // * Banks, devices, labels as integers.
-        if (is_literal) {
+        if (is_literal)
+        {
             // If it's a literal, allocate memory, and copy the string.
             size_t allocation_size = strnlen(parameter_string, max_parameter_size);
             parameter_value->string = malloc(allocation_size + 1);
-            if (parameter_value->string != NULL) {
+            
+            if (parameter_value->string != NULL)
+            {
                 strncpy(parameter_value->string, parameter_string, allocation_size);
                 stored_parameter = true;
-            } else {
+            }
+            else
+            {
                 log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
             }
-        } else {
+        }
+        else
+        {
             // If it's any other value (banks, devices, labels) interpret as integer.
             bool parsed_integer_ok;
             parameter_value->integer = parse_integer(&parsed_integer_ok, parameter_string);
-            if (parsed_integer_ok) {
+            
+            if (parsed_integer_ok)
+            {
                 stored_parameter = true;
-            } else {
+            }
+            else
+            {
                 log_error(ERROR_MESG_COULD_NOT_PARSE_INTEGER, parameter_string);
             } 
         }
@@ -162,9 +183,12 @@ int extract_parameter(char *line, int max_line_length, int start_position,
 
     // Determine if the parameter is missing.
     bool parameter_required = ((parameter_type & PARAMETER_OPTIONAL) == 0);
-    if (stored_parameter == false && parameter_required) {
+    if (stored_parameter == false && parameter_required)
+    {
         *parameter_missing = true;
-    } else {
+    }
+    else
+    {
         *parameter_missing = false;
     }
 
@@ -179,8 +203,8 @@ bool discard_comment(char *line, int max_line_length)
     bool last_char_is_semicolon = false;
 
     // Remove anything that follows the ";;"
-    for (int index = 0; index < max_line_length; index++) {
-
+    for (int index = 0; index < max_line_length; index++)
+    {
         char character = line[index];
 
         // Stop at newline or break.
@@ -237,12 +261,15 @@ int extract_instruction(char *line, int max_line_length, int *instruction)
         *instruction = parse_integer(&instruction_ok, instruction_string);
 
         // Could not parse instruction into an integer.
-        if (!instruction_ok) {
+        if (!instruction_ok)
+        {
             *instruction = -1;
         }
 
     // No text was loaded.
-    } else {
+    }
+    else
+    {
         *instruction = -1;
     }
 
@@ -253,19 +280,13 @@ int parse_integer(bool *ok, char *string)
 {
     int integer;
     char *end_pointer;
-
-    // Reset errno. If strtol fails this will change.
     errno = 0;
 
     // Parse the string into an integer.
     integer = strtol(string,  &end_pointer, 10);
 
-    // Indicate error.
-    if (end_pointer == string || errno != 0) {
-        *ok = false;
-    } else {
-        *ok = true;
-    }
+    // Indicate success.
+    *ok = (end_pointer != string && errno == 0);
 
     return integer;
 }
@@ -283,7 +304,8 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
     output[0] = CHAR_END_STRING;
 
     // Remove anything that follows the ";;"
-    for (index = 0; index < max_line_length; index++) {
+    for (index = 0; index < max_line_length; index++)
+    {
         char character = line[index];
 
         // Stop at newline or break.
@@ -297,7 +319,8 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
 
         // If this is before the line start, ignore it.
         // This is only to capture newlines.
-        else if (index < start) {
+        else if (index < start)
+        {
             continue;
         }
 
@@ -320,7 +343,8 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
         }
 
         // Load text in between.
-        else {
+        else
+        {
             output[output_index] = character;
             output_index++;
         }
@@ -336,18 +360,22 @@ bool strip_end_whitespace(char *string, int max_string_length)
     int last_non_whitespace_character = 0;
 
     // Find the last non-whitespace character.
-    for (index; index < max_string_length; index++) {
+    for (index; index < max_string_length; index++)
+    {
         char character = string[index];
-        if (is_string_end(character)) {
+        if (is_string_end(character))
+        {
             break;
         }
-        else if (!is_whitespace(character)) {
+        else if (!is_whitespace(character))
+        {
             last_non_whitespace_character = index;
         }
     }
 
     // Whitespace removed.
-    if (last_non_whitespace_character + 1 < index) {
+    if (last_non_whitespace_character + 1 < index)
+    {
         string[last_non_whitespace_character + 1] = CHAR_END_STRING;
         return true;
     }
@@ -358,7 +386,8 @@ bool strip_end_whitespace(char *string, int max_string_length)
 
 bool is_whitespace(char character)
 {
-    switch (character) {
+    switch (character)
+    {
         case CHAR_SPACE:
         case CHAR_TAB:
             return true;
@@ -369,7 +398,8 @@ bool is_whitespace(char character)
 
 bool is_string_end(char character)
 {
-       switch (character) {
+    switch (character)
+    {
         case CHAR_NEWLINE:
         case CHAR_END_STRING:
             return true;
