@@ -21,9 +21,11 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
 01   ###        LABEL  [LITERAL] A label. 
                                  Labels are positive integers.
                                  Names are optional. They are strings when defined.
+                                 Labels should only be defined once.
 02              BANK    LITERAL  Assign a name to a BANK. 
                                  Banks are positive integers.
                                  Names are strings.
+                                 Banks should not be renamed.
 03    <<        DEVICE  BANK     Ouput to LCD / Printer / etc, as defined by DEVICE.
                                  Each invocation of OUT is on its own new line.
                                  Devices are positive integers.
