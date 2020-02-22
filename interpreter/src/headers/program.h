@@ -2,6 +2,12 @@
 #define SNOWFLAKE_PROGRAM_H
 #include <stdbool.h>
 #include "instructions.h"
+#include "bank.h"
+
+typedef struct {
+    int count;
+    Bank **banks;
+} ProgramBanks;
 
 typedef struct {
     int count;
@@ -9,6 +15,7 @@ typedef struct {
 } ProgramInstructions;
 
 typedef struct {
+    ProgramBanks banks;
     ProgramInstructions instructions;
 } Program;
 
