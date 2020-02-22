@@ -22,5 +22,6 @@ typedef struct {
 Program *new_program();
 void free_program(Program *program);
 bool append_instruction_to_program(Program *program, Instruction *instruction);
+bool set_program_bank(Program *program, Bank *bank);
 
 #endif

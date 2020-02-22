@@ -63,3 +63,8 @@ bool append_instruction_to_program(Program *program, Instruction *instruction)
         return false;
     }
 }
+
+bool set_program_bank(Program *program, Bank *bank)
+{
+    
+}
