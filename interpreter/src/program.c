@@ -15,6 +15,11 @@ Program *new_program()
         program->instructions.count = 0;
         program->instructions.instructions = NULL;
     }
+    else
+    {
+        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+    }
+
     return program;
 }
 
@@ -44,10 +49,10 @@ void free_program(Program *program)
 bool append_instruction_to_program(Program *program, Instruction *instruction)
 {
     int new_count = program->instructions.count + 1;
-    int new_instruction_array_size = sizeof(Instruction *) * new_count;
+    int new_array_size = sizeof(Instruction *) * new_count;
     Instruction** new_array = (Instruction**) realloc(
         program->instructions.instructions, 
-        new_instruction_array_size);
+        new_array_size);
 
     if (new_array != NULL)
     {
@@ -66,5 +71,59 @@ bool append_instruction_to_program(Program *program, Instruction *instruction)
 
 bool set_program_bank(Program *program, Bank *bank)
 {
-    
+    // Get the existing index of the bank, if it's set.
+    int bank_index = get_program_bank_index(program, bank->identifier);
+
+    if (bank_index == -1) 
+    {
+        // Bank index doesn't exist. Append it.
+        return append_bank_to_program(program, bank);
+    }
+    else
+    {
+        // Bank index already exists. Replace it.
+        free_bank(program->banks.banks[bank_index]);
+        program->banks.banks[bank_index] = bank;
+        return true;
+    }
+}
+
+/* Gets the index in the banks of the bank with the target identifier. */
+int get_program_bank_index(Program *program, short target_identifier)
+{
+    if (program->banks.banks != NULL && 
+        program->banks.count > 0)
+    {
+        for (int i = 0; i < program->banks.count; i++)
+        {
+            if (program->banks.banks[i]->identifier == target_identifier) {
+                return i;
+            }
+        }
+    }
+
+    return -1;
+}
+
+bool append_bank_to_program(Program *program, Bank *bank)
+{
+    int new_count = program->banks.count + 1;
+    int new_array_size = sizeof(Bank *) * new_count;
+    Bank** new_array = (Bank**) realloc(
+        program->banks.banks, 
+        new_array_size);
+
+    if (new_array != NULL)
+    {
+        int last_item = new_count - 1;
+        program->banks.banks = new_array;
+        program->banks.count = new_count;
+        program->banks.banks[last_item] = bank;
+        return true;
+    }
+    else
+    {
+        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+        return false;
+    }
 }

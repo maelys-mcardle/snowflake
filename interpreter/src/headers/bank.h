@@ -3,12 +3,17 @@
 #include <stdbool.h>
 #include "instructions.h"
 
+typedef struct {
+    int count;
+    void **items;
+} BankArray;
+
 typedef union {
     int integer;
     float floating;
     bool boolean;
     char *string;
-    void *array;
+    BankArray array;
 } BankValue;
 
 typedef enum {
@@ -25,5 +30,16 @@ typedef struct {
     BankValue value;
     BankType type;
 } Bank;
+
+Bank *new_bank(short identifier);
+void free_bank(Bank *bank);
+void clear_bank_value(Bank *bank);
+void free_array(Bank *bank);
+void free_string(Bank *bank);
+bool set_value_boolean(Bank *bank, bool value);
+bool set_value_integer(Bank *bank, int value);
+bool set_value_float(Bank *bank, float value);
+bool set_value_string(Bank *bank, char *value);
+bool set_value_array(Bank *bank);
 
 #endif
