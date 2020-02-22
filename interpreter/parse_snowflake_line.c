@@ -152,14 +152,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
 
     // Determine if the parameter is missing.
     bool parameter_required = ((parameter_type & PARAMETER_OPTIONAL) == 0);
-    if (stored_parameter == false && parameter_required)
-    {
-        *parameter_missing = true;
-    }
-    else
-    {
-        *parameter_missing = false;
-    }
+    *parameter_missing = (stored_parameter == false && parameter_required);
 
     return end_position;
 }
