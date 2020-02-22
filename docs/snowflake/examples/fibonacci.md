@@ -68,7 +68,7 @@ This code is a little confusing to look at. Naming banks and labels would bring 
  >>  IN MAX             ;; User enters MAX. Stored in Bank 00.
 INT CURRENT 01          ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT LAST 01             ;; LAST NUMBER (Bank 02) is set to 1.
-### START               ;; Start of loop
+### :00 START           ;; Start of loop
   = SUM CURRENT         ;; SUM = CURRENT NUMBER
   + SUM LAST            ;; SUM = SUM + LAST NUMBER
  << OUT SUM             ;; Output value of SUM
@@ -77,5 +77,5 @@ IF> SUM MAX             ;; If SUM > MAX
   = LAST CURRENT        ;; ...otherwise CURRENT NUMBER becomes LAST NUMBER
   = CURRENT SUM         ;; SUM becomes CURRENT NUMBER
  -> START               ;; Start loop over.
-### END                 ;; End
+### :01 END             ;; End
 ```

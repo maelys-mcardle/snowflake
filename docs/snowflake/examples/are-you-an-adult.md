@@ -37,11 +37,11 @@ INT ADULT 18            ;; Store 18 (age of adulthood) in Bank 01
 IF< AGE ADULT           ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
  -> IS ADULT            ;; ...Jump to label 01.
  -> IS MINOR            ;; ...Otherwise jump to label 00.
-### IS ADULT            ;; Label 00 (for adults)
+### :00 IS ADULT        ;; Label 00 (for adults)
 STR MSG YOU ARE ADULT   ;; Store "YOU ARE ADULT" in Bank 00
  -> END                 ;; Jump to label 02 (end).
-### IS MINOR            ;; Label 01 (for minors)
+### :01 IS MINOR        ;; Label 01 (for minors)
 STR MSG YOU ARE MINOR   ;; Store "YOU ARE MINOR" in Bank 00
-### END                 ;; Label 02 (end)
+### :02 END             ;; Label 02 (end)
  << OUT MSG             ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
 ```
