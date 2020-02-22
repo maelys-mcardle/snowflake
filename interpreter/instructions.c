@@ -34,7 +34,7 @@ void free_parameter(ParameterType type, ParameterValue value)
     }
 }
 
-InstructionInfo get_instruction_info(int instruction, bool *exists)
+InstructionInfo get_instruction_info(short instruction, bool *exists)
 {  
   InstructionInfo info;
 

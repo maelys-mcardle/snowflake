@@ -6,9 +6,9 @@
 
 void print_program(Program *program);
 void print_instruction(Program *program, Instruction *instruction);
-bool print_parameter(Program *program, int current_instruction, ParameterType type, ParameterValue value);
-void print_identifier(Program *program, int current_instruction, int naming_instruction, int target_identifier, char *format);
+bool print_parameter(Program *program, short current_instruction, ParameterType type, ParameterValue value);
+void print_identifier(Program *program, short current_instruction, short naming_instruction, int target_identifier, char *format);
 bool print_device(int device);
-char *get_name(Program *program, int naming_instruction, int target_identifier);
+char *get_name(Program *program, short naming_instruction, int target_identifier);
 
 #endif

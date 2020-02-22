@@ -44,7 +44,7 @@ typedef struct {
 } Parameters;
 
 typedef struct {
-    int instruction;
+    short instruction;
     InstructionInfo info;
     Parameters parameters;
 } Instruction;
@@ -52,6 +52,6 @@ typedef struct {
 Instruction *new_instruction();
 void free_instruction(Instruction *instruction);
 void free_parameter(ParameterType type, ParameterValue value);
-InstructionInfo get_instruction_info(int instruction, bool *exists);
+InstructionInfo get_instruction_info(short instruction, bool *exists);
 
 #endif
