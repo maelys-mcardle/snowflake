@@ -21,4 +21,6 @@
 #define ERROR_MESG_FILE_HAD_NO_CODE "File '%s' contained no Snowflake code.\n"
 #define ERROR_CODE_UNRECOGNIZED_ARGUMENT 8
 #define ERROR_MESG_UNRECOGNIZED_ARGUMENT "Exiting due to unrecognized argument.\n"
+#define ERROR_CODE_NO_ACTION_SELECTED 9
+#define ERROR_MESG_NO_ACTION_SELECTED "Did not select an action to perform. Use the --show-code or --run flags.\n"
 #endif

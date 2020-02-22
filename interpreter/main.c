@@ -29,6 +29,12 @@ int main (int argc, char **argv)
     return ERROR_CODE_UNRECOGNIZED_ARGUMENT;
   }
 
+  if (!print_code && !run_code)
+  {
+    log_error(ERROR_MESG_NO_ACTION_SELECTED);
+    return ERROR_CODE_NO_ACTION_SELECTED;
+  }
+
   // Initialize the program.
   Program *program = new_program();
  
@@ -62,7 +68,7 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
   {
     {"file", required_argument, 0, 'f'},
     {"debug", no_argument, 0, 'd'},
-    {"print-code", no_argument, 0, 'p'},
+    {"show-code", no_argument, 0, 's'},
     {"run", no_argument, 0, 'r'},
     {0, 0, 0, 0}
   };
@@ -71,7 +77,7 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
     {
       int option_index = 0;
 
-      current_option = getopt_long (argc, argv, "abc:d:f:",
+      current_option = getopt_long (argc, argv, "f:dsr",
                        long_options, &option_index);
 
       // End of options.
@@ -84,7 +90,7 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
           enable_debug_mode();
           break;
         
-        case 'p':
+        case 's':
           *print_code = true;
           break;
         
