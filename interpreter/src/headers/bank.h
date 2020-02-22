@@ -17,12 +17,12 @@ typedef union {
 } BankValue;
 
 typedef enum {
-    TYPE_VARIABLE=10,
-    TYPE_BOOLEAN=11,
-    TYPE_INTEGER=12,
-    TYPE_FLOAT=13,
-    TYPE_STRING=14,
-    TYPE_ARRAY=15
+    TYPE_VARIABLE = 10,
+    TYPE_BOOLEAN  = 11,
+    TYPE_INTEGER  = 12,
+    TYPE_FLOAT    = 13,
+    TYPE_STRING   = 14,
+    TYPE_ARRAY    = 15
 } BankType;
 
 typedef struct {
