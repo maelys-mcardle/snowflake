@@ -29,17 +29,24 @@ int main (int argc, char **argv)
     return ERROR_CODE_UNRECOGNIZED_ARGUMENT;
   }
 
+  // Abort if no action was selected.
   if (!print_code && !run_code)
   {
     log_error(ERROR_MESG_NO_ACTION_SELECTED);
     return ERROR_CODE_NO_ACTION_SELECTED;
   }
 
+  // Parse the snowflake file and do the action(s).
+  return parse_snowflake_file_and_run(print_code, run_code, file_path);
+}
+
+int parse_snowflake_file_and_run(bool print_code, bool run_code, char *snowflake_file)
+{
   // Initialize the program.
   Program *program = new_program();
  
   // Load the snowflake code.
-  int return_code = parse_snowflake_file(program, file_path);
+  int return_code = parse_snowflake_file(program, snowflake_file);
   
   // Print out the code.
   if (print_code)
