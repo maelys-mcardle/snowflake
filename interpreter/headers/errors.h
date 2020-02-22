@@ -19,5 +19,6 @@
 #define ERROR_MESG_PARAMETER_MISSING "Instruction %02i is missing parameter #%i\n"
 #define ERROR_CODE_FILE_HAD_NO_CODE 7
 #define ERROR_MESG_FILE_HAD_NO_CODE "File '%s' contained no Snowflake code.\n"
-
+#define ERROR_CODE_UNRECOGNIZED_ARGUMENT 8
+#define ERROR_MESG_UNRECOGNIZED_ARGUMENT "Exiting due to unrecognized argument.\n"
 #endif

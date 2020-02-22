@@ -14,12 +14,20 @@
 /* Starting point of the program. */
 int main (int argc, char **argv) 
 {
+  bool no_unrecognized_arguments = false;
   bool print_code = false;
   bool run_code = false;
   char *file_path = NULL;
 
   // Parse command-line arguments.
-  parse_arguments(argc, argv, &print_code, &run_code, &file_path);
+  no_unrecognized_arguments = parse_arguments(argc, argv, &print_code, &run_code, &file_path);
+
+  // Abort if there was an unrecognized argument.
+  if (!no_unrecognized_arguments)
+  {
+    log_error(ERROR_MESG_UNRECOGNIZED_ARGUMENT);
+    return ERROR_CODE_UNRECOGNIZED_ARGUMENT;
+  }
 
   // Initialize the program.
   Program *program = new_program();
@@ -47,7 +55,7 @@ int main (int argc, char **argv)
   return return_code;
 }
 
-void parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, char **file_path)
+bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, char **file_path)
 {
   int current_option;
   static struct option long_options[] =
@@ -89,8 +97,10 @@ void parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
           break;
 
         case '?':
-          break;
+          return false;
       }    
 
     }
+
+    return true;
 }
