@@ -145,40 +145,9 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     bool stored_parameter = false;
     if (has_parameter_string)
     {
-        // Store the parameter.
-        // * Literals are stored as strings.
-        // * Banks, devices, labels as integers.
-        if (is_literal)
-        {
-            // If it's a literal, allocate memory, and copy the string.
-            size_t allocation_size = strnlen(parameter_string, max_parameter_size);
-            parameter_value->string = malloc(allocation_size + 1);
-            
-            if (parameter_value->string != NULL)
-            {
-                strncpy(parameter_value->string, parameter_string, allocation_size);
-                stored_parameter = true;
-            }
-            else
-            {
-                log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
-            }
-        }
-        else
-        {
-            // If it's any other value (banks, devices, labels) interpret as integer.
-            bool parsed_integer_ok;
-            parameter_value->integer = parse_integer(&parsed_integer_ok, parameter_string);
-            
-            if (parsed_integer_ok)
-            {
-                stored_parameter = true;
-            }
-            else
-            {
-                log_error(ERROR_MESG_COULD_NOT_PARSE_INTEGER, parameter_string);
-            } 
-        }
+        stored_parameter = store_parameter(
+            is_literal, parameter_string, 
+            max_parameter_size, parameter_value);
     }
 
     // Determine if the parameter is missing.
@@ -193,6 +162,45 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     }
 
     return end_position;
+}
+
+bool store_parameter(bool is_literal, char *parameter_string, int max_parameter_size, ParameterValue *parameter_value)
+{
+    // Store the parameter.
+    // * Literals are stored as strings.
+    // * Banks, devices, labels as integers.
+    if (is_literal)
+    {
+        // If it's a literal, allocate memory, and copy the string.
+        size_t allocation_size = strnlen(parameter_string, max_parameter_size);
+        parameter_value->string = malloc(allocation_size + 1);
+        
+        if (parameter_value->string != NULL)
+        {
+            strncpy(parameter_value->string, parameter_string, allocation_size);
+            return true;
+        }
+        else
+        {
+            log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+        }
+    }
+    else
+    {
+        // If it's any other value (banks, devices, labels) interpret as integer.
+        bool parsed_integer_ok;
+        parameter_value->integer = parse_integer(&parsed_integer_ok, parameter_string);
+        
+        if (parsed_integer_ok)
+        {
+            return true;
+        }
+        else
+        {
+            log_error(ERROR_MESG_COULD_NOT_PARSE_INTEGER, parameter_string);
+        } 
+    }
+    return false;
 }
 
 /* Discards the comment on the line. 
