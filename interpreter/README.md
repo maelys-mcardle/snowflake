@@ -26,7 +26,7 @@ To see how the interpreter understands the code file, run:
 If you run into issues, use the `--debug` option on the code. It will give more
 information about how the interpreter understood the code, and what it was running:
 ```
-./snowflake --file your-code-file.sn --show-code --debug
+./snowflake --file your-code-file.sn --show-code --run --debug
 ```
 
 ## Clean
