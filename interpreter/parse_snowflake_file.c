@@ -27,11 +27,19 @@ int parse_snowflake_file(Program *program, const char *filename)
         return ERROR_CODE_COULD_NOT_OPEN_FILE;
     }
 
+    // Log.
+    log_debug("Reading Snowflake file...\n");
+
     // Parse the file line by line.
     int line_number = 1;
     int instructions_parsed = 0;
     while (fgets(line, max_line_length, file)) {
+        
+        // Log the line.
+        strip_end_whitespace(line, max_line_length);
         log_debug("[Line %02i] %s\n", line_number, line);
+
+        // Parse the line.
         bool has_instruction = parse_line(program, line, max_line_length);
         if (has_instruction) {
             instructions_parsed++;

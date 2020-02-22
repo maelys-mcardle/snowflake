@@ -358,13 +358,13 @@ bool strip_end_whitespace(char *string, int max_string_length)
 {
     int index = 0;
     int whitespace_start = 0;
-    int last_non_whitespace_character = 0;
+    int last_non_whitespace_character = -1;
 
     // Find the last non-whitespace character.
     for (index; index < max_string_length; index++)
     {
         char character = string[index];
-        if (is_string_end(character))
+        if (character == CHAR_END_STRING)
         {
             break;
         }
@@ -375,7 +375,12 @@ bool strip_end_whitespace(char *string, int max_string_length)
     }
 
     // Whitespace removed.
-    if (last_non_whitespace_character + 1 < index)
+    if (last_non_whitespace_character == -1 && max_string_length > 0)
+    {
+        string[0] = CHAR_END_STRING;
+        return true;
+    }
+    else if (last_non_whitespace_character + 1 < index)
     {
         string[last_non_whitespace_character + 1] = CHAR_END_STRING;
         return true;
@@ -389,6 +394,7 @@ bool is_whitespace(char character)
 {
     switch (character)
     {
+        case CHAR_NEWLINE:
         case CHAR_SPACE:
         case CHAR_TAB:
             return true;

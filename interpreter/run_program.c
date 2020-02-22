@@ -21,11 +21,11 @@ void run_program(Program *program)
 
 void run_instruction(Program *program, Instruction *instruction, int *instruction_pointer)
 {
-    log_debug("Executing %c%c%c at %02i\n", 
+    log_debug("[Executing %02i] %c%c%c\n",
+        *instruction_pointer,
         instruction->info.mnemonic[0],
         instruction->info.mnemonic[1],
-        instruction->info.mnemonic[2],
-        *instruction_pointer);
+        instruction->info.mnemonic[2]);
 
     switch (instruction->instruction)
     {
