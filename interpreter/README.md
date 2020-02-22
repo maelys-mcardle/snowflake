@@ -13,31 +13,31 @@ for devices with a numeric keypad for input.
 ## Compile
 
 To compile the interpreter, run the command:
-```bash
+```
 make
 ```
 
 ## Run
 
 To run a Snowflake program, execute:
-```bash
+```
 ./snowflake --file your-code-file.sn --run
 ```
 
 To see how the interpreter understands the code file, run:
-```bash
+```
 ./snowflake --file your-code-file.sn --show-code
 ```
 
 If you run into issues, use the `--debug` option on the code. It will give more
 information about how the interpreter understood the code, and what it was running:
-```bash
+```
 ./snowflake --file your-code-file.sn --show-code --run --debug
 ```
 
 ## Clean
 
 To delete files created during compilation, run the command:
-```bash
+```
 make clean
 ```
