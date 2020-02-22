@@ -1,6 +1,7 @@
 # Snowflake Interpreter
 
-This is an interpreter for the [Snowflake programming language][1], a language devised for devices with a numeric keypad for input.
+This is an interpreter for the [Snowflake programming language][1], a language devised 
+for devices with a numeric keypad for input.
 
 **Compilation requires make and cc with c11 support.**
 
@@ -8,14 +9,14 @@ This is an interpreter for the [Snowflake programming language][1], a language d
 
 ## Compile
 
-To compile, run the command:
+To compile the interpreter, run the command:
 ```
 make
 ```
 
 ## Run
 
-To run, execute:
+To run a Snowflake program, execute:
 ```
 ./snowflake --file your-code-file.sn --run
 ```
