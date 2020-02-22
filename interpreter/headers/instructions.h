@@ -9,6 +9,10 @@
 #define MAX_DEVICE_SIZE 4
 #define MAX_LITERAL_SIZE 256
 
+#define INSTRUCTION_COMMENT 00
+#define INSTRUCTION_LABEL 01
+#define INSTRUCTION_NAME_BANK 02
+
 typedef enum {
     PARAMETER_NONE = 0,
     PARAMETER_LABEL,
@@ -49,8 +53,5 @@ Instruction *new_instruction();
 void free_instruction(Instruction *instruction);
 void free_parameter(ParameterType type, ParameterValue value);
 InstructionInfo get_instruction_info(int instruction, bool *exists);
-void print_instruction(Instruction *instruction);
-bool print_parameter(ParameterType type, ParameterValue value);
-bool print_device(int device);
 
 #endif
