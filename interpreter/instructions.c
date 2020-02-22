@@ -39,259 +39,259 @@ InstructionInfo get_instruction_info(short instruction, bool *exists)
   InstructionInfo info;
 
   switch (instruction) {
-    case 00:
+    case INSTRUCTION_COMMENT:
       info.mnemonic[0] = '!';
       info.mnemonic[1] = '!';
       info.mnemonic[2] = '!';
       info.parameters.first = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
       info.parameters.second = PARAMETER_NONE;
       break;
-    case 01:
+    case INSTRUCTION_LABEL:
       info.mnemonic[0] = '#';
       info.mnemonic[1] = '#';
       info.mnemonic[2] = '#';
       info.parameters.first = PARAMETER_LABEL;
       info.parameters.second = PARAMETER_LITERAL | PARAMETER_OPTIONAL;
       break;
-    case 02:
+    case INSTRUCTION_NAME_BANK:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = ' ';
       info.mnemonic[2] = ' ';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_LITERAL;
       break;
-    case 03:
+    case INSTRUCTION_OUTPUT:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = '<';
       info.mnemonic[2] = '<';
       info.parameters.first = PARAMETER_DEVICE;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 04:
+    case INSTRUCTION_INPUT:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = '>';
       info.mnemonic[2] = '>';
       info.parameters.first = PARAMETER_DEVICE;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 05:
+    case INSTRUCTION_COPY:
       info.mnemonic[0] = 'D';
       info.mnemonic[1] = 'E';
       info.mnemonic[2] = 'L';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_NONE;
       break;
-    case 06:
+    case INSTRUCTION_TYPE:
       info.mnemonic[0] = 'T';
       info.mnemonic[1] = 'Y';
       info.mnemonic[2] = 'P';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 10:
+    case INSTRUCTION_VARIABLE:
       info.mnemonic[0] = 'V';
       info.mnemonic[1] = 'A';
       info.mnemonic[2] = 'R';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_LITERAL;
       break;
-    case 11:
+    case INSTRUCTION_BOOLEAN:
       info.mnemonic[0] = 'B';
       info.mnemonic[1] = 'L';
       info.mnemonic[2] = 'N';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_LITERAL;
       break;
-    case 12:
+    case INSTRUCTION_INTEGER:
       info.mnemonic[0] = 'I';
       info.mnemonic[1] = 'N';
       info.mnemonic[2] = 'T';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_LITERAL;
       break;
-    case 13:
+    case INSTRUCTION_FLOAT:
       info.mnemonic[0] = 'F';
       info.mnemonic[1] = 'L';
       info.mnemonic[2] = 'T';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_LITERAL;
       break;
-    case 14:
+    case INSTRUCTION_STRING:
       info.mnemonic[0] = 'S';
       info.mnemonic[1] = 'T';
       info.mnemonic[2] = 'R';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_LITERAL;
       break;
-    case 15:
+    case INSTRUCTION_ARRAY:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = '[';
       info.mnemonic[2] = ']';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_NONE;
       break;
-    case 20:
+    case INSTRUCTION_JUMP_LABEL:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = '-';
       info.mnemonic[2] = '>';
       info.parameters.first = PARAMETER_LABEL;
       info.parameters.second = PARAMETER_NONE;
       break;
-    case 21:
+    case INSTRUCTION_JUMP_BANK:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = '-';
       info.mnemonic[2] = '>';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_NONE;
       break;
-    case 22:
+    case INSTRUCTION_IF_EQUAL:
       info.mnemonic[0] = 'I';
       info.mnemonic[1] = 'F';
       info.mnemonic[2] = '=';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 23:
+    case INSTRUCTION_IF_NOT_EQUAL:
       info.mnemonic[0] = 'I';
       info.mnemonic[1] = 'F';
       info.mnemonic[2] = '!';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 24:
+    case INSTRUCTION_IF_GREATER_THAN:
       info.mnemonic[0] = 'I';
       info.mnemonic[1] = 'F';
       info.mnemonic[2] = '>';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 25:
+    case INSTRUCTION_IF_LESSER_THAN:
       info.mnemonic[0] = 'I';
       info.mnemonic[1] = 'F';
       info.mnemonic[2] = '<';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 30:
+    case INSTRUCTION_ADD:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = ' ';
       info.mnemonic[2] = '+';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 31:
+    case INSTRUCTION_SUBTRACT:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = ' ';
       info.mnemonic[2] = '-';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 32:
+    case INSTRUCTION_MULTIPLY:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = ' ';
       info.mnemonic[2] = '*';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 33:
+    case INSTRUCTION_DIVIDE:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = ' ';
       info.mnemonic[2] = '/';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 34:
+    case INSTRUCTION_POWER:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = '*';
       info.mnemonic[2] = '*';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 40:
+    case INSTRUCTION_NOT:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = ' ';
       info.mnemonic[2] = '!';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_NONE;
       break;
-    case 41:
+    case INSTRUCTION_AND:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = ' ';
       info.mnemonic[2] = '&';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 42:
+    case INSTRUCTION_OR:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = ' ';
       info.mnemonic[2] = '|';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 43:
+    case INSTRUCTION_XOR:
       info.mnemonic[0] = ' ';
       info.mnemonic[1] = ' ';
       info.mnemonic[2] = '^';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 50:
+    case INSTRUCTION_ARRAY_SIZE:
       info.mnemonic[0] = '[';
       info.mnemonic[1] = '#';
       info.mnemonic[2] = ']';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 51:
+    case INSTRUCTION_PREPEND_ARRAY:
       info.mnemonic[0] = '+';
       info.mnemonic[1] = '[';
       info.mnemonic[2] = ']';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 52:
+    case INSTRUCTION_APPEND_ARRAY:
       info.mnemonic[0] = '[';
       info.mnemonic[1] = ']';
       info.mnemonic[2] = '+';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 53:
+    case INSTRUCTION_GET_FIRST:
       info.mnemonic[0] = '?';
       info.mnemonic[1] = '[';
       info.mnemonic[2] = ']';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 54:
+    case INSTRUCTION_GET_LAST:
       info.mnemonic[0] = '[';
       info.mnemonic[1] = ']';
       info.mnemonic[2] = '?';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 55:
+    case INSTRUCTION_REMOVE_FIRST:
       info.mnemonic[0] = '-';
       info.mnemonic[1] = '[';
       info.mnemonic[2] = ']';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 56:
+    case INSTRUCTION_REMOVE_LAST:
       info.mnemonic[0] = '[';
       info.mnemonic[1] = ']';
       info.mnemonic[2] = '-';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 57:
+    case INSTRUCTION_MOVE_TO_INDEX:
       info.mnemonic[0] = '[';
       info.mnemonic[1] = '>';
       info.mnemonic[2] = ']';
       info.parameters.first = PARAMETER_BANK;
       info.parameters.second = PARAMETER_BANK;
       break;
-    case 58:
+    case INSTRUCTION_MOVE_TO_FIRST:
       info.mnemonic[0] = '[';
       info.mnemonic[1] = '<';
       info.mnemonic[2] = ']';

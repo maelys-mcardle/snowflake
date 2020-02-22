@@ -126,16 +126,16 @@ bool print_device(int device)
 {
     switch (device)
     {
-        case 0:
+        case DEVICE_OUT:
             print("OUT");
             return true;
-        case 1:
+        case DEVICE_IN:
             print(" IN");
             return true;
-        case 2:
+        case DEVICE_PRT:
             print("PRT");
             return true;
-        case 3:
+        case DEVICE_BTN:
             print("BTN");
             return true;
         default:
