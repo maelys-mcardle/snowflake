@@ -5,12 +5,15 @@
 /* Prints an entire Snowflake program. */
 void print_program(Program *program)
 {
+    log_debug("Printing program...\n");
+
     if (program != NULL && 
         program->instructions.instructions != NULL && 
         program->instructions.count > 0)
     {
         for (int i = 0; i < program->instructions.count; i++)
         {
+            log_debug("[Instruction %02i]\n", i);
             Instruction *instruction = program->instructions.instructions[i];
             print_instruction(program, instruction);
         }
@@ -112,6 +115,8 @@ char *get_name(Program *program, int naming_instruction, int target_identifier)
             return instruction->parameters.second.string;
         }
     }
+
+    return NULL;
 }
 
 /* Prints a device, if one is defined.
