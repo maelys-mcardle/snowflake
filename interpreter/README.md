@@ -20,7 +20,7 @@ To run, execute:
 
 To see how the interpreter understands the code file, run:
 ```
-./snowflake --file your-code-file.s --show-code
+./snowflake --file your-code-file.sn --show-code
 ```
 
 If you run into issues, use the `--debug` option on the code. It will give more
