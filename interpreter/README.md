@@ -3,10 +3,12 @@
 This is an interpreter for the [Snowflake programming language][1], a language devised 
 for devices with a numeric keypad for input.
 
-**Compilation requires make and cc with c11 support as well as [glibc][2]**
+**Compilation requires [make][2], a C compiler with [c11][3] support, as well as [glibc][4].**
 
 [1]: https://github.com/maelys-mcardle/microprocessor-trainer/tree/master/docs/snowflake
-[2]: https://en.wikipedia.org/wiki/GNU_C_Library
+[2]: https://en.wikipedia.org/wiki/Make_(software)
+[3]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
+[4]: https://en.wikipedia.org/wiki/GNU_C_Library
 
 ## Compile
 
