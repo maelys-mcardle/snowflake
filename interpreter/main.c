@@ -9,14 +9,17 @@
 #include "headers/program.h"
 #include "headers/output.h"
 #include "headers/print_program.h"
+#include "headers/run_program.h"
 
 /* Starting point of the program. */
 int main (int argc, char **argv) 
 {
-  // Load arguments.
   bool print_code = false;
+  bool run_code = false;
   char *file_path = NULL;
-  parse_arguments(argc, argv, &print_code, &file_path);
+
+  // Parse command-line arguments.
+  parse_arguments(argc, argv, &print_code, &run_code, &file_path);
 
   // Initialize the program.
   Program *program = new_program();
@@ -29,6 +32,12 @@ int main (int argc, char **argv)
   {
     print_program(program);
   }
+
+  // Execute the code.
+  if (run_code)
+  {
+    run_program(program);
+  }
   
   // Free the memory allocated to the program.
   free_program(program);
@@ -38,7 +47,7 @@ int main (int argc, char **argv)
   return return_code;
 }
 
-void parse_arguments(int argc, char **argv, bool *print_code, char **file_path)
+void parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, char **file_path)
 {
   int current_option;
   static struct option long_options[] =
@@ -46,6 +55,7 @@ void parse_arguments(int argc, char **argv, bool *print_code, char **file_path)
     {"file", required_argument, 0, 'f'},
     {"debug", no_argument, 0, 'd'},
     {"print-code", no_argument, 0, 'p'},
+    {"run", no_argument, 0, 'r'},
     {0, 0, 0, 0}
   };
 
@@ -72,6 +82,10 @@ void parse_arguments(int argc, char **argv, bool *print_code, char **file_path)
         
         case 'f':
           *file_path = optarg;
+          break;
+
+        case 'r':
+          *run_code = true;
           break;
 
         case '?':

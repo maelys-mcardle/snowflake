@@ -15,10 +15,10 @@ make
 
 To run, execute:
 ```
-./snowflake --file your-code-file.sn --print-code
+./snowflake --file your-code-file.sn --print-code --run
 ```
 
-If you run into issues, use the `--debug` option:
+If you run into issues, use the `--debug` option on the code:
 ```
 ./snowflake --file your-code-file.sn --print-code --debug
 ```

@@ -1,5 +1,5 @@
-snowflake: main.o parse_snowflake_file.o instructions.o program.o output.o parse_snowflake_line.o print_program.o
-	cc -o snowflake main.o parse_snowflake_file.o instructions.o program.o output.o parse_snowflake_line.o print_program.o
+snowflake: main.o parse_snowflake_file.o instructions.o program.o output.o parse_snowflake_line.o print_program.o run_program.o
+	cc -o snowflake main.o parse_snowflake_file.o instructions.o program.o output.o parse_snowflake_line.o print_program.o run_program.o
 
 snowflake.o: snowflake.c headers/snowflake.h
 	cc -c snowflake.c
@@ -16,6 +16,9 @@ program.o: program.c headers/program.h
 print_program.o: print_program.c headers/print_program.h 
 	cc -c print_program.c
 
+run_program.o: run_program.c headers/run_program.h 
+	cc -c run_program.c
+
 instructions.o: instructions.c headers/instructions.h
 	cc -c instructions.c
 
@@ -23,4 +26,4 @@ output.o: output.c headers/output.h
 	cc -c output.c
 
 clean:
-	rm snowflake main.o parse_snowflake_file.o instructions.o program.o output.o parse_snowflake_line.o print_program.o
+	rm snowflake main.o parse_snowflake_file.o instructions.o program.o output.o parse_snowflake_line.o print_program.o run_program.o
