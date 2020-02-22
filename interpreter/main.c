@@ -70,7 +70,6 @@ int parse_snowflake_file_and_run(bool print_code, bool run_code, char *snowflake
 
 bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, char **file_path)
 {
-  int current_option;
   static struct option long_options[] =
   {
     {"file", required_argument, 0, 'f'},
@@ -81,39 +80,44 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
   };
 
   while (1)
+  {
+    int option_index = 0;
+
+    int current_option = 
+      getopt_long (argc, argv, "f:dsr",
+      long_options, &option_index);
+
+    // End of options.
+    if (current_option == -1)
     {
-      int option_index = 0;
-
-      current_option = getopt_long (argc, argv, "f:dsr",
-                       long_options, &option_index);
-
-      // End of options.
-      if (current_option == -1)
-        break;
-
-      switch (current_option)
-      {
-        case 'd':
-          enable_debug_mode();
-          break;
-        
-        case 's':
-          *print_code = true;
-          break;
-        
-        case 'f':
-          *file_path = optarg;
-          break;
-
-        case 'r':
-          *run_code = true;
-          break;
-
-        case '?':
-          return false;
-      }    
-
+      break;
     }
 
-    return true;
+    switch (current_option)
+    {
+      case 'd':
+        enable_debug_mode();
+        break;
+      
+      case 's':
+        *print_code = true;
+        break;
+      
+      case 'f':
+        *file_path = optarg;
+        break;
+
+      case 'r':
+        *run_code = true;
+        break;
+
+      case '?':
+        // Unknown argument.
+        return false;
+    }    
+
+  }
+
+  // No unknown argument.
+  return true;
 }
