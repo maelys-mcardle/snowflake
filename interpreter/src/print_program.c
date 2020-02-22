@@ -58,8 +58,7 @@ void print_instruction(Program *program, Instruction *instruction)
  */
 bool print_parameter(Program *program, short current_instruction, ParameterType type, ParameterValue value)
 {
-    ParameterType type_without_flags = type & PARAMETER_WITHOUT_FLAGS;
-    switch (type_without_flags)
+    switch (get_parameter_type(type))
     {
         case PARAMETER_NONE:
             return false;

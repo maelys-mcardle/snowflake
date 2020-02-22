@@ -91,6 +91,9 @@ typedef struct {
 Instruction *new_instruction();
 void free_instruction(Instruction *instruction);
 void free_parameter(ParameterType type, ParameterValue value);
+ParameterType get_parameter_type(ParameterType type);
+bool is_parameter_optional(ParameterType type);
+bool is_parameter_none(ParameterType type);
 InstructionInfo get_instruction_info(short instruction, bool *exists);
 
 #endif

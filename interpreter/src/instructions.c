@@ -34,6 +34,21 @@ void free_parameter(ParameterType type, ParameterValue value)
     }
 }
 
+ParameterType get_parameter_type(ParameterType type)
+{
+    return (type & PARAMETER_WITHOUT_FLAGS);
+}
+
+bool is_parameter_optional(ParameterType type)
+{
+    return ((type & PARAMETER_OPTIONAL) == PARAMETER_OPTIONAL);
+}
+
+bool is_parameter_none(ParameterType type)
+{
+    return (type == PARAMETER_NONE);
+}
+
 InstructionInfo get_instruction_info(short instruction, bool *exists)
 {
     InstructionInfo info;

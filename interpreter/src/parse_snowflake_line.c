@@ -121,14 +121,14 @@ int extract_parameter(char *line, int max_line_length, int start_position,
             bool *parameter_missing)
 {
     // No parameter to process.
-    if (parameter_type == PARAMETER_NONE)
+    if (is_parameter_none(parameter_type))
     {
         *parameter_missing = false;
         return start_position;
     }
 
     // Stop at whitespace for all parameter types except literals.
-    bool is_literal = (PARAMETER_LITERAL == (parameter_type & PARAMETER_WITHOUT_FLAGS));
+    bool is_literal = (PARAMETER_LITERAL == get_parameter_type(parameter_type));
     bool stop_at_whitespace = !is_literal;
     size_t max_parameter_size = MAX_PARAMETER_SIZE;
     char parameter_string[max_parameter_size];
@@ -151,7 +151,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     }
 
     // Determine if the parameter is missing.
-    bool parameter_required = ((parameter_type & PARAMETER_OPTIONAL) == 0);
+    bool parameter_required = !is_parameter_optional(parameter_type);
     *parameter_missing = (stored_parameter == false && parameter_required);
 
     return end_position;
