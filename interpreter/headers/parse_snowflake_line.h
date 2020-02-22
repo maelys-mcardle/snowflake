@@ -13,7 +13,7 @@
 bool parse_line(Program *program, char *line, int max_line_length);
 bool parse_instruction_from_line(Instruction *instruction, char *line, int max_line_length);
 bool discard_comment(char *line, int max_line_length);
-int extract_instruction(char *line, int max_line_length, int *instruction);
+int extract_instruction(char *line, int max_line_length, short *instruction);
 int extract_parameter(char *line, int max_line_length, int start,
     ParameterType parameter_type, ParameterValue *parameter_value, 
     bool *parameter_missing);

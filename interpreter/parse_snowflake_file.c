@@ -8,13 +8,21 @@
 /* Process a snowflake file. */
 int parse_snowflake_file(Program *program, const char *filename)
 {
+    // Check that a file name was given.
+    if (filename == NULL)
+    {
+        log_error(ERROR_MESG_NO_FILE_SPECIFIED, filename);
+        return ERROR_CODE_NO_FILE_SPECIFIED;
+    }
+
+    // Open the file.
     int max_line_length = MAX_LINE_LENGTH;
     char line[max_line_length];
     FILE* file = fopen(filename, "r");
 
-    // Try to open the file.
     // Return on error.
-    if (file == NULL) {
+    if (file == NULL)
+    {
         log_error(ERROR_MESG_COULD_NOT_OPEN_FILE, filename);
         return ERROR_CODE_COULD_NOT_OPEN_FILE;
     }
