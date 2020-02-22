@@ -1,8 +1,10 @@
 # Snowflake Interpreter
 
-This is a Snowflake interpreter.
+This is an interpreter for the [Snowflake programming language][1], a language devised for devices with a numeric keypad for input.
 
-**This requires make and cc with c11 support.**
+**Compilation requires make and cc with c11 support.**
+
+[1]: https://github.com/maelys-mcardle/microprocessor-trainer/tree/master/docs/snowflake
 
 ## Compile
 
