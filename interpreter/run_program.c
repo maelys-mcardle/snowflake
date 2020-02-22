@@ -14,13 +14,13 @@ void run_program(Program *program)
         while (instruction_pointer < program->instructions.count)
         {
             Instruction *instruction = program->instructions.instructions[instruction_pointer];
-            run_instruction(program, instruction);
-            instruction_pointer++;
+            run_instruction(program, instruction, &instruction_pointer);
         }
     }
 }
 
-void run_instruction(Program *program, Instruction *instruction)
+void run_instruction(Program *program, Instruction *instruction, int *instruction_pointer)
 {
+    *instruction_pointer += 1;
     return;
 }

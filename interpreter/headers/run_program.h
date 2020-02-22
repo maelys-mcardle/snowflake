@@ -5,6 +5,6 @@
 #include "instructions.h"
 
 void run_program(Program *program);
-void run_instruction(Program *program, Instruction *instruction);
+void run_instruction(Program *program, Instruction *instruction, int *instruction_pointer);
 
 #endif
