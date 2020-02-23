@@ -3,6 +3,7 @@
 #include "headers/output.h"
 #include "headers/type_conversion.h"
 #include "headers/bank.h"
+#include "headers/errors.h"
 
 void run_program(Program *program)
 {
@@ -88,16 +89,21 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
  */
 bool instruction_integer(Program *program, Instruction *instruction, int *instruction_pointer)
 {
-    bool ok;
-    int identifier = instruction->parameters.first.integer;
-    Bank *bank = new_bank(identifier);
-    int integer_value = string_to_integer(instruction->parameters.second.string, &ok);
+    bool is_integer;
 
-    if (ok)
+    // Convert literal to integer.
+    char *integer_string = instruction->parameters.second.string;
+    int integer_value = string_to_integer(integer_string, &is_integer);
+
+    if (is_integer)
     {
+        Bank *bank = new_bank_with_identifier(instruction);
         bool set_bank = set_bank_integer(bank, integer_value);
         if (set_bank)
         {
+            log_debug("Set bank %02i as integer value %i", 
+                bank->identifier, integer_value);
+            
             bool added_bank = append_bank_to_program(program, bank);
             if (!added_bank)
             {
@@ -107,8 +113,15 @@ bool instruction_integer(Program *program, Instruction *instruction, int *instru
     }
     else
     {
-        free_bank(bank);
+        log_error(ERROR_MESG_LITERAL_IS_NOT_INTEGER, integer_string);
     }
     
     *instruction_pointer += 1;
+}
+
+Bank *new_bank_with_identifier(Instruction *instruction)
+{
+    int identifier = instruction->parameters.first.integer;
+    Bank *bank = new_bank(identifier);
+    return bank;
 }

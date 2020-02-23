@@ -7,5 +7,6 @@
 void run_program(Program *program);
 bool run_instruction(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_integer(Program *program, Instruction *instruction, int *instruction_pointer);
+Bank *new_bank_with_identifier(Instruction *instruction);
 
 #endif
