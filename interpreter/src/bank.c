@@ -36,8 +36,11 @@ void free_array(Bank *bank)
         bank->value.array.items != NULL)
     {
         free(bank->value.array.items);
+        bank->value.array.items = NULL;
+        bank->value.array.count = 0;
     }
 }
+
 void free_string(Bank *bank)
 {
     if (bank != NULL &&
@@ -45,6 +48,7 @@ void free_string(Bank *bank)
         bank->value.string != NULL)
     {
         free(bank->value.string);
+        bank->value.string = NULL;
     }
 }
 
@@ -52,6 +56,7 @@ void clear_bank_value(Bank *bank)
 {
     free_string(bank);
     free_array(bank);
+    bank->type = TYPE_VARIABLE;
 }
 
 bool set_bank_boolean(Bank *bank, bool value)

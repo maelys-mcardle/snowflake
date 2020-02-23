@@ -31,6 +31,7 @@ void free_parameter(ParameterType type, ParameterValue value)
         value.string != NULL)
     {
       free(value.string);
+      value.string = NULL;
     }
 }
 
