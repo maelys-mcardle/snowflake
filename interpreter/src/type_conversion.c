@@ -11,6 +11,13 @@ bool string_to_boolean(char *string, bool *ok)
 
 int string_to_integer(char *string, bool *ok)
 {
+    // Catch NULL strings.
+    if (string == NULL)
+    {
+        *ok = false;
+        return 0;
+    }
+
     int integer;
     char *end_pointer;
     errno = 0;
@@ -26,6 +33,13 @@ int string_to_integer(char *string, bool *ok)
 
 float string_to_float(char *string, bool *ok)
 {
+    // Catch NULL strings.
+    if (string == NULL)
+    {
+        *ok = false;
+        return 0.;
+    }
+
     float floating_point;
     char *end_pointer;
     errno = 0;

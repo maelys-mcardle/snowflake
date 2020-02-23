@@ -54,7 +54,7 @@ void clear_bank_value(Bank *bank)
     free_array(bank);
 }
 
-bool set_value_boolean(Bank *bank, bool value)
+bool set_bank_boolean(Bank *bank, bool value)
 {
     clear_bank_value(bank);
     bank->type = TYPE_BOOLEAN;
@@ -62,7 +62,7 @@ bool set_value_boolean(Bank *bank, bool value)
     return true;
 }
 
-bool set_value_integer(Bank *bank, int value)
+bool set_bank_integer(Bank *bank, int value)
 {
     clear_bank_value(bank);
     bank->type = TYPE_INTEGER;
@@ -70,7 +70,7 @@ bool set_value_integer(Bank *bank, int value)
     return true;
 }
 
-bool set_value_float(Bank *bank, float value)
+bool set_bank_float(Bank *bank, float value)
 {
     clear_bank_value(bank);
     bank->type = TYPE_FLOAT;
@@ -78,7 +78,7 @@ bool set_value_float(Bank *bank, float value)
     return true;
 }
 
-bool set_value_string(Bank *bank, char *value)
+bool set_bank_string(Bank *bank, char *value)
 {
     clear_bank_value(bank);
     bank->type = TYPE_STRING;
@@ -88,7 +88,7 @@ bool set_value_string(Bank *bank, char *value)
     return true;
 }
 
-bool set_value_array(Bank *bank)
+bool set_bank_array(Bank *bank)
 {
     clear_bank_value(bank);
     bank->type = TYPE_ARRAY;

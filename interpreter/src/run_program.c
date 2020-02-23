@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include "headers/run_program.h"
 #include "headers/output.h"
+#include "headers/type_conversion.h"
+#include "headers/bank.h"
 
 void run_program(Program *program)
 {
@@ -19,13 +21,15 @@ void run_program(Program *program)
     }
 }
 
-void run_instruction(Program *program, Instruction *instruction, int *instruction_pointer)
+bool run_instruction(Program *program, Instruction *instruction, int *instruction_pointer)
 {
     log_debug("[Executing %02i] %c%c%c\n",
         *instruction_pointer,
         instruction->info.mnemonic[0],
         instruction->info.mnemonic[1],
         instruction->info.mnemonic[2]);
+
+    bool instruction_ok = true;
 
     switch (instruction->instruction)
     {
@@ -42,6 +46,8 @@ void run_instruction(Program *program, Instruction *instruction, int *instructio
         case INSTRUCTION_VARIABLE:
         case INSTRUCTION_BOOLEAN:
         case INSTRUCTION_INTEGER:
+            instruction_ok = instruction_integer(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_FLOAT:
         case INSTRUCTION_STRING:
         case INSTRUCTION_ARRAY:
@@ -73,6 +79,36 @@ void run_instruction(Program *program, Instruction *instruction, int *instructio
             *instruction_pointer += 1;
             break;
     }
-    return;
+
+    return instruction_ok;
 }
 
+/* Stores an integer in a bank.
+ * INT BANK LITERAL 
+ */
+bool instruction_integer(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    bool ok;
+    int identifier = instruction->parameters.first.integer;
+    Bank *bank = new_bank(identifier);
+    int integer_value = string_to_integer(instruction->parameters.second.string, &ok);
+
+    if (ok)
+    {
+        bool set_bank = set_bank_integer(bank, integer_value);
+        if (set_bank)
+        {
+            bool added_bank = append_bank_to_program(program, bank);
+            if (!added_bank)
+            {
+                free_bank(bank);
+            }
+        }
+    }
+    else
+    {
+        free_bank(bank);
+    }
+    
+    *instruction_pointer += 1;
+}
