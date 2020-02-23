@@ -5,7 +5,7 @@
 #include <getopt.h>
 #include "headers/main.h"
 #include "headers/errors.h"
-#include "headers/parse_snowflake_file.h"
+#include "headers/parse_file.h"
 #include "headers/program.h"
 #include "headers/output.h"
 #include "headers/print_program.h"

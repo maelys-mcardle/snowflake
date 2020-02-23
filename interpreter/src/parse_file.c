@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers/parse_snowflake_file.h"
-#include "headers/parse_snowflake_line.h"
+#include "headers/parse_file.h"
+#include "headers/parse_line.h"
 #include "headers/errors.h"
 #include "headers/output.h"
 

@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
-#include "headers/parse_snowflake_line.h"
+#include "headers/parse_line.h"
 #include "headers/errors.h"
 #include "headers/output.h"
 #include "headers/instructions.h"
+#include "headers/type_conversion.h"
 
 /* Parses the line, and if its a valid instruction, appends it to the program. */
 bool parse_line(Program *program, char *line, int max_line_length)
@@ -182,7 +182,7 @@ bool store_parameter(bool is_literal, char *parameter_string, int max_parameter_
     {
         // If it's any other value (banks, devices, labels) interpret as integer.
         bool parsed_integer_ok;
-        parameter_value->integer = parse_integer(&parsed_integer_ok, parameter_string);
+        parameter_value->integer = string_to_integer(parameter_string, &parsed_integer_ok);
         
         if (parsed_integer_ok)
         {
@@ -259,7 +259,7 @@ int extract_instruction(char *line, int max_line_length, short *instruction)
     {
         // Parse the instruction from text to an integer.
         bool instruction_ok = false;
-        *instruction = parse_integer(&instruction_ok, instruction_string);
+        *instruction = string_to_integer(instruction_string, &instruction_ok);
 
         // Could not parse instruction into an integer.
         if (!instruction_ok)
@@ -275,21 +275,6 @@ int extract_instruction(char *line, int max_line_length, short *instruction)
     }
 
     return end;
-}
-
-int parse_integer(bool *ok, char *string)
-{
-    int integer;
-    char *end_pointer;
-    errno = 0;
-
-    // Parse the string into an integer.
-    integer = strtol(string,  &end_pointer, 10);
-
-    // Indicate success.
-    *ok = (end_pointer != string && errno == 0);
-
-    return integer;
 }
 
 /* Extracts the instruction from the line.

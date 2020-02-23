@@ -144,6 +144,8 @@ VALUE   MEANING
 1       True
 ```
 
+**Note**: Any value other than zero is treated as true.
+
 ### Devices
 
 ```

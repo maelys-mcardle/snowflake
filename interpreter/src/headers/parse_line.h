@@ -1,5 +1,5 @@
-#ifndef SNOWFLAKE_PARSE_SNOWFLAKE_LINE_H
-#define SNOWFLAKE_PARSE_SNOWFLAKE_LINE_H
+#ifndef SNOWFLAKE_PARSE_LINE_H
+#define SNOWFLAKE_PARSE_LINE_H
 
 #include <stdbool.h>
 #include "program.h"
@@ -22,7 +22,6 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
     int start, char *output, int max_output_size);
 bool is_whitespace(char character);
 bool is_string_end(char character);
-int parse_integer(bool *ok, char *string);
 bool strip_end_whitespace(char *string, int max_string_length);
 
 #endif

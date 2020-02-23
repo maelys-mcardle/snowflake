@@ -1,7 +1,7 @@
-snowflake: main.o parse_snowflake_file.o instructions.o program.o \
-		output.o parse_snowflake_line.o print_program.o run_program.o bank.o
-	cc -o snowflake main.o parse_snowflake_file.o instructions.o program.o \
-		output.o parse_snowflake_line.o print_program.o run_program.o bank.o
+snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
+		output.o parse_line.o print_program.o run_program.o bank.o
+	cc -o snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
+		output.o parse_line.o print_program.o run_program.o bank.o
 
 main.o: src/main.c src/headers/main.h
 	cc -c src/main.c
@@ -9,11 +9,11 @@ main.o: src/main.c src/headers/main.h
 snowflake.o: src/snowflake.c src/headers/snowflake.h
 	cc -c src/snowflake.c
 
-parse_snowflake_file.o: src/parse_snowflake_file.c src/headers/parse_snowflake_file.h
-	cc -c src/parse_snowflake_file.c
+parse_file.o: src/parse_file.c src/headers/parse_file.h
+	cc -c src/parse_file.c
 
-parse_snowflake_line.o: src/parse_snowflake_line.c src/headers/parse_snowflake_line.h
-	cc -c src/parse_snowflake_line.c
+parse_line.o: src/parse_line.c src/headers/parse_line.h
+	cc -c src/parse_line.c
 
 program.o: src/program.c src/headers/program.h 
 	cc -c src/program.c
@@ -33,6 +33,9 @@ instructions.o: src/instructions.c src/headers/instructions.h
 output.o: src/output.c src/headers/output.h
 	cc -c src/output.c
 
+type_conversion.o: src/type_conversion.c src/headers/type_conversion.h
+	cc -c src/type_conversion.c
+
 clean:
-	rm snowflake main.o parse_snowflake_file.o instructions.o program.o \
-		output.o parse_snowflake_line.o print_program.o run_program.o bank.o
+	rm snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
+		output.o parse_line.o print_program.o run_program.o bank.o

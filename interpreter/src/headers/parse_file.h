@@ -1,5 +1,5 @@
-#ifndef SNOWFLAKE_PARSE_SNOWFLAKE_FILE_H
-#define SNOWFLAKE_PARSE_SNOWFLAKE_FILE_H
+#ifndef SNOWFLAKE_PARSE_FILE_H
+#define SNOWFLAKE_PARSE_FILE_H
 
 #include "program.h"
 #include "instructions.h"
