@@ -78,7 +78,12 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         case INSTRUCTION_REMOVE_LAST:
         case INSTRUCTION_MOVE_TO_INDEX:
         case INSTRUCTION_MOVE_TO_FIRST:
+            *instruction_pointer += 1;
+            break;
         default:
+            log_error(ERROR_MESG_UNRECOGNIZED_INSTRUCTION, 
+                instruction->instruction);
+            instruction_ok = false;
             *instruction_pointer += 1;
             break;
     }
