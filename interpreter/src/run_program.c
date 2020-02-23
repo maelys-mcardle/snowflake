@@ -95,19 +95,26 @@ bool instruction_integer(Program *program, Instruction *instruction, int *instru
     char *integer_string = instruction->parameters.second.string;
     int integer_value = string_to_integer(integer_string, &is_integer);
 
+    // Integer is valid.
     if (is_integer)
     {
+        // Create a bank.
         Bank *bank = new_bank_with_identifier(instruction);
-        bool set_bank = set_bank_integer(bank, integer_value);
-        if (set_bank)
-        {
-            log_debug("Set bank %02i as integer value %i", 
-                bank->identifier, integer_value);
-            
-            bool added_bank = append_bank_to_program(program, bank);
-            if (!added_bank)
+
+        // Set the integer for the bank.
+        if (bank != NULL && 
+            set_bank_integer(bank, integer_value))
+        {   
+            // Append the bank to the program.
+            // If it failed, free the memory allocated.
+            if (!append_bank_to_program(program, bank))
             {
                 free_bank(bank);
+            }
+            else
+            {
+                log_debug("Set bank %02i as integer value %i", 
+                    bank->identifier, integer_value);
             }
         }
     }
