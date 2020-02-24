@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "headers/run_instruction.h"
 #include "headers/output.h"
 #include "headers/type_conversion.h"
@@ -19,7 +20,7 @@ bool instruction_variable(Program *program, Instruction *instruction, int *instr
 {
     char *literal = instruction->parameters.second.string;
 
-    if (is_float(literal))
+    if (is_float(literal) && strchr(literal, '.') != NULL)
     {
         instruction_float(program, instruction, instruction_pointer);
     }
