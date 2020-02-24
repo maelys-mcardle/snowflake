@@ -45,7 +45,7 @@ float string_to_float(char *string, bool *ok)
     errno = 0;
 
     // Parse the string into an integer.
-    floating_point = strtod(string,  &end_pointer);
+    floating_point = strtof(string,  &end_pointer);
 
     // Indicate success.
     *ok = (end_pointer != string && errno == 0);
