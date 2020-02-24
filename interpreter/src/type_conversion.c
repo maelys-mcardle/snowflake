@@ -6,7 +6,8 @@ bool string_to_boolean(char *string, bool *ok)
 {
     // 0: False
     // 1: True
-    return string_to_integer(string, ok) > 0;
+    // Any other value: True
+    return string_to_integer(string, ok) != 0;
 }
 
 int string_to_integer(char *string, bool *ok)
