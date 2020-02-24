@@ -25,7 +25,9 @@
 #define ERROR_MESG_NO_ACTION_SELECTED "Did not select an action to perform. Use the --show-code or --run flags.\n"
 #define ERROR_CODE_LITERAL_IS_NOT_INTEGER 10
 #define ERROR_MESG_LITERAL_IS_NOT_INTEGER "Value '%s' was expected to be an integer; but it was not.\n"
-#define ERROR_CODE_UNRECOGNIZED_INSTRUCTION 11
+#define ERROR_CODE_LITERAL_IS_NOT_FLOAT 11
+#define ERROR_MESG_LITERAL_IS_NOT_FLOAT "Value '%s' was expected to be a float; but it was not.\n"
+#define ERROR_CODE_UNRECOGNIZED_INSTRUCTION 12
 #define ERROR_MESG_UNRECOGNIZED_INSTRUCTION "Instruction code %02i is not a valid instruction code.\n"
 
 #endif

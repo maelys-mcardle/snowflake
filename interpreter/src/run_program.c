@@ -52,7 +52,11 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             instruction_ok = instruction_integer(program, instruction, instruction_pointer);
             break;
         case INSTRUCTION_FLOAT:
+            instruction_ok = instruction_float(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_STRING:
+            instruction_ok = instruction_string(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_ARRAY:
         case INSTRUCTION_JUMP_LABEL:
         case INSTRUCTION_JUMP_BANK:

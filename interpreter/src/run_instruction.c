@@ -53,3 +53,75 @@ bool instruction_integer(Program *program, Instruction *instruction, int *instru
     
     *instruction_pointer += 1;
 }
+
+/* Stores an integer in a bank.
+ * INT BANK LITERAL 
+ */
+bool instruction_float(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    bool is_float;
+
+    // Convert literal to float.
+    char *float_string = instruction->parameters.second.string;
+    int float_value = string_to_float(float_string, &is_float);
+
+    // Float is valid.
+    if (is_float)
+    {
+        // Create a bank.
+        Bank *bank = new_bank_with_identifier(instruction);
+
+        // Set the float for the bank.
+        if (bank != NULL && 
+            set_bank_float(bank, float_value))
+        {   
+            // Append the bank to the program.
+            // If it failed, free the memory allocated.
+            if (!append_bank_to_program(program, bank))
+            {
+                free_bank(bank);
+            }
+            else
+            {
+                log_debug("Set bank %f as float value %i\n", 
+                    bank->identifier, float_value);
+            }
+        }
+    }
+    else
+    {
+        log_error(ERROR_MESG_LITERAL_IS_NOT_FLOAT, float_value);
+    }
+    
+    *instruction_pointer += 1;
+}
+
+/* Stores an integer in a bank.
+ * INT BANK LITERAL 
+ */
+bool instruction_string(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    char *string = instruction->parameters.second.string;
+
+    // Create a bank.
+    Bank *bank = new_bank_with_identifier(instruction);
+
+    // Set the strubg for the bank.
+    if (bank != NULL && 
+        set_bank_string(bank, string))
+    {   
+        // Append the bank to the program.
+        // If it failed, free the memory allocated.
+        if (!append_bank_to_program(program, bank))
+        {
+            free_bank(bank);
+        }
+        else
+        {
+            log_debug("Set bank '%s' as string value %i\n", 
+                bank->identifier, string);
+        }
+    }
+
+    *instruction_pointer += 1;
+}
