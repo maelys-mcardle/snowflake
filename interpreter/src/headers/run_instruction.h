@@ -4,6 +4,7 @@
 #include "program.h"
 #include "instructions.h"
 
+bool instruction_variable(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_integer(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_float(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_string(Program *program, Instruction *instruction, int *instruction_pointer);

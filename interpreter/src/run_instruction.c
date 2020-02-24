@@ -12,6 +12,27 @@ Bank *new_bank_with_identifier(Instruction *instruction)
     return bank;
 }
 
+/* Stores a variable in a bank; type is inferred.
+ * VAR BANK LITERAL 
+ */
+bool instruction_variable(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    char *literal = instruction->parameters.second.string;
+
+    if (is_float(literal))
+    {
+        instruction_float(program, instruction, instruction_pointer);
+    }
+    else if (is_integer(literal))
+    {
+        instruction_integer(program, instruction, instruction_pointer);
+    }
+    else
+    {
+        instruction_string(program, instruction, instruction_pointer);
+    }
+}
+
 /* Stores an integer in a bank.
  * INT BANK LITERAL 
  */
@@ -54,8 +75,8 @@ bool instruction_integer(Program *program, Instruction *instruction, int *instru
     *instruction_pointer += 1;
 }
 
-/* Stores an integer in a bank.
- * INT BANK LITERAL 
+/* Stores a float in a bank.
+ * FLT BANK LITERAL 
  */
 bool instruction_float(Program *program, Instruction *instruction, int *instruction_pointer)
 {
@@ -96,8 +117,8 @@ bool instruction_float(Program *program, Instruction *instruction, int *instruct
     *instruction_pointer += 1;
 }
 
-/* Stores an integer in a bank.
- * INT BANK LITERAL 
+/* Stores a string in a bank.
+ * STR BANK LITERAL 
  */
 bool instruction_string(Program *program, Instruction *instruction, int *instruction_pointer)
 {

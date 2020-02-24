@@ -44,7 +44,11 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         case INSTRUCTION_INPUT:
         case INSTRUCTION_COPY:
         case INSTRUCTION_TYPE:
+            *instruction_pointer += 1;
+            break;
         case INSTRUCTION_VARIABLE:
+            instruction_ok = instruction_variable(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_BOOLEAN:
             *instruction_pointer += 1;
             break;
