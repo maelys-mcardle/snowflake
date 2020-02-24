@@ -104,7 +104,7 @@ bool instruction_float(Program *program, Instruction *instruction, int *instruct
             }
             else
             {
-                log_debug("Set bank %f as float value %i\n", 
+                log_debug("Set bank %02i as float value %f\n", 
                     bank->identifier, float_value);
             }
         }
@@ -139,7 +139,7 @@ bool instruction_string(Program *program, Instruction *instruction, int *instruc
         }
         else
         {
-            log_debug("Set bank '%s' as string value %i\n", 
+            log_debug("Set bank %02i as string value '%s'\n", 
                 bank->identifier, string);
         }
     }
