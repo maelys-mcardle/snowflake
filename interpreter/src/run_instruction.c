@@ -34,6 +34,48 @@ bool instruction_variable(Program *program, Instruction *instruction, int *instr
     }
 }
 
+/* Stores a boolean in a bank.
+ * BLN BANK LITERAL 
+ */
+bool instruction_boolean(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    bool is_boolean;
+
+    // Convert literal to boolean.
+    char *boolean_string = instruction->parameters.second.string;
+    int boolean_value = string_to_boolean(boolean_string, &is_boolean);
+
+    // Boolean is valid.
+    if (is_boolean)
+    {
+        // Create a bank.
+        Bank *bank = new_bank_with_identifier(instruction);
+
+        // Set the boolean for the bank.
+        if (bank != NULL && 
+            set_bank_boolean(bank, boolean_value))
+        {   
+            // Append the bank to the program.
+            // If it failed, free the memory allocated.
+            if (!append_bank_to_program(program, bank))
+            {
+                free_bank(bank);
+            }
+            else
+            {
+                log_debug("Set bank %02i as boolean value %s\n", 
+                    bank->identifier, boolean_value ? "true" : "false");
+            }
+        }
+    }
+    else
+    {
+        log_error(ERROR_MESG_LITERAL_IS_NOT_BOOLEAN, boolean_string);
+    }
+    
+    *instruction_pointer += 1;
+}
+
 /* Stores an integer in a bank.
  * INT BANK LITERAL 
  */
@@ -85,7 +127,7 @@ bool instruction_float(Program *program, Instruction *instruction, int *instruct
 
     // Convert literal to float.
     char *float_string = instruction->parameters.second.string;
-    int float_value = string_to_float(float_string, &is_float);
+    float float_value = string_to_float(float_string, &is_float);
 
     // Float is valid.
     if (is_float)

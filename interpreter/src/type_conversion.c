@@ -1,5 +1,6 @@
 #include <errno.h>
 #include <stdlib.h>
+#include "headers/output.h"
 #include "headers/type_conversion.h"
 
 bool string_to_boolean(char *string, bool *ok)
@@ -15,6 +16,7 @@ int string_to_integer(char *string, bool *ok)
     // Catch NULL strings.
     if (string == NULL)
     {
+        log_debug("Tried to convert NULL string to integer.\n");
         *ok = false;
         return 0;
     }
@@ -24,6 +26,7 @@ int string_to_integer(char *string, bool *ok)
     errno = 0;
 
     // Parse the string into an integer.
+    log_debug("Converting '%s' to integer.\n", string);
     integer = strtol(string,  &end_pointer, 10);
 
     // Indicate success.
@@ -37,6 +40,7 @@ float string_to_float(char *string, bool *ok)
     // Catch NULL strings.
     if (string == NULL)
     {
+        log_debug("Tried to convert NULL string to float.\n");
         *ok = false;
         return 0.;
     }
@@ -45,7 +49,8 @@ float string_to_float(char *string, bool *ok)
     char *end_pointer;
     errno = 0;
 
-    // Parse the string into an integer.
+    // Parse the string into a float.
+    log_debug("Converting '%s' to float.\n", string);
     floating_point = strtof(string,  &end_pointer);
 
     // Indicate success.
