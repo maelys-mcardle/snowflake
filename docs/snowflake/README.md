@@ -12,7 +12,7 @@ This programming language is designed to mimic assembly, to act as a stepping st
 ### Instruction Set
 
 ```
-BASIC I/O
+BASIC
 
 CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
 ---  ---------  --------------   -----------
@@ -132,8 +132,6 @@ If literals are inferred, it's according to the following rules:
 * If 0-9 is entered, its stored as an INTEGER.
 * If 0-9 with a . is entered, its stored as a FLOAT.
 * If any other characters are entered, its stored as a STRING.
-
-**Strings can be up to 256 characters long.**
 
 ### Boolean Values
 

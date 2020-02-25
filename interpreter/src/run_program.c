@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "headers/run_program.h"
-#include "headers/run_instruction.h"
+#include "headers/run_instruction_types.h"
 #include "headers/output.h"
 #include "headers/bank.h"
 #include "headers/errors.h"

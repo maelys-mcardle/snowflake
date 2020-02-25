@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "headers/run_instruction.h"
+#include "headers/run_instruction_types.h"
 #include "headers/output.h"
 #include "headers/type_conversion.h"
 #include "headers/bank.h"
