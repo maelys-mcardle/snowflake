@@ -32,10 +32,10 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
 04    >>        DEVICE  BANK     Input from Buttons / etc, as defined by DEVICE.
                                  The value is stored in the BANK after the OK key is pressed.
                                  Devices are positive integers.
-04     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
+05     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
                                  This also converts BANK2 into the type set for BANK1.
-05   DEL        BANK             Deletes all data associated with BANK.
-06   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
+06   DEL        BANK             Deletes all data associated with BANK.
+07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
 ```
 
 ```
