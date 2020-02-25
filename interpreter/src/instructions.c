@@ -91,6 +91,13 @@ InstructionInfo get_instruction_info(short instruction, bool *exists)
             info.parameters.second = PARAMETER_BANK;
             break;
         case INSTRUCTION_COPY:
+            info.mnemonic[0] = ' ';
+            info.mnemonic[1] = ' ';
+            info.mnemonic[2] = '=';
+            info.parameters.first = PARAMETER_BANK;
+            info.parameters.second = PARAMETER_BANK;
+            break;
+        case INSTRUCTION_DELETE:
             info.mnemonic[0] = 'D';
             info.mnemonic[1] = 'E';
             info.mnemonic[2] = 'L';
