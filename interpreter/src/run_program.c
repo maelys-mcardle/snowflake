@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "headers/run_program.h"
+#include "headers/run_instruction_basic.h"
 #include "headers/run_instruction_types.h"
 #include "headers/output.h"
 #include "headers/bank.h"
@@ -41,6 +42,8 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             *instruction_pointer += 1;
             break;
         case INSTRUCTION_OUTPUT:
+            instruction_ok = instruction_output(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_INPUT:
         case INSTRUCTION_COPY:
         case INSTRUCTION_TYPE:

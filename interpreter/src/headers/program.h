@@ -25,5 +25,8 @@ bool append_instruction_to_program(Program *program, Instruction *instruction);
 bool append_bank_to_program(Program *program, Bank *bank);
 bool set_program_bank(Program *program, Bank *bank);
 int get_program_bank_index(Program *program, short identifier);
+Bank *get_program_bank(Program *program, short target_identifier);
+Bank *get_program_bank_from_first_parameter(Program *program, Instruction *instruction);
+Bank *get_program_bank_from_second_parameter(Program *program, Instruction *instruction);
 
 #endif

@@ -88,6 +88,27 @@ bool set_program_bank(Program *program, Bank *bank)
     }
 }
 
+Bank *get_program_bank_from_first_parameter(Program *program, Instruction *instruction)
+{
+    short target_identifier = instruction->parameters.first.integer;
+    return get_program_bank(program, target_identifier);
+}
+
+Bank *get_program_bank_from_second_parameter(Program *program, Instruction *instruction)
+{
+    short target_identifier = instruction->parameters.second.integer;
+    return get_program_bank(program, target_identifier);
+}
+
+Bank *get_program_bank(Program *program, short target_identifier)
+{
+    int index = get_program_bank_index(program, target_identifier);
+    if (index >= 0) {
+        return program->banks.banks[index];
+    }
+    return NULL;
+}
+
 /* Gets the index in the banks of the bank with the target identifier. */
 int get_program_bank_index(Program *program, short target_identifier)
 {

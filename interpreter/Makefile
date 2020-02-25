@@ -1,9 +1,9 @@
 snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_line.o print_program.o run_program.o bank.o \
-		run_instruction_types.o
+		run_instruction_types.o run_instruction_basic.o
 	cc -o snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_line.o print_program.o run_program.o bank.o \
-		run_instruction_types.o
+		run_instruction_types.o run_instruction_basic.o
 
 main.o: src/main.c src/headers/main.h
 	cc -c src/main.c
@@ -29,6 +29,9 @@ print_program.o: src/print_program.c src/headers/print_program.h
 run_program.o: src/run_program.c src/headers/run_program.h 
 	cc -c src/run_program.c
 
+run_instruction_basic.o: src/run_instruction_basic.c src/headers/run_instruction_basic.h 
+	cc -c src/run_instruction_basic.c
+
 run_instruction_types.o: src/run_instruction_types.c src/headers/run_instruction_types.h 
 	cc -c src/run_instruction_types.c
 
@@ -44,4 +47,4 @@ type_conversion.o: src/type_conversion.c src/headers/type_conversion.h
 clean:
 	rm snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_line.o print_program.o run_program.o bank.o \
-		run_instruction_types.o
+		run_instruction_types.o run_instruction_basic.o
