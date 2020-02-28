@@ -13,7 +13,7 @@ void log_debug(const char * format, ... )
     if (debug_mode) {
         va_list args;
         va_start(args, format);
-        vprintf(format, args);
+        print_with_va_list(format, args, true);
         va_end(args);
     }
 }
@@ -22,7 +22,7 @@ void log_error(const char * format, ... )
 {
     va_list args;
     va_start (args, format);
-    vprintf(format, args);
+    print_with_va_list(format, args, true);
     va_end (args);
 }
 
@@ -30,6 +30,11 @@ void print(const char * format, ... )
 {
     va_list args;
     va_start (args, format);
-    vprintf (format, args);
+    print_with_va_list(format, args, false);
     va_end (args);
+}
+
+void print_with_va_list(const char *format, va_list args, bool is_error)
+{
+    vfprintf(is_error ? stderr : stdout, format, args);
 }
