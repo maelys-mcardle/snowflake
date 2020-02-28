@@ -4,10 +4,6 @@
 
 #define MAX_INSTRUCTION_SIZE 3
 #define MAX_PARAMETER_SIZE   256
-#define MAX_LABEL_SIZE       4
-#define MAX_BANK_SIZE        4
-#define MAX_DEVICE_SIZE      4
-#define MAX_LITERAL_SIZE     256
 
 #define INSTRUCTION_COMMENT    00
 #define INSTRUCTION_LABEL      01
@@ -47,16 +43,6 @@
 #define INSTRUCTION_REMOVE_LAST   56
 #define INSTRUCTION_MOVE_TO_INDEX 57
 #define INSTRUCTION_MOVE_TO_FIRST 58
-
-#define DEVICE_OUT 00
-#define DEVICE_IN  01
-#define DEVICE_PRT 02
-#define DEVICE_BTN 03
-
-#define DEVICE_OUT_STRING "OUT"
-#define DEVICE_IN_STRING  " IN"
-#define DEVICE_PRT_STRING "PRT"
-#define DEVICE_BTN_STRING "BTN"
 
 typedef enum {
     PARAMETER_NONE = 0,

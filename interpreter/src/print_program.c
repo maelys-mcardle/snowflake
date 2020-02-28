@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "headers/output.h"
+#include "headers/devices.h"
 #include "headers/print_program.h"
 
 /* Prints an entire Snowflake program. */
