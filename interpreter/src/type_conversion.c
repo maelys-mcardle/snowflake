@@ -63,6 +63,7 @@ bool is_boolean(char *string)
 {
     bool ok;
     string_to_boolean(string, &ok);
+    log_debug("'%s' is %s boolean.\n", string, ok ? "a" : "not a");
     return ok;
 }
 
@@ -70,6 +71,7 @@ bool is_float(char *string)
 {
     bool ok;
     string_to_float(string, &ok);
+    log_debug("'%s' is %s float.\n", string, ok ? "a" : "not a");
     return ok;
 }
 
@@ -77,5 +79,6 @@ bool is_integer(char *string)
 {
     bool ok;
     string_to_integer(string, &ok);
+    log_debug("'%s' is %s integer.\n", string, ok ? "an" : "not an");
     return ok;
 }
