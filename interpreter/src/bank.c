@@ -89,7 +89,7 @@ bool set_bank_string(Bank *bank, char *value)
     bank->type = TYPE_STRING;
     size_t string_length = strlen(value);
     bank->value.string = malloc(string_length + 1);
-    strncpy(bank->value.string, value, string_length);
+    strncpy(bank->value.string, value, string_length + 1);
     return true;
 }
 
