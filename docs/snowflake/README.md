@@ -32,10 +32,10 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
 04    >>        DEVICE  BANK     Input from Buttons / etc, as defined by DEVICE.
                                  The value is stored in the BANK after the OK key is pressed.
                                  Devices are positive integers.
-04     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
+05     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
                                  This also converts BANK2 into the type set for BANK1.
-05   DEL        BANK             Deletes all data associated with BANK.
-06   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
+06   DEL        BANK             Deletes all data associated with BANK.
+07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
 ```
 
 ```
@@ -81,7 +81,8 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 31   -          BANK1   BANK2   Subtract BANK2 from BANK1.
 32   *          BANK1   BANK2   Multiply BANK2 with BANK1. Store in BANK1.
 33   /          BANK1   BANK2   Divide BANK1 by BANK2, store result in BANK1.
-34   **         BANK1   BANK2   BANK1 to the power of BANK2, stored in BANK1.
+34   %          BANK1   BANK2   Remnant of division of BANK1 by BANK2, store result in BANK1.
+35   **         BANK1   BANK2   BANK1 to the power of BANK2, stored in BANK1.
 ```
 
 ```
@@ -102,10 +103,13 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 15    []        BANK            Converts BANK into an empty array.
 50   [#]        BANK1   BANK2   Stores the length of the BANK1 array into BANK2.
+                                BANK2 becomes an INT type.
 51   +[]        BANK1   BANK2   Appends the contents of BANK2 to the start of the BANK1 array.
 52   []+        BANK1   BANK2   Appends the contents of BANK2 to the end of the BANK1 array.
 53   ?[]        BANK1   BANK2   Copies the first item of the BANK1 array into BANK2.
+                                BANK2 becomes the type of the first item in the BANK1 array.
 54   []?        BANK1   BANK2   Copies the last item of the BANK1 array into BANK2.
+                                BANK2 becomes the type of the last item in the BANK1 array.
 55   -[]        BANK            Removes the first item of the BANK array.
 56   []-        BANK            Removes the last item of the BANK array.
 57   [>]        BANK1   BANK2   Moves the first item of the BANK1 array to the index specified in BANK2.

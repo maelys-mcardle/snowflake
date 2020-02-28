@@ -46,6 +46,7 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             break;
         case INSTRUCTION_INPUT:
         case INSTRUCTION_COPY:
+        case INSTRUCTION_DELETE:
         case INSTRUCTION_TYPE:
             *instruction_pointer += 1;
             break;
