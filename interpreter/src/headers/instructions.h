@@ -100,5 +100,6 @@ ParameterType get_parameter_type(ParameterType type);
 bool is_parameter_optional(ParameterType type);
 bool is_parameter_none(ParameterType type);
 InstructionInfo get_instruction_info(short instruction, bool *exists);
+void set_mnemonic(InstructionInfo *info, char *mnemonic);
 
 #endif
