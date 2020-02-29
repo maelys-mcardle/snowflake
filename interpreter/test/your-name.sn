@@ -7,5 +7,3 @@
 14 00 YOUR NAME IS ;; Stores "Your name is" in BANK "MSG"
 03 00 00        ;; Shows "Your name is"
 03 00 01        ;; Shows the value in bank "NAME"
-06 01           ;; Delete "NAME"
-03 00 01

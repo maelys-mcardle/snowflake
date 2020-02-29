@@ -25,7 +25,7 @@ void run_program(Program *program)
 
 bool run_instruction(Program *program, Instruction *instruction, int *instruction_pointer)
 {
-    log_debug("[Executing %02i] %c%c%c\n",
+    log_debug("[Executing %02i] Instruction: %c%c%c\n",
         *instruction_pointer,
         instruction->info.mnemonic[0],
         instruction->info.mnemonic[1],
