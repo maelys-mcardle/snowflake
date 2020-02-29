@@ -31,5 +31,11 @@
 #define ERROR_MESG_LITERAL_IS_NOT_FLOAT "Value '%s' was expected to be a float; but it was not.\n"
 #define ERROR_CODE_UNRECOGNIZED_INSTRUCTION 13
 #define ERROR_MESG_UNRECOGNIZED_INSTRUCTION "Instruction code %02i is not a valid instruction code.\n"
+#define ERROR_CODE_UNRECOGNIZED_DEVICE 14
+#define ERROR_MESG_UNRECOGNIZED_DEVICE "Device %02i is not a valid device.\n"
+#define ERROR_CODE_DEVICE_NOT_SUPPORTED_FOR_OUTPUT 15
+#define ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_OUTPUT "Device %02i does not support output.\n"
+#define ERROR_CODE_DEVICE_NOT_SUPPORTED_FOR_INPUT 16
+#define ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_INPUT "Device %02i does not support input.\n"
 
 #endif

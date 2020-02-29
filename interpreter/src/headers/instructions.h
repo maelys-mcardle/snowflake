@@ -1,6 +1,7 @@
 #ifndef SNOWFLAKE_INSTRUCTIONS_H
 #define SNOWFLAKE_INSTRUCTIONS_H
 #include <stdbool.h>
+#include "devices.h"
 
 #define MAX_INSTRUCTION_SIZE 3
 #define MAX_PARAMETER_SIZE   256
@@ -87,6 +88,7 @@ ParameterType get_parameter_type(ParameterType type);
 bool is_parameter_optional(ParameterType type);
 bool is_parameter_none(ParameterType type);
 InstructionInfo get_instruction_info(short instruction, bool *exists);
+Device get_device_from_instruction(Instruction *instruction);
 void set_mnemonic(InstructionInfo *info, char *mnemonic);
 
 #endif

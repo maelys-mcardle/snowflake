@@ -1,5 +1,6 @@
 #ifndef SNOWFLAKE_DEVICES_H
 #define SNOWFLAKE_DEVICES_H
+#include <stdbool.h>
 
 #define DEVICE_OUT_STRING "OUT"
 #define DEVICE_IN_STRING  " IN"
@@ -12,5 +13,8 @@ typedef enum {
     DEVICE_PRT = 02,
     DEVICE_BTN = 03
 } Device;
+
+bool send_to_device(Device device, char *string);
+char *receive_from_device(Device device, bool *ok);
 
 #endif

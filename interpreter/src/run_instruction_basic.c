@@ -8,10 +8,11 @@ bool instruction_output(Program *program, Instruction *instruction, int *instruc
 {
     Bank *bank = get_program_bank_from_first_parameter(program, instruction);
     char *bank_string_value = get_bank_as_string(bank);
+    Device device = get_device_from_instruction(instruction);
 
     if (bank_string_value != NULL)
     {
-        print("%s\n", bank_string_value);
+        send_to_device(device, bank_string_value);
         free(bank_string_value);
     }
     

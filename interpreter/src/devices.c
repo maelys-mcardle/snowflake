@@ -1,1 +1,38 @@
 #include "headers/devices.h"
+#include "headers/errors.h"
+#include "headers/output.h"
+
+bool send_to_device(Device device, char *string)
+{
+    bool ok = false;
+    switch (device)
+    {
+        case DEVICE_IN:
+            log_error(ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_OUTPUT, device);
+            ok = false;
+            break;
+        case DEVICE_OUT:
+            print("%s\n", string);
+            ok = true;
+            break;
+        case DEVICE_PRT:
+            print("(Printer) %s\n", string);
+            ok = true;
+            break;
+        case DEVICE_BTN:
+            log_error(ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_OUTPUT, device);
+            ok = false;
+            break;
+        default:
+            log_error(ERROR_MESG_UNRECOGNIZED_DEVICE, device);
+            ok = false;
+            break;
+    }
+
+    return ok;
+}
+
+char *receive_from_device(Device device, bool *ok)
+{
+    return NULL;
+}

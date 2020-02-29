@@ -50,6 +50,12 @@ bool is_parameter_none(ParameterType type)
     return (type == PARAMETER_NONE);
 }
 
+Device get_device_from_instruction(Instruction *instruction)
+{
+    Device device = instruction->parameters.first.integer;
+    return device;
+}
+
 InstructionInfo get_instruction_info(short instruction, bool *exists)
 {
     InstructionInfo info;
