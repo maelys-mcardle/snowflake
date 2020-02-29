@@ -22,7 +22,7 @@
 #define ERROR_CODE_UNRECOGNIZED_ARGUMENT 8
 #define ERROR_MESG_UNRECOGNIZED_ARGUMENT "Exiting due to unrecognized argument.\n"
 #define ERROR_CODE_NO_ACTION_SELECTED 9
-#define ERROR_MESG_NO_ACTION_SELECTED "Did not select an action to perform. Use the --show-code or --run flags.\n"
+#define ERROR_MESG_NO_ACTION_SELECTED "Did not select an action to perform. Use the --print or --run flags.\n"
 #define ERROR_CODE_LITERAL_IS_NOT_BOOLEAN 10
 #define ERROR_MESG_LITERAL_IS_NOT_BOOLEAN "Value '%s' was expected to be a boolean (0 or 1); but it was not.\n"
 #define ERROR_CODE_LITERAL_IS_NOT_INTEGER 11

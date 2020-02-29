@@ -26,13 +26,13 @@ To run a Snowflake program, execute:
 
 To see how the interpreter understands the code file, run:
 ```
-./snowflake --file your-code-file.sn --show-code
+./snowflake --file your-code-file.sn --print
 ```
 
 If you run into issues, use the `--debug` option on the code. It will give more
 information about how the interpreter understood the code, and what it was running:
 ```
-./snowflake --file your-code-file.sn --show-code --run --debug
+./snowflake --file your-code-file.sn --print --run --debug
 ```
 
 ## Clean
