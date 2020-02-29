@@ -9,18 +9,19 @@
 bool instruction_output(Program *program, Instruction *instruction, int *instruction_pointer)
 {
     Bank *bank = get_program_bank_from_second_parameter(program, instruction);
-    char *bank_string_value = get_bank_as_string(bank);
     Device device = get_device_from_instruction(instruction);
     bool instruction_ok = false;
 
-    if (bank_string_value != NULL)
+    if (bank != NULL)
     {
+        char *bank_string_value = get_bank_as_string(bank);
         log_debug("Sending Bank %02i (value: '%s') to Device %02i\n", bank->identifier, bank_string_value, device);
         instruction_ok = send_to_device(device, bank_string_value);
         free(bank_string_value);
     }
     else
     {
+        log_debug("Sending unallocated Bank %02i to Device %02i\n", instruction->parameters.second.integer, device);
         instruction_ok = send_to_device(device, "(Empty)");
     }
     
@@ -35,6 +36,7 @@ bool instruction_input(Program *program, Instruction *instruction, int *instruct
     if (bank == NULL)
     {
         bank = new_bank_from_second_parameter(instruction);
+        append_bank_to_program(program, bank);
     }
 
     // Get the device.
@@ -48,7 +50,7 @@ bool instruction_input(Program *program, Instruction *instruction, int *instruct
         int string_size = 0;
         int button_code = 0;
 
-        log_debug("Receiving from Device %02i\n", device);
+        log_debug("Receiving from Device %02i into Bank %02i\n", device, bank->identifier);
 
         switch (device)
         {
