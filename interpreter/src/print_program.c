@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include "headers/output.h"
-#include "headers/devices.h"
+#include "core/headers/output.h"
+#include "core/headers/devices.h"
 #include "headers/print_program.h"
 
 /* Prints an entire Snowflake program. */
@@ -25,7 +25,7 @@ void print_program(Program *program)
 void print_instruction(Program *program, Instruction *instruction)
 {
     // Print mnemonic.
-    print_code("%c%c%c ",
+    printf("%c%c%c ",
         instruction->info.mnemonic[0],
         instruction->info.mnemonic[1],
         instruction->info.mnemonic[2]);
@@ -40,7 +40,7 @@ void print_instruction(Program *program, Instruction *instruction)
     // Print the space that separates the parameter.
     if (has_parameter)
     {
-        print_code(" ");
+        printf(" ");
     }
 
     // Print second parameter.
@@ -51,7 +51,7 @@ void print_instruction(Program *program, Instruction *instruction)
         instruction->parameters.second);
 
     // Print end of line.
-    print_code("\n");
+    printf("\n");
 }
 
 /* Prints a parameter, if one is defined.
@@ -74,7 +74,7 @@ bool print_parameter(Program *program, short current_instruction, ParameterType 
         case PARAMETER_LITERAL:
             if (value.string != NULL)
             {
-                print_code("%s", value.string);
+                printf("%s", value.string);
                 return true;
             }
             return false;
@@ -93,14 +93,14 @@ void print_identifier(Program *program, short current_instruction, short naming_
         char *identifier_name = get_name(program, naming_instruction, target_identifier);
         if (identifier_name != NULL)
         {
-            print_code("%s", identifier_name);
+            printf("%s", identifier_name);
             found_name = true;
         }
     }
 
     if (!found_name)
     {
-        print_code(format, target_identifier);
+        printf(format, target_identifier);
     }
 }
 
@@ -127,16 +127,16 @@ bool print_device(int device)
     switch (device)
     {
         case DEVICE_OUT:
-            print_code(DEVICE_OUT_STRING);
+            printf(DEVICE_OUT_STRING);
             return true;
         case DEVICE_IN:
-            print_code(DEVICE_IN_STRING);
+            printf(DEVICE_IN_STRING);
             return true;
         case DEVICE_PRT:
-            print_code(DEVICE_PRT_STRING);
+            printf(DEVICE_PRT_STRING);
             return true;
         case DEVICE_BTN:
-            print_code(DEVICE_BTN_STRING);
+            printf(DEVICE_BTN_STRING);
             return true;
         default:
             return false;

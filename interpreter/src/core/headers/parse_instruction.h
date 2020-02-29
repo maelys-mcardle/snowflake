@@ -1,5 +1,5 @@
-#ifndef SNOWFLAKE_PARSE_LINE_H
-#define SNOWFLAKE_PARSE_LINE_H
+#ifndef SNOWFLAKE_PARSE_INSTRUCTION_H
+#define SNOWFLAKE_PARSE_INSTRUCTION_H
 
 #include <stdbool.h>
 #include "program.h"
@@ -10,7 +10,7 @@
 #define CHAR_TAB '\t'
 #define CHAR_END_STRING '\0'
 
-bool parse_line(Program *program, char *line, int max_line_length);
+bool parse_instruction(Program *program, char *line, int max_line_length);
 bool parse_instruction_from_line(Instruction *instruction, char *line, int max_line_length);
 bool store_parameter(bool is_literal, char *parameter_string, int max_parameter_size, ParameterValue *parameter_value);
 bool discard_comment(char *line, int max_line_length);

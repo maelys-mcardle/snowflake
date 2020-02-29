@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "headers/parse_line.h"
+#include "headers/parse_instruction.h"
 #include "headers/errors.h"
 #include "headers/output.h"
 #include "headers/instructions.h"
 #include "headers/type_conversion.h"
 
 /* Parses the line, and if its a valid instruction, appends it to the program. */
-bool parse_line(Program *program, char *line, int max_line_length)
+bool parse_instruction(Program *program, char *line, int max_line_length)
 {
     Instruction *instruction = new_instruction();
     if (instruction != NULL)

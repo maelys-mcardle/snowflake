@@ -1,5 +1,5 @@
 #include <stdbool.h>
-#include "headers/output.h"
+#include "../../headers/output.h"
 
 bool debug_mode = false;
 
@@ -23,14 +23,6 @@ void log_error(const char * format, ... )
     va_list args;
     va_start (args, format);
     print_with_va_list(format, args, true);
-    va_end (args);
-}
-
-void print_code(const char * format, ... )
-{
-    va_list args;
-    va_start (args, format);
-    print_with_va_list(format, args, false);
     va_end (args);
 }
 

@@ -4,12 +4,12 @@
 #include <string.h>
 #include <getopt.h>
 #include "headers/main.h"
-#include "headers/errors.h"
 #include "headers/parse_file.h"
-#include "headers/program.h"
-#include "headers/output.h"
 #include "headers/print_program.h"
-#include "headers/run_program.h"
+#include "core/headers/errors.h"
+#include "core/headers/program.h"
+#include "core/headers/output.h"
+#include "core/headers/run_program.h"
 
 /* Starting point of the program. */
 int main (int argc, char **argv) 

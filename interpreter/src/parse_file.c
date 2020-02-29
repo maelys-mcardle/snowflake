@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "headers/parse_file.h"
-#include "headers/parse_line.h"
-#include "headers/errors.h"
-#include "headers/output.h"
+#include "core/headers/parse_instruction.h"
+#include "core/headers/errors.h"
+#include "core/headers/output.h"
 
 /* Process a snowflake file. */
 int parse_snowflake_file(Program *program, const char *filename)
@@ -40,7 +40,7 @@ int parse_snowflake_file(Program *program, const char *filename)
         log_debug("[Line %02i] %s\n", line_number, line);
 
         // Parse the line.
-        bool has_instruction = parse_line(program, line, max_line_length);
+        bool has_instruction = parse_instruction(program, line, max_line_length);
         if (has_instruction) {
             instructions_parsed++;
         }
