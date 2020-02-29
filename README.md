@@ -18,5 +18,5 @@ This is the hardware used on this project:
 [4]: https://maelys.bio/
 [5]: https://www.amazon.ca/Quimat-Serial-Module-Shield-Arduino/dp/B0719R3JP7/
 [6]: https://www.amazon.ca/RobotDyn-module-Compatible-Raspberry-Assembled/dp/B071KB7RZ5/
-[7]: docs/snowflake/
-[8]: interpreter/
+[7]: snowflake/docs/
+[8]: snowflake/
