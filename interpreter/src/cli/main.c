@@ -6,10 +6,10 @@
 #include "headers/main.h"
 #include "headers/parse_file.h"
 #include "headers/print_program.h"
-#include "core/headers/errors.h"
-#include "core/headers/program.h"
-#include "core/headers/output.h"
-#include "core/headers/run_program.h"
+#include "../core/headers/errors.h"
+#include "../core/headers/program.h"
+#include "../core/headers/output.h"
+#include "../core/headers/run_program.h"
 
 /* Starting point of the program. */
 int main (int argc, char **argv) 

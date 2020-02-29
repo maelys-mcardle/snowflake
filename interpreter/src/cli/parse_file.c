@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "headers/parse_file.h"
-#include "core/headers/parse_instruction.h"
-#include "core/headers/errors.h"
-#include "core/headers/output.h"
+#include "../core/headers/parse_instruction.h"
+#include "../core/headers/errors.h"
+#include "../core/headers/output.h"
 
 /* Process a snowflake file. */
 int parse_snowflake_file(Program *program, const char *filename)

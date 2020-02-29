@@ -5,14 +5,14 @@ snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o devices.o
 
-main.o: src/main.c src/headers/main.h
-	cc -c src/main.c
+main.o: src/cli/main.c src/cli/headers/main.h
+	cc -c src/cli/main.c
 
-parse_file.o: src/parse_file.c src/headers/parse_file.h
-	cc -c src/parse_file.c
+parse_file.o: src/cli/parse_file.c src/cli/headers/parse_file.h
+	cc -c src/cli/parse_file.c
 
-print_program.o: src/print_program.c src/headers/print_program.h 
-	cc -c src/print_program.c
+print_program.o: src/cli/print_program.c src/cli/headers/print_program.h 
+	cc -c src/cli/print_program.c
 
 parse_instruction.o: src/core/parse_instruction.c src/core/headers/parse_instruction.h
 	cc -c src/core/parse_instruction.c

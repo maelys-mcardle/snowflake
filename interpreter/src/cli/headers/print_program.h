@@ -1,8 +1,8 @@
 #ifndef SNOWFLAKE_PRINT_PROGRAM_H
 #define SNOWFLAKE_PRINT_PROGRAM_H
 #include <stdbool.h>
-#include "../core/headers/program.h"
-#include "../core/headers/instructions.h"
+#include "../../core/headers/program.h"
+#include "../../core/headers/instructions.h"
 
 void print_program(Program *program);
 void print_instruction(Program *program, Instruction *instruction);
