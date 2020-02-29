@@ -16,3 +16,4 @@
 03 00 03    ;; Output the contents of Bank 03
 03 00 04    ;; Output the contents of Bank 04
 03 00 05    ;; Output the contents of Bank 05
+03 00 06    ;; Output the contents of Bank 06 (No value)
