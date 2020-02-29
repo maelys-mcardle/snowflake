@@ -50,6 +50,8 @@ The interpreter has the following directory structure.
 
 ```
 .
+├── docs
+│   └── examples
 ├── src
 │   ├── cli
 │   │   └── headers
@@ -61,6 +63,8 @@ The interpreter has the following directory structure.
 ```
 
 The root directory contains this `README` and `Makefile`.
+
+The `docs` directory contains documentation for how to code in Snowflake.
 
 The `src` directory contains all the code for the project. 
 
