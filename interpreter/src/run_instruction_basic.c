@@ -7,29 +7,12 @@
 bool instruction_output(Program *program, Instruction *instruction, int *instruction_pointer)
 {
     Bank *bank = get_program_bank_from_first_parameter(program, instruction);
-    
-    if (bank != NULL)
+    char *bank_string_value = get_bank_as_string(bank);
+
+    if (bank_string_value != NULL)
     {
-        if (bank->type == TYPE_INTEGER)
-        {
-            print("%i\n", bank->value.integer);
-        }
-        else if (bank->type == TYPE_BOOLEAN)
-        {
-            print("%s\n", bank->value.boolean ? "true" : "false");
-        }
-        else if (bank->type == TYPE_FLOAT)
-        {
-            print("%f\n", bank->value.floating);
-        }
-        else if (bank->type == TYPE_STRING)
-        {
-            print("%s\n", bank->value.string);
-        }
-        else if (bank->type == TYPE_ARRAY)
-        {
-            print("(Array)\n");
-        }
+        print("%s\n", bank_string_value);
+        free(bank_string_value);
     }
     
     *instruction_pointer += 1;

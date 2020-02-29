@@ -41,5 +41,6 @@ bool set_bank_integer(Bank *bank, int value);
 bool set_bank_float(Bank *bank, float value);
 bool set_bank_string(Bank *bank, char *value);
 bool set_bank_array(Bank *bank);
+char *get_bank_as_string(Bank *bank);
 
 #endif

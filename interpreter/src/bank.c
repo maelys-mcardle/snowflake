@@ -101,3 +101,52 @@ bool set_bank_array(Bank *bank)
     bank->value.array.items = NULL;
     return true;
 }
+
+char *get_bank_as_string(Bank *bank)
+{
+    char *output_string = NULL;
+
+    if (bank != NULL)
+    {
+        int output_string_size = MAX_PARAMETER_SIZE;
+        output_string = malloc(output_string_size);
+        int actual_size = 0;
+
+        if (output_string == NULL)
+        {
+            log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+        }
+        else
+        {
+            if (bank->type == TYPE_INTEGER)
+            {
+                actual_size = snprintf(output_string, output_string_size, 
+                    "%i", bank->value.integer);
+            }
+            else if (bank->type == TYPE_BOOLEAN)
+            {
+                actual_size = snprintf(output_string, output_string_size, 
+                    "%s", bank->value.boolean ? "true" : "false");
+            }
+            else if (bank->type == TYPE_FLOAT)
+            {
+                actual_size = snprintf(output_string, output_string_size, 
+                    "%f", bank->value.floating);
+            }
+            else if (bank->type == TYPE_STRING)
+            {
+                actual_size = snprintf(output_string, output_string_size, 
+                    "%s", bank->value.string);
+            }
+            else if (bank->type == TYPE_ARRAY)
+            {
+                actual_size = snprintf(output_string, output_string_size, 
+                    "(Array)");
+            }
+
+            output_string = realloc(output_string, actual_size);
+        }
+    }
+
+    return output_string;
+}
