@@ -5,5 +5,6 @@
 #include "instructions.h"
 
 bool instruction_output(Program *program, Instruction *instruction, int *instruction_pointer);
+bool instruction_input(Program *program, Instruction *instruction, int *instruction_pointer);
 
 #endif
