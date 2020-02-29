@@ -88,3 +88,22 @@ bool instruction_input(Program *program, Instruction *instruction, int *instruct
     *instruction_pointer += 1;
     return instruction_ok;
 }
+
+bool instruction_delete(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    Bank *bank = get_program_bank_from_first_parameter(program, instruction);
+    bool instruction_ok = true;
+
+    if (bank == NULL)
+    {
+        log_debug("Asked to delete unallocated bank.\n");
+    }
+    else
+    {
+        log_debug("Deleting Bank %02i.\n", bank->identifier);
+        // TODO: DELETE BANK FROM PROGRAM
+    }
+    
+    *instruction_pointer += 1;
+    return instruction_ok;
+}

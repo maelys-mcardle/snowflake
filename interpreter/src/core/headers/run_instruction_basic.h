@@ -7,5 +7,6 @@
 bool instruction_noop(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_output(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_input(Program *program, Instruction *instruction, int *instruction_pointer);
+bool instruction_delete(Program *program, Instruction *instruction, int *instruction_pointer);
 
 #endif
