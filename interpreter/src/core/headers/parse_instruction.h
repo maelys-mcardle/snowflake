@@ -14,7 +14,7 @@ bool parse_instruction(Program *program, char *line, int max_line_length);
 bool parse_instruction_from_line(Instruction *instruction, char *line, int max_line_length);
 bool store_parameter(bool is_literal, char *parameter_string, int max_parameter_size, ParameterValue *parameter_value);
 bool discard_comment(char *line, int max_line_length);
-int extract_instruction(char *line, int max_line_length, short *instruction);
+int extract_instruction(char *line, int max_line_length, InstructionCode *instruction);
 int extract_parameter(char *line, int max_line_length, int start,
     ParameterType parameter_type, ParameterValue *parameter_value, 
     bool *parameter_missing);

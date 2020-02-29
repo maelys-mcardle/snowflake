@@ -243,7 +243,7 @@ bool discard_comment(char *line, int max_line_length)
 /* Extracts the instruction from the line.
  * @return the last character with the position.
  */
-int extract_instruction(char *line, int max_line_length, short *instruction)
+int extract_instruction(char *line, int max_line_length, InstructionCode *instruction)
 {
     int index = 0;
     char max_instruction_size = MAX_INSTRUCTION_SIZE;

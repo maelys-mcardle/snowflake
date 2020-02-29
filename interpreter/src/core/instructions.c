@@ -56,7 +56,7 @@ Device get_device_from_instruction(Instruction *instruction)
     return device;
 }
 
-InstructionInfo get_instruction_info(short instruction, bool *exists)
+InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
 {
     InstructionInfo info;
 
