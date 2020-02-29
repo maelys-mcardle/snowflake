@@ -10,7 +10,7 @@ bool send_to_device(Device device, char *string)
     switch (device)
     {
         case DEVICE_OUT:
-            print("%s\n", string);
+            send_to_output(string);
             ok = true;
             break;
         case DEVICE_IN:
@@ -18,7 +18,7 @@ bool send_to_device(Device device, char *string)
             ok = false;
             break;
         case DEVICE_PRT:
-            print("(Printer) %s\n", string);
+            send_to_output(string);
             ok = true;
             break;
         case DEVICE_BTN:

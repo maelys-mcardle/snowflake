@@ -25,7 +25,7 @@ void print_program(Program *program)
 void print_instruction(Program *program, Instruction *instruction)
 {
     // Print mnemonic.
-    print("%c%c%c ",
+    print_code("%c%c%c ",
         instruction->info.mnemonic[0],
         instruction->info.mnemonic[1],
         instruction->info.mnemonic[2]);
@@ -40,7 +40,7 @@ void print_instruction(Program *program, Instruction *instruction)
     // Print the space that separates the parameter.
     if (has_parameter)
     {
-        print(" ");
+        print_code(" ");
     }
 
     // Print second parameter.
@@ -51,7 +51,7 @@ void print_instruction(Program *program, Instruction *instruction)
         instruction->parameters.second);
 
     // Print end of line.
-    print("\n");
+    print_code("\n");
 }
 
 /* Prints a parameter, if one is defined.
@@ -74,7 +74,7 @@ bool print_parameter(Program *program, short current_instruction, ParameterType 
         case PARAMETER_LITERAL:
             if (value.string != NULL)
             {
-                print("%s", value.string);
+                print_code("%s", value.string);
                 return true;
             }
             return false;
@@ -93,14 +93,14 @@ void print_identifier(Program *program, short current_instruction, short naming_
         char *identifier_name = get_name(program, naming_instruction, target_identifier);
         if (identifier_name != NULL)
         {
-            print("%s", identifier_name);
+            print_code("%s", identifier_name);
             found_name = true;
         }
     }
 
     if (!found_name)
     {
-        print(format, target_identifier);
+        print_code(format, target_identifier);
     }
 }
 
@@ -127,16 +127,16 @@ bool print_device(int device)
     switch (device)
     {
         case DEVICE_OUT:
-            print(DEVICE_OUT_STRING);
+            print_code(DEVICE_OUT_STRING);
             return true;
         case DEVICE_IN:
-            print(DEVICE_IN_STRING);
+            print_code(DEVICE_IN_STRING);
             return true;
         case DEVICE_PRT:
-            print(DEVICE_PRT_STRING);
+            print_code(DEVICE_PRT_STRING);
             return true;
         case DEVICE_BTN:
-            print(DEVICE_BTN_STRING);
+            print_code(DEVICE_BTN_STRING);
             return true;
         default:
             return false;

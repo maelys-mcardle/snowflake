@@ -74,7 +74,7 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
     {
         {"file", required_argument, 0, 'f'},
         {"debug", no_argument, 0, 'd'},
-        {"show-code", no_argument, 0, 's'},
+        {"print", no_argument, 0, 'p'},
         {"run", no_argument, 0, 'r'},
         {0, 0, 0, 0}
     };
@@ -99,7 +99,7 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
                 enable_debug_mode();
                 break;
             
-            case 's':
+            case 'p':
                 *print_code = true;
                 break;
             
