@@ -4,6 +4,7 @@
 #include "program.h"
 #include "instructions.h"
 
+bool instruction_noop(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_output(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_input(Program *program, Instruction *instruction, int *instruction_pointer);
 

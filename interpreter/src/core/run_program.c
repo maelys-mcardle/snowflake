@@ -38,8 +38,7 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         case INSTRUCTION_COMMENT:
         case INSTRUCTION_LABEL:
         case INSTRUCTION_NAME_BANK:
-            // no-op.
-            *instruction_pointer += 1;
+            instruction_ok = instruction_noop(program, instruction, instruction_pointer);
             break;
         case INSTRUCTION_OUTPUT:
             instruction_ok = instruction_output(program, instruction, instruction_pointer);

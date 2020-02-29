@@ -6,6 +6,14 @@
 #include "headers/devices.h"
 #include "headers/errors.h"
 
+bool instruction_noop(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    bool instruction_ok = true;
+    log_debug("No-op instruction.\n");
+    *instruction_pointer += 1;
+    return instruction_ok;
+}
+
 bool instruction_output(Program *program, Instruction *instruction, int *instruction_pointer)
 {
     Bank *bank = get_program_bank_from_second_parameter(program, instruction);
