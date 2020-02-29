@@ -41,24 +41,15 @@ bool instruction_boolean(Program *program, Instruction *instruction, int *instru
     // Boolean is valid.
     if (is_boolean)
     {
-        // Create a bank.
-        Bank *bank = new_bank_from_first_parameter(instruction);
+        // Create a bank if it doesn't exist.
+        Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
 
         // Set the boolean for the bank.
         if (bank != NULL && 
             set_bank_boolean(bank, boolean_value))
         {   
-            // Append the bank to the program.
-            // If it failed, free the memory allocated.
-            if (!append_bank_to_program(program, bank))
-            {
-                free_bank(bank);
-            }
-            else
-            {
-                log_debug("Set bank %02i as boolean value %s\n", 
-                    bank->identifier, boolean_value ? "true" : "false");
-            }
+            log_debug("Set bank %02i as boolean value %s\n", 
+                bank->identifier, boolean_value ? "true" : "false");
         }
     }
     else
@@ -83,24 +74,15 @@ bool instruction_integer(Program *program, Instruction *instruction, int *instru
     // Integer is valid.
     if (is_integer)
     {
-        // Create a bank.
-        Bank *bank = new_bank_from_first_parameter(instruction);
+        // Create a bank if it doesn't exist.
+        Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
 
         // Set the integer for the bank.
         if (bank != NULL && 
             set_bank_integer(bank, integer_value))
         {   
-            // Append the bank to the program.
-            // If it failed, free the memory allocated.
-            if (!append_bank_to_program(program, bank))
-            {
-                free_bank(bank);
-            }
-            else
-            {
-                log_debug("Set bank %02i as integer value %i\n", 
-                    bank->identifier, integer_value);
-            }
+            log_debug("Set bank %02i as integer value %i\n", 
+                bank->identifier, integer_value);
         }
     }
     else
@@ -125,24 +107,15 @@ bool instruction_float(Program *program, Instruction *instruction, int *instruct
     // Float is valid.
     if (is_float)
     {
-        // Create a bank.
-        Bank *bank = new_bank_from_first_parameter(instruction);
+        // Create a bank if it doesn't exist.
+        Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
 
         // Set the float for the bank.
         if (bank != NULL && 
             set_bank_float(bank, float_value))
         {   
-            // Append the bank to the program.
-            // If it failed, free the memory allocated.
-            if (!append_bank_to_program(program, bank))
-            {
-                free_bank(bank);
-            }
-            else
-            {
-                log_debug("Set bank %02i as float value %f\n", 
-                    bank->identifier, float_value);
-            }
+            log_debug("Set bank %02i as float value %f\n", 
+                bank->identifier, float_value);
         }
     }
     else
@@ -160,24 +133,15 @@ bool instruction_string(Program *program, Instruction *instruction, int *instruc
 {
     char *string = instruction->parameters.second.string;
 
-    // Create a bank.
-    Bank *bank = new_bank_from_first_parameter(instruction);
+    // Create a bank if it doesn't exist.
+    Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
 
     // Set the strubg for the bank.
     if (bank != NULL && 
         set_bank_string(bank, string))
     {   
-        // Append the bank to the program.
-        // If it failed, free the memory allocated.
-        if (!append_bank_to_program(program, bank))
-        {
-            free_bank(bank);
-        }
-        else
-        {
-            log_debug("Set bank %02i as string value '%s'\n", 
-                bank->identifier, string);
-        }
+        log_debug("Set bank %02i as string value '%s'\n", 
+            bank->identifier, string);
     }
 
     *instruction_pointer += 1;

@@ -30,5 +30,7 @@ Bank *get_program_bank_from_first_parameter(Program *program, Instruction *instr
 Bank *get_program_bank_from_second_parameter(Program *program, Instruction *instruction);
 Bank *new_bank_from_first_parameter(Instruction *instruction);
 Bank *new_bank_from_second_parameter(Instruction *instruction);
+Bank *get_or_new_bank_from_first_parameter(Program *program, Instruction *instruction);
+Bank *get_or_new_bank_from_second_parameter(Program *program, Instruction *instruction);
 
 #endif

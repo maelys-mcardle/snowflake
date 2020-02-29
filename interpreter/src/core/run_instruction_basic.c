@@ -32,12 +32,7 @@ bool instruction_output(Program *program, Instruction *instruction, int *instruc
 bool instruction_input(Program *program, Instruction *instruction, int *instruction_pointer)
 {
     // Get the bank. If it doesn't exist, create it.
-    Bank *bank = get_program_bank_from_second_parameter(program, instruction);
-    if (bank == NULL)
-    {
-        bank = new_bank_from_second_parameter(instruction);
-        append_bank_to_program(program, bank);
-    }
+    Bank *bank = get_or_new_bank_from_second_parameter(program, instruction);
 
     // Get the device.
     Device device = get_device_from_instruction(instruction);

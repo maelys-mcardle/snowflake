@@ -162,3 +162,33 @@ Bank *new_bank_from_second_parameter(Instruction *instruction)
     Bank *bank = new_bank(identifier);
     return bank;
 }
+
+Bank *get_or_new_bank_from_first_parameter(Program *program, Instruction *instruction)
+{
+    Bank *bank = get_program_bank_from_first_parameter(program, instruction);
+    if (bank == NULL)
+    {
+        bank = new_bank_from_first_parameter(instruction);
+        if (!append_bank_to_program(program, bank))
+        {
+            free_bank(bank);
+        }
+    }
+
+    return bank;
+}
+
+Bank *get_or_new_bank_from_second_parameter(Program *program, Instruction *instruction)
+{
+    Bank *bank = get_program_bank_from_second_parameter(program, instruction);
+    if (bank == NULL)
+    {
+        bank = new_bank_from_second_parameter(instruction);
+        if (!append_bank_to_program(program, bank))
+        {
+            free_bank(bank);
+        }
+    }
+
+    return bank;
+}
