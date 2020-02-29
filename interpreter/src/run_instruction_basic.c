@@ -21,7 +21,6 @@ bool instruction_output(Program *program, Instruction *instruction, int *instruc
     return instruction_ok;
 }
 
-
 bool instruction_input(Program *program, Instruction *instruction, int *instruction_pointer)
 {
     Bank *bank = get_program_bank_from_second_parameter(program, instruction);
