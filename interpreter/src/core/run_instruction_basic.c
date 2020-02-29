@@ -31,7 +31,7 @@ bool instruction_input(Program *program, Instruction *instruction, int *instruct
     Device device = get_device_from_instruction(instruction);
     bool instruction_ok = false;
 
-    char *input = receive_from_device(device, &instruction_ok);
+    //char *input = receive_from_device(device, &instruction_ok);
 
     // Replace contents of target bank with new string.
     // Create bank if it doesn't exist. get_program_bank should create it

@@ -15,6 +15,6 @@ typedef enum {
 } Device;
 
 bool send_to_device(Device device, char *string);
-char *receive_from_device(Device device, bool *ok);
+bool receive_from_device(Device device, int *string_size, char **string);
 
 #endif
