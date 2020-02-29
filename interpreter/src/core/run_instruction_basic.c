@@ -21,7 +21,6 @@ bool instruction_output(Program *program, Instruction *instruction, int *instruc
         instruction_ok = send_to_device(device, "(Empty)");
     }
     
-    
     *instruction_pointer += 1;
     return instruction_ok;
 }

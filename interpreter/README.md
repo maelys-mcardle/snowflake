@@ -10,14 +10,16 @@ for devices with a numeric keypad for input.
 [3]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 [4]: https://en.wikipedia.org/wiki/GNU_C_Library
 
-## Compile
+## Running the Interpreter
+
+### Compile
 
 To compile the interpreter, run the command:
 ```
 make
 ```
 
-## Run
+### Run
 
 To run a Snowflake program, execute:
 ```
@@ -35,7 +37,7 @@ information about how the interpreter understood the code, and what it was runni
 ./snowflake --file your-code-file.sn --print --run --debug
 ```
 
-## Clean
+### Clean
 
 To delete files created during compilation, run the command:
 ```
