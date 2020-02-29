@@ -4,16 +4,18 @@
 
 bool send_to_device(Device device, char *string)
 {
+    log_debug("Sending '%s' to Device %02i\n", string, device);
+
     bool ok = false;
     switch (device)
     {
-        case DEVICE_IN:
-            log_error(ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_OUTPUT, device);
-            ok = false;
-            break;
         case DEVICE_OUT:
             print("%s\n", string);
             ok = true;
+            break;
+        case DEVICE_IN:
+            log_error(ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_OUTPUT, device);
+            ok = false;
             break;
         case DEVICE_PRT:
             print("(Printer) %s\n", string);
@@ -34,5 +36,6 @@ bool send_to_device(Device device, char *string)
 
 char *receive_from_device(Device device, bool *ok)
 {
+    log_debug("Listening to Device %02i\n", device);
     return NULL;
 }

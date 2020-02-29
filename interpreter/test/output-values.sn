@@ -1,0 +1,18 @@
+;;
+;; This is a test file, used to check that the Snowflake
+;; interpreter is able to process files correctly.
+;;
+
+10 00 ABC   ;; Store "ABC" to Bank 00
+11 01 0     ;; Store Boolean False to Bank 01
+11 02 1     ;; Store Boolean True to Bank 02
+12 03 123   ;; Store Integer 123 to Bank 03
+13 04 0.5   ;; Store Float 0.5 to Bank 04
+14 05 DEF   ;; Store String "DEF" to Bank 05
+
+03 00 00    ;; Output the contents of Bank 00
+03 00 01    ;; Output the contents of Bank 01
+03 00 02    ;; Output the contents of Bank 02
+03 00 03    ;; Output the contents of Bank 03
+03 00 04    ;; Output the contents of Bank 04
+03 00 05    ;; Output the contents of Bank 05

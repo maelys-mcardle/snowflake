@@ -6,7 +6,7 @@
 
 bool instruction_output(Program *program, Instruction *instruction, int *instruction_pointer)
 {
-    Bank *bank = get_program_bank_from_first_parameter(program, instruction);
+    Bank *bank = get_program_bank_from_second_parameter(program, instruction);
     char *bank_string_value = get_bank_as_string(bank);
     Device device = get_device_from_instruction(instruction);
 
