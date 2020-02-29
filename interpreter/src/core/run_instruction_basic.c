@@ -15,6 +15,7 @@ bool instruction_output(Program *program, Instruction *instruction, int *instruc
 
     if (bank_string_value != NULL)
     {
+        log_debug("Sending Bank %02i (value: '%s') to Device %02i\n", bank->identifier, bank_string_value, device);
         instruction_ok = send_to_device(device, bank_string_value);
         free(bank_string_value);
     }
@@ -29,15 +30,18 @@ bool instruction_output(Program *program, Instruction *instruction, int *instruc
 
 bool instruction_input(Program *program, Instruction *instruction, int *instruction_pointer)
 {
+    // Get the bank. If it doesn't exist, create it.
     Bank *bank = get_program_bank_from_second_parameter(program, instruction);
-    Device device = get_device_from_instruction(instruction);
-    bool instruction_ok = false;
-
     if (bank == NULL)
     {
         bank = new_bank_from_second_parameter(instruction);
     }
 
+    // Get the device.
+    Device device = get_device_from_instruction(instruction);
+    bool instruction_ok = false;
+
+    // Get the input.
     if (bank != NULL)
     {
         char *string = NULL;
@@ -56,6 +60,7 @@ bool instruction_input(Program *program, Instruction *instruction, int *instruct
                 instruction_ok = get_input(&string_size, &string);
                 if (instruction_ok)
                 {
+                    log_debug("Setting '%s' to Bank %02i\n", string, bank->identifier);
                     set_bank_string(bank, string);
                 }
                 break;
@@ -65,6 +70,7 @@ bool instruction_input(Program *program, Instruction *instruction, int *instruct
                 break;
             case DEVICE_BTN:
                 instruction_ok = get_button(&button_code);
+                log_debug("Setting '%i' to Bank %02i\n", button_code, bank->identifier);
                 set_bank_integer(bank, button_code);
                 break;
             default:

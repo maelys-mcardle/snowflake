@@ -5,6 +5,7 @@
 #include "headers/errors.h"
 #include "headers/output.h"
 #include "headers/instructions.h"
+#include "headers/string.h"
 #include "headers/type_conversion.h"
 
 /* Parses the line, and if its a valid instruction, appends it to the program. */
@@ -64,7 +65,7 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
     //
 
     // Remove comments from the line.
-    discard_comment(line, max_line_length);
+    strip_comment(line, max_line_length);
 
     // Load the instruction.
     //  * The instruction is extracted from the line of text.
@@ -196,50 +197,6 @@ bool store_parameter(bool is_literal, char *parameter_string, int max_parameter_
     return false;
 }
 
-/* Discards the comment on the line. 
- * @return true if comment was removed, false otherwise.
- */
-bool discard_comment(char *line, int max_line_length)
-{
-    bool last_char_is_semicolon = false;
-
-    // Remove anything that follows the ";;"
-    for (int index = 0; index < max_line_length; index++)
-    {
-        char character = line[index];
-
-        // Stop at newline or break.
-        if (is_string_end(character))
-        {
-            return false;
-        }
-
-        // Second ";" found.
-        else if (character == CHAR_COMMENT &&
-            last_char_is_semicolon)
-        {
-
-            // Set end the line here.
-            line[index-1] = CHAR_END_STRING;
-            return true;
-        }
-
-        // First ";" found.
-        else if (character == CHAR_COMMENT)
-        {
-            last_char_is_semicolon = true;
-        }
-
-        // Any other character found.
-        else
-        {
-            last_char_is_semicolon = false;
-        }
-    }
-
-    return false;
-}
-
 /* Extracts the instruction from the line.
  * @return the last character with the position.
  */
@@ -337,65 +294,4 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
     }        
 
     return index;
-}
-
-bool strip_end_whitespace(char *string, int max_string_length)
-{
-    int index = 0;
-    int whitespace_start = 0;
-    int last_non_whitespace_character = -1;
-
-    // Find the last non-whitespace character.
-    for (index; index < max_string_length; index++)
-    {
-        char character = string[index];
-        if (character == CHAR_END_STRING)
-        {
-            break;
-        }
-        else if (!is_whitespace(character))
-        {
-            last_non_whitespace_character = index;
-        }
-    }
-
-    // Whitespace removed.
-    if (last_non_whitespace_character == -1 && max_string_length > 0)
-    {
-        string[0] = CHAR_END_STRING;
-        return true;
-    }
-    else if (last_non_whitespace_character + 1 < index)
-    {
-        string[last_non_whitespace_character + 1] = CHAR_END_STRING;
-        return true;
-    }
-
-    // No whitespace removed.
-    return false;
-}
-
-bool is_whitespace(char character)
-{
-    switch (character)
-    {
-        case CHAR_NEWLINE:
-        case CHAR_SPACE:
-        case CHAR_TAB:
-            return true;
-        default:
-            return false;
-    }
-}
-
-bool is_string_end(char character)
-{
-    switch (character)
-    {
-        case CHAR_NEWLINE:
-        case CHAR_END_STRING:
-            return true;
-        default:
-            return false;
-    } 
 }

@@ -45,6 +45,8 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             instruction_ok = instruction_output(program, instruction, instruction_pointer);
             break;
         case INSTRUCTION_INPUT:
+            instruction_ok = instruction_input(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_COPY:
         case INSTRUCTION_DELETE:
         case INSTRUCTION_TYPE:

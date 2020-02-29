@@ -4,6 +4,7 @@
 #include "../core/headers/parse_instruction.h"
 #include "../core/headers/errors.h"
 #include "../core/headers/output.h"
+#include "../core/headers/string.h"
 
 /* Process a snowflake file. */
 int parse_snowflake_file(Program *program, const char *filename)

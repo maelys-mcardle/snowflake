@@ -5,8 +5,6 @@
 
 bool send_to_device(Device device, char *string)
 {
-    log_debug("Sending '%s' to Device %02i\n", string, device);
-
     bool ok = false;
     switch (device)
     {
