@@ -100,8 +100,8 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         default:
             log_error(ERROR_MESG_UNRECOGNIZED_INSTRUCTION, 
                 instruction->instruction);
+            instruction_noop(program, instruction, instruction_pointer);
             instruction_ok = false;
-            *instruction_pointer += 1;
             break;
     }
 

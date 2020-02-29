@@ -88,6 +88,34 @@ bool set_program_bank(Program *program, Bank *bank)
     }
 }
 
+bool remove_program_bank(Program *program, short identifier)
+{
+    // Get the existing index of the bank, if it's set.
+    int bank_index = get_program_bank_index(program, identifier);
+
+    if (bank_index == -1) 
+    {
+        // Bank index doesn't exist. Nothing to delete.
+        return true;
+    }
+    else
+    {
+        // Bank index exists. Delete bank.
+        free_bank(program->banks.banks[bank_index]);
+
+        // Shift all the bank indices above down by one.
+        int end = program->banks.count;
+        for (int remaining_index = bank_index; remaining_index < end - 1; remaining_index++)
+        {
+            program->banks.banks[remaining_index] = 
+                program->banks.banks[remaining_index + 1];
+        }
+
+        bool resize_ok = resize_bank_array(program, end - 1);
+        return resize_ok;
+    }
+}
+
 Bank *get_program_bank_from_first_parameter(Program *program, Instruction *instruction)
 {
     short target_identifier = instruction->parameters.first.integer;
@@ -129,6 +157,19 @@ int get_program_bank_index(Program *program, short target_identifier)
 bool append_bank_to_program(Program *program, Bank *bank)
 {
     int new_count = program->banks.count + 1;
+    bool resize_ok = resize_bank_array(program, new_count);
+
+    if (resize_ok)
+    {
+        int last_item = new_count - 1;
+        program->banks.banks[last_item] = bank;
+    }
+
+    return resize_ok;
+}
+
+bool resize_bank_array(Program *program, int new_count)
+{
     int new_array_size = sizeof(Bank *) * new_count;
     Bank** new_array = (Bank**) realloc(
         program->banks.banks, 
@@ -136,10 +177,8 @@ bool append_bank_to_program(Program *program, Bank *bank)
 
     if (new_array != NULL)
     {
-        int last_item = new_count - 1;
         program->banks.banks = new_array;
         program->banks.count = new_count;
-        program->banks.banks[last_item] = bank;
         return true;
     }
     else

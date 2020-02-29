@@ -101,7 +101,7 @@ bool instruction_delete(Program *program, Instruction *instruction, int *instruc
     else
     {
         log_debug("Deleting Bank %02i.\n", bank->identifier);
-        // TODO: DELETE BANK FROM PROGRAM
+        instruction_ok = remove_program_bank(program, bank->identifier);
     }
     
     *instruction_pointer += 1;
