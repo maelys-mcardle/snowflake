@@ -28,5 +28,7 @@ int get_program_bank_index(Program *program, short identifier);
 Bank *get_program_bank(Program *program, short target_identifier);
 Bank *get_program_bank_from_first_parameter(Program *program, Instruction *instruction);
 Bank *get_program_bank_from_second_parameter(Program *program, Instruction *instruction);
+Bank *new_bank_from_first_parameter(Instruction *instruction);
+Bank *new_bank_from_second_parameter(Instruction *instruction);
 
 #endif

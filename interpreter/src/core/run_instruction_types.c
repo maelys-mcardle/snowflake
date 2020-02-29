@@ -6,13 +6,6 @@
 #include "headers/bank.h"
 #include "headers/errors.h"
 
-Bank *new_bank_with_identifier(Instruction *instruction)
-{
-    int identifier = instruction->parameters.first.integer;
-    Bank *bank = new_bank(identifier);
-    return bank;
-}
-
 /* Stores a variable in a bank; type is inferred.
  * VAR BANK LITERAL 
  */
@@ -49,7 +42,7 @@ bool instruction_boolean(Program *program, Instruction *instruction, int *instru
     if (is_boolean)
     {
         // Create a bank.
-        Bank *bank = new_bank_with_identifier(instruction);
+        Bank *bank = new_bank_from_first_parameter(instruction);
 
         // Set the boolean for the bank.
         if (bank != NULL && 
@@ -91,7 +84,7 @@ bool instruction_integer(Program *program, Instruction *instruction, int *instru
     if (is_integer)
     {
         // Create a bank.
-        Bank *bank = new_bank_with_identifier(instruction);
+        Bank *bank = new_bank_from_first_parameter(instruction);
 
         // Set the integer for the bank.
         if (bank != NULL && 
@@ -133,7 +126,7 @@ bool instruction_float(Program *program, Instruction *instruction, int *instruct
     if (is_float)
     {
         // Create a bank.
-        Bank *bank = new_bank_with_identifier(instruction);
+        Bank *bank = new_bank_from_first_parameter(instruction);
 
         // Set the float for the bank.
         if (bank != NULL && 
@@ -168,7 +161,7 @@ bool instruction_string(Program *program, Instruction *instruction, int *instruc
     char *string = instruction->parameters.second.string;
 
     // Create a bank.
-    Bank *bank = new_bank_with_identifier(instruction);
+    Bank *bank = new_bank_from_first_parameter(instruction);
 
     // Set the strubg for the bank.
     if (bank != NULL && 

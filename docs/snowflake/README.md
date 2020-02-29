@@ -154,9 +154,13 @@ VALUE   MEANING
 DEVICE  MNEMONIC  DESCRIPTION 
 ------  --------  -----------
 00      OUT       Default output device (LCD Display)
+                  Accepts any value type.
 01       IN       Default input device (Input from Keyboard)
+                  Stores value as string.
 02      PRT       Thermal Printer
+                  Accepts any value type.
 03      BTN       Button Press
+                  Stores value as integer.
 ```
 
 **The difference between `IN` and `BTN`:** `IN` stores the input to a BANK after the `OK` button is pressed. This can contain multiple characters. The `BTN` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed. When this instruction is used, only the `RUN/STOP` button will stop execution.

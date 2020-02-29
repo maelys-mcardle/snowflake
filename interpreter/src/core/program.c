@@ -148,3 +148,17 @@ bool append_bank_to_program(Program *program, Bank *bank)
         return false;
     }
 }
+
+Bank *new_bank_from_first_parameter(Instruction *instruction)
+{
+    int identifier = instruction->parameters.first.integer;
+    Bank *bank = new_bank(identifier);
+    return bank;
+}
+
+Bank *new_bank_from_second_parameter(Instruction *instruction)
+{
+    int identifier = instruction->parameters.second.integer;
+    Bank *bank = new_bank(identifier);
+    return bank;
+}

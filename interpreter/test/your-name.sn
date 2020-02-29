@@ -1,0 +1,9 @@
+00 YOUR NAME    ;; "Your Name" Program
+02 00 MSG       ;; Name Bank 00 "MSG"
+02 01 NAME      ;; Name Bank 01 "NAME"
+14 00 WHAT IS YOUR NAME? ;; Stores "What is your name" in Bank "MSG"
+03 00 00        ;; Shows "What is your name?"
+04 01 01        ;; User enters their name in Bank "NAME"
+14 00 YOUR NAME IS ;; Stores "Your name is" in BANK "MSG"
+03 00 00        ;; Shows "Your name is"
+03 00 01        ;; Shows the value in bank "NAME"
