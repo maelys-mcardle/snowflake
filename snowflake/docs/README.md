@@ -21,11 +21,12 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
 01   ###        LABEL  [LITERAL] A label. 
                                  Labels are positive integers.
                                  Names are optional. They are strings when defined.
-                                 Individual labels should only be assigned once.
+                                 Labels and their names should be unique.
+                                 Re-defining a label is undefined behaviour.
 02              BANK    LITERAL  Assign a name to a BANK. 
                                  Banks are positive integers.
                                  Names are strings.
-                                 Banks should not be renamed.
+                                 Re-defining a bank is undefined behaviour.
 03    <<        DEVICE  BANK     Ouput to LCD / Printer / etc, as defined by DEVICE.
                                  Each invocation of OUT is on its own new line.
                                  Devices are positive integers.
@@ -34,6 +35,7 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
                                  Devices are positive integers.
 05     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
                                  This also converts BANK2 into the type set for BANK1.
+                                 If BANK1 is undefined, it takes on the type of BANK2.
 06   DEL        BANK             Deletes all data associated with BANK.
 07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
 ```
