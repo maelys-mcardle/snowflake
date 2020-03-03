@@ -11,7 +11,7 @@ This programming language is designed to mimic assembly, to act as a stepping st
 
 ### Instruction Set
 
-Below is the full instruction set supported by Snowflake. There are different types of values: `LITERAL`, `LABEL`, `BANK`, and 'DEVICE'. A value between square brackets, such as `[LITERAL]`, indicates that this value is optional.
+Below is the full instruction set supported by Snowflake. There are different types of values: `LITERAL`, `LABEL`, `BANK`, and `DEVICE`. A value between square brackets, such as `[LITERAL]`, indicates that this value is optional.
 
 ```
 BASIC
