@@ -37,9 +37,10 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
                                  Devices are positive integers.
 05     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
                                  BANK1 takes on the type of BANK2.
-06   DEL        BANK             Deletes all data associated with BANK.
+06    TO        TYPE    BANK     Converts BANK to the type set by TYPE.
 07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
-08    TO        TYPE    BANK     Converts BANK to the type set by TYPE.
+08   DEL        BANK             Deletes all data associated with BANK.
+
 ```
 
 ```
