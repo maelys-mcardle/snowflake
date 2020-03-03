@@ -36,10 +36,10 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
                                  The value is stored in the BANK after the OK key is pressed.
                                  Devices are positive integers.
 05     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
-                                 This also converts BANK2 into the type set for BANK1.
-                                 If BANK1 is undefined, it takes on the type of BANK2.
+                                 BANK1 takes on the type of BANK2.
 06   DEL        BANK             Deletes all data associated with BANK.
 07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1. Type is codes 11-15 below.
+08    TO        TYPE    BANK     Converts BANK to the type set by TYPE.
 ```
 
 ```
