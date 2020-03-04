@@ -8,9 +8,10 @@
 02 01 ADULT         ;; Name Bank 01 "ADULT"
 02 02 AGE           ;; Name Bank 02 "AGE"
 14 00 HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 01 00 MSG
-12 01 18            ;; Store 18 (age of adulthood) in Bank 01  
+12 01 18            ;; Store 18 (age of adulthood) in Bank 01
 03 00 00            ;; Display the message "HOW OLD ARE YOU"
 04 01 02            ;; Store the button input in Bank 02 (your age)
+06 12 02            ;; Converts the user-input to an integer.
 25 02 01            ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
 20 01               ;; ...Jump to label 01.
 20 00               ;; ...Otherwise jump to label 00.
