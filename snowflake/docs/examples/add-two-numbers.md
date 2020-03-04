@@ -6,8 +6,10 @@ Here's a basic program that adds two numbers, as entered by the user:
 10 00 ENTER NUMBER ;; Store string "ENTER NUMBER" in Bank 00
 03 00 00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
 04 01 01           ;; Store the button presses to Bank 01
+06 12 01           ;; Converts the user-input to an integer.
 03 00 00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
 04 01 02           ;; Store the button presses to Bank 02
+06 12 02           ;; Converts the user-input to an integer.
 30 01 02           ;; Add Bank 02 to Bank 01
 03 00 01           ;; Output the contents of Bank 01 (the sum of the addition)
 ```
@@ -18,8 +20,10 @@ The interpreter would replace the above with mnemonics as the user typed:
 VAR @00 ENTER NUMBER  ;; Store string "ENTER NUMBER" in Bank 00
  << OUT @00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >>  IN @01           ;; Store the button presses to Bank 01
+ TO INT @01           ;; Converts the user-input to an integer.
  << OUT @00           ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >>  IN @02           ;; Store the button presses to Bank 02
+ TO INT @02           ;; Converts the user-input to an integer.
   + @01 @02           ;; Add Bank 02 to Bank 01
  << OUT @01           ;; Output the contents of Bank 01 (the sum of the addition)
 ```
@@ -36,8 +40,10 @@ Banks can also be given names, for readability:
 10 00 ENTER NUMBER  ;; Store string "ENTER NUMBER" in MSG
 03 00 00            ;; Output the contents of MSG to the LCD ("ENTER NUMBER")
 04 01 01            ;; Store the button presses to A
+06 12 01            ;; Converts the user-input to an integer.
 03 00 00            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
 04 01 02            ;; Store the button presses to B
+06 12 02            ;; Converts the user-input to an integer.
 30 01 02            ;; Add B to A
 03 00 01            ;; Output the contents of A (the sum of the addition)
 ```
@@ -52,8 +58,10 @@ The interpreter would replace the above with mnemonics as the user typed:
 VAR MSG ENTER NUMBER   ;; Store string "ENTER NUMBER" in MSG
  << OUT MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >>  IN A              ;; Store the button presses to Bank 01
+ TO INT A              ;; Converts the user-input to an integer.
  << OUT MSG            ;; Output the contents of Bank 00 to the LCD ("ENTER NUMBER")
  >>  IN B              ;; Store the button presses to Bank 02
+ TO INT B              ;; Converts the user-input to an integer.
   + A B                ;; Add Bank 02 to Bank 01
  << OUT A              ;; Output the contents of Bank 01 (the sum of the addition)
 ```
