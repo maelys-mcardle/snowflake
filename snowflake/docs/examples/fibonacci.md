@@ -4,6 +4,7 @@ The following calculates the Fibonacci Sequence up to a user-defined number.
 
 ```
 04 01 00  ;; User enters MAX. Stored in Bank 00.
+06 12 00  ;; Converts the user-input to an integer.
 12 01 01  ;; CURRENT NUMBER (Bank 01) is set to 1.
 12 02 01  ;; LAST NUMBER (Bank 02) is set to 1.
 01 00     ;; Start of loop
@@ -22,6 +23,7 @@ The interpreter would replace the above with mnemonics as the user typed:
 
 ```
  >>  IN @00  ;; User enters MAX. Stored in Bank 00.
+ TO INT @00  ;; Converts the user-input to an integer.
 INT @01 01   ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT @02 01   ;; LAST NUMBER (Bank 02) is set to 1.
 ### :00      ;; Start of loop
@@ -44,6 +46,7 @@ This code is a little confusing to look at. Naming banks and labels would bring 
 01 02 LAST    ;; Name Bank 02 "LAST"
 01 03 SUM     ;; Name Bank 03 "SUM"
 03 01 00      ;; User enters MAX. Stored in Bank 00.
+06 12 00      ;; Converts the user-input to an integer.
 12 01 01      ;; CURRENT NUMBER (Bank 01) is set to 1.
 12 02 01      ;; LAST NUMBER (Bank 02) is set to 1.
 00 00 START   ;; Start of loop
@@ -66,6 +69,7 @@ This code is a little confusing to look at. Naming banks and labels would bring 
     @02 LAST            ;; Name Bank 02 "LAST"
     @03 SUM             ;; Name Bank 03 "SUM"
  >>  IN MAX             ;; User enters MAX. Stored in Bank 00.
+ TO INT MAX             ;; Converts the user-input to an integer.
 INT CURRENT 01          ;; CURRENT NUMBER (Bank 01) is set to 1.
 INT LAST 01             ;; LAST NUMBER (Bank 02) is set to 1.
 ### :00 START           ;; Start of loop
