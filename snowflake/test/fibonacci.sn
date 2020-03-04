@@ -4,6 +4,7 @@
 ;;
 
 04 01 00  ;; User enters MAX. Stored in Bank 00.
+06 12 00  ;; Converts the user-input to an integer.
 12 01 01  ;; CURRENT NUMBER (Bank 01) is set to 1.
 12 02 01  ;; LAST NUMBER (Bank 02) is set to 1.
 01 00     ;; Start of loop
