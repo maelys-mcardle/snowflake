@@ -5,7 +5,7 @@ for devices with a numeric keypad for input.
 
 **Compilation requires [make][2], a C compiler with [c11][3] support, as well as [glibc][4].**
 
-[1]: https://github.com/maelys-mcardle/microprocessor-trainer/tree/master/docs/snowflake
+[1]: https://github.com/maelys-mcardle/microprocessor-trainer/tree/master/snowflake/docs
 [2]: https://en.wikipedia.org/wiki/Make_(software)
 [3]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 [4]: https://en.wikipedia.org/wiki/GNU_C_Library
@@ -43,6 +43,12 @@ To delete files created during compilation, run the command:
 ```
 make clean
 ```
+
+## Snowflake Programming Language
+
+Documentation on programming in Snowflake is located in the [docs][1] directory.
+
+The language is designed for devices that have numeric keypads as the primary input and limited memory. While machine code would be suitable for such a set-up, this was devised to be higher level, somewhere between machine code and BASIC.
 
 ## Directory Structure
 
