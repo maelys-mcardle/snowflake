@@ -3,6 +3,13 @@
 #include <stdbool.h>
 #include "instructions.h"
 
+#define TYPE_VARIABLE_STRING "VAR"
+#define TYPE_BOOLEAN_STRING  "BLN"
+#define TYPE_INTEGER_STRING "INT"
+#define TYPE_FLOAT_STRING "FLT"
+#define TYPE_STRING_STRING "STR"
+#define TYPE_ARRAY_STRING " []"
+
 typedef struct {
     int count;
     void **items;

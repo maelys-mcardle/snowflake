@@ -181,7 +181,7 @@ bool store_parameter(bool is_literal, char *parameter_string, int max_parameter_
     }
     else
     {
-        // If it's any other value (banks, devices, labels) interpret as integer.
+        // If it's any other value (banks, devices, labels, type) interpret as integer.
         bool parsed_integer_ok;
         parameter_value->integer = string_to_integer(parameter_string, &parsed_integer_ok);
         

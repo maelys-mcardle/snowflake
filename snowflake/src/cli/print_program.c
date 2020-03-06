@@ -69,6 +69,8 @@ bool print_parameter(Program *program, short current_instruction, ParameterType 
         case PARAMETER_LABEL:
             print_identifier(program, current_instruction, INSTRUCTION_LABEL, value.integer, ":%02i");
             return true;
+        case PARAMETER_TYPE:
+            return print_type(value.integer);
         case PARAMETER_DEVICE:
             return print_device(value.integer);
         case PARAMETER_LITERAL:
@@ -137,6 +139,33 @@ bool print_device(int device)
             return true;
         case DEVICE_BTN:
             printf(DEVICE_BTN_STRING);
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool print_type(int type)
+{
+    switch (type)
+    {
+        case TYPE_VARIABLE:
+            printf(TYPE_VARIABLE_STRING);
+            return true;
+        case TYPE_BOOLEAN:
+            printf(TYPE_BOOLEAN_STRING);
+            return true;
+        case TYPE_INTEGER:
+            printf(TYPE_INTEGER_STRING);
+            return true;
+        case TYPE_FLOAT:
+            printf(TYPE_FLOAT_STRING);
+            return true;
+        case TYPE_STRING:
+            printf(TYPE_STRING_STRING);
+            return true;
+        case TYPE_ARRAY:
+            printf(TYPE_ARRAY_STRING);
             return true;
         default:
             return false;

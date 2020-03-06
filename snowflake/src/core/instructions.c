@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "headers/instructions.h"
 #include "headers/output.h"
+#include "headers/bank.h"
 
 Instruction *new_instruction()
 {
@@ -91,43 +92,48 @@ InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;
             break;
-        case INSTRUCTION_DELETE:
-            set_mnemonic(&info, "DEL");
-            info.parameters.first = PARAMETER_BANK;
-            info.parameters.second = PARAMETER_NONE;
+        case INSTRUCTION_CONVERT:
+            set_mnemonic(&info, " TO");
+            info.parameters.first = PARAMETER_TYPE;
+            info.parameters.second = PARAMETER_BANK;
             break;
         case INSTRUCTION_TYPE:
             set_mnemonic(&info, "TYP");
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;
             break;
+        case INSTRUCTION_DELETE:
+            set_mnemonic(&info, "DEL");
+            info.parameters.first = PARAMETER_BANK;
+            info.parameters.second = PARAMETER_NONE;
+            break;
         case INSTRUCTION_VARIABLE:
-            set_mnemonic(&info, "VAR");
+            set_mnemonic(&info, TYPE_VARIABLE_STRING);
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_LITERAL;
             break;
         case INSTRUCTION_BOOLEAN:
-            set_mnemonic(&info, "BLN");
+            set_mnemonic(&info, TYPE_BOOLEAN_STRING);
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_LITERAL;
             break;
         case INSTRUCTION_INTEGER:
-            set_mnemonic(&info, "INT");
+            set_mnemonic(&info, TYPE_INTEGER_STRING);
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_LITERAL;
             break;
         case INSTRUCTION_FLOAT:
-            set_mnemonic(&info, "FLT");
+            set_mnemonic(&info, TYPE_FLOAT_STRING);
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_LITERAL;
             break;
         case INSTRUCTION_STRING:
-            set_mnemonic(&info, "STR");
+            set_mnemonic(&info, TYPE_STRING_STRING);
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_LITERAL;
             break;
         case INSTRUCTION_ARRAY:
-            set_mnemonic(&info, " []");
+            set_mnemonic(&info, TYPE_ARRAY_STRING);
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_NONE;
             break;
