@@ -130,7 +130,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     }
 
     // Stop at whitespace for all parameter types except literals.
-    bool is_literal = (PARAMETER_LITERAL == get_parameter_type(parameter_type));
+    bool is_literal = is_parameter_literal(parameter_type);
     bool stop_at_whitespace = !is_literal;
     size_t max_parameter_size = MAX_PARAMETER_SIZE;
     char parameter_string[max_parameter_size];

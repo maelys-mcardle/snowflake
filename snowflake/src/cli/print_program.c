@@ -63,7 +63,7 @@ void print_instruction(Program *program, Instruction *instruction)
  */
 bool print_parameter(Program *program, short current_instruction, ParameterType type, ParameterValue value)
 {
-    switch (get_parameter_type(type))
+    switch (get_parameter_type_without_flags(type))
     {
         case PARAMETER_NONE:
             return false;
