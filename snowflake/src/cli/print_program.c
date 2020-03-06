@@ -24,17 +24,21 @@ void print_program(Program *program)
 /* Prints a line of Snowflake. */
 void print_instruction(Program *program, Instruction *instruction)
 {
+    bool instruction_exists = false;
+    InstructionInfo instruction_info = get_instruction_info(
+        instruction->instruction, &instruction_exists);
+
     // Print mnemonic.
     printf("%c%c%c ",
-        instruction->info.mnemonic[0],
-        instruction->info.mnemonic[1],
-        instruction->info.mnemonic[2]);
+        instruction_info.mnemonic[0],
+        instruction_info.mnemonic[1],
+        instruction_info.mnemonic[2]);
 
     // Print first parameter.
     bool has_parameter = print_parameter(
         program,
         instruction->instruction,
-        instruction->info.parameters.first, 
+        instruction_info.parameters.first, 
         instruction->parameters.first);
 
     // Print the space that separates the parameter.
@@ -47,7 +51,7 @@ void print_instruction(Program *program, Instruction *instruction)
     print_parameter(
         program,
         instruction->instruction,
-        instruction->info.parameters.second, 
+        instruction_info.parameters.second, 
         instruction->parameters.second);
 
     // Print end of line.

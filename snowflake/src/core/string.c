@@ -3,11 +3,10 @@
 bool strip_end_whitespace(char *string, int max_string_length)
 {
     int index = 0;
-    int whitespace_start = 0;
     int last_non_whitespace_character = -1;
 
     // Find the last non-whitespace character.
-    for (index; index < max_string_length; index++)
+    for (index = 0; index < max_string_length; index++)
     {
         char character = string[index];
         if (character == CHAR_END_STRING)

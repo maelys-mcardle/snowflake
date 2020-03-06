@@ -72,7 +72,8 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
     //  * Information about that instruction is retrieved.
     bool instruction_exists = false;
     int line_cursor = extract_instruction(line, max_line_length, &(instruction->instruction));
-    instruction->info = get_instruction_info(instruction->instruction, &instruction_exists);
+    InstructionInfo instruction_info = get_instruction_info(
+        instruction->instruction, &instruction_exists);
 
     // Instruction exists.
     if (instruction_exists)
@@ -80,9 +81,9 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
         // Note instruction exists.
         log_debug("Found instruction %02i ('%c%c%c')\n", 
             instruction->instruction,
-            instruction->info.mnemonic[0],
-            instruction->info.mnemonic[1],
-            instruction->info.mnemonic[2]);
+            instruction_info.mnemonic[0],
+            instruction_info.mnemonic[1],
+            instruction_info.mnemonic[2]);
 
         // Keep track of whether parameters were parsed ok.
         bool first_parameter_missing = true;
@@ -90,7 +91,7 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
 
         // Load first parameter.
         line_cursor = extract_parameter(line, max_line_length, line_cursor,
-            instruction->info.parameters.first, &(instruction->parameters.first),
+            instruction_info.parameters.first, &(instruction->parameters.first),
             &first_parameter_missing);
 
         if (first_parameter_missing)
@@ -100,7 +101,7 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
 
         // Load second parameter.
         line_cursor = extract_parameter(line, max_line_length, line_cursor,
-            instruction->info.parameters.second, &(instruction->parameters.second),
+            instruction_info.parameters.second, &(instruction->parameters.second),
             &second_parameter_missing);
 
         if (second_parameter_missing)
@@ -202,10 +203,8 @@ bool store_parameter(bool is_literal, char *parameter_string, int max_parameter_
  */
 int extract_instruction(char *line, int max_line_length, InstructionCode *instruction)
 {
-    int index = 0;
     char max_instruction_size = MAX_INSTRUCTION_SIZE;
     char instruction_string[max_instruction_size];
-    char instruction_index = 0;
 
     // Load instruction text.
     int end = parse_field(line, max_line_length, true, 
@@ -241,7 +240,7 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
     int start, char *output, int max_output_size)
 {
     int index = 0;
-    char output_index = 0;
+    int output_index = 0;
 
     // Terminate the tring, in case nothing is loaded.
     output[0] = CHAR_END_STRING;

@@ -8,6 +8,11 @@ void enable_debug_mode()
     debug_mode = true;
 }
 
+bool is_debug_mode()
+{
+    return debug_mode;
+}
+
 void log_debug(const char * format, ... )
 {
     if (debug_mode) {

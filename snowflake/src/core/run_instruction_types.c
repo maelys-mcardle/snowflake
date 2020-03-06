@@ -15,15 +15,15 @@ bool instruction_variable(Program *program, Instruction *instruction, int *instr
 
     if (is_float(literal) && strchr(literal, '.') != NULL)
     {
-        instruction_float(program, instruction, instruction_pointer);
+        return instruction_float(program, instruction, instruction_pointer);
     }
     else if (is_integer(literal))
     {
-        instruction_integer(program, instruction, instruction_pointer);
+        return instruction_integer(program, instruction, instruction_pointer);
     }
     else
     {
-        instruction_string(program, instruction, instruction_pointer);
+        return instruction_string(program, instruction, instruction_pointer);
     }
 }
 
@@ -58,6 +58,7 @@ bool instruction_boolean(Program *program, Instruction *instruction, int *instru
     }
     
     *instruction_pointer += 1;
+    return is_boolean;
 }
 
 /* Stores an integer in a bank.
@@ -91,6 +92,7 @@ bool instruction_integer(Program *program, Instruction *instruction, int *instru
     }
     
     *instruction_pointer += 1;
+    return is_integer;
 }
 
 /* Stores a float in a bank.
@@ -124,6 +126,7 @@ bool instruction_float(Program *program, Instruction *instruction, int *instruct
     }
     
     *instruction_pointer += 1;
+    return is_float;
 }
 
 /* Stores a string in a bank.
@@ -145,4 +148,5 @@ bool instruction_string(Program *program, Instruction *instruction, int *instruc
     }
 
     *instruction_pointer += 1;
+    return true;
 }

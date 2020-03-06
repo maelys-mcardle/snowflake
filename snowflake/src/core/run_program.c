@@ -25,11 +25,22 @@ void run_program(Program *program)
 
 bool run_instruction(Program *program, Instruction *instruction, int *instruction_pointer)
 {
-    log_debug("[Executing %02i] Instruction: %c%c%c\n",
-        *instruction_pointer,
-        instruction->info.mnemonic[0],
-        instruction->info.mnemonic[1],
-        instruction->info.mnemonic[2]);
+    if (is_debug_mode())
+    {
+        bool instruction_exists = false;
+        InstructionInfo info = get_instruction_info(
+            instruction->instruction, &instruction_exists);
+        
+        log_debug("[Executing %02i]");
+        if (instruction_exists)
+        {
+            log_debug(" Instruction: %c%c%c\n",
+                *instruction_pointer,
+                info.mnemonic[0],
+                info.mnemonic[1],
+                info.mnemonic[2]);
+        }
+    }
 
     bool instruction_ok = true;
 
@@ -49,11 +60,14 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         case INSTRUCTION_COPY:
             *instruction_pointer += 1;
             break;
-        case INSTRUCTION_DELETE:
-            instruction_ok = instruction_delete(program, instruction, instruction_pointer);
+        case INSTRUCTION_CONVERT:
+            *instruction_pointer += 1;
             break;
         case INSTRUCTION_TYPE:
             *instruction_pointer += 1;
+            break;
+        case INSTRUCTION_DELETE:
+            instruction_ok = instruction_delete(program, instruction, instruction_pointer);
             break;
         case INSTRUCTION_VARIABLE:
             instruction_ok = instruction_variable(program, instruction, instruction_pointer);

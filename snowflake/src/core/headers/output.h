@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 void enable_debug_mode();
+bool is_debug_mode();
 void send_to_output(char *string);
 void log_error( const char * format, ... );
 void log_debug( const char * format, ... );

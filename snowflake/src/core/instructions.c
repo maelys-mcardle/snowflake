@@ -13,15 +13,22 @@ void free_instruction(Instruction *instruction)
 {
     if (instruction != NULL)
     {
-        free_parameter(
-            instruction->info.parameters.first, 
-            instruction->parameters.first);
+        bool instruction_exists = false;
+        InstructionInfo info = get_instruction_info(
+            instruction->instruction, &instruction_exists);
 
-        free_parameter(
-            instruction->info.parameters.second, 
-            instruction->parameters.second);
+        if (instruction_exists)
+        {
+            free_parameter(
+                info.parameters.first, 
+                instruction->parameters.first);
 
-        free(instruction);
+            free_parameter(
+                info.parameters.second, 
+                instruction->parameters.second);
+        
+            free(instruction);
+        }
     }
 }
 

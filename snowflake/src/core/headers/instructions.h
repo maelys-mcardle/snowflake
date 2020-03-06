@@ -81,7 +81,6 @@ typedef struct {
 
 typedef struct {
     InstructionCode instruction;
-    InstructionInfo info;
     Parameters parameters;
 } Instruction;
 
