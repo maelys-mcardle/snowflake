@@ -26,9 +26,9 @@ void free_instruction(Instruction *instruction)
             free_parameter(
                 info.parameters.second, 
                 instruction->parameters.second);
-        
-            free(instruction);
         }
+
+        free(instruction);
     }
 }
 
