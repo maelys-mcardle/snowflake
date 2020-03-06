@@ -66,18 +66,24 @@ bool print_parameter(Program *program, short current_instruction, ParameterType 
     switch (get_parameter_type_without_flags(type))
     {
         case PARAMETER_NONE:
+            log_debug("none: ");
             return false;
         case PARAMETER_BANK:
+            log_debug("bank: ");
             print_identifier(program, current_instruction, INSTRUCTION_NAME_BANK, value.integer, "@%02i");
             return true;
         case PARAMETER_LABEL:
+            log_debug("label: ");
             print_identifier(program, current_instruction, INSTRUCTION_LABEL, value.integer, ":%02i");
             return true;
         case PARAMETER_TYPE:
+            log_debug("type: ");
             return print_type(value.integer);
         case PARAMETER_DEVICE:
+            log_debug("device: ");
             return print_device(value.integer);
         case PARAMETER_LITERAL:
+            log_debug("literal: ");
             if (value.string != NULL)
             {
                 printf("%s", value.string);

@@ -148,8 +148,12 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     if (has_parameter_string)
     {
         stored_parameter = store_parameter(
-            is_literal, parameter_string, 
+            parameter_type, parameter_string, 
             max_parameter_size, parameter_value);
+    }
+    else
+    {
+        parameter_value->string = NULL;
     }
 
     // Determine if the parameter is missing.
@@ -159,12 +163,12 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     return end_position;
 }
 
-bool store_parameter(bool is_literal, char *parameter_string, int max_parameter_size, ParameterValue *parameter_value)
+bool store_parameter(ParameterType parameter_type, char *parameter_string, int max_parameter_size, ParameterValue *parameter_value)
 {
     // Store the parameter.
     // * Literals are stored as strings.
     // * Banks, devices, labels as integers.
-    if (is_literal)
+    if (is_parameter_literal(parameter_type))
     {
         // If it's a literal, allocate memory, and copy the string.
         size_t allocation_size = strnlen(parameter_string, max_parameter_size);
