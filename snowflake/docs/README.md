@@ -69,7 +69,9 @@ BRANCHING
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 20    ->        LABEL           Jumps to a LABEL.
-21    ->        BANK            Jumps to the LABEL as stored in BANK. 
+                                If the label does not exist, the jump is ignored.
+21    ->        BANK            Jumps to the LABEL as stored in BANK.
+                                If the label does not exist, the jump is ignored.
 22   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, 
                                 run the next instruction (often a jump), 
                                 otherwise, skip the next instruction.
