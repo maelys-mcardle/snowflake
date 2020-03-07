@@ -1,8 +1,10 @@
 # Snowflake
 
-Snowflake is a programming language devised for microcontrollers. It was developed for fun
-by [Maëlys McArdle][1]. This repository contains a default interpreter implementation. 
-Documentation on how to code with the language is found in the [docs][2] sub-directory.
+Snowflake is a programming language devised for microcontrollers and is a paradigm that sits
+somewhere between machine code and BASIC. It was developed for fun by [Maëlys McArdle][1].
+
+This repository contains a default interpreter implementation. Documentation on how to 
+code with the language is found in the [docs][2] sub-directory.
 
 **Compilation requires [make][3], a C compiler with [c11][4] support, as well as [glibc][5].**
 
@@ -12,7 +14,7 @@ Documentation on how to code with the language is found in the [docs][2] sub-dir
 [4]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 [5]: https://en.wikipedia.org/wiki/GNU_C_Library
 
-## Running the Interpreter
+## Snowflake Interpreter
 
 ### Compile
 
@@ -45,12 +47,6 @@ To delete files created during compilation, run the command:
 ```
 make clean
 ```
-
-## Snowflake Programming Language
-
-Documentation on programming in Snowflake is located in the [docs][1] directory.
-
-The language is designed for devices that have numeric keypads as the primary input and limited memory. While machine code would be suitable for such a set-up, this was devised to be higher level, somewhere between machine code and BASIC.
 
 ## Directory Structure
 
