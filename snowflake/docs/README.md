@@ -77,13 +77,19 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 24   IF>        BANK1   BANK2   If BANK1 is greater than BANK2,
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
+                                This instruction is only performed on
+                                INTEGER and FLOAT types. The next
+                                instruction is skipped for other types.
 25   IF<        BANK1   BANK2   If BANK1 is less than BANK2,
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
+                                This instruction is only performed on
+                                INTEGER and FLOAT types. The next
+                                instruction is skipped for other types.
 ```
 
 ```
-MATH 
+MATH
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
@@ -93,6 +99,9 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 33   /          BANK1   BANK2   Divide BANK1 by BANK2, store result in BANK1.
 34   %          BANK1   BANK2   Modulo of BANK1 by BANK2, store result in BANK1.
 35   **         BANK1   BANK2   BANK1 to the power of BANK2, stored in BANK1.
+
+Note: These instructions are only performed on INTEGER and FLOAT types.
+      All other types are ignored.
 ```
 
 ```
@@ -104,6 +113,9 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 41   &          BANK1   BANK2   Logical AND. Result stored in BANK1.
 42   |          BANK1   BANK2   Logical OR. Result stored in BANK1.
 43   ^          BANK1   BANK2   Logical XOR. Result stored in BANK1.
+
+Note: These instructions are only performed on BOOLEAN and INTEGER types.
+      All other types are ignored.
 ```
 
 ```
@@ -124,6 +136,9 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 56   []-        BANK            Removes the last item of the BANK array.
 57   [>]        BANK1   BANK2   Moves the first item of the BANK1 array to the index specified in BANK2.
 58   [<]        BANK1   BANK2   Moves an item at the index specified in BANK2 to the first item of the array BANK1.
+
+Note: These instructions are only performed on ARRAY types.
+      All other types are ignored.
 ```
 
 ### Banks
