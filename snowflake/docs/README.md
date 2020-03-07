@@ -43,6 +43,7 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
                                  where the LITERAL is instead the value in the BANK.
                                  If BANK is unallocated, default values are used.
 07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1.
+                                 This type is stored as an integer.
                                  If BANK2 is unallocated, stores 0 in BANK1.
 08   DEL        BANK             Deletes all data associated with BANK.
 
@@ -78,13 +79,13 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
                                 This instruction is only performed on
-                                INTEGER and FLOAT types. The next
+                                integer and float types. The next
                                 instruction is skipped for other types.
 25   IF<        BANK1   BANK2   If BANK1 is less than BANK2,
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
                                 This instruction is only performed on
-                                INTEGER and FLOAT types. The next
+                                integer and float types. The next
                                 instruction is skipped for other types.
 ```
 
