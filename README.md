@@ -1,7 +1,7 @@
 # Snowflake
 
-Snowflake is a programming language devised to be run in an interpreter on microcontrollers 
-and occupies the space somewhere between machine code and BASIC. It was developed for 
+Snowflake is a programming language devised to be run in an interpreter on microcontrollers. 
+The language itself is something in between machine code and BASIC. It was developed for 
 fun by [Maëlys McArdle][1].
 
 This repository contains the default interpreter implementation. Documentation on how to 
