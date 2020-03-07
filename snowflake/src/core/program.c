@@ -116,13 +116,13 @@ bool remove_program_bank(Program *program, BankIdentifier identifier)
     }
 }
 
-Bank *get_program_bank_from_first_parameter(Program *program, Instruction *instruction)
+Bank *get_bank_from_first_parameter(Program *program, Instruction *instruction)
 {
     short target_identifier = instruction->parameters.first.integer;
     return get_program_bank(program, target_identifier);
 }
 
-Bank *get_program_bank_from_second_parameter(Program *program, Instruction *instruction)
+Bank *get_bank_from_second_parameter(Program *program, Instruction *instruction)
 {
     short target_identifier = instruction->parameters.second.integer;
     return get_program_bank(program, target_identifier);
@@ -204,7 +204,7 @@ Bank *new_bank_from_second_parameter(Instruction *instruction)
 
 Bank *get_or_new_bank_from_first_parameter(Program *program, Instruction *instruction)
 {
-    Bank *bank = get_program_bank_from_first_parameter(program, instruction);
+    Bank *bank = get_bank_from_first_parameter(program, instruction);
     if (bank == NULL)
     {
         bank = new_bank_from_first_parameter(instruction);
@@ -219,7 +219,7 @@ Bank *get_or_new_bank_from_first_parameter(Program *program, Instruction *instru
 
 Bank *get_or_new_bank_from_second_parameter(Program *program, Instruction *instruction)
 {
-    Bank *bank = get_program_bank_from_second_parameter(program, instruction);
+    Bank *bank = get_bank_from_second_parameter(program, instruction);
     if (bank == NULL)
     {
         bank = new_bank_from_second_parameter(instruction);

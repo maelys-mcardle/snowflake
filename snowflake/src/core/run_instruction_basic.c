@@ -16,7 +16,7 @@ bool instruction_noop(Program *program, Instruction *instruction, int *instructi
 
 bool instruction_output(Program *program, Instruction *instruction, int *instruction_pointer)
 {
-    Bank *bank = get_program_bank_from_second_parameter(program, instruction);
+    Bank *bank = get_bank_from_second_parameter(program, instruction);
     Device device = get_device_from_instruction(instruction);
     bool instruction_ok = false;
 
@@ -91,7 +91,7 @@ bool instruction_input(Program *program, Instruction *instruction, int *instruct
 
 bool instruction_delete(Program *program, Instruction *instruction, int *instruction_pointer)
 {
-    Bank *bank = get_program_bank_from_first_parameter(program, instruction);
+    Bank *bank = get_bank_from_first_parameter(program, instruction);
     bool instruction_ok = true;
 
     if (bank == NULL)
@@ -104,6 +104,33 @@ bool instruction_delete(Program *program, Instruction *instruction, int *instruc
         instruction_ok = remove_program_bank(program, bank->identifier);
     }
     
+    *instruction_pointer += 1;
+    return instruction_ok;
+}
+
+bool instruction_type(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    bool instruction_ok = true;
+
+    // Get the banks.
+    Bank *bank_to_store_type_in = get_or_new_bank_from_first_parameter(program, instruction);
+    Bank *bank_with_type_to_get = get_bank_from_second_parameter(program, instruction);
+
+    // Bank has a type.
+    if (bank_to_store_type_in == NULL)
+    {
+        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+        instruction_ok = false;
+    }
+    else if (bank_with_type_to_get != NULL)
+    {
+        set_bank_integer(bank_to_store_type_in, bank_with_type_to_get->type);
+    }
+    else
+    {
+        set_bank_integer(bank_to_store_type_in, 0);
+    }
+
     *instruction_pointer += 1;
     return instruction_ok;
 }
