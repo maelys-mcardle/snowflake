@@ -5,5 +5,3 @@
 
 10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
 03 00 00              ;; Output the contents of Bank 00 to the LCD
-05 01 00
-03 00 01
