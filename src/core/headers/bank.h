@@ -52,6 +52,7 @@ bool set_bank_integer(Bank *bank, int value);
 bool set_bank_float(Bank *bank, float value);
 bool set_bank_string(Bank *bank, char *value);
 bool set_bank_array(Bank *bank, BankArray *value);
+bool set_empty_bank_array(Bank *bank);
 bool get_bank_boolean(Bank *bank, bool *ok);
 int get_bank_integer(Bank *bank, bool *ok);
 float get_bank_float(Bank *bank, bool *ok);
