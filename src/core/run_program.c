@@ -31,14 +31,14 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         InstructionInfo info = get_instruction_info(
             instruction->instruction, &instruction_exists);
         
-        log_debug("[Executing Instruction]\n"
-            "Instruction Code: %02i\n", 
+        log_debug("[Executing Instruction %02i]\n"
+            "Instruction Code: %02i\n",
+            *instruction_pointer,
             instruction->instruction);
         
         if (instruction_exists)
         {
             log_debug("Instruction Mnemonic: '%c%c%c'\n",
-                *instruction_pointer,
                 info.mnemonic[0],
                 info.mnemonic[1],
                 info.mnemonic[2]);
