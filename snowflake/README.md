@@ -1,14 +1,16 @@
-# Snowflake Interpreter
+# Snowflake
 
-This is an interpreter for the [Snowflake programming language][1], a language devised 
-for devices with a numeric keypad for input.
+Snowflake is a programming language devised for microcontrollers. It was developed for fun
+by [Maëlys McArdle][1]. This repository contains a default interpreter implementation. 
+Documentation on how to code with the language is found in the [docs][2] sub-directory.
 
-**Compilation requires [make][2], a C compiler with [c11][3] support, as well as [glibc][4].**
+**Compilation requires [make][3], a C compiler with [c11][4] support, as well as [glibc][5].**
 
-[1]: https://github.com/maelys-mcardle/microprocessor-trainer/tree/master/snowflake/docs
-[2]: https://en.wikipedia.org/wiki/Make_(software)
-[3]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
-[4]: https://en.wikipedia.org/wiki/GNU_C_Library
+[1]: https://www.maelys.bio/
+[2]: docs/
+[3]: https://en.wikipedia.org/wiki/Make_(software)
+[4]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
+[5]: https://en.wikipedia.org/wiki/GNU_C_Library
 
 ## Running the Interpreter
 
