@@ -69,10 +69,6 @@ bool instruction_input(Program *program, Instruction *instruction, int *instruct
                     set_bank_string(bank, string);
                 }
                 break;
-            case DEVICE_PRT:
-                log_error(ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_INPUT, device);
-                instruction_ok = false;
-                break;
             case DEVICE_BTN:
                 instruction_ok = get_button(&button_code);
                 log_debug("Setting '%i' to Bank %02i\n", button_code, bank->identifier);

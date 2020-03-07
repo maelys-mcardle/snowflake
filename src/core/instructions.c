@@ -162,6 +162,11 @@ InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;
             break;
+        case INSTRUCTION_MODULO:
+            set_mnemonic(&info, "  %");
+            info.parameters.first = PARAMETER_BANK;
+            info.parameters.second = PARAMETER_BANK;
+            break;        
         case INSTRUCTION_POWER:
             set_mnemonic(&info, " **");
             info.parameters.first = PARAMETER_BANK;

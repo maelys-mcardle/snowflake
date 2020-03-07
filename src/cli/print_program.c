@@ -144,9 +144,6 @@ bool print_device(int device)
         case DEVICE_IN:
             printf(DEVICE_IN_STRING);
             return true;
-        case DEVICE_PRT:
-            printf(DEVICE_PRT_STRING);
-            return true;
         case DEVICE_BTN:
             printf(DEVICE_BTN_STRING);
             return true;
