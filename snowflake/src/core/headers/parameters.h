@@ -3,7 +3,6 @@
 
 #include <stdbool.h>
 
-
 typedef enum {
     PARAMETER_NONE = 0,
     PARAMETER_LABEL,

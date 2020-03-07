@@ -4,7 +4,7 @@
 #include "headers/output.h"
 #include "headers/errors.h"
 
-Bank *new_bank(short identifier)
+Bank *new_bank(BankIdentifier identifier)
 {
     Bank *bank = (Bank *) malloc(sizeof(Bank));
     if (bank != NULL)

@@ -10,6 +10,8 @@
 #define TYPE_STRING_STRING "STR"
 #define TYPE_ARRAY_STRING " []"
 
+typedef short BankIdentifier;
+
 typedef struct {
     int count;
     void **items;
@@ -33,12 +35,12 @@ typedef enum {
 } BankType;
 
 typedef struct {
-    short identifier;
+    BankIdentifier identifier;
     BankValue value;
     BankType type;
 } Bank;
 
-Bank *new_bank(short identifier);
+Bank *new_bank(BankIdentifier identifier);
 void free_bank(Bank *bank);
 void clear_bank_value(Bank *bank);
 void free_array(Bank *bank);

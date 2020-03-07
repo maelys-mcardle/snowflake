@@ -88,7 +88,7 @@ bool set_program_bank(Program *program, Bank *bank)
     }
 }
 
-bool remove_program_bank(Program *program, short identifier)
+bool remove_program_bank(Program *program, BankIdentifier identifier)
 {
     // Get the existing index of the bank, if it's set.
     int bank_index = get_program_bank_index(program, identifier);
@@ -128,9 +128,9 @@ Bank *get_program_bank_from_second_parameter(Program *program, Instruction *inst
     return get_program_bank(program, target_identifier);
 }
 
-Bank *get_program_bank(Program *program, short target_identifier)
+Bank *get_program_bank(Program *program, BankIdentifier identifier)
 {
-    int index = get_program_bank_index(program, target_identifier);
+    int index = get_program_bank_index(program, identifier);
     if (index >= 0) {
         return program->banks.banks[index];
     }
@@ -138,7 +138,7 @@ Bank *get_program_bank(Program *program, short target_identifier)
 }
 
 /* Gets the index in the banks of the bank with the target identifier. */
-int get_program_bank_index(Program *program, short target_identifier)
+int get_program_bank_index(Program *program, BankIdentifier target_identifier)
 {
     if (program->banks.banks != NULL && 
         program->banks.count > 0)
