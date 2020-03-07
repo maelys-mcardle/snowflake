@@ -7,6 +7,7 @@
 #include "headers/instructions.h"
 #include "headers/string.h"
 #include "headers/type_conversion.h"
+#include "headers/parameters.h"
 
 /* Parses the line, and if its a valid instruction, appends it to the program. */
 bool parse_instruction(Program *program, char *line, int max_line_length)

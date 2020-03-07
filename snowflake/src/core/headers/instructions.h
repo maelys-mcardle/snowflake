@@ -2,6 +2,7 @@
 #define SNOWFLAKE_INSTRUCTIONS_H
 #include <stdbool.h>
 #include "devices.h"
+#include "parameters.h"
 
 #define MAX_INSTRUCTION_SIZE 3
 #define MAX_PARAMETER_SIZE   256
@@ -48,17 +49,6 @@ typedef enum {
     INSTRUCTION_MOVE_TO_FIRST   = 58
 } InstructionCode;
 
-typedef enum {
-    PARAMETER_NONE = 0,
-    PARAMETER_LABEL,
-    PARAMETER_BANK,
-    PARAMETER_DEVICE,
-    PARAMETER_LITERAL,
-    PARAMETER_TYPE,
-    PARAMETER_OPTIONAL      = 0b1000000,
-    PARAMETER_WITHOUT_FLAGS = 0b0111111
-} ParameterType;
-
 typedef struct {
     ParameterType first;
     ParameterType second;
@@ -68,11 +58,6 @@ typedef struct {
     char mnemonic[3];
     ParameterInfo parameters;
 } InstructionInfo;
-
-typedef union {
-    int integer;
-    char *string;
-} ParameterValue;
 
 typedef struct {
     ParameterValue first;
@@ -86,15 +71,6 @@ typedef struct {
 
 Instruction *new_instruction();
 void free_instruction(Instruction *instruction);
-void free_parameter(ParameterType type, ParameterValue value);
-bool is_parameter_literal(ParameterType type);
-bool is_parameter_bank(ParameterType type);
-bool is_parameter_label(ParameterType type);
-bool is_parameter_device(ParameterType type);
-bool is_parameter_type(ParameterType type);
-ParameterType get_parameter_type_without_flags(ParameterType type);
-bool is_parameter_optional(ParameterType type);
-bool is_parameter_none(ParameterType type);
 InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists);
 Device get_device_from_instruction(Instruction *instruction);
 void set_mnemonic(InstructionInfo *info, char *mnemonic);

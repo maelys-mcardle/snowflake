@@ -3,11 +3,11 @@ CFLAGS=-g -Wall
 snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o devices.o input.o \
-		string.o
+		string.o parameters.o
 	cc -o snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o devices.o input.o \
-		string.o $(CFLAGS)
+		string.o parameters.o $(CFLAGS)
 
 main.o: src/cli/main.c src/cli/headers/main.h
 	cc -c src/cli/main.c $(CFLAGS)
@@ -51,6 +51,9 @@ string.o: src/core/string.c src/core/headers/string.h
 devices.o: src/core/devices.c src/core/headers/devices.h
 	cc -c src/core/devices.c $(CFLAGS)
 
+parameters.o: src/core/parameters.c src/core/headers/parameters.h
+	cc -c src/core/parameters.c $(CFLAGS)
+
 type_conversion.o: src/core/type_conversion.c src/core/headers/type_conversion.h
 	cc -c src/core/type_conversion.c $(CFLAGS)
 
@@ -58,4 +61,4 @@ clean:
 	rm snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o devices.o input.o \
-		string.o
+		string.o parameters.o
