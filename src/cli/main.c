@@ -72,7 +72,6 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
 {
     static struct option long_options[] =
     {
-        {"file", required_argument, 0, 'f'},
         {"debug", no_argument, 0, 'd'},
         {"print", no_argument, 0, 'p'},
         {"run", no_argument, 0, 'r'},
