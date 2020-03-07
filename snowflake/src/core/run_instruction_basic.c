@@ -151,7 +151,7 @@ bool instruction_copy(Program *program, Instruction *instruction, int *instructi
     }
     else if (bank_source != NULL)
     {
-        log_debug("Copying Bank %02i.\n", bank_destination->identifier);
+        log_debug("Copying to Bank %02i.\n", bank_destination->identifier);
         instruction_ok = copy_bank(bank_destination, bank_source);
     }
     else if (bank_source == NULL)

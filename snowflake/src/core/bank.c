@@ -61,6 +61,7 @@ void clear_bank_value(Bank *bank)
 
 bool set_bank_boolean(Bank *bank, bool value)
 {
+    log_debug("Set boolean for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
     bank->type = TYPE_BOOLEAN;
     bank->value.boolean = value;
@@ -69,6 +70,7 @@ bool set_bank_boolean(Bank *bank, bool value)
 
 bool set_bank_integer(Bank *bank, int value)
 {
+    log_debug("Set integer for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
     bank->type = TYPE_INTEGER;
     bank->value.integer = value;
@@ -77,6 +79,7 @@ bool set_bank_integer(Bank *bank, int value)
 
 bool set_bank_float(Bank *bank, float value)
 {
+    log_debug("Set float for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
     bank->type = TYPE_FLOAT;
     bank->value.floating = value;
@@ -85,6 +88,7 @@ bool set_bank_float(Bank *bank, float value)
 
 bool set_bank_string(Bank *bank, char *value)
 {
+    log_debug("Set string for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
     bank->type = TYPE_STRING;
     size_t string_length = strlen(value);
@@ -95,6 +99,7 @@ bool set_bank_string(Bank *bank, char *value)
 
 bool set_bank_array(Bank *bank, BankArray *value)
 {
+    log_debug("Set array for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
     bank->type = TYPE_ARRAY;
     bank->value.array.count = value->count;
@@ -107,8 +112,10 @@ bool copy_bank(Bank *destination, Bank *source)
     bool source_ok = false;
     bool destination_ok = false;
     clear_bank_value(destination);
-    destination->type = source->type;
 
+    log_debug("Copying from Bank %02i to Bank %02i.\n", 
+        source->identifier, destination->identifier);
+        
     if (source->type == TYPE_INTEGER)
     {
         int source_value = get_bank_integer(source, &source_ok);
@@ -192,6 +199,7 @@ bool get_bank_boolean(Bank *bank, bool *ok)
 {
     if (bank != NULL && bank->type == TYPE_BOOLEAN)
     {
+        log_debug("Read boolean from Bank %02i.\n", bank->identifier);
         *ok = true;
         return bank->value.boolean;
     }
@@ -204,6 +212,7 @@ int get_bank_integer(Bank *bank, bool *ok)
 {
     if (bank != NULL && bank->type == TYPE_INTEGER)
     {
+        log_debug("Read integer from Bank %02i.\n", bank->identifier);
         *ok = true;
         return bank->value.integer;
     }
@@ -228,6 +237,7 @@ char *get_bank_string(Bank *bank, bool *ok)
 {
     if (bank != NULL && bank->type == TYPE_STRING)
     {
+        log_debug("Read string from Bank %02i.\n", bank->identifier);
         *ok = true;
         return bank->value.string;
     }
@@ -240,6 +250,7 @@ BankArray *get_bank_array(Bank *bank, bool *ok)
 {
     if (bank != NULL && bank->type == TYPE_ARRAY)
     {
+        log_debug("Read array from Bank %02i.\n", bank->identifier);
         *ok = true;
         return &bank->value.array;
     }
