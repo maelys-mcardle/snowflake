@@ -142,6 +142,11 @@ InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;
             break;
+        case INSTRUCTION_IS_TYPE:
+            set_mnemonic(&info, " IS");
+            info.parameters.first = PARAMETER_TYPE;
+            info.parameters.second = PARAMETER_BANK;
+            break;
         case INSTRUCTION_ADD:
             set_mnemonic(&info, "  +");
             info.parameters.first = PARAMETER_BANK;

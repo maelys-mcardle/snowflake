@@ -49,7 +49,13 @@ bool set_bank_boolean(Bank *bank, bool value);
 bool set_bank_integer(Bank *bank, int value);
 bool set_bank_float(Bank *bank, float value);
 bool set_bank_string(Bank *bank, char *value);
-bool set_bank_array(Bank *bank);
+bool set_bank_array(Bank *bank, BankArray *value);
+bool get_bank_boolean(Bank *bank, bool *ok);
+int get_bank_integer(Bank *bank, bool *ok);
+float get_bank_float(Bank *bank, bool *ok);
+char *get_bank_string(Bank *bank, bool *ok);
+BankArray *get_bank_array(Bank *bank, bool *ok);
 char *get_bank_as_string(Bank *bank);
+bool copy_bank(Bank *destination, Bank *source);
 
 #endif

@@ -93,18 +93,55 @@ bool set_bank_string(Bank *bank, char *value)
     return true;
 }
 
-bool set_bank_array(Bank *bank)
+bool set_bank_array(Bank *bank, BankArray *value)
 {
     clear_bank_value(bank);
     bank->type = TYPE_ARRAY;
-    bank->value.array.count = 0;
+    bank->value.array.count = value->count;
     bank->value.array.items = NULL;
     return true;
+}
+
+bool copy_bank(Bank *destination, Bank *source)
+{
+    bool source_ok = false;
+    bool destination_ok = false;
+    clear_bank_value(destination);
+    destination->type = source->type;
+
+    if (source->type == TYPE_INTEGER)
+    {
+        int source_value = get_bank_integer(source, &source_ok);
+        destination_ok = set_bank_integer(destination, source_value);
+    }
+    else if (source->type == TYPE_BOOLEAN)
+    {
+        bool source_value = get_bank_boolean(source, &source_ok);
+        destination_ok = set_bank_boolean(destination, source_value);
+    }
+    else if (source->type == TYPE_FLOAT)
+    {
+        float source_value = get_bank_float(source, &source_ok);
+        destination_ok = set_bank_float(destination, source_value);
+    }
+    else if (source->type == TYPE_STRING)
+    {
+        char *source_value = get_bank_string(source, &source_ok);
+        destination_ok = set_bank_string(destination, source_value);
+    }
+    else if (source->type == TYPE_ARRAY)
+    {
+        BankArray *source_value = get_bank_array(source, &source_ok);
+        destination_ok = set_bank_array(destination, source_value);
+    }
+
+    return source_ok && destination_ok;
 }
 
 char *get_bank_as_string(Bank *bank)
 {
     char *output_string = NULL;
+    bool read_bank_value = false;
 
     if (bank != NULL)
     {
@@ -121,22 +158,22 @@ char *get_bank_as_string(Bank *bank)
             if (bank->type == TYPE_INTEGER)
             {
                 actual_size = snprintf(output_string, output_string_size, 
-                    "%i", bank->value.integer);
+                    "%i", get_bank_integer(bank, &read_bank_value));
             }
             else if (bank->type == TYPE_BOOLEAN)
             {
                 actual_size = snprintf(output_string, output_string_size, 
-                    "%s", bank->value.boolean ? "true" : "false");
+                    "%s", get_bank_boolean(bank, &read_bank_value) ? "true" : "false");
             }
             else if (bank->type == TYPE_FLOAT)
             {
                 actual_size = snprintf(output_string, output_string_size, 
-                    "%f", bank->value.floating);
+                    "%f", get_bank_float(bank, &read_bank_value));
             }
             else if (bank->type == TYPE_STRING)
             {
                 actual_size = snprintf(output_string, output_string_size, 
-                    "%s", bank->value.string);
+                    "%s", get_bank_string(bank, &read_bank_value));
             }
             else if (bank->type == TYPE_ARRAY)
             {
@@ -149,4 +186,64 @@ char *get_bank_as_string(Bank *bank)
     }
 
     return output_string;
+}
+
+bool get_bank_boolean(Bank *bank, bool *ok)
+{
+    if (bank != NULL && bank->type == TYPE_BOOLEAN)
+    {
+        *ok = true;
+        return bank->value.boolean;
+    }
+
+    *ok = false;
+    return false;
+}
+
+int get_bank_integer(Bank *bank, bool *ok)
+{
+    if (bank != NULL && bank->type == TYPE_INTEGER)
+    {
+        *ok = true;
+        return bank->value.integer;
+    }
+
+    *ok = false;
+    return 0;
+}
+
+float get_bank_float(Bank *bank, bool *ok)
+{
+    if (bank != NULL && bank->type == TYPE_FLOAT)
+    {
+        *ok = true;
+        return bank->value.floating;
+    }
+
+    *ok = false;
+    return 0.0;
+}
+
+char *get_bank_string(Bank *bank, bool *ok)
+{
+    if (bank != NULL && bank->type == TYPE_STRING)
+    {
+        *ok = true;
+        return bank->value.string;
+    }
+
+    *ok = false;
+    return NULL;
+}
+
+BankArray *get_bank_array(Bank *bank, bool *ok)
+{
+    if (bank != NULL && bank->type == TYPE_ARRAY)
+    {
+        *ok = true;
+        return &bank->value.array;
+    }
+
+    *ok = false;
+    return NULL;
 }

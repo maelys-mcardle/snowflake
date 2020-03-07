@@ -126,11 +126,40 @@ bool instruction_type(Program *program, Instruction *instruction, int *instructi
     {
         set_bank_integer(bank_to_store_type_in, bank_with_type_to_get->type);
     }
-    else
+    else if (bank_with_type_to_get == NULL)
     {
         set_bank_integer(bank_to_store_type_in, 0);
     }
 
     *instruction_pointer += 1;
     return instruction_ok;
+}
+
+bool instruction_copy(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    bool instruction_ok = true;
+
+    // Get the banks.
+    Bank *bank_destination = get_or_new_bank_from_first_parameter(program, instruction);
+    Bank *bank_source = get_bank_from_second_parameter(program, instruction);
+
+    // Bank has a type.
+    if (bank_destination == NULL)
+    {
+        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+        instruction_ok = false;
+    }
+    else if (bank_source != NULL)
+    {
+        log_debug("Copying Bank %02i.\n", bank_destination->identifier);
+        instruction_ok = copy_bank(bank_destination, bank_source);
+    }
+    else if (bank_source == NULL)
+    {
+        log_debug("Source bank is unallocated. Deleting Bank %02i.\n", bank_destination->identifier);
+        instruction_ok = remove_program_bank(program, bank_destination->identifier);
+    }
+
+    *instruction_pointer += 1;
+    return instruction_ok; 
 }

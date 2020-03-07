@@ -37,6 +37,7 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
                                  Devices are positive integers.
 05     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
                                  BANK1 takes on the type of BANK2.
+                                 If BANK2 is unallocated, BANK1 is deleted.
 06    TO        TYPE    BANK     Converts BANK to the type set by TYPE.
 07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1.
                                  If BANK2 is unallocated, stores 0 in BANK1.
@@ -75,6 +76,9 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
                                 otherwise skip the next instruction.
 25   IF<        BANK1   BANK2   If BANK1 is less than BANK2,
                                 run the next instruction (often a jump), 
+                                otherwise skip the next instruction.
+26    IS        TYPE    BANK    If BANK has type TYPE,
+                                run the next instruction (often a jump),
                                 otherwise skip the next instruction.
 ```
 

@@ -58,7 +58,7 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             instruction_ok = instruction_input(program, instruction, instruction_pointer);
             break;
         case INSTRUCTION_COPY:
-            *instruction_pointer += 1;
+            instruction_ok = instruction_copy(program, instruction, instruction_pointer);
             break;
         case INSTRUCTION_CONVERT:
             *instruction_pointer += 1;
