@@ -6,8 +6,6 @@
 #include "parameters.h"
 #include "bank.h"
 
-#define MAX_INSTRUCTION_SIZE 3
-
 typedef struct {
     ParameterValue first;
     ParameterValue second;

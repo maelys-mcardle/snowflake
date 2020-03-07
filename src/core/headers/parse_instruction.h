@@ -5,6 +5,8 @@
 #include "program.h"
 #include "instructions.h"
 
+#define MAX_INSTRUCTION_SIZE 3
+
 bool parse_instruction(Program *program, char *line, int max_line_length);
 bool parse_instruction_from_line(Instruction *instruction, char *line, int max_line_length);
 bool store_parameter(ParameterType parameter_type, char *parameter_string, int max_parameter_size, ParameterValue *parameter_value);
