@@ -185,11 +185,9 @@ VALUE   MEANING
 ```
 DEVICE  MNEMONIC  DESCRIPTION 
 ------  --------  -----------
-00      OUT       Default output device (eg. screen)
-                  This is an output device.
+00      OUT       Standard output device (eg. screen)
                   Accepts any value type.
-01       IN       Default input device (eg. keyboard)
-                  This is an input device.
+01       IN       Standard input device (eg. keyboard)
                   Stores value as string.
 02      PRT       Thermal Printer
                   This is an output device.
