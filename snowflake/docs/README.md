@@ -55,7 +55,10 @@ TYPES
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-10   VAR        BANK LITERAL    Stores LITERAL in BANK. Type is inferred.
+10   VAR        BANK LITERAL    Stores LITERAL in BANK. 
+                                Type is inferred: depending on the 
+                                literal it is stored as an integer,
+                                float, or string.
 11   BLN        BANK LITERAL    Stores LITERAL into BANK as a boolean.
 12   INT        BANK LITERAL    Stores LITERAL into BANK as an integer.
 13   FLT        BANK LITERAL    Stores LITERAL into BANK as a float.
