@@ -77,9 +77,6 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 25   IF<        BANK1   BANK2   If BANK1 is less than BANK2,
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
-26    IS        TYPE    BANK    If BANK has type TYPE,
-                                run the next instruction (often a jump),
-                                otherwise skip the next instruction.
 ```
 
 ```
