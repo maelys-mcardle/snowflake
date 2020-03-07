@@ -189,10 +189,7 @@ DEVICE  MNEMONIC  DESCRIPTION
                   Accepts any value type.
 01       IN       Standard input device (eg. keyboard)
                   Stores value as string.
-02      PRT       Thermal Printer
-                  This is an output device.
-                  Accepts any value type.
-03      BTN       Button Press
+02      BTN       Button Press
                   This is an input device.
                   Stores value as integer.
 ```
