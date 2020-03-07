@@ -1,6 +1,6 @@
-DEBUGFLAGS=-g
-RELEASEFLAGS=-O3
-CFLAGS=-Wall -Werror -Wextra $(DEBUGFLAGS)
+DEBUG_FLAGS=-g
+RELEASE_FLAGS=-O3
+CFLAGS=-Wall -Werror -Wextra $(DEBUG_FLAGS)
 
 snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
