@@ -6,15 +6,12 @@ somewhere between machine code and BASIC. It was developed for fun by [Maëlys M
 This repository contains a default interpreter implementation. Documentation on how to 
 code with the language is found in the [docs][2] sub-directory.
 
-**Compilation requires [make][3], a C compiler with [c11][4] support, as well as [glibc][5].**
-
 [1]: https://www.maelys.bio/
 [2]: docs/
-[3]: https://en.wikipedia.org/wiki/Make_(software)
-[4]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
-[5]: https://en.wikipedia.org/wiki/GNU_C_Library
 
-## Snowflake Interpreter
+## Interpreter
+
+This project comes with an interpreter to parse and execute Snowflake code.
 
 ### Compile
 
@@ -22,6 +19,12 @@ To compile the interpreter, run the command:
 ```
 make
 ```
+
+**Compilation of the interpreter requires [make][3], a C compiler with [c11][4] support, as well as [glibc][5].**
+
+[3]: https://en.wikipedia.org/wiki/Make_(software)
+[4]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
+[5]: https://en.wikipedia.org/wiki/GNU_C_Library
 
 ### Run
 
