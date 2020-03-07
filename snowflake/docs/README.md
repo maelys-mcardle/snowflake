@@ -6,7 +6,7 @@ This programming language exists somewhere between machine code and BASIC. Snowf
 
 [1]: https://en.wikipedia.org/wiki/Turing_completeness
 [2]: https://en.wikipedia.org/wiki/Polish_notation
-[3]: https://en.wikipedia.org/wiki/Multi-tap
+[3]: https://en.wikipedia.org/wiki/E.161
 
 ## Reference
 
