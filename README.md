@@ -25,6 +25,11 @@ To compile the interpreter, run the command:
 make
 ```
 
+To compile a debug build, run the command:
+```
+make debug
+```
+
 [4]: https://en.wikipedia.org/wiki/Make_(software)
 [5]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 [6]: https://en.wikipedia.org/wiki/GNU_C_Library

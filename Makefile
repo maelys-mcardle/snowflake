@@ -1,6 +1,15 @@
-DEBUG_FLAGS=-g
+BASE_CFLAGS=-Wall -Werror -Wextra
 RELEASE_FLAGS=-O3
-CFLAGS=-Wall -Werror -Wextra $(DEBUG_FLAGS)
+DEBUG_FLAGS=-g
+CFLAGS=$(BASE_CFLAGS)
+
+all: release
+
+release: CFLAGS=$(BASE_CFLAGS) $(RELEASE_FLAGS)
+release: snowflake
+
+debug: CFLAGS=$(BASE_CFLAGS) $(DEBUG_FLAGS)
+debug: snowflake
 
 snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
