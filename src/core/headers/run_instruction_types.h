@@ -9,5 +9,6 @@ bool instruction_boolean(Program *program, Instruction *instruction, int *instru
 bool instruction_integer(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_float(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_string(Program *program, Instruction *instruction, int *instruction_pointer);
+bool instruction_array(Program *program, Instruction *instruction, int *instruction_pointer);
 
 #endif

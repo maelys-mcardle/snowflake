@@ -88,6 +88,8 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             instruction_ok = instruction_string(program, instruction, instruction_pointer);
             break;
         case INSTRUCTION_ARRAY:
+            instruction_ok = instruction_array(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_JUMP_LABEL:
         case INSTRUCTION_JUMP_BANK:
         case INSTRUCTION_IF_EQUAL:

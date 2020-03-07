@@ -150,3 +150,20 @@ bool instruction_string(Program *program, Instruction *instruction, int *instruc
     *instruction_pointer += 1;
     return true;
 }
+
+bool instruction_array(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    // Create a bank if it doesn't exist.
+    Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
+
+    // Set the strubg for the bank.
+    if (bank != NULL && 
+        set_empty_bank_array(bank))
+    {
+        log_debug("Set bank %02i as empty array\n", 
+            bank->identifier);
+    }
+
+    *instruction_pointer += 1;
+    return true;
+}
