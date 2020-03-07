@@ -61,7 +61,7 @@ void print_instruction(Program *program, Instruction *instruction)
 /* Prints a parameter, if one is defined.
  * @return True if a parameter is defined; false if not.
  */
-bool print_parameter(Program *program, short current_instruction, ParameterType type, ParameterValue value)
+bool print_parameter(Program *program, InstructionCode current_instruction, ParameterType type, ParameterValue value)
 {
     switch (get_parameter_type_without_flags(type))
     {
@@ -95,7 +95,7 @@ bool print_parameter(Program *program, short current_instruction, ParameterType 
     }
 }
 
-void print_identifier(Program *program, short current_instruction, short naming_instruction, int target_identifier, char *format)
+void print_identifier(Program *program, InstructionCode current_instruction, InstructionCode naming_instruction, int target_identifier, char *format)
 {
     bool found_name = false;
 
@@ -116,7 +116,7 @@ void print_identifier(Program *program, short current_instruction, short naming_
     }
 }
 
-char *get_name(Program *program, short naming_instruction, int target_identifier)
+char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier)
 {
     for (int i = 0; i < program->instructions.count; i++)
     {

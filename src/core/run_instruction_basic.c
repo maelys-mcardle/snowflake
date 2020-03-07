@@ -8,6 +8,11 @@
 
 bool instruction_noop(Program *program, Instruction *instruction, int *instruction_pointer)
 {
+    // Unused parameters. This is done to suppress compiler warnings.
+    (void)(program);
+    (void)(instruction);
+
+    // Perform no-op.
     bool instruction_ok = true;
     log_debug("No-op instruction.\n");
     *instruction_pointer += 1;

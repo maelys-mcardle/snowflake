@@ -1,4 +1,4 @@
-CFLAGS=-g -Wall
+CFLAGS=-g -Wall -Werror -Wextra
 
 snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
