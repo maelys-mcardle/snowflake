@@ -47,7 +47,8 @@ To see how the interpreter understands the code file, run:
 ```
 
 If you run into issues, use the `--debug` option on the code. It will give more
-information about how the interpreter understood the code, and what it was running:
+information about how the interpreter understood the code, and what it was running.
+You do not need the debug build of the interpreter to use this flag:
 ```
 ./snowflake --print --run --debug your-code-file.sn
 ```
