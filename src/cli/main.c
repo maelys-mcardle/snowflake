@@ -79,7 +79,8 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
         {0, 0, 0, 0}
     };
 
-    while (1)
+    // Parse the options.
+    while (optind < argc)
     {
         int option_index = 0;
 
@@ -103,10 +104,6 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
                 *print_code = true;
                 break;
             
-            case 'f':
-                *file_path = optarg;
-                break;
-
             case 'r':
                 *run_code = true;
                 break;
@@ -116,6 +113,12 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
                 return false;
         }        
 
+    }
+
+    // Positional argument is the file path.
+    for (int index = optind; index < argc; index++)
+    {
+        *file_path = argv[index];
     }
 
     // No unknown argument.

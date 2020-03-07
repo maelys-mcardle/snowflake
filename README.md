@@ -33,18 +33,18 @@ make
 
 To run a Snowflake program, execute:
 ```
-./snowflake --file your-code-file.sn --run
+./snowflake --run your-code-file.sn
 ```
 
 To see how the interpreter understands the code file, run:
 ```
-./snowflake --file your-code-file.sn --print
+./snowflake --print your-code-file.sn
 ```
 
 If you run into issues, use the `--debug` option on the code. It will give more
 information about how the interpreter understood the code, and what it was running:
 ```
-./snowflake --file your-code-file.sn --print --run --debug
+./snowflake --print --run --debug your-code-file.sn
 ```
 
 ### Clean

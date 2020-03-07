@@ -6,7 +6,7 @@
 
 #define SUCCESS 0
 #define ERROR_CODE_NO_FILE_SPECIFIED 1
-#define ERROR_MESG_NO_FILE_SPECIFIED "Please specify a file to open. Use --file flag to specify one.\n"
+#define ERROR_MESG_NO_FILE_SPECIFIED "Please specify a file to open.\n"
 #define ERROR_CODE_COULD_NOT_OPEN_FILE 2
 #define ERROR_MESG_COULD_NOT_OPEN_FILE "Could not open file '%s'\n"
 #define ERROR_CODE_COULD_NOT_ALLOCATE_MEMORY 3
@@ -22,7 +22,7 @@
 #define ERROR_CODE_UNRECOGNIZED_ARGUMENT 8
 #define ERROR_MESG_UNRECOGNIZED_ARGUMENT "Exiting due to unrecognized argument.\n"
 #define ERROR_CODE_NO_ACTION_SELECTED 9
-#define ERROR_MESG_NO_ACTION_SELECTED "Did not select an action to perform. Use the --print or --run flags.\n"
+#define ERROR_MESG_NO_ACTION_SELECTED "Did not select an action to perform. Specify --print or --run.\n"
 #define ERROR_CODE_LITERAL_IS_NOT_BOOLEAN 10
 #define ERROR_MESG_LITERAL_IS_NOT_BOOLEAN "Value '%s' was expected to be a boolean (0 or 1); but it was not.\n"
 #define ERROR_CODE_LITERAL_IS_NOT_INTEGER 11

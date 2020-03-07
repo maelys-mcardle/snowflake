@@ -11,3 +11,15 @@
 14 00 YOUR NAME IS ;; Stores "Your name is" in BANK "MSG"
 03 00 00        ;; Shows "Your name is"
 03 00 01        ;; Shows the value in bank "NAME"
+
+;; The interpreter parses the above as the following:
+;; 
+;; !!! YOUR NAME 
+;;     @00 MSG
+;;     @01 NAME
+;; STR MSG WHAT IS YOUR NAME?
+;;  << OUT MSG
+;;  >>  IN NAME
+;; STR MSG YOUR NAME IS
+;;  << OUT MSG
+;;  << OUT NAME
