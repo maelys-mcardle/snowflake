@@ -219,18 +219,18 @@ TYPE  MNEMONIC  DESCRIPTION
 
 ### Hello World
 
-This program outputs "Hello World!" to the LCD:
+This program outputs "Hello World!" to the display:
 
 ```
 10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
-03 00 00              ;; Output the contents of Bank 00 to the LCD
+03 00 00              ;; Display the contents of Bank 00
 ```
 
-The interpreter would replace the above with mnemonics as the user typed:
+The interpreter would parse the above as follows:
 
 ```
 VAR @00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
- << OUT @00             ;; Output the contents of Bank 00 to the LCD
+ << OUT @00             ;; Display the contents of Bank 00
 ```
 
 **Note:**

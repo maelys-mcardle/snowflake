@@ -1,7 +1,0 @@
-;;
-;; This is a test file, used to check that the Snowflake
-;; interpreter is able to process files correctly.
-;;
-
-10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
-03 00 00              ;; Output the contents of Bank 00 to the LCD

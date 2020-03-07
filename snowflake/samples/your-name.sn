@@ -1,3 +1,7 @@
+;; What is Your Name
+;; 
+;; The following asks your name and then displays it back to you.
+
 00 YOUR NAME    ;; "Your Name" Program
 02 00 MSG       ;; Name Bank 00 "MSG"
 02 01 NAME      ;; Name Bank 01 "NAME"
