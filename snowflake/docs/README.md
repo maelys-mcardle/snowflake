@@ -39,6 +39,9 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
                                  BANK1 takes on the type of BANK2.
                                  If BANK2 is unallocated, BANK1 is deleted.
 06    TO        TYPE    BANK     Converts BANK to the type set by TYPE.
+                                 This is equivalent to types instructions below,
+                                 where the LITERAL is instead the value in the BANK.
+                                 If BANK is unallocated, default values are used.
 07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1.
                                  If BANK2 is unallocated, stores 0 in BANK1.
 08   DEL        BANK             Deletes all data associated with BANK.

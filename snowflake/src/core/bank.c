@@ -107,6 +107,11 @@ bool set_bank_array(Bank *bank, BankArray *value)
     return true;
 }
 
+bool convert_bank(Bank *bank, BankType to_type)
+{
+    return true;
+}
+
 bool copy_bank(Bank *destination, Bank *source)
 {
     bool source_ok = false;

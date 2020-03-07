@@ -110,7 +110,7 @@ bool instruction_delete(Program *program, Instruction *instruction, int *instruc
 
 bool instruction_type(Program *program, Instruction *instruction, int *instruction_pointer)
 {
-    bool instruction_ok = true;
+    bool instruction_ok = false;
 
     // Get the banks.
     Bank *bank_to_store_type_in = get_or_new_bank_from_first_parameter(program, instruction);
@@ -124,11 +124,11 @@ bool instruction_type(Program *program, Instruction *instruction, int *instructi
     }
     else if (bank_with_type_to_get != NULL)
     {
-        set_bank_integer(bank_to_store_type_in, bank_with_type_to_get->type);
+        instruction_ok = set_bank_integer(bank_to_store_type_in, bank_with_type_to_get->type);
     }
     else if (bank_with_type_to_get == NULL)
     {
-        set_bank_integer(bank_to_store_type_in, 0);
+        instruction_ok = set_bank_integer(bank_to_store_type_in, 0);
     }
 
     *instruction_pointer += 1;
@@ -137,7 +137,7 @@ bool instruction_type(Program *program, Instruction *instruction, int *instructi
 
 bool instruction_copy(Program *program, Instruction *instruction, int *instruction_pointer)
 {
-    bool instruction_ok = true;
+    bool instruction_ok = false;
 
     // Get the banks.
     Bank *bank_destination = get_or_new_bank_from_first_parameter(program, instruction);
@@ -162,4 +162,22 @@ bool instruction_copy(Program *program, Instruction *instruction, int *instructi
 
     *instruction_pointer += 1;
     return instruction_ok; 
+}
+
+bool instruction_convert(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    bool instruction_ok = false;
+
+    // Get the bank and type to convert to.
+    Bank *bank = get_or_new_bank_from_second_parameter(program, instruction);
+    BankType to_type = get_type_from_instruction(instruction);
+
+    if (bank != NULL)
+    {
+        log_debug("Converting Bank %02i to type %i.\n", bank->identifier, to_type);
+        instruction_ok = convert_bank(bank, to_type);
+    }
+
+    *instruction_pointer += 1;
+    return instruction_ok;
 }

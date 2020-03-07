@@ -1,7 +1,9 @@
 #ifndef SNOWFLAKE_BANK_H
 #define SNOWFLAKE_BANK_H
 #include <stdbool.h>
-#include "instructions.h"
+
+
+#define MAX_PARAMETER_SIZE   256
 
 #define TYPE_VARIABLE_STRING "VAR"
 #define TYPE_BOOLEAN_STRING  "BLN"
@@ -57,5 +59,6 @@ char *get_bank_string(Bank *bank, bool *ok);
 BankArray *get_bank_array(Bank *bank, bool *ok);
 char *get_bank_as_string(Bank *bank);
 bool copy_bank(Bank *destination, Bank *source);
+bool convert_bank(Bank *bank, BankType to_type);
 
 #endif

@@ -3,9 +3,9 @@
 #include <stdbool.h>
 #include "devices.h"
 #include "parameters.h"
+#include "bank.h"
 
 #define MAX_INSTRUCTION_SIZE 3
-#define MAX_PARAMETER_SIZE   256
 
 typedef enum {
     INSTRUCTION_COMMENT    = 0,
@@ -73,6 +73,7 @@ Instruction *new_instruction();
 void free_instruction(Instruction *instruction);
 InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists);
 Device get_device_from_instruction(Instruction *instruction);
+BankType get_type_from_instruction(Instruction *instruction);
 void set_mnemonic(InstructionInfo *info, char *mnemonic);
 
 #endif
