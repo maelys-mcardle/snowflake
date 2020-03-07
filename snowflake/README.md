@@ -15,12 +15,12 @@ This project comes with an interpreter to parse and execute Snowflake code.
 
 ### Compile
 
+Compilation of the interpreter requires [make][3], a C compiler with [c11][4] support, as well as [glibc][5].
+
 To compile the interpreter, run the command:
 ```
 make
 ```
-
-**Compilation of the interpreter requires [make][3], a C compiler with [c11][4] support, as well as [glibc][5].**
 
 [3]: https://en.wikipedia.org/wiki/Make_(software)
 [4]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
