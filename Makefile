@@ -14,11 +14,11 @@ debug: snowflake
 snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o devices.o input.o \
-		string.o parameters.o instruction_info.o
+		string.o parameters.o instruction_info.o run_instruction_branching.o
 	cc -o snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o devices.o input.o \
-		string.o parameters.o instruction_info.o $(CFLAGS)
+		string.o parameters.o instruction_info.o run_instruction_branching.o $(CFLAGS)
 
 main.o: src/cli/main.c src/cli/headers/main.h
 	cc -c src/cli/main.c $(CFLAGS)
@@ -43,6 +43,9 @@ run_program.o: src/core/run_program.c src/core/headers/run_program.h
 
 run_instruction_basic.o: src/core/run_instruction_basic.c src/core/headers/run_instruction_basic.h 
 	cc -c src/core/run_instruction_basic.c $(CFLAGS)
+
+run_instruction_branching.o: src/core/run_instruction_branching.c src/core/headers/run_instruction_branching.h 
+	cc -c src/core/run_instruction_branching.c $(CFLAGS)
 
 run_instruction_types.o: src/core/run_instruction_types.c src/core/headers/run_instruction_types.h 
 	cc -c src/core/run_instruction_types.c $(CFLAGS)
@@ -75,4 +78,4 @@ clean:
 	rm snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
 		output.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o devices.o input.o \
-		string.o parameters.o instruction_info.o
+		string.o parameters.o instruction_info.o run_instruction_branching.o
