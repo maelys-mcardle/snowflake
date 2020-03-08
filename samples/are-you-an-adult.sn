@@ -22,7 +22,7 @@
 01 02 END           ;; Label 02 (end)
 03 00 00            ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
 
-;; The interpreter would replace the above with mnemonics as the user typed:
+;; The interpreter using the --print flag would output the following:
 ;; 
 ;; !!! ARE YOU AN ADULT    ;; Comment describing program.
 ;;     @00 MSG             ;; Name Bank 00 "MSG"
