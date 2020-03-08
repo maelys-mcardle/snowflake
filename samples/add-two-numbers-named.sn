@@ -16,7 +16,7 @@
 30 01 02            ;; Add B to A
 03 00 01            ;; Output the contents of A (the sum of the addition)
 
-;; The interpreter would replace the above with mnemonics as the user typed:
+;; The interpreter using the --print flag would output the following:
 ;; 
 ;; !!! ADD TWO NUMBERS    ;; Comment describing program
 ;;     @00 MSG            ;; Name Bank 00 "MSG"
