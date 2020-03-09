@@ -16,7 +16,7 @@ This repository has the following directory structure.
 └── test
 ```
 
-The root directory contains this `README` and `Makefile`.
+The root directory contains a `README` and `Makefile`.
 
 The `docs` directory contains documentation for how to code in Snowflake.
 
