@@ -1,12 +1,18 @@
 # Snowflake
 
-**Snowflake** is a programming language designed for microcontrollers with a numeric keypad for input. It is assumed that typing [letters is arduous][3]. This device is also presumed to have a limited display, 20 characters wide and 4 lines tall, and to be memory-bound rather than CPU-bound.
+**Snowflake** is a programming language made designed with microcontrollers as both the editing 
+and execution environment in mind. As such, it is designed with a few restrictions in mind:
 
-This programming language exists somewhere between machine code and BASIC. Snowflake is [Turing-complete][1] and uses the [Polish notation][2].
+* The target device is memory-bound rather than CPU-bound.
+* Numeric keypad as the input device including [for typing letters][1]
+* A 20 character by 4 line tall display device.
 
-[1]: https://en.wikipedia.org/wiki/Turing_completeness
-[2]: https://en.wikipedia.org/wiki/Polish_notation
-[3]: https://en.wikipedia.org/wiki/E.161
+This resulting language is a funky paradigm that's something in-between machine code and BASIC. 
+Snowflake is [Turing-complete][2] and uses the [Polish notation][3].
+
+[1]: https://en.wikipedia.org/wiki/E.161
+[2]: https://en.wikipedia.org/wiki/Turing_completeness
+[3]: https://en.wikipedia.org/wiki/Polish_notation
 
 ## Reference
 
