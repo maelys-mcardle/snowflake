@@ -121,7 +121,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 Note: These instructions are only performed on INTEGER and FLOAT types.
       All other types are ignored. The addition instruction can be performed on 
       STRING types as well; it concatenates strings together. Instruction is 
-      ignored if BANK1 or BANK2 has no value set.
+      ignored if a bank doesn't have a value.
 ```
 
 ```
@@ -135,8 +135,8 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 43   ^          BANK1   BANK2   Logical XOR. Result stored in BANK1.
 
 Note: These instructions are only performed on BOOLEAN and INTEGER types.
-      All other types are ignored. Instruction is ignored if BANK1 or 
-      BANK2 has no value set.
+      All other types are ignored. Instruction is ignored if a bank
+      doesn't have a value.
 ```
 
 ```
@@ -163,7 +163,8 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
                                 to the first item of the array BANK1.
 
 Note: These instructions are only performed on ARRAY types.
-      All other types are ignored.
+      All other types are ignored. Instruction is ignored if the
+      bank array isn't defined.
 ```
 
 ### Banks
