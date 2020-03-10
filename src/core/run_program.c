@@ -106,6 +106,8 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             instruction_ok = instruction_add(program, instruction, instruction_pointer);
             break;
         case INSTRUCTION_SUBTRACT:
+            instruction_ok = instruction_subtract(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_MULTIPLY:
         case INSTRUCTION_DIVIDE:
         case INSTRUCTION_POWER:

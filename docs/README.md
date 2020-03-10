@@ -110,12 +110,12 @@ MATH
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-30   +          BANK1   BANK2   Add BANK2 to BANK1.
-31   -          BANK1   BANK2   Subtract BANK2 from BANK1.
-32   *          BANK1   BANK2   Multiply BANK2 with BANK1. Store in BANK1.
-33   /          BANK1   BANK2   Divide BANK1 by BANK2, store result in BANK1.
-34   %          BANK1   BANK2   Modulo of BANK1 by BANK2, store result in BANK1.
-35   **         BANK1   BANK2   BANK1 to the power of BANK2, stored in BANK1.
+30   +          BANK1   BANK2   Add BANK2 to BANK1. Result in BANK1.
+31   -          BANK1   BANK2   Subtract BANK2 from BANK1. Result in BANK1.
+32   *          BANK1   BANK2   Multiply BANK2 with BANK1. Result in BANK1.
+33   /          BANK1   BANK2   Divide BANK1 by BANK2. Result in BANK1.
+34   %          BANK1   BANK2   Modulo of BANK1 by BANK2. Result in BANK1.
+35   **         BANK1   BANK2   BANK1 to the power of BANK2. Result in BANK1.
 
 Note: These instructions are only performed on INTEGER and FLOAT types.
       All other types are ignored. The addition instruction can be performed on 
