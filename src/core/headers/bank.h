@@ -47,24 +47,25 @@ void free_bank(Bank *bank);
 void clear_bank_value(Bank *bank);
 void free_array(Bank *bank);
 void free_string(Bank *bank);
+bool copy_bank(Bank *destination, Bank *source);
+bool convert_bank(Bank *bank, BankType to_type);
+
 bool set_bank_boolean(Bank *bank, bool value);
 bool set_bank_integer(Bank *bank, int value);
 bool set_bank_float(Bank *bank, float value);
 bool set_bank_string(Bank *bank, char *value);
 bool set_bank_array(Bank *bank, BankArray *value);
 bool set_empty_bank_array(Bank *bank);
+
 bool get_bank_boolean(Bank *bank, bool *ok);
 int get_bank_integer(Bank *bank, bool *ok);
 float get_bank_float(Bank *bank, bool *ok);
 char *get_bank_string(Bank *bank, bool *ok);
 BankArray *get_bank_array(Bank *bank, bool *ok);
-char *get_bank_as_string(Bank *bank);
-bool copy_bank(Bank *destination, Bank *source);
-bool convert_bank(Bank *bank, BankType to_type);
 
-bool bank_as_boolean(Bank *bank, bool *ok);
-int bank_as_integer(Bank *bank, bool *ok);
-float bank_as_float(Bank *bank, bool *ok);
-char *bank_as_string(Bank *bank, bool *ok);
+bool get_bank_as_boolean(Bank *bank);
+int get_bank_as_integer(Bank *bank);
+float get_bank_as_float(Bank *bank);
+char *get_bank_as_string(Bank *bank);
 
 #endif

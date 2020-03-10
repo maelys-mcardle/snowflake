@@ -119,11 +119,17 @@ bool set_bank_array(Bank *bank, BankArray *value)
     return true;
 }
 
-bool bank_as_boolean(Bank *bank, bool *ok)
+bool get_bank_as_boolean(Bank *bank)
 {
+    if (bank == NULL)
+    {
+        log_debug("Invalid bank - returning default value.\n");
+        return false;
+    }
+
     log_debug("Interpreting Bank %02i as a boolean.\n", bank->identifier);
 
-    *ok = true;
+    bool ok = true;
     switch (bank->type)
     {
         case TYPE_BOOLEAN:
@@ -133,7 +139,7 @@ bool bank_as_boolean(Bank *bank, bool *ok)
         case TYPE_FLOAT:
             return bank->value.floating != 0;
         case TYPE_STRING:
-            return string_to_boolean(bank->value.string, ok);
+            return string_to_boolean(bank->value.string, &ok);
         case TYPE_ARRAY:
             return false;
         default:
@@ -141,11 +147,17 @@ bool bank_as_boolean(Bank *bank, bool *ok)
     }
 }
 
-int bank_as_integer(Bank *bank, bool *ok)
+int get_bank_as_integer(Bank *bank)
 {
+    if (bank == NULL)
+    {
+        log_debug("Invalid bank - returning default value.\n");
+        return 0;
+    }
+
     log_debug("Interpreting Bank %02i as an integer.\n", bank->identifier);
 
-    *ok = true;
+    bool ok = true;
     switch (bank->type)
     {
         case TYPE_BOOLEAN:
@@ -155,7 +167,7 @@ int bank_as_integer(Bank *bank, bool *ok)
         case TYPE_FLOAT:
             return bank->value.floating;
         case TYPE_STRING:
-            return string_to_integer(bank->value.string, ok);
+            return string_to_integer(bank->value.string, &ok);
         case TYPE_ARRAY:
             return bank->value.array.count;
         default:
@@ -163,11 +175,17 @@ int bank_as_integer(Bank *bank, bool *ok)
     }
 }
 
-float bank_as_float(Bank *bank, bool *ok)
+float get_bank_as_float(Bank *bank)
 {
+    if (bank == NULL)
+    {
+        log_debug("Invalid bank - returning default value.\n");
+        return 0.;
+    }
+
     log_debug("Interpreting Bank %02i as a float.\n", bank->identifier);
 
-    *ok = true;
+    bool ok = true;
     switch (bank->type)
     {
         case TYPE_BOOLEAN:
@@ -177,7 +195,7 @@ float bank_as_float(Bank *bank, bool *ok)
         case TYPE_FLOAT:
             return bank->value.floating;
         case TYPE_STRING:
-            return string_to_float(bank->value.string, ok);
+            return string_to_float(bank->value.string, &ok);
         case TYPE_ARRAY:
             return bank->value.array.count;
         default:
@@ -185,46 +203,54 @@ float bank_as_float(Bank *bank, bool *ok)
     }
 }
 
-char *bank_as_string(Bank *bank, bool *ok)
+char *get_bank_as_string(Bank *bank)
 {
-    log_debug("Interpreting Bank %02i as a string.\n", bank->identifier);
-
-    // Allocate memory for the string.
-    int max_string_size = MAX_PARAMETER_SIZE;
-    char *as_string = malloc(max_string_size);
-
-    if (as_string == NULL)
+    if (bank == NULL)
     {
-        *ok = false;
-        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+        log_debug("Invalid bank - returning default value.\n");
         return NULL;
     }
 
-    // Apply the conversion.
-    *ok = true;
-    switch (bank->type)
+    log_debug("Interpreting Bank %02i as a string.\n", bank->identifier);
+    int output_string_size = MAX_PARAMETER_SIZE;
+    char *output_string = malloc(output_string_size);
+    int actual_size = 0;
+
+    if (output_string == NULL)
     {
-        case TYPE_BOOLEAN:
-            snprintf(as_string, max_string_size, "%i", bank->value.boolean ? 1 : 0);
-            break;
-        case TYPE_INTEGER:
-            snprintf(as_string, max_string_size, "%i", bank->value.integer);
-            break;
-        case TYPE_FLOAT:
-            snprintf(as_string, max_string_size, "%f", bank->value.floating);
-            break;
-        case TYPE_STRING:
-            snprintf(as_string, max_string_size, "%s", bank->value.string);
-            break;
-        case TYPE_ARRAY:
-            as_string[0] = CHAR_END_STRING;
-            break;
-        default:
-            as_string[0] = CHAR_END_STRING;
-            break;
+        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+    }
+    else
+    {
+        switch (bank->type)
+        {
+            case TYPE_BOOLEAN:
+                actual_size = snprintf(output_string, output_string_size, 
+                    "%i", bank->value.boolean ? 1 : 0);
+                break;
+            case TYPE_INTEGER:
+                actual_size = snprintf(output_string, output_string_size, 
+                    "%i", bank->value.integer);
+                break;
+            case TYPE_FLOAT:
+                actual_size = snprintf(output_string, output_string_size, 
+                    "%f", bank->value.floating);
+                break;
+            case TYPE_STRING:
+                actual_size = snprintf(output_string, output_string_size, 
+                    "%s", bank->value.string);
+                break;
+            case TYPE_ARRAY:
+            default:
+                output_string[0] = CHAR_END_STRING;
+                actual_size = 1;
+                break;
+        }
+
+        output_string = realloc(output_string, actual_size);
     }
 
-    return as_string;
+    return output_string;
 }
 
 bool convert_bank(Bank *bank, BankType to_type)
@@ -239,25 +265,25 @@ bool convert_bank(Bank *bank, BankType to_type)
     if (to_type == TYPE_BOOLEAN && from_type != TYPE_BOOLEAN)
     {
         log_debug("Converting Bank %02i to boolean.\n", bank->identifier);
-        as_boolean = bank_as_boolean(bank, &convert_ok);
+        as_boolean = get_bank_as_boolean(bank);
         convert_ok = set_bank_boolean(bank, as_boolean);
     }
     else if (to_type == TYPE_INTEGER && from_type != TYPE_INTEGER)
     {
         log_debug("Converting Bank %02i to integer.\n", bank->identifier);
-        as_integer = bank_as_integer(bank, &convert_ok);
+        as_integer = get_bank_as_integer(bank);
         convert_ok = set_bank_integer(bank, as_integer);
     }
     else if (to_type == TYPE_FLOAT && from_type != TYPE_FLOAT)
     {
         log_debug("Converting Bank %02i to float.\n", bank->identifier);
-        as_float = bank_as_float(bank, &convert_ok);
+        as_float = get_bank_as_float(bank);
         convert_ok = set_bank_float(bank, as_float);
     }
     else if (to_type == TYPE_STRING && from_type != TYPE_STRING)
     {
         log_debug("Converting Bank %02i to string.\n", bank->identifier);
-        as_string = bank_as_string(bank, &convert_ok);
+        as_string = get_bank_as_string(bank);
         if (as_string != NULL)
         {
             convert_ok = set_bank_string(bank, as_string);
@@ -309,56 +335,6 @@ bool copy_bank(Bank *destination, Bank *source)
     }
 
     return source_ok && destination_ok;
-}
-
-char *get_bank_as_string(Bank *bank)
-{
-    char *output_string = NULL;
-    bool read_bank_value = false;
-
-    if (bank != NULL)
-    {
-        int output_string_size = MAX_PARAMETER_SIZE;
-        output_string = malloc(output_string_size);
-        int actual_size = 0;
-
-        if (output_string == NULL)
-        {
-            log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
-        }
-        else
-        {
-            if (bank->type == TYPE_INTEGER)
-            {
-                actual_size = snprintf(output_string, output_string_size, 
-                    "%i", get_bank_integer(bank, &read_bank_value));
-            }
-            else if (bank->type == TYPE_BOOLEAN)
-            {
-                actual_size = snprintf(output_string, output_string_size, 
-                    "%s", get_bank_boolean(bank, &read_bank_value) ? "true" : "false");
-            }
-            else if (bank->type == TYPE_FLOAT)
-            {
-                actual_size = snprintf(output_string, output_string_size, 
-                    "%f", get_bank_float(bank, &read_bank_value));
-            }
-            else if (bank->type == TYPE_STRING)
-            {
-                actual_size = snprintf(output_string, output_string_size, 
-                    "%s", get_bank_string(bank, &read_bank_value));
-            }
-            else if (bank->type == TYPE_ARRAY)
-            {
-                actual_size = snprintf(output_string, output_string_size, 
-                    "(Array)");
-            }
-
-            output_string = realloc(output_string, actual_size);
-        }
-    }
-
-    return output_string;
 }
 
 bool get_bank_boolean(Bank *bank, bool *ok)
