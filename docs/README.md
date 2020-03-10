@@ -116,6 +116,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 33   /          BANK1   BANK2   Divide BANK1 by BANK2. Result in BANK1.
 34   %          BANK1   BANK2   Modulo of BANK1 by BANK2. Result in BANK1.
 35   **         BANK1   BANK2   BANK1 to the power of BANK2. Result in BANK1.
+36   SQR        BANK            Square root of BANK.
 
 Note: These instructions are only performed on INTEGER and FLOAT types.
       All other types are ignored. The addition instruction can be performed on 

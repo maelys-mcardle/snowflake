@@ -140,6 +140,11 @@ InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;
             break;
+        case INSTRUCTION_SQUARE_ROOT:
+            set_mnemonic(&info, "SQR");
+            info.parameters.first = PARAMETER_BANK;
+            info.parameters.second = PARAMETER_NONE;
+            break;
         case INSTRUCTION_NOT:
             set_mnemonic(&info, "  !");
             info.parameters.first = PARAMETER_BANK;

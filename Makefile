@@ -1,4 +1,4 @@
-BASE_CFLAGS=-Wall -Werror -Wextra
+BASE_CFLAGS=-Wall -Werror -Wextra -lm
 RELEASE_FLAGS=-O3
 DEBUG_FLAGS=-g
 CFLAGS=$(BASE_CFLAGS)
