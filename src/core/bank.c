@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include "headers/string.h"
 #include "headers/bank.h"
 #include "headers/output.h"
 #include "headers/errors.h"
@@ -118,209 +119,170 @@ bool set_bank_array(Bank *bank, BankArray *value)
     return true;
 }
 
+bool bank_as_boolean(Bank *bank, bool *ok)
+{
+    log_debug("Interpreting Bank %02i as a boolean.\n", bank->identifier);
+
+    *ok = true;
+    switch (bank->type)
+    {
+        case TYPE_BOOLEAN:
+            return bank->value.boolean;
+        case TYPE_INTEGER:
+            return bank->value.integer != 0;
+        case TYPE_FLOAT:
+            return bank->value.floating != 0;
+        case TYPE_STRING:
+            return string_to_boolean(bank->value.string, ok);
+        case TYPE_ARRAY:
+            return false;
+        default:
+            return false;
+    }
+}
+
+int bank_as_integer(Bank *bank, bool *ok)
+{
+    log_debug("Interpreting Bank %02i as an integer.\n", bank->identifier);
+
+    *ok = true;
+    switch (bank->type)
+    {
+        case TYPE_BOOLEAN:
+            return bank->value.boolean ? 1 : 0;
+        case TYPE_INTEGER:
+            return bank->value.integer;
+        case TYPE_FLOAT:
+            return bank->value.floating;
+        case TYPE_STRING:
+            return string_to_integer(bank->value.string, ok);
+        case TYPE_ARRAY:
+            return bank->value.array.count;
+        default:
+            return 0;
+    }
+}
+
+float bank_as_float(Bank *bank, bool *ok)
+{
+    log_debug("Interpreting Bank %02i as a float.\n", bank->identifier);
+
+    *ok = true;
+    switch (bank->type)
+    {
+        case TYPE_BOOLEAN:
+            return bank->value.boolean ? 1. : 0.;
+        case TYPE_INTEGER:
+            return bank->value.integer;
+        case TYPE_FLOAT:
+            return bank->value.floating;
+        case TYPE_STRING:
+            return string_to_float(bank->value.string, ok);
+        case TYPE_ARRAY:
+            return bank->value.array.count;
+        default:
+            return 0.;
+    }
+}
+
+char *bank_as_string(Bank *bank, bool *ok)
+{
+    log_debug("Interpreting Bank %02i as a string.\n", bank->identifier);
+
+    // Allocate memory for the string.
+    int max_string_size = MAX_PARAMETER_SIZE;
+    char *as_string = malloc(max_string_size);
+
+    if (as_string == NULL)
+    {
+        *ok = false;
+        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+        return NULL;
+    }
+
+    // Apply the conversion.
+    *ok = true;
+    switch (bank->type)
+    {
+        case TYPE_BOOLEAN:
+            snprintf(as_string, max_string_size, "%i", bank->value.boolean ? 1 : 0);
+            break;
+        case TYPE_INTEGER:
+            snprintf(as_string, max_string_size, "%i", bank->value.integer);
+            break;
+        case TYPE_FLOAT:
+            snprintf(as_string, max_string_size, "%f", bank->value.floating);
+            break;
+        case TYPE_STRING:
+            snprintf(as_string, max_string_size, "%s", bank->value.string);
+            break;
+        case TYPE_ARRAY:
+            as_string[0] = CHAR_END_STRING;
+            break;
+        default:
+            as_string[0] = CHAR_END_STRING;
+            break;
+    }
+
+    return as_string;
+}
+
 bool convert_bank(Bank *bank, BankType to_type)
 {
     bool convert_ok = false;
     BankType from_type = bank->type;
-
     bool as_boolean;
     int as_integer;
     float as_float;
-    int max_string_size = MAX_PARAMETER_SIZE;
-    char as_string[max_string_size];
+    char *as_string = NULL;
 
-    log_debug("Converting Bank %02i", bank->identifier);
-    if (from_type == TYPE_BOOLEAN)
+    log_debug("Converting Bank %02i ", bank->identifier);
+    switch (to_type)
     {
-        log_debug(" from boolean");
-        switch (to_type)
-        {
-            case TYPE_BOOLEAN:
-                log_debug(" to boolean\n");
-                break;
-            case TYPE_INTEGER:
-                log_debug(" to integer\n");
-                as_integer = bank->value.boolean ? 1 : 0;
-                convert_ok = set_bank_integer(bank, as_integer);
-                break;
-            case TYPE_FLOAT:
-                log_debug(" to float\n");
-                as_float = bank->value.boolean ? 1. : 0.;
-                convert_ok = set_bank_float(bank, as_float);
-                break;
-            case TYPE_STRING:
-                log_debug(" to string\n");
-                convert_ok = set_bank_string(bank, 
-                    bank->value.boolean ? "1" : "0");
-                break;
-            case TYPE_ARRAY:
-                log_debug(" to array\n");
-                convert_ok = set_empty_bank_array(bank);
-                break;
-            default:
-                log_debug(" to unknown\n");
-                convert_ok = false;
-        }
-    }
-    else if (from_type == TYPE_INTEGER)
-    {
-        log_debug(" from integer");
-        switch (to_type)
-        {
-            case TYPE_BOOLEAN:
-                log_debug(" to boolean\n");
-                as_boolean = bank->value.integer > 0;
+        case TYPE_BOOLEAN:
+            log_debug("to boolean.\n");
+            if (from_type != TYPE_BOOLEAN)
+            {
+                as_boolean = bank_as_boolean(bank, &convert_ok);
                 convert_ok = set_bank_boolean(bank, as_boolean);
-                break;
-            case TYPE_INTEGER:
-                log_debug(" to integer\n");
-                break;
-            case TYPE_FLOAT:
-                log_debug(" to float\n");
-                as_float = bank->value.integer;
+            }
+            break;
+        case TYPE_INTEGER:
+            log_debug("to integer.\n");
+            if (from_type != TYPE_INTEGER)
+            {
+                as_integer = bank_as_integer(bank, &convert_ok);
+                convert_ok = set_bank_integer(bank, as_integer);
+            }
+            break;
+        case TYPE_FLOAT:
+            log_debug("to float.\n");
+            if (from_type != TYPE_FLOAT)
+            {
+                as_float = bank_as_float(bank, &convert_ok);
                 convert_ok = set_bank_float(bank, as_float);
-                break;
-            case TYPE_STRING:
-                log_debug(" to string\n");
-                snprintf(as_string, max_string_size, "%i", bank->value.integer);
+            }
+            break;
+        case TYPE_STRING:
+            log_debug("to string.\n");
+            if (from_type != TYPE_STRING)
+            {
+                as_string = bank_as_string(bank, &convert_ok);
                 convert_ok = set_bank_string(bank, as_string);
-                break;
-            case TYPE_ARRAY:
-                log_debug(" to array\n");
+            }
+            break;
+        case TYPE_ARRAY:
+            log_debug("to array.\n");
+            if (from_type != TYPE_ARRAY)
+            {
                 convert_ok = set_empty_bank_array(bank);
-                break;
-            default:
-                log_debug(" to unknown\n");
-                convert_ok = false;
-        }
+            }
+            break;
+        default:
+            log_debug("to unknown.\n");
+            as_string[0] = CHAR_END_STRING;
+            break;
     }
-    else if (from_type == TYPE_FLOAT)
-    {
-        log_debug(" from float");
-        switch (to_type)
-        {
-            case TYPE_BOOLEAN:
-                log_debug(" to boolean\n");
-                as_boolean = bank->value.floating > 0;
-                convert_ok = set_bank_boolean(bank, as_boolean);
-                break;
-            case TYPE_INTEGER:
-                log_debug(" to integer\n");
-                as_integer = bank->value.floating;
-                convert_ok = set_bank_integer(bank, as_integer);
-                break;
-            case TYPE_FLOAT:
-                log_debug(" to float\n");
-                break;
-            case TYPE_STRING:
-                log_debug(" to string\n");
-                snprintf(as_string, max_string_size, "%f", bank->value.floating);
-                convert_ok = set_bank_string(bank, as_string);
-                break;
-            case TYPE_ARRAY:
-                log_debug(" to array\n");
-                convert_ok = set_empty_bank_array(bank);
-                break;
-            default:
-                log_debug(" to unknown\n");
-                convert_ok = false;
-        }
-    }
-    else if (from_type == TYPE_STRING)
-    {
-        log_debug(" from string");
-        switch (to_type)
-        {
-            case TYPE_BOOLEAN:
-                log_debug(" to boolean\n");
-                as_boolean = string_to_boolean(bank->value.string, &convert_ok);
-                convert_ok = set_bank_boolean(bank, as_boolean);
-                break;
-            case TYPE_INTEGER:
-                log_debug(" to integer\n");
-                as_integer = string_to_integer(bank->value.string, &convert_ok);
-                convert_ok = set_bank_integer(bank, as_integer);
-                break;
-            case TYPE_FLOAT:
-                log_debug(" to float\n");
-                as_float = string_to_float(bank->value.string, &convert_ok);
-                convert_ok = set_bank_float(bank, as_float);
-                break;
-            case TYPE_STRING:
-                log_debug(" to string\n");
-                break;
-            case TYPE_ARRAY:
-                log_debug(" to array\n");
-                convert_ok = set_empty_bank_array(bank);
-                break;
-            default:
-                log_debug(" to unknown\n");
-                convert_ok = false;
-        }
-    }
-    else if (from_type == TYPE_ARRAY)
-    {
-        log_debug(" from array");
-        switch (to_type)
-        {
-            case TYPE_BOOLEAN:
-                log_debug(" to boolean\n");
-                as_boolean = bank->value.array.count > 0;
-                convert_ok = set_bank_boolean(bank, as_boolean);
-                break;
-            case TYPE_INTEGER:
-                log_debug(" to integer\n");
-                as_integer = bank->value.array.count;
-                convert_ok = set_bank_integer(bank, as_integer);
-                break;
-            case TYPE_FLOAT:
-                log_debug(" to float\n");
-                as_float = bank->value.array.count;
-                convert_ok = set_bank_float(bank, as_float);
-                break;
-            case TYPE_STRING:
-                log_debug(" to string\n");
-                convert_ok = set_bank_string(bank, "");
-                break;
-            case TYPE_ARRAY:
-                log_debug(" to array\n");
-                convert_ok = set_empty_bank_array(bank);
-                break;
-            default:
-                log_debug(" to unknown\n");
-                convert_ok = false;
-        }
-    }
-    else
-    {
-        log_debug(" from unallocated bank");
-        switch (to_type)
-        {
-            case TYPE_BOOLEAN:
-                log_debug(" to boolean\n");
-                convert_ok = set_bank_boolean(bank, false);
-                break;
-            case TYPE_INTEGER:
-                log_debug(" to integer\n");
-                convert_ok = set_bank_integer(bank, 0);
-                break;
-            case TYPE_FLOAT:
-                log_debug(" to float\n");
-                convert_ok = set_bank_float(bank, 0.);
-                break;
-            case TYPE_STRING:
-                log_debug(" to string\n");
-                convert_ok = set_bank_string(bank, "");
-                break;
-            case TYPE_ARRAY:
-                log_debug(" to array\n");
-                break;
-            default:
-                log_debug(" to unknown\n");
-                convert_ok = false;
-        }
-    }
-    
 
     return convert_ok;
 }

@@ -29,6 +29,7 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
 02              BANK    LITERAL  Assign a name to a BANK. 
                                  Banks are positive integers.
                                  Names are strings.
+                                 This instruction is not required to use a bank.
                                  Re-defining a bank is undefined behaviour.
 03    <<        DEVICE  BANK     Ouput to LCD / Printer / etc, as defined by DEVICE.
                                  Each invocation of OUT is on its own new line.

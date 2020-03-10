@@ -62,4 +62,9 @@ char *get_bank_as_string(Bank *bank);
 bool copy_bank(Bank *destination, Bank *source);
 bool convert_bank(Bank *bank, BankType to_type);
 
+bool bank_as_boolean(Bank *bank, bool *ok);
+int bank_as_integer(Bank *bank, bool *ok);
+float bank_as_float(Bank *bank, bool *ok);
+char *bank_as_string(Bank *bank, bool *ok);
+
 #endif
