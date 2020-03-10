@@ -117,10 +117,12 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         case INSTRUCTION_MODULO:
             instruction_ok = instruction_modulo(program, instruction, instruction_pointer);
             break;
+        case INSTRUCTION_POWER:
+            instruction_ok = instruction_power(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_SQUARE_ROOT:
             instruction_ok = instruction_square_root(program, instruction, instruction_pointer);
             break;
-        case INSTRUCTION_POWER:
         case INSTRUCTION_NOT:
         case INSTRUCTION_AND:
         case INSTRUCTION_OR:

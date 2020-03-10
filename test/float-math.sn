@@ -1,0 +1,40 @@
+!!! ADDITION
+13 00 2.5 ;; Bank @00 to float 2.5.
+13 01 3.4 ;; Bank @01 to float 3.4.
+30 00 01 ;; Add Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! SUBTRACTION
+13 00 10.0 ;; Bank @00 to float 10.
+13 01 5.2  ;; Bank @01 to float 5.2.
+31 00 01 ;; Subtract Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! MULTIPLICATION
+13 00 1.2 ;; Bank @00 to float 1.2.
+13 01 3.4 ;; Bank @01 to float 3.4.
+32 00 01 ;; Multiply Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! DIVISION
+13 00 15 ;; Bank @00 to float 15.
+13 01 3.1 ;; Bank @01 to float 3.1.
+33 00 01 ;; Divide Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! MODULO
+13 00 15 ;; Bank @00 to float 15.
+13 01 4.2 ;; Bank @01 to float 4.2.
+34 00 01 ;; Modulo Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! POWER
+13 00 2 ;; Bank @00 to float 2.
+13 01 4.2 ;; Bank @01 to float 4.2.
+35 00 01 ;; Power of Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! SQUARE ROOT
+13 00 16.6 ;; Bank @00 to float 16.6.
+36 00    ;; Square root of Bank @00.
+03 00 00 ;; Output Bank @00

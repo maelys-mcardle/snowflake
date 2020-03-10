@@ -1,0 +1,40 @@
+!!! ADDITION
+12 00 02 ;; Bank @00 to integer 2.
+12 01 03 ;; Bank @01 to integer 3.
+30 00 01 ;; Add Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! SUBTRACTION
+12 00 10 ;; Bank @00 to integer 10.
+12 01 07 ;; Bank @01 to integer 7.
+31 00 01 ;; Subtract Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! MULTIPLICATION
+12 00 10 ;; Bank @00 to integer 10.
+12 01 07 ;; Bank @01 to integer 7.
+32 00 01 ;; Multiply Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! DIVISION
+12 00 15 ;; Bank @00 to integer 15.
+12 01 03 ;; Bank @01 to integer 3.
+33 00 01 ;; Divide Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! MODULO
+12 00 15 ;; Bank @00 to integer 15.
+12 01 04 ;; Bank @01 to integer 4.
+34 00 01 ;; Modulo Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! POWER
+12 00 02 ;; Bank @00 to integer 2.
+12 01 04 ;; Bank @01 to integer 4.
+35 00 01 ;; Power of Bank @00 and Bank @01.
+03 00 00 ;; Output Bank @00
+
+!!! SQUARE ROOT
+12 00 16 ;; Bank @00 to integer 16.
+36 00    ;; Square root of Bank @00.
+03 00 00 ;; Output Bank @00
