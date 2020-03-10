@@ -12,6 +12,7 @@
 30 00 01        ;; Append your name to the "Your name is"
 03 00 00        ;; Shows "Your name is [Name]"
 
+;;
 ;; ./snowflake --print samples/your-name.sn:
 ;; 
 ;; !!! YOUR NAME 
@@ -24,9 +25,11 @@
 ;;   + MSG NAME
 ;;  << OUT MSG
 ;;
+
 ;;
 ;; ./snowflake --run samples/your-name.sn
 ;;
 ;; WHAT IS YOUR NAME?
 ;; Jane Eyre
 ;; YOUR NAME IS Jane Eyre
+;;
