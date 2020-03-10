@@ -268,7 +268,15 @@ bool convert_bank(Bank *bank, BankType to_type)
             if (from_type != TYPE_STRING)
             {
                 as_string = bank_as_string(bank, &convert_ok);
-                convert_ok = set_bank_string(bank, as_string);
+                if (as_string != NULL)
+                {
+                    convert_ok = set_bank_string(bank, as_string);
+                    free(as_string);
+                }
+                else
+                {
+                    convert_ok = set_bank_string(bank, "");
+                }
             }
             break;
         case TYPE_ARRAY:
