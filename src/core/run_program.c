@@ -1,6 +1,10 @@
 #include <stdlib.h>
 #include "headers/run_program.h"
+#include "headers/run_instruction_array.h"
 #include "headers/run_instruction_basic.h"
+#include "headers/run_instruction_branching.h"
+#include "headers/run_instruction_logic.h"
+#include "headers/run_instruction_math.h"
 #include "headers/run_instruction_types.h"
 #include "headers/output.h"
 #include "headers/bank.h"
@@ -96,7 +100,11 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         case INSTRUCTION_IF_NOT_EQUAL:
         case INSTRUCTION_IF_GREATER_THAN:
         case INSTRUCTION_IF_LESSER_THAN:
+            *instruction_pointer += 1;
+            break;
         case INSTRUCTION_ADD:
+            instruction_ok = instruction_add(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_SUBTRACT:
         case INSTRUCTION_MULTIPLY:
         case INSTRUCTION_DIVIDE:

@@ -4,5 +4,6 @@
 #include "program.h"
 #include "instructions.h"
 
+bool instruction_add(Program *program, Instruction *instruction, int *instruction_pointer);
 
 #endif

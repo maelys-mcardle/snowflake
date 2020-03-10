@@ -109,7 +109,9 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 35   **         BANK1   BANK2   BANK1 to the power of BANK2, stored in BANK1.
 
 Note: These instructions are only performed on INTEGER and FLOAT types.
-      All other types are ignored.
+      All other types are ignored. The addition instruction can be performed on 
+      STRING types as well; it concatenates strings together. Instruction is 
+      ignored if BANK1 or BANK2 has no value set.
 ```
 
 ```
@@ -123,7 +125,8 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 43   ^          BANK1   BANK2   Logical XOR. Result stored in BANK1.
 
 Note: These instructions are only performed on BOOLEAN and INTEGER types.
-      All other types are ignored.
+      All other types are ignored. Instruction is ignored if BANK1 or 
+      BANK2 has no value set.
 ```
 
 ```

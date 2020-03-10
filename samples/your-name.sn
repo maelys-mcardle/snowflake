@@ -9,10 +9,10 @@
 03 00 00        ;; Shows "What is your name?"
 04 01 01        ;; User enters their name in Bank "NAME"
 14 00 YOUR NAME IS ;; Stores "Your name is" in BANK "MSG"
-03 00 00        ;; Shows "Your name is"
-03 00 01        ;; Shows the value in bank "NAME"
+30 00 01        ;; Append your name to the "Your name is"
+03 00 00        ;; Shows "Your name is [Name]"
 
-;; The interpreter parses the above as the following:
+;; ./snowflake --print samples/your-name.sn:
 ;; 
 ;; !!! YOUR NAME 
 ;;     @00 MSG
@@ -21,5 +21,12 @@
 ;;  << OUT MSG
 ;;  >>  IN NAME
 ;; STR MSG YOUR NAME IS
+;;   + MSG NAME
 ;;  << OUT MSG
-;;  << OUT NAME
+;;
+;;
+;; ./snowflake --run samples/your-name.sn
+;;
+;; WHAT IS YOUR NAME?
+;; Jane Eyre
+;; YOUR NAME IS Jane Eyre
