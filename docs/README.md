@@ -7,12 +7,15 @@ and execution environment in mind. As such, it is designed with a few restrictio
 * Numeric keypad as the input device including [for typing letters][1]
 * A 20 character by 4 line tall display device.
 
-This resulting language is a funky paradigm that's something in-between machine code and BASIC. 
-Snowflake is [Turing-complete][2] and uses the [Polish notation][3].
+Conceptualize a device that's a mish-mash of a [KIM-1][2] and a 1980's pocket computer like 
+the [Sharp PC-1500][3]. This resulting language is likewise something in-between machine code
+and BASIC. Snowflake is [Turing-complete][4] and uses the [Polish notation][5].
 
 [1]: https://en.wikipedia.org/wiki/E.161
-[2]: https://en.wikipedia.org/wiki/Turing_completeness
-[3]: https://en.wikipedia.org/wiki/Polish_notation
+[2]: https://en.wikipedia.org/wiki/KIM-1
+[3]: https://en.wikipedia.org/wiki/Sharp_PC-1500
+[4]: https://en.wikipedia.org/wiki/Turing_completeness
+[5]: https://en.wikipedia.org/wiki/Polish_notation
 
 ## Reference
 
