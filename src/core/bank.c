@@ -236,60 +236,38 @@ bool convert_bank(Bank *bank, BankType to_type)
     float as_float;
     char *as_string = NULL;
 
-    log_debug("Converting Bank %02i ", bank->identifier);
-    switch (to_type)
+    if (to_type == TYPE_BOOLEAN && from_type != TYPE_BOOLEAN)
     {
-        case TYPE_BOOLEAN:
-            log_debug("to boolean.\n");
-            if (from_type != TYPE_BOOLEAN)
-            {
-                as_boolean = bank_as_boolean(bank, &convert_ok);
-                convert_ok = set_bank_boolean(bank, as_boolean);
-            }
-            break;
-        case TYPE_INTEGER:
-            log_debug("to integer.\n");
-            if (from_type != TYPE_INTEGER)
-            {
-                as_integer = bank_as_integer(bank, &convert_ok);
-                convert_ok = set_bank_integer(bank, as_integer);
-            }
-            break;
-        case TYPE_FLOAT:
-            log_debug("to float.\n");
-            if (from_type != TYPE_FLOAT)
-            {
-                as_float = bank_as_float(bank, &convert_ok);
-                convert_ok = set_bank_float(bank, as_float);
-            }
-            break;
-        case TYPE_STRING:
-            log_debug("to string.\n");
-            if (from_type != TYPE_STRING)
-            {
-                as_string = bank_as_string(bank, &convert_ok);
-                if (as_string != NULL)
-                {
-                    convert_ok = set_bank_string(bank, as_string);
-                    free(as_string);
-                }
-                else
-                {
-                    convert_ok = set_bank_string(bank, "");
-                }
-            }
-            break;
-        case TYPE_ARRAY:
-            log_debug("to array.\n");
-            if (from_type != TYPE_ARRAY)
-            {
-                convert_ok = set_empty_bank_array(bank);
-            }
-            break;
-        default:
-            log_debug("to unknown.\n");
-            as_string[0] = CHAR_END_STRING;
-            break;
+        log_debug("Converting Bank %02i to boolean.\n", bank->identifier);
+        as_boolean = bank_as_boolean(bank, &convert_ok);
+        convert_ok = set_bank_boolean(bank, as_boolean);
+    }
+    else if (to_type == TYPE_INTEGER && from_type != TYPE_INTEGER)
+    {
+        log_debug("Converting Bank %02i to integer.\n", bank->identifier);
+        as_integer = bank_as_integer(bank, &convert_ok);
+        convert_ok = set_bank_integer(bank, as_integer);
+    }
+    else if (to_type == TYPE_FLOAT && from_type != TYPE_FLOAT)
+    {
+        log_debug("Converting Bank %02i to float.\n", bank->identifier);
+        as_float = bank_as_float(bank, &convert_ok);
+        convert_ok = set_bank_float(bank, as_float);
+    }
+    else if (to_type == TYPE_STRING && from_type != TYPE_STRING)
+    {
+        log_debug("Converting Bank %02i to string.\n", bank->identifier);
+        as_string = bank_as_string(bank, &convert_ok);
+        if (as_string != NULL)
+        {
+            convert_ok = set_bank_string(bank, as_string);
+            free(as_string);
+        }
+    }
+    else if (to_type == TYPE_ARRAY && from_type != TYPE_ARRAY)
+    {
+        log_debug("Converting Bank %02i to array.\n", bank->identifier);
+        convert_ok = set_empty_bank_array(bank);
     }
 
     return convert_ok;
