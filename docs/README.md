@@ -1,11 +1,11 @@
 # Snowflake
 
 **Snowflake** is a programming language made designed with microcontrollers as both the editing 
-and execution environment in mind. As such, it is designed with a few restrictions in mind:
+and execution environment. As such, it is designed with a few assumptions:
 
 * The target device is memory-bound rather than CPU-bound.
 * Numeric keypad as the input device including [for typing letters][1]
-* A 20 character by 4 line tall display device.
+* The output is a 20 character by 4 line display.
 
 Conceptualize a device that's a mish-mash of a [KIM-1][2] and a 1980's pocket computer like 
 the [Sharp PC-1500][3]. This resulting language is likewise something in-between machine code
