@@ -1,15 +1,16 @@
 ;; Count characters
 ;; 
-;; The following asks you to enter a string and then counts its length
+;; The following asks you to enter a string and then counts
+;; the number of characters typed.
 
-14 00 ENTER SOMETHING ;; @00 = ENTER SOMETHING
+14 00 ENTER SOMETHING ;; @00 = "ENTER SOMETHING"
 03 00 00              ;; Print @00
 04 01 01              ;; @01 = [User Input]
 09 02 01              ;; @02 = LEN(@01)
-14 03 WROTE           ;; @03 = WROTE
-14 04 CHARACTERS      ;; @04 = CHARACTERS
-30 03 02              ;; @03 = @03 + @02 ;; @03 = WROTE + LEN(@01)
-30 03 04              ;; @03 = @03 + @04 ;; @03 = WROTE LEN(@01) + CHARACTERS
+14 03 WROTE           ;; @03 = "WROTE"
+14 04 CHARACTERS      ;; @04 = "CHARACTERS"
+30 03 02              ;; @03 = @03 + @02 ;; @03 = "WROTE" + LEN(@01)
+30 03 04              ;; @03 = @03 + @04 ;; @03 = "WROTE LEN(@01)" + "CHARACTERS"
 03 00 03              ;; Print @03
 
 ;; ./snowflake --print samples/characters-written.sn 
