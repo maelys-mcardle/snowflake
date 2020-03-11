@@ -1,6 +1,6 @@
-;; What is Your Name
+;; Count characters
 ;; 
-;; The following asks your name and then displays it back to you.
+;; The following asks you to enter a string and then counts its length
 
 14 00 ENTER SOMETHING ;; @00 = ENTER SOMETHING
 03 00 00              ;; Print @00
