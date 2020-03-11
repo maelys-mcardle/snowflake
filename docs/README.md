@@ -58,6 +58,7 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
 09     #        BANK1   BANK2    Stores the size of BANK1 in BANK2.
                                  For string type, stores string length.
                                  For array type, stores the number of items.
+                                 For other types, stores nothing.
 ```
 
 ```
