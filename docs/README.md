@@ -40,11 +40,9 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
                                  Names are strings.
                                  This instruction is not required to use a bank.
                                  Re-defining a bank is undefined behaviour.
-03    <<        DEVICE  BANK     Ouput to LCD / Printer / etc, as defined by DEVICE.
-                                 Each invocation of OUT is on its own new line.
+03    <<        DEVICE  BANK     Send BANK contents to a DEVICE.
                                  Devices are positive integers.
-04    >>        DEVICE  BANK     Input from Buttons / etc, as defined by DEVICE.
-                                 The value is stored in the BANK after the OK key is pressed.
+04    >>        DEVICE  BANK     Receive DEVICE data into a BANK.
                                  Devices are positive integers.
 05     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
                                  BANK1 takes on the type of BANK2.
