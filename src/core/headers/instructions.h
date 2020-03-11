@@ -18,7 +18,5 @@ typedef struct {
 
 Instruction *new_instruction();
 void free_instruction(Instruction *instruction);
-Device get_device_from_instruction(Instruction *instruction);
-BankType get_type_from_instruction(Instruction *instruction);
 
 #endif

@@ -7,11 +7,11 @@
 #include "headers/devices.h"
 #include "headers/errors.h"
 
-bool instruction_noop(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_noop(Program *program, Parameters *parameters, int *instruction_pointer)
 {
     // Unused parameters. This is done to suppress compiler warnings.
     (void)(program);
-    (void)(instruction);
+    (void)(parameters);
 
     // Perform no-op.
     bool instruction_ok = true;
@@ -20,10 +20,10 @@ bool instruction_noop(Program *program, Instruction *instruction, int *instructi
     return instruction_ok;
 }
 
-bool instruction_output(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_output(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *bank = get_bank_from_second_parameter(program, instruction);
-    Device device = get_device_from_instruction(instruction);
+    Bank *bank = get_bank_from_parameter(program, &(parameters->second));
+    Device device = get_device_from_parameter(parameters);
     bool instruction_ok = false;
 
     if (bank != NULL)
@@ -35,7 +35,7 @@ bool instruction_output(Program *program, Instruction *instruction, int *instruc
     }
     else
     {
-        log_debug("Sending unallocated Bank %02i to Device %02i\n", instruction->parameters.second.integer, device);
+        log_debug("Sending unallocated Bank %02i to Device %02i\n", parameters->second.integer, device);
         instruction_ok = send_to_device(device, "(Empty)");
     }
     
@@ -43,13 +43,13 @@ bool instruction_output(Program *program, Instruction *instruction, int *instruc
     return instruction_ok;
 }
 
-bool instruction_input(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_input(Program *program, Parameters *parameters, int *instruction_pointer)
 {
     // Get the bank. If it doesn't exist, create it.
-    Bank *bank = get_or_new_bank_from_second_parameter(program, instruction);
+    Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->second));
 
     // Get the device.
-    Device device = get_device_from_instruction(instruction);
+    Device device = get_device_from_parameter(parameters);
     bool instruction_ok = false;
 
     // Get the input.
@@ -91,9 +91,9 @@ bool instruction_input(Program *program, Instruction *instruction, int *instruct
     return instruction_ok;
 }
 
-bool instruction_delete(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_delete(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *bank = get_bank_from_first_parameter(program, instruction);
+    Bank *bank = get_bank_from_parameter(program, &(parameters->first));
     bool instruction_ok = true;
 
     if (bank == NULL)
@@ -110,13 +110,13 @@ bool instruction_delete(Program *program, Instruction *instruction, int *instruc
     return instruction_ok;
 }
 
-bool instruction_type(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_type(Program *program, Parameters *parameters, int *instruction_pointer)
 {
     bool instruction_ok = false;
 
     // Get the banks.
-    Bank *bank_to_store_type_in = get_or_new_bank_from_first_parameter(program, instruction);
-    Bank *bank_with_type_to_get = get_bank_from_second_parameter(program, instruction);
+    Bank *bank_to_store_type_in = get_or_new_bank_from_parameter(program, &(parameters->first));
+    Bank *bank_with_type_to_get = get_bank_from_parameter(program, &(parameters->second));
 
     // Bank has a type.
     if (bank_to_store_type_in == NULL)
@@ -137,13 +137,13 @@ bool instruction_type(Program *program, Instruction *instruction, int *instructi
     return instruction_ok;
 }
 
-bool instruction_copy(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_copy(Program *program, Parameters *parameters, int *instruction_pointer)
 {
     bool instruction_ok = false;
 
     // Get the banks.
-    Bank *bank_destination = get_or_new_bank_from_first_parameter(program, instruction);
-    Bank *bank_source = get_bank_from_second_parameter(program, instruction);
+    Bank *bank_destination = get_or_new_bank_from_parameter(program, &(parameters->first));
+    Bank *bank_source = get_bank_from_parameter(program, &(parameters->second));
 
     // Bank has a type.
     if (bank_destination == NULL)
@@ -166,13 +166,13 @@ bool instruction_copy(Program *program, Instruction *instruction, int *instructi
     return instruction_ok; 
 }
 
-bool instruction_convert(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_convert(Program *program, Parameters *parameters, int *instruction_pointer)
 {
     bool instruction_ok = false;
 
     // Get the bank and type to convert to.
-    Bank *bank = get_or_new_bank_from_second_parameter(program, instruction);
-    BankType to_type = get_type_from_instruction(instruction);
+    Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->second));
+    BankType to_type = get_type_from_parameter(parameters);
 
     if (bank != NULL)
     {
@@ -185,12 +185,12 @@ bool instruction_convert(Program *program, Instruction *instruction, int *instru
 }
 
 
-bool instruction_length(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_length(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *bank_to_store_length_in = get_or_new_bank_from_first_parameter(program, instruction);
-    Bank *bank_to_get_length_from = get_bank_from_second_parameter(program, instruction);
+    Bank *bank_to_store_length_in = get_or_new_bank_from_parameter(program, &(parameters->first));
+    Bank *bank_to_get_length_from = get_bank_from_parameter(program, &(parameters->second));
     bool instruction_ok = false;
-    bool parse_ok = true;
+    bool parse_ok = true; 
 
     log_debug("Storing length in Bank %02i.\n",
             bank_to_store_length_in->identifier);

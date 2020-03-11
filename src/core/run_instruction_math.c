@@ -4,10 +4,10 @@
 #include "headers/string.h"
 #include "headers/output.h"
 
-bool instruction_add(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_add(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *left_parameter = get_bank_from_first_parameter(program, instruction);
-    Bank *right_parameter = get_bank_from_second_parameter(program, instruction);
+    Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
+    Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
     bool instruction_ok = false;
 
     if (left_parameter != NULL && right_parameter != NULL)
@@ -54,10 +54,10 @@ bool instruction_add(Program *program, Instruction *instruction, int *instructio
     return instruction_ok;
 }
 
-bool instruction_subtract(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_subtract(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *left_parameter = get_bank_from_first_parameter(program, instruction);
-    Bank *right_parameter = get_bank_from_second_parameter(program, instruction);
+    Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
+    Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
     bool instruction_ok = false;
 
     if (left_parameter != NULL && right_parameter != NULL)
@@ -92,10 +92,10 @@ bool instruction_subtract(Program *program, Instruction *instruction, int *instr
     return instruction_ok;
 }
 
-bool instruction_multiply(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_multiply(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *left_parameter = get_bank_from_first_parameter(program, instruction);
-    Bank *right_parameter = get_bank_from_second_parameter(program, instruction);
+    Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
+    Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
     bool instruction_ok = false;
 
     if (left_parameter != NULL && right_parameter != NULL)
@@ -130,10 +130,10 @@ bool instruction_multiply(Program *program, Instruction *instruction, int *instr
     return instruction_ok;
 }
 
-bool instruction_divide(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_divide(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *left_parameter = get_bank_from_first_parameter(program, instruction);
-    Bank *right_parameter = get_bank_from_second_parameter(program, instruction);
+    Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
+    Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
     bool instruction_ok = false;
 
     if (left_parameter != NULL && right_parameter != NULL)
@@ -168,10 +168,10 @@ bool instruction_divide(Program *program, Instruction *instruction, int *instruc
     return instruction_ok;
 }
 
-bool instruction_modulo(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_modulo(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *left_parameter = get_bank_from_first_parameter(program, instruction);
-    Bank *right_parameter = get_bank_from_second_parameter(program, instruction);
+    Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
+    Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
     bool instruction_ok = false;
 
     if (left_parameter != NULL && right_parameter != NULL)
@@ -207,10 +207,10 @@ bool instruction_modulo(Program *program, Instruction *instruction, int *instruc
     return instruction_ok;
 }
 
-bool instruction_power(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_power(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *left_parameter = get_bank_from_first_parameter(program, instruction);
-    Bank *right_parameter = get_bank_from_second_parameter(program, instruction);
+    Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
+    Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
     bool instruction_ok = false;
 
     if (left_parameter != NULL && right_parameter != NULL)
@@ -247,9 +247,9 @@ bool instruction_power(Program *program, Instruction *instruction, int *instruct
     return instruction_ok;
 }
 
-bool instruction_square_root(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_square_root(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    Bank *bank = get_bank_from_first_parameter(program, instruction);
+    Bank *bank = get_bank_from_parameter(program, &(parameters->first));
     bool instruction_ok = false;
 
     if (bank != NULL)

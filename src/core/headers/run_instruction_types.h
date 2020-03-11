@@ -4,11 +4,11 @@
 #include "program.h"
 #include "instructions.h"
 
-bool instruction_variable(Program *program, Instruction *instruction, int *instruction_pointer);
-bool instruction_boolean(Program *program, Instruction *instruction, int *instruction_pointer);
-bool instruction_integer(Program *program, Instruction *instruction, int *instruction_pointer);
-bool instruction_float(Program *program, Instruction *instruction, int *instruction_pointer);
-bool instruction_string(Program *program, Instruction *instruction, int *instruction_pointer);
-bool instruction_array(Program *program, Instruction *instruction, int *instruction_pointer);
+bool instruction_variable(Program *program, Parameters *parameters, int *instruction_pointer);
+bool instruction_boolean(Program *program, Parameters *parameters, int *instruction_pointer);
+bool instruction_integer(Program *program, Parameters *parameters, int *instruction_pointer);
+bool instruction_float(Program *program, Parameters *parameters, int *instruction_pointer);
+bool instruction_string(Program *program, Parameters *parameters, int *instruction_pointer);
+bool instruction_array(Program *program, Parameters *parameters, int *instruction_pointer);
 
 #endif

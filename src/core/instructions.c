@@ -31,15 +31,3 @@ void free_instruction(Instruction *instruction)
         free(instruction);
     }
 }
-
-Device get_device_from_instruction(Instruction *instruction)
-{
-    Device device = instruction->parameters.first.integer;
-    return device;
-}
-
-BankType get_type_from_instruction(Instruction *instruction)
-{
-    Device device = instruction->parameters.first.integer;
-    return device;
-}

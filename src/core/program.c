@@ -116,15 +116,9 @@ bool remove_program_bank(Program *program, BankIdentifier identifier)
     }
 }
 
-Bank *get_bank_from_first_parameter(Program *program, Instruction *instruction)
+Bank *get_bank_from_parameter(Program *program, ParameterValue *parameter)
 {
-    short target_identifier = instruction->parameters.first.integer;
-    return get_program_bank(program, target_identifier);
-}
-
-Bank *get_bank_from_second_parameter(Program *program, Instruction *instruction)
-{
-    short target_identifier = instruction->parameters.second.integer;
+    short target_identifier = parameter->integer;
     return get_program_bank(program, target_identifier);
 }
 
@@ -188,26 +182,19 @@ bool resize_bank_array(Program *program, int new_count)
     }
 }
 
-Bank *new_bank_from_first_parameter(Instruction *instruction)
+Bank *new_bank_from_parameter(ParameterValue *parameter)
 {
-    int identifier = instruction->parameters.first.integer;
+    int identifier = parameter->integer;
     Bank *bank = new_bank(identifier);
     return bank;
 }
 
-Bank *new_bank_from_second_parameter(Instruction *instruction)
+Bank *get_or_new_bank_from_parameter(Program *program, ParameterValue *parameter)
 {
-    int identifier = instruction->parameters.second.integer;
-    Bank *bank = new_bank(identifier);
-    return bank;
-}
-
-Bank *get_or_new_bank_from_first_parameter(Program *program, Instruction *instruction)
-{
-    Bank *bank = get_bank_from_first_parameter(program, instruction);
+    Bank *bank = get_bank_from_parameter(program, parameter);
     if (bank == NULL)
     {
-        bank = new_bank_from_first_parameter(instruction);
+        bank = new_bank_from_parameter(parameter);
         if (!append_bank_to_program(program, bank))
         {
             free_bank(bank);
@@ -217,17 +204,14 @@ Bank *get_or_new_bank_from_first_parameter(Program *program, Instruction *instru
     return bank;
 }
 
-Bank *get_or_new_bank_from_second_parameter(Program *program, Instruction *instruction)
+Device get_device_from_parameter(Parameters *parameters)
 {
-    Bank *bank = get_bank_from_second_parameter(program, instruction);
-    if (bank == NULL)
-    {
-        bank = new_bank_from_second_parameter(instruction);
-        if (!append_bank_to_program(program, bank))
-        {
-            free_bank(bank);
-        }
-    }
+    Device device = parameters->first.integer;
+    return device;
+}
 
-    return bank;
+BankType get_type_from_parameter(Parameters *parameters)
+{
+    Device device = parameters->first.integer;
+    return device;
 }

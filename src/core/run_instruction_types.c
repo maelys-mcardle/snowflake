@@ -9,40 +9,40 @@
 /* Stores a variable in a bank; type is inferred.
  * VAR BANK LITERAL 
  */
-bool instruction_variable(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_variable(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    char *literal = instruction->parameters.second.string;
+    char *literal = parameters->second.string;
 
     if (is_float(literal) && strchr(literal, '.') != NULL)
     {
-        return instruction_float(program, instruction, instruction_pointer);
+        return instruction_float(program, parameters, instruction_pointer);
     }
     else if (is_integer(literal))
     {
-        return instruction_integer(program, instruction, instruction_pointer);
+        return instruction_integer(program, parameters, instruction_pointer);
     }
     else
     {
-        return instruction_string(program, instruction, instruction_pointer);
+        return instruction_string(program, parameters, instruction_pointer);
     }
 }
 
 /* Stores a boolean in a bank.
  * BLN BANK LITERAL 
  */
-bool instruction_boolean(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_boolean(Program *program, Parameters *parameters, int *instruction_pointer)
 {
     bool is_boolean;
 
     // Convert literal to boolean.
-    char *boolean_string = instruction->parameters.second.string;
+    char *boolean_string = parameters->second.string;
     int boolean_value = string_to_boolean(boolean_string, &is_boolean);
 
     // Boolean is valid.
     if (is_boolean)
     {
         // Create a bank if it doesn't exist.
-        Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
+        Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->first));
 
         // Set the boolean for the bank.
         if (bank != NULL && 
@@ -64,19 +64,19 @@ bool instruction_boolean(Program *program, Instruction *instruction, int *instru
 /* Stores an integer in a bank.
  * INT BANK LITERAL 
  */
-bool instruction_integer(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_integer(Program *program, Parameters *parameters, int *instruction_pointer)
 {
     bool is_integer;
 
     // Convert literal to integer.
-    char *integer_string = instruction->parameters.second.string;
+    char *integer_string = parameters->second.string;
     int integer_value = string_to_integer(integer_string, &is_integer);
 
     // Integer is valid.
     if (is_integer)
     {
         // Create a bank if it doesn't exist.
-        Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
+        Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->first));
 
         // Set the integer for the bank.
         if (bank != NULL && 
@@ -98,19 +98,19 @@ bool instruction_integer(Program *program, Instruction *instruction, int *instru
 /* Stores a float in a bank.
  * FLT BANK LITERAL 
  */
-bool instruction_float(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_float(Program *program, Parameters *parameters, int *instruction_pointer)
 {
     bool is_float;
 
     // Convert literal to float.
-    char *float_string = instruction->parameters.second.string;
+    char *float_string = parameters->second.string;
     float float_value = string_to_float(float_string, &is_float);
 
     // Float is valid.
     if (is_float)
     {
         // Create a bank if it doesn't exist.
-        Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
+        Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->first));
 
         // Set the float for the bank.
         if (bank != NULL && 
@@ -132,12 +132,12 @@ bool instruction_float(Program *program, Instruction *instruction, int *instruct
 /* Stores a string in a bank.
  * STR BANK LITERAL 
  */
-bool instruction_string(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_string(Program *program, Parameters *parameters, int *instruction_pointer)
 {
-    char *string = instruction->parameters.second.string;
+    char *string = parameters->second.string;
 
     // Create a bank if it doesn't exist.
-    Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
+    Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->first));
 
     // Set the strubg for the bank.
     if (bank != NULL && 
@@ -151,10 +151,10 @@ bool instruction_string(Program *program, Instruction *instruction, int *instruc
     return true;
 }
 
-bool instruction_array(Program *program, Instruction *instruction, int *instruction_pointer)
+bool instruction_array(Program *program, Parameters *parameters, int *instruction_pointer)
 {
     // Create a bank if it doesn't exist.
-    Bank *bank = get_or_new_bank_from_first_parameter(program, instruction);
+    Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->first));
 
     // Set the strubg for the bank.
     if (bank != NULL && 

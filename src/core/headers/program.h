@@ -28,11 +28,10 @@ bool resize_bank_array(Program *program, int new_count);
 int get_program_bank_index(Program *program, BankIdentifier identifier);
 bool remove_program_bank(Program *program, BankIdentifier identifier);
 Bank *get_program_bank(Program *program, BankIdentifier identifier);
-Bank *get_bank_from_first_parameter(Program *program, Instruction *instruction);
-Bank *get_bank_from_second_parameter(Program *program, Instruction *instruction);
-Bank *new_bank_from_first_parameter(Instruction *instruction);
-Bank *new_bank_from_second_parameter(Instruction *instruction);
-Bank *get_or_new_bank_from_first_parameter(Program *program, Instruction *instruction);
-Bank *get_or_new_bank_from_second_parameter(Program *program, Instruction *instruction);
+Bank *get_bank_from_parameter(Program *program, ParameterValue *parameter);
+Bank *new_bank_from_parameter(ParameterValue *parameter);
+Bank *get_or_new_bank_from_parameter(Program *program, ParameterValue *parameter);
+Device get_device_from_parameter(Parameters *parameters);
+BankType get_type_from_parameter(Parameters *parameters);
 
 #endif
