@@ -50,52 +50,52 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
     }
 
     bool instruction_ok = true;
-
+    Parameters *parameters = &(instruction->parameters);
     switch (instruction->instruction)
     {
         case INSTRUCTION_COMMENT:
         case INSTRUCTION_LABEL:
         case INSTRUCTION_NAME_BANK:
-            instruction_ok = instruction_noop(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_noop(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_OUTPUT:
-            instruction_ok = instruction_output(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_output(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_INPUT:
-            instruction_ok = instruction_input(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_input(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_COPY:
-            instruction_ok = instruction_copy(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_copy(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_CONVERT:
-            instruction_ok = instruction_convert(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_convert(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_TYPE:
-            instruction_ok = instruction_type(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_type(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_DELETE:
-            instruction_ok = instruction_delete(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_delete(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_LENGTH:
-            instruction_ok = instruction_length(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_length(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_VARIABLE:
-            instruction_ok = instruction_variable(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_variable(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_BOOLEAN:
-            instruction_ok = instruction_boolean(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_boolean(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_INTEGER:
-            instruction_ok = instruction_integer(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_integer(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_FLOAT:
-            instruction_ok = instruction_float(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_float(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_STRING:
-            instruction_ok = instruction_string(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_string(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_ARRAY:
-            instruction_ok = instruction_array(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_array(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_JUMP_LABEL:
         case INSTRUCTION_JUMP_BANK:
@@ -106,25 +106,25 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             *instruction_pointer += 1;
             break;
         case INSTRUCTION_ADD:
-            instruction_ok = instruction_add(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_add(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_SUBTRACT:
-            instruction_ok = instruction_subtract(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_subtract(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_MULTIPLY:
-            instruction_ok = instruction_multiply(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_multiply(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_DIVIDE:
-            instruction_ok = instruction_divide(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_divide(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_MODULO:
-            instruction_ok = instruction_modulo(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_modulo(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_POWER:
-            instruction_ok = instruction_power(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_power(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_SQUARE_ROOT:
-            instruction_ok = instruction_square_root(program, &(instruction->parameters), instruction_pointer);
+            instruction_ok = instruction_square_root(program, parameters, instruction_pointer);
             break;
         case INSTRUCTION_NOT:
         case INSTRUCTION_AND:
@@ -145,7 +145,7 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         default:
             log_error(ERROR_MESG_UNRECOGNIZED_INSTRUCTION, 
                 instruction->instruction);
-            instruction_noop(program, &(instruction->parameters), instruction_pointer);
+            instruction_noop(program, parameters, instruction_pointer);
             instruction_ok = false;
             break;
     }
