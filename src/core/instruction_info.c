@@ -45,6 +45,11 @@ InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;
             break;
+        case INSTRUCTION_LENGTH:
+            set_mnemonic(&info, "LEN");
+            info.parameters.first = PARAMETER_BANK;
+            info.parameters.second = PARAMETER_BANK;
+            break;
         case INSTRUCTION_DELETE:
             set_mnemonic(&info, "DEL");
             info.parameters.first = PARAMETER_BANK;
@@ -165,11 +170,6 @@ InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;
             break;
-        case INSTRUCTION_ARRAY_SIZE:
-            set_mnemonic(&info, "[#]");
-            info.parameters.first = PARAMETER_BANK;
-            info.parameters.second = PARAMETER_BANK;
-            break;
         case INSTRUCTION_PREPEND_ARRAY:
             set_mnemonic(&info, " +[]");
             info.parameters.first = PARAMETER_BANK;
@@ -200,12 +200,22 @@ InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;
             break;
-        case INSTRUCTION_MOVE_TO_INDEX:
-            set_mnemonic(&info, "[>]");
+        case INSTRUCTION_MOVE_FIRST_TO_INDEX:
+            set_mnemonic(&info, ">[]");
+            info.parameters.first = PARAMETER_BANK;
+            info.parameters.second = PARAMETER_BANK;
+            break;
+        case INSTRUCTION_MOVE_LAST_TO_INDEX:
+            set_mnemonic(&info, "[]<");
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;
             break;
         case INSTRUCTION_MOVE_TO_FIRST:
+            set_mnemonic(&info, "[<]");
+            info.parameters.first = PARAMETER_BANK;
+            info.parameters.second = PARAMETER_BANK;
+            break;
+        case INSTRUCTION_MOVE_TO_LAST:
             set_mnemonic(&info, "[<]");
             info.parameters.first = PARAMETER_BANK;
             info.parameters.second = PARAMETER_BANK;

@@ -55,10 +55,10 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
                                  This type is stored as an integer.
                                  If BANK2 is unallocated, stores 0 in BANK1.
 08   DEL        BANK             Deletes all data associated with BANK.
-09   LEN        BANK1   BANK2    Stores the size of BANK2 into BANK1.
+09   LEN        BANK1   BANK2    Stores the size of BANK2 into BANK1 as integer.
                                  For string type, stores string length.
                                  For array type, stores the number of items.
-                                 For other types, stores nothing.
+                                 For other types, stores 0.
 ```
 
 ```

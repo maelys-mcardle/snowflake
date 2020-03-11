@@ -76,6 +76,9 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         case INSTRUCTION_DELETE:
             instruction_ok = instruction_delete(program, instruction, instruction_pointer);
             break;
+        case INSTRUCTION_LENGTH:
+            instruction_ok = instruction_length(program, instruction, instruction_pointer);
+            break;
         case INSTRUCTION_VARIABLE:
             instruction_ok = instruction_variable(program, instruction, instruction_pointer);
             break;
@@ -127,15 +130,16 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
         case INSTRUCTION_AND:
         case INSTRUCTION_OR:
         case INSTRUCTION_XOR:
-        case INSTRUCTION_ARRAY_SIZE:
         case INSTRUCTION_PREPEND_ARRAY:
         case INSTRUCTION_APPEND_ARRAY:
         case INSTRUCTION_GET_FIRST:
         case INSTRUCTION_GET_LAST:
         case INSTRUCTION_REMOVE_FIRST:
         case INSTRUCTION_REMOVE_LAST:
-        case INSTRUCTION_MOVE_TO_INDEX:
+        case INSTRUCTION_MOVE_FIRST_TO_INDEX:
+        case INSTRUCTION_MOVE_LAST_TO_INDEX:
         case INSTRUCTION_MOVE_TO_FIRST:
+        case INSTRUCTION_MOVE_TO_LAST:
             *instruction_pointer += 1;
             break;
         default:

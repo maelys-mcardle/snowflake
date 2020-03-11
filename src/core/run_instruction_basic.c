@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "headers/run_instruction_basic.h"
 #include "headers/bank.h"
 #include "headers/output.h"
@@ -177,6 +178,42 @@ bool instruction_convert(Program *program, Instruction *instruction, int *instru
     {
         log_debug("Converting Bank %02i to type %i.\n", bank->identifier, to_type);
         instruction_ok = convert_bank(bank, to_type);
+    }
+
+    *instruction_pointer += 1;
+    return instruction_ok;
+}
+
+
+bool instruction_length(Program *program, Instruction *instruction, int *instruction_pointer)
+{
+    Bank *bank_to_store_length_in = get_or_new_bank_from_first_parameter(program, instruction);
+    Bank *bank_to_get_length_from = get_bank_from_second_parameter(program, instruction);
+    bool instruction_ok = false;
+    bool parse_ok = true;
+
+    log_debug("Storing length in Bank %02i.\n",
+            bank_to_store_length_in->identifier);
+
+    if (bank_to_get_length_from != NULL &&
+        bank_to_get_length_from->type == TYPE_STRING)
+    {
+        char *string = get_bank_string(bank_to_get_length_from, &parse_ok);
+        instruction_ok = 
+            set_bank_integer(bank_to_store_length_in, 
+                string != NULL ? strlen(string) : 0);
+    }
+    else if (bank_to_get_length_from != NULL &&
+        bank_to_get_length_from->type == TYPE_ARRAY)
+    {
+        instruction_ok = 
+            set_bank_integer(bank_to_store_length_in, 
+                get_bank_array(bank_to_get_length_from, &parse_ok)->count);
+    }
+    else
+    {
+        instruction_ok = 
+            set_bank_integer(bank_to_store_length_in, 0);
     }
 
     *instruction_pointer += 1;

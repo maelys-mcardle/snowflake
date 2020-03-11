@@ -11,5 +11,6 @@ bool instruction_delete(Program *program, Instruction *instruction, int *instruc
 bool instruction_type(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_copy(Program *program, Instruction *instruction, int *instruction_pointer);
 bool instruction_convert(Program *program, Instruction *instruction, int *instruction_pointer);
+bool instruction_length(Program *program, Instruction *instruction, int *instruction_pointer);
 
 #endif
