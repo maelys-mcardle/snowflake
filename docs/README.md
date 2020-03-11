@@ -110,12 +110,12 @@ MATH
 
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
-30   +          BANK1   BANK2   Add BANK2 to BANK1. Result in BANK1.
-31   -          BANK1   BANK2   Subtract BANK2 from BANK1. Result in BANK1.
-32   *          BANK1   BANK2   Multiply BANK2 with BANK1. Result in BANK1.
-33   /          BANK1   BANK2   Divide BANK1 by BANK2. Result in BANK1.
-34   %          BANK1   BANK2   Modulo of BANK1 by BANK2. Result in BANK1.
-35   **         BANK1   BANK2   Power of BANK1 to BANK2. Result in BANK1.
+30     +        BANK1   BANK2   Add BANK2 to BANK1. Result in BANK1.
+31     -        BANK1   BANK2   Subtract BANK2 from BANK1. Result in BANK1.
+32     *        BANK1   BANK2   Multiply BANK2 with BANK1. Result in BANK1.
+33     /        BANK1   BANK2   Divide BANK1 by BANK2. Result in BANK1.
+34     %        BANK1   BANK2   Modulo of BANK1 by BANK2. Result in BANK1.
+35    **        BANK1   BANK2   Power of BANK1 to BANK2. Result in BANK1.
 36   SQR        BANK            Square root of BANK.
 
 Note: These instructions are only performed on INTEGER and FLOAT types.
