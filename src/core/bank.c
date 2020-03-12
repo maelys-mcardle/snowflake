@@ -2,7 +2,7 @@
 #include <string.h>
 #include "headers/string.h"
 #include "headers/bank.h"
-#include "headers/output.h"
+#include "headers/logging.h"
 #include "headers/errors.h"
 #include "headers/type_conversion.h"
 

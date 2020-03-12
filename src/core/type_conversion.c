@@ -1,6 +1,6 @@
 #include <errno.h>
 #include <stdlib.h>
-#include "headers/output.h"
+#include "headers/logging.h"
 #include "headers/type_conversion.h"
 
 bool string_to_boolean(char *string, bool *ok)

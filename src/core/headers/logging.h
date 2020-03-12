@@ -1,10 +1,11 @@
-#ifndef SNOWFLAKE_OUTPUT_H
-#define SNOWFLAKE_OUTPUT_H
+#ifndef SNOWFLAKE_LOGGING_H
+#define SNOWFLAKE_LOGGING_H
 
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdbool.h>
 
+bool initialize_output();
 bool send_to_output(char *string);
 bool send_to_random(int seed);
 

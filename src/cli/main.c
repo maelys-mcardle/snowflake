@@ -8,7 +8,7 @@
 #include "headers/print_program.h"
 #include "../core/headers/errors.h"
 #include "../core/headers/program.h"
-#include "../core/headers/output.h"
+#include "../core/headers/logging.h"
 #include "../core/headers/run_program.h"
 
 /* Starting point of the program. */

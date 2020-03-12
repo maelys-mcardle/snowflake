@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "headers/instructions.h"
-#include "headers/output.h"
+#include "headers/logging.h"
 #include "headers/bank.h"
 
 Instruction *new_instruction()

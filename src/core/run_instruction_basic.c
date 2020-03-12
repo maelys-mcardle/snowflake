@@ -2,8 +2,9 @@
 #include <string.h>
 #include "headers/run_instruction_basic.h"
 #include "headers/bank.h"
-#include "headers/output.h"
-#include "headers/input.h"
+#include "headers/logging.h"
+#include "headers/output_devices.h"
+#include "headers/input_devices.h"
 #include "headers/devices.h"
 #include "headers/errors.h"
 

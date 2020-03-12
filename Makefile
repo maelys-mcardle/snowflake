@@ -12,16 +12,17 @@ debug: CFLAGS=$(BASE_CFLAGS) $(DEBUG_FLAGS)
 debug: snowflake
 
 snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
-		output.o parse_instruction.o print_program.o run_program.o bank.o \
-		run_instruction_types.o run_instruction_basic.o devices.o input.o \
-		string.o parameters.o instruction_info.o run_instruction_branching.o \
-		run_instruction_math.o run_instruction_logic.o run_instruction_array.o
-	cc -o snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
-		output.o parse_instruction.o print_program.o run_program.o bank.o \
-		run_instruction_types.o run_instruction_basic.o devices.o input.o \
+		output_devices.o parse_instruction.o print_program.o run_program.o bank.o \
+		run_instruction_types.o run_instruction_basic.o devices.o input_devices.o \
 		string.o parameters.o instruction_info.o run_instruction_branching.o \
 		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
-		$(CFLAGS)
+		logging.o
+	cc -o snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
+		output_devices.o parse_instruction.o print_program.o run_program.o bank.o \
+		run_instruction_types.o run_instruction_basic.o devices.o input_devices.o \
+		string.o parameters.o instruction_info.o run_instruction_branching.o \
+		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
+		logging.o $(CFLAGS)
 
 main.o: src/cli/main.c src/cli/headers/main.h
 	cc -c src/cli/main.c $(CFLAGS)
@@ -68,11 +69,14 @@ instructions.o: src/core/instructions.c src/core/headers/instructions.h
 instruction_info.o: src/core/instruction_info.c src/core/headers/instruction_info.h
 	cc -c src/core/instruction_info.c $(CFLAGS)
 
-output.o: src/core/platforms/linux/output.c src/core/headers/output.h
-	cc -c src/core/platforms/linux/output.c $(CFLAGS)
+logging.o: src/core/platforms/linux/logging.c src/core/headers/logging.h
+	cc -c src/core/platforms/linux/logging.c $(CFLAGS)
 
-input.o: src/core/platforms/linux/input.c src/core/headers/input.h
-	cc -c src/core/platforms/linux/input.c $(CFLAGS)
+output_devices.o: src/core/platforms/linux/output_devices.c src/core/headers/output_devices.h
+	cc -c src/core/platforms/linux/output_devices.c $(CFLAGS)
+
+input_devices.o: src/core/platforms/linux/input_devices.c src/core/headers/input_devices.h
+	cc -c src/core/platforms/linux/input_devices.c $(CFLAGS)
 
 string.o: src/core/string.c src/core/headers/string.h
 	cc -c src/core/string.c $(CFLAGS)
@@ -88,7 +92,8 @@ type_conversion.o: src/core/type_conversion.c src/core/headers/type_conversion.h
 
 clean:
 	rm snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
-		output.o parse_instruction.o print_program.o run_program.o bank.o \
-		run_instruction_types.o run_instruction_basic.o devices.o input.o \
+		output_devices.o parse_instruction.o print_program.o run_program.o bank.o \
+		run_instruction_types.o run_instruction_basic.o devices.o input_devices.o \
 		string.o parameters.o instruction_info.o run_instruction_branching.o \
-		run_instruction_math.o run_instruction_logic.o run_instruction_array.o
+		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
+		logging.o

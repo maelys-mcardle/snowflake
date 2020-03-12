@@ -2,7 +2,7 @@
 #include <math.h>
 #include "headers/run_instruction_math.h"
 #include "headers/string.h"
-#include "headers/output.h"
+#include "headers/logging.h"
 
 bool instruction_add(Program *program, Parameters *parameters, int *instruction_pointer)
 {

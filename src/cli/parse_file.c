@@ -3,7 +3,7 @@
 #include "headers/parse_file.h"
 #include "../core/headers/parse_instruction.h"
 #include "../core/headers/errors.h"
-#include "../core/headers/output.h"
+#include "../core/headers/logging.h"
 #include "../core/headers/string.h"
 
 /* Process a snowflake file. */

@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "../core/headers/output.h"
+#include "../core/headers/logging.h"
 #include "../core/headers/devices.h"
 #include "headers/print_program.h"
 

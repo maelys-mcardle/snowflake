@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "headers/program.h"
 #include "headers/errors.h"
-#include "headers/output.h"
+#include "headers/logging.h"
 
 /* Creates a new program and allocates memory.
  * @return The initialized program.

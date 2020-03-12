@@ -3,7 +3,7 @@
 #include <string.h>
 #include "headers/parse_instruction.h"
 #include "headers/errors.h"
-#include "headers/output.h"
+#include "headers/logging.h"
 #include "headers/instructions.h"
 #include "headers/string.h"
 #include "headers/type_conversion.h"

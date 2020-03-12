@@ -1,0 +1,26 @@
+#include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
+#include "../../headers/output_devices.h"
+
+bool initialize_output()
+{
+    // Seed the random number generator.
+    srand(time(NULL));
+    return true;
+}
+
+bool send_to_output(char *string)
+{
+    if (string != NULL)
+    {
+        printf("%s\n", string);
+    }
+    return true;
+}
+
+bool send_to_random(int seed)
+{
+    srand(seed);
+    return true;
+}

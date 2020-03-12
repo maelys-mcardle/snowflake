@@ -1,0 +1,20 @@
+;; Roll the Dice
+;;
+;; This program gives a random value between 1 and 6.
+
+14 00 ROLL THE DICE ;;
+03 00 00            ;; Output "ROLL THE DICE"
+04 03 01            ;; $01 = RANDOM_NUMBER
+12 02 06            ;; @02 = 6
+34 01 02            ;; @01 = RANDOM_NUMBER % 6
+30 01 01            ;; @01 = (RANDOM_NUMBER % 6) + 1
+03 00 01            ;; Output @01
+
+;; ./snowflake --print samples/roll-the-dice.sn 
+;; STR @00 ROLL THE DICE
+;;  << OUT @00
+;;  >> RND @01
+;; INT @02 06
+;;   % @01 @02
+;;   + @01 @01
+;;  << OUT @01

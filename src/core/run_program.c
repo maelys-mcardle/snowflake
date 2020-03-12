@@ -6,9 +6,11 @@
 #include "headers/run_instruction_logic.h"
 #include "headers/run_instruction_math.h"
 #include "headers/run_instruction_types.h"
-#include "headers/output.h"
+#include "headers/input_devices.h"
+#include "headers/output_devices.h"
 #include "headers/bank.h"
 #include "headers/errors.h"
+#include "headers/logging.h"
 
 InstructionFunction all_instruction_functions[] = {
     [INSTRUCTION_COMMENT]             = &instruction_noop,
@@ -64,6 +66,9 @@ void run_program(Program *program)
         program->instructions.instructions != NULL && 
         program->instructions.count > 0)
     {
+        initialize_input();
+        initialize_output();
+
         int instruction_pointer = 0;
         while (instruction_pointer < program->instructions.count)
         {

@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
-#include "../../headers/output.h"
+#include "../../headers/logging.h"
 
 bool debug_mode = false;
 
@@ -12,21 +12,6 @@ void enable_debug_mode()
 bool is_debug_mode()
 {
     return debug_mode;
-}
-
-bool send_to_output(char *string)
-{
-    if (string != NULL)
-    {
-        printf("%s\n", string);
-    }
-    return true;
-}
-
-bool send_to_random(int seed)
-{
-    srand(seed);
-    return true;
 }
 
 void log_debug(const char * format, ... )

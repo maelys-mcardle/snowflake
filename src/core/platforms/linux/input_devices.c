@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../headers/input.h"
-#include "../../headers/output.h"
+#include "../../headers/input_devices.h"
+#include "../../headers/logging.h"
 #include "../../headers/string.h"
+
+bool initialize_input()
+{
+    return true;
+}
 
 bool receive_from_input(int *string_size, char **string)
 {
