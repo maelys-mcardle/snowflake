@@ -5,13 +5,13 @@
 #define DEVICE_OUT_STRING "OUT"
 #define DEVICE_IN_STRING  " IN"
 #define DEVICE_BTN_STRING "BTN"
+#define DEVICE_RND_STRING "RND"
 
 typedef enum {
     DEVICE_OUT = 0,
     DEVICE_IN  = 1,
-    DEVICE_BTN = 2
+    DEVICE_BTN = 2,
+    DEVICE_RND = 3
 } Device;
-
-bool send_to_device(Device device, char *string);
 
 #endif

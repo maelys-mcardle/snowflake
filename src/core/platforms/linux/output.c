@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdlib.h>
 #include "../../headers/output.h"
 
 bool debug_mode = false;
@@ -11,6 +12,21 @@ void enable_debug_mode()
 bool is_debug_mode()
 {
     return debug_mode;
+}
+
+bool send_to_output(char *string)
+{
+    if (string != NULL)
+    {
+        printf("%s\n", string);
+    }
+    return true;
+}
+
+bool send_to_random(int seed)
+{
+    srand(seed);
+    return true;
 }
 
 void log_debug(const char * format, ... )
@@ -29,11 +45,6 @@ void log_error(const char * format, ... )
     va_start (args, format);
     print_with_va_list(format, args, true);
     va_end (args);
-}
-
-void send_to_output(char *string)
-{
-    printf("%s\n", string);
 }
 
 void print_with_va_list(const char *format, va_list args, bool is_error)

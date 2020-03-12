@@ -147,6 +147,9 @@ bool print_device(int device)
         case DEVICE_BTN:
             printf(DEVICE_BTN_STRING);
             return true;
+        case DEVICE_RND:
+            printf(DEVICE_RND_STRING);
+            return true;
         default:
             return false;
     }

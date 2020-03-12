@@ -28,15 +28,34 @@ bool instruction_output(Program *program, Parameters *parameters, int *instructi
 
     if (bank != NULL)
     {
-        char *bank_string_value = get_bank_as_string(bank);
-        log_debug("Sending Bank %02i (value: '%s') to Device %02i\n", bank->identifier, bank_string_value, device);
-        instruction_ok = send_to_device(device, bank_string_value);
-        free(bank_string_value);
-    }
-    else
-    {
-        log_debug("Sending unallocated Bank %02i to Device %02i\n", parameters->second.integer, device);
-        instruction_ok = send_to_device(device, "(Empty)");
+        char *bank_string_value;
+        int bank_integer_value;
+        switch (device)
+        {
+            case DEVICE_OUT:
+                bank_string_value = get_bank_as_string(bank);
+                log_debug("Sending Bank %02i (value: '%s') to Device %02i\n", bank->identifier, bank_string_value, device);
+                instruction_ok = send_to_output(bank_string_value);
+                if (bank_string_value != NULL) free(bank_string_value);
+                break;
+            case DEVICE_IN:
+                log_error(ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_OUTPUT, device);
+                instruction_ok = false;
+                break;
+            case DEVICE_BTN:
+                log_error(ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_OUTPUT, device);
+                instruction_ok = false;
+                break;
+            case DEVICE_RND:
+                bank_integer_value = get_bank_as_integer(bank);
+                log_debug("Sending Bank %02i (value: '%i') to Device %02i\n", bank->identifier, bank_integer_value, device);
+                instruction_ok = send_to_random(bank_integer_value);
+                break;
+            default:
+                log_error(ERROR_MESG_UNRECOGNIZED_DEVICE, device);
+                instruction_ok = false;
+                break;
+        }  
     }
     
     *instruction_pointer += 1;
@@ -58,6 +77,7 @@ bool instruction_input(Program *program, Parameters *parameters, int *instructio
         char *string = NULL;
         int string_size = 0;
         int button_code = 0;
+        int random_number = 0;
 
         log_debug("Receiving from Device %02i into Bank %02i\n", device, bank->identifier);
 
@@ -68,7 +88,7 @@ bool instruction_input(Program *program, Parameters *parameters, int *instructio
                 instruction_ok = false;
                 break;
             case DEVICE_IN:
-                instruction_ok = get_input(&string_size, &string);
+                instruction_ok = receive_from_input(&string_size, &string);
                 if (instruction_ok)
                 {
                     log_debug("Setting '%s' to Bank %02i\n", string, bank->identifier);
@@ -76,9 +96,14 @@ bool instruction_input(Program *program, Parameters *parameters, int *instructio
                 }
                 break;
             case DEVICE_BTN:
-                instruction_ok = get_button(&button_code);
+                instruction_ok = receive_from_button(&button_code);
                 log_debug("Setting '%i' to Bank %02i\n", button_code, bank->identifier);
                 set_bank_integer(bank, button_code);
+                break;
+            case DEVICE_RND:
+                instruction_ok = receive_from_random(&random_number);
+                log_debug("Setting '%i' to Bank %02i\n", random_number, bank->identifier);
+                set_bank_integer(bank, random_number);
                 break;
             default:
                 log_error(ERROR_MESG_UNRECOGNIZED_DEVICE, device);

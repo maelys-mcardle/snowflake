@@ -4,14 +4,7 @@
 #include "../../headers/output.h"
 #include "../../headers/string.h"
 
-bool get_button(int *button_code)
-{
-    log_debug("Waiting for button press...\n");
-    *button_code = getchar();
-    return true;
-}
-
-bool get_input(int *string_size, char **string)
+bool receive_from_input(int *string_size, char **string)
 {
     log_debug("Waiting for input...\n");
     size_t max_input_length = MAX_INPUT_LENGTH;
@@ -24,4 +17,18 @@ bool get_input(int *string_size, char **string)
     }
 
     return is_ok;
+}
+
+bool receive_from_button(int *button_code)
+{
+    log_debug("Waiting for button press...\n");
+    *button_code = getchar();
+    return true;
+}
+
+bool receive_from_random(int *random_number)
+{
+    log_debug("Getting random value...\n");
+    *random_number = rand();
+    return true;
 }
