@@ -37,17 +37,13 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             instruction->instruction, &instruction_exists);
         
         log_debug("[Executing Instruction %02i]\n"
-            "Instruction Code: %02i\n",
+            "Instruction Code: %02i\n"
+            "Instruction Mnemonic: '%c%c%c'\n",
             *instruction_pointer,
-            instruction->instruction);
-        
-        if (instruction_exists)
-        {
-            log_debug("Instruction Mnemonic: '%c%c%c'\n",
-                info.mnemonic[0],
-                info.mnemonic[1],
-                info.mnemonic[2]);
-        }
+            instruction->instruction,
+            info.mnemonic[0],
+            info.mnemonic[1],
+            info.mnemonic[2]);
     }
 
     // All instructions and their associated functions.
@@ -98,30 +94,12 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
     };
 
     // Get the instruction to execute.
-    InstructionCode first_instruction = INSTRUCTION_COMMENT;
-    InstructionCode last_instruction = INSTRUCTION_MOVE_TO_LAST;
     InstructionCode instruction_code = instruction->instruction;
-    InstructionFunction execute_intruction = NULL;
-    if (instruction_code >= first_instruction && 
-        instruction_code <= last_instruction)
-    {
-        execute_intruction = all_functions[instruction_code];
-    }
+    InstructionFunction execute_intruction = all_functions[instruction_code];
 
     // Execute the command.
-    bool instruction_ok = true;
     Parameters *parameters = &(instruction->parameters);
-    if (execute_intruction != NULL)
-    {
-        instruction_ok = execute_intruction(program, parameters, instruction_pointer);
-    }
-    else
-    {
-        log_error(ERROR_MESG_UNRECOGNIZED_INSTRUCTION, 
-                instruction->instruction);
-        instruction_noop(program, parameters, instruction_pointer);
-        instruction_ok = false;
-    }
+    bool instruction_ok = execute_intruction(program, parameters, instruction_pointer);
 
     return instruction_ok;
 }
