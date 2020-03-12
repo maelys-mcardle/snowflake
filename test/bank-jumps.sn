@@ -1,0 +1,49 @@
+;;
+;; This is a test file, used to check that the Snowflake
+;; interpreter is able to process files correctly.
+;;
+
+;; This tests that simple jumps work.
+
+12 01 02     ;; @01 = LABEL 02 (MID)
+21 01        ;; Jump to location set in @01 (MID)
+
+01 01 START  ;; Label START
+14 00 START  ;;
+03 00 00     ;; Print "Start"
+
+12 01 03     ;; @01 = LABEL 03 (END)
+21 01        ;; Jump to location set in @01 (END)
+
+01 02 MID    ;; Label MID
+14 00 MID    ;;
+03 00 00     ;; Print "Mid"
+
+12 01 01     ;; @01 = LABEL 01 (START)
+21 01        ;; Jump to location set in @01 (START)
+
+01 03 END    ;; Label END
+14 00 END    ;;
+03 00 00     ;; Print "End"
+
+;; ./snowflake --print test/bank-jumps.sn 
+;; INT @01 02
+;;  -> @01 
+;; ### :01 START
+;; STR @00 START
+;;  << OUT @00
+;; INT @01 03
+;;  -> @01 
+;; ### :02 MID
+;; STR @00 MID
+;;  << OUT @00
+;; INT @01 01
+;;  -> @01 
+;; ### :03 END
+;; STR @00 END
+;;  << OUT @00
+
+;; ./snowflake --run bank/simple-jumps.sn 
+;; MID
+;; START
+;; END

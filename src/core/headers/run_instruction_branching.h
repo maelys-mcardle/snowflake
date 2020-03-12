@@ -5,6 +5,7 @@
 #include "instructions.h"
 
 bool instruction_jump_label(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
+bool instruction_jump_bank(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
 InstructionPointer get_label_instruction_pointer(Program *program, int target_label);
 
 #endif
