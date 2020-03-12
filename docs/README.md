@@ -210,6 +210,10 @@ DEVICE  MNEMONIC  DESCRIPTION
 02      BTN       Button Press
                   This is an input device.
                   Stores value as integer.
+03      RND       Random number generator.
+                  As an input: seeds the number generator.
+                  As an output: returns a random number.
+                  Input and output are both integers.
 ```
 
 **The difference between `IN` and `BTN`:** `IN` stores the input to a BANK after the `ENTER` button is pressed. This can contain multiple characters. The `BTN` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed.
