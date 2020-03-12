@@ -9,7 +9,7 @@
 /* Stores a variable in a bank; type is inferred.
  * VAR BANK LITERAL 
  */
-bool instruction_variable(Program *program, Parameters *parameters, int *instruction_pointer)
+bool instruction_variable(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     char *literal = parameters->second.string;
 
@@ -30,7 +30,7 @@ bool instruction_variable(Program *program, Parameters *parameters, int *instruc
 /* Stores a boolean in a bank.
  * BLN BANK LITERAL 
  */
-bool instruction_boolean(Program *program, Parameters *parameters, int *instruction_pointer)
+bool instruction_boolean(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool is_boolean;
 
@@ -64,7 +64,7 @@ bool instruction_boolean(Program *program, Parameters *parameters, int *instruct
 /* Stores an integer in a bank.
  * INT BANK LITERAL 
  */
-bool instruction_integer(Program *program, Parameters *parameters, int *instruction_pointer)
+bool instruction_integer(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool is_integer;
 
@@ -98,7 +98,7 @@ bool instruction_integer(Program *program, Parameters *parameters, int *instruct
 /* Stores a float in a bank.
  * FLT BANK LITERAL 
  */
-bool instruction_float(Program *program, Parameters *parameters, int *instruction_pointer)
+bool instruction_float(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool is_float;
 
@@ -132,7 +132,7 @@ bool instruction_float(Program *program, Parameters *parameters, int *instructio
 /* Stores a string in a bank.
  * STR BANK LITERAL 
  */
-bool instruction_string(Program *program, Parameters *parameters, int *instruction_pointer)
+bool instruction_string(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     char *string = parameters->second.string;
 
@@ -151,7 +151,7 @@ bool instruction_string(Program *program, Parameters *parameters, int *instructi
     return true;
 }
 
-bool instruction_array(Program *program, Parameters *parameters, int *instruction_pointer)
+bool instruction_array(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     // Create a bank if it doesn't exist.
     Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->first));

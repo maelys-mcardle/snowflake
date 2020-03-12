@@ -19,6 +19,8 @@ typedef struct {
     ProgramInstructions instructions;
 } Program;
 
+typedef int InstructionPointer;
+
 Program *new_program();
 void free_program(Program *program);
 bool append_instruction_to_program(Program *program, Instruction *instruction);
