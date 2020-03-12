@@ -211,8 +211,8 @@ DEVICE  MNEMONIC  DESCRIPTION
                   This is an input device.
                   Stores value as integer.
 03      RND       Random number generator.
-                  As an input: seeds the number generator.
-                  As an output: returns a random number.
+                  As an input device: returns a random number.
+                  As an output device: seeds the PRNG.
                   Input and output are both integers.
 ```
 
