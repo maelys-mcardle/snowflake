@@ -10,6 +10,52 @@
 #include "headers/bank.h"
 #include "headers/errors.h"
 
+InstructionFunction all_instruction_functions[] = {
+    [INSTRUCTION_COMMENT]             = &instruction_noop,
+    [INSTRUCTION_LABEL]               = &instruction_noop,
+    [INSTRUCTION_NAME_BANK]           = &instruction_noop,
+    [INSTRUCTION_OUTPUT]              = &instruction_output,
+    [INSTRUCTION_INPUT]               = &instruction_input,
+    [INSTRUCTION_COPY]                = &instruction_copy,
+    [INSTRUCTION_CONVERT]             = &instruction_convert,
+    [INSTRUCTION_TYPE]                = &instruction_type,
+    [INSTRUCTION_DELETE]              = &instruction_delete,
+    [INSTRUCTION_LENGTH]              = &instruction_length,
+    [INSTRUCTION_VARIABLE]            = &instruction_variable,
+    [INSTRUCTION_BOOLEAN]             = &instruction_boolean,
+    [INSTRUCTION_INTEGER]             = &instruction_integer,
+    [INSTRUCTION_FLOAT]               = &instruction_float,
+    [INSTRUCTION_STRING]              = &instruction_string,
+    [INSTRUCTION_ARRAY]               = &instruction_array,
+    [INSTRUCTION_JUMP_LABEL]          = &instruction_noop,
+    [INSTRUCTION_JUMP_BANK]           = &instruction_noop,
+    [INSTRUCTION_IF_EQUAL]            = &instruction_noop,
+    [INSTRUCTION_IF_NOT_EQUAL]        = &instruction_noop,
+    [INSTRUCTION_IF_GREATER_THAN]     = &instruction_noop,
+    [INSTRUCTION_IF_LESSER_THAN]      = &instruction_noop,
+    [INSTRUCTION_ADD]                 = &instruction_add,
+    [INSTRUCTION_SUBTRACT]            = &instruction_subtract,
+    [INSTRUCTION_MULTIPLY]            = &instruction_multiply,
+    [INSTRUCTION_DIVIDE]              = &instruction_divide,
+    [INSTRUCTION_MODULO]              = &instruction_modulo,
+    [INSTRUCTION_POWER]               = &instruction_power,
+    [INSTRUCTION_SQUARE_ROOT]         = &instruction_square_root,
+    [INSTRUCTION_NOT]                 = &instruction_noop,
+    [INSTRUCTION_AND]                 = &instruction_noop,
+    [INSTRUCTION_OR]                  = &instruction_noop,
+    [INSTRUCTION_XOR]                 = &instruction_noop,
+    [INSTRUCTION_PREPEND_ARRAY]       = &instruction_noop,
+    [INSTRUCTION_APPEND_ARRAY]        = &instruction_noop,
+    [INSTRUCTION_GET_FIRST]           = &instruction_noop,
+    [INSTRUCTION_GET_LAST]            = &instruction_noop,
+    [INSTRUCTION_REMOVE_FIRST]        = &instruction_noop,
+    [INSTRUCTION_REMOVE_LAST]         = &instruction_noop,
+    [INSTRUCTION_MOVE_FIRST_TO_INDEX] = &instruction_noop,
+    [INSTRUCTION_MOVE_LAST_TO_INDEX]  = &instruction_noop,
+    [INSTRUCTION_MOVE_TO_FIRST]       = &instruction_noop,
+    [INSTRUCTION_MOVE_TO_LAST]        = &instruction_noop,
+};
+
 void run_program(Program *program)
 {
     log_debug("Executing program...\n");
@@ -46,56 +92,9 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
             info.mnemonic[2]);
     }
 
-    // All instructions and their associated functions.
-    InstructionFunction all_functions[] = {
-        [INSTRUCTION_COMMENT]       = &instruction_noop,
-        [INSTRUCTION_LABEL]         = &instruction_noop,
-        [INSTRUCTION_NAME_BANK]     = &instruction_noop,
-        [INSTRUCTION_OUTPUT]        = &instruction_output,
-        [INSTRUCTION_INPUT]         = &instruction_input,
-        [INSTRUCTION_COPY]          = &instruction_copy,
-        [INSTRUCTION_CONVERT]       = &instruction_convert,
-        [INSTRUCTION_TYPE]          = &instruction_type,
-        [INSTRUCTION_DELETE]        = &instruction_delete,
-        [INSTRUCTION_LENGTH]        = &instruction_length,
-        [INSTRUCTION_VARIABLE]      = &instruction_variable,
-        [INSTRUCTION_BOOLEAN]       = &instruction_boolean,
-        [INSTRUCTION_INTEGER]       = &instruction_integer,
-        [INSTRUCTION_FLOAT]         = &instruction_float,
-        [INSTRUCTION_STRING]        = &instruction_string,
-        [INSTRUCTION_ARRAY]         = &instruction_array,
-        [INSTRUCTION_JUMP_LABEL]    = &instruction_noop,
-        [INSTRUCTION_JUMP_BANK]     = &instruction_noop,
-        [INSTRUCTION_IF_EQUAL]      = &instruction_noop,
-        [INSTRUCTION_IF_NOT_EQUAL]  = &instruction_noop,
-        [INSTRUCTION_IF_GREATER_THAN] = &instruction_noop,
-        [INSTRUCTION_IF_LESSER_THAN]  = &instruction_noop,
-        [INSTRUCTION_ADD]           = &instruction_add,
-        [INSTRUCTION_SUBTRACT]      = &instruction_subtract,
-        [INSTRUCTION_MULTIPLY]      = &instruction_multiply,
-        [INSTRUCTION_DIVIDE]        = &instruction_divide,
-        [INSTRUCTION_MODULO]        = &instruction_modulo,
-        [INSTRUCTION_POWER]         = &instruction_power,
-        [INSTRUCTION_SQUARE_ROOT]   = &instruction_square_root,
-        [INSTRUCTION_NOT]           = &instruction_noop,
-        [INSTRUCTION_AND]           = &instruction_noop,
-        [INSTRUCTION_OR]            = &instruction_noop,
-        [INSTRUCTION_XOR]           = &instruction_noop,
-        [INSTRUCTION_PREPEND_ARRAY] = &instruction_noop,
-        [INSTRUCTION_APPEND_ARRAY]  = &instruction_noop,
-        [INSTRUCTION_GET_FIRST]     = &instruction_noop,
-        [INSTRUCTION_GET_LAST]      = &instruction_noop,
-        [INSTRUCTION_REMOVE_FIRST]  = &instruction_noop,
-        [INSTRUCTION_REMOVE_LAST]   = &instruction_noop,
-        [INSTRUCTION_MOVE_FIRST_TO_INDEX] = &instruction_noop,
-        [INSTRUCTION_MOVE_LAST_TO_INDEX]  = &instruction_noop,
-        [INSTRUCTION_MOVE_TO_FIRST]       = &instruction_noop,
-        [INSTRUCTION_MOVE_TO_LAST]        = &instruction_noop,
-    };
-
     // Get the instruction to execute.
     InstructionCode instruction_code = instruction->instruction;
-    InstructionFunction execute_intruction = all_functions[instruction_code];
+    InstructionFunction execute_intruction = all_instruction_functions[instruction_code];
 
     // Execute the command.
     Parameters *parameters = &(instruction->parameters);
