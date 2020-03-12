@@ -51,7 +51,7 @@ bool run_instruction(Program *program, Instruction *instruction, int *instructio
     }
 
     // Get the instruction to execute.
-    bool (*execute_intruction)(Program *, Parameters *, int *) = NULL;
+    InstructionFunction execute_intruction = NULL;
     switch (instruction->instruction)
     {
         case INSTRUCTION_COMMENT:
