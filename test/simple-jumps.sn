@@ -1,20 +1,27 @@
-20 02
+;;
+;; This is a test file, used to check that the Snowflake
+;; interpreter is able to process files correctly.
+;;
 
-01 01 START
-14 00 START
-03 00 00
+;; This tests that simple jumps work.
 
-20 03
+20 02        ;; Jump to MID
 
-01 02 MID
-14 00 MID
-03 00 00
+01 01 START  ;; Label START
+14 00 START  ;;
+03 00 00     ;; Print "Start"
 
-20 01
+20 03        ;; Jump to END
 
-01 03 END
-14 00 END
-03 00 00
+01 02 MID    ;; Label MID
+14 00 MID    ;;
+03 00 00     ;; Print "Mid"
+
+20 01        ;; Jump to START
+
+01 03 END    ;; Label END
+14 00 END    ;;
+03 00 00     ;; Print "End"
 
 ;; ./snowflake --print test/simple-jumps.sn 
 ;;  -> MID 
