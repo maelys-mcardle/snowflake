@@ -1,0 +1,36 @@
+20 02
+
+01 01 START
+14 00 START
+03 00 00
+
+20 03
+
+01 02 MID
+14 00 MID
+03 00 00
+
+20 01
+
+01 03 END
+14 00 END
+03 00 00
+
+;; ./snowflake --print test/simple-jumps.sn 
+;;  -> MID 
+;; ### :01 START
+;; STR @00 START
+;;  << OUT @00
+;;  -> END 
+;; ### :02 MID
+;; STR @00 MID
+;;  << OUT @00
+;;  -> START 
+;; ### :03 END
+;; STR @00 END
+;;  << OUT @00
+
+;; ./snowflake --run test/simple-jumps.sn 
+;; MID
+;; START
+;; END
