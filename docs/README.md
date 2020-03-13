@@ -172,7 +172,7 @@ Note: These instructions are only performed on ARRAY types.
 
 ### Banks
 
-Snowflake uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, or string. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
+Snowflake uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, string or array. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
 ### Labels
 
