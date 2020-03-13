@@ -33,7 +33,7 @@ make debug
 [5]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 [6]: https://en.wikipedia.org/wiki/GNU_C_Library
 
-### Pretty-Print
+### Print Code
 
 Snowflake programs are largely written using digits. To see the prettyprinted version of this code,
 with mnemonics and variable names substituted, use the `--print` or `-p` option:
