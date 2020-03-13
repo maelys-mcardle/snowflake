@@ -35,22 +35,26 @@ make debug
 
 ### Run
 
-To run a Snowflake program, execute:
+To see how the interpreter understands the Snowflake program, run:
+
 ```
-./snowflake --run your-code-file.sn
+./snowflake --print your-snowflake-program.sn
 ```
 
-To see how the interpreter understands the code file, run:
+To execute a Snowflake program, run:
 ```
-./snowflake --print your-code-file.sn
+./snowflake --run your-snowflake-program.sn
 ```
+
+## Debugging
 
 If your Snowflake program isn't parsed or executed as expected, you can use
 the `--debug` option. This will give in-depth information about what the interpreter
 is doing at each step. You do not need the debug build of the interpreter to 
 use this flag:
+
 ```
-./snowflake --print --run --debug your-code-file.sn
+./snowflake --print --run --debug your-snowflake-program.sn
 ```
 
 ### Clean
