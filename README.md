@@ -46,7 +46,7 @@ To execute a Snowflake program, run:
 ./snowflake --run your-snowflake-program.sn
 ```
 
-### Debugging
+### Debug
 
 If your Snowflake program isn't parsed or executed as expected, you can use
 the `--debug` option. This will give in-depth information about what the interpreter
