@@ -33,17 +33,34 @@ make debug
 [5]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 [6]: https://en.wikipedia.org/wiki/GNU_C_Library
 
+### Pretty-Print
+
+Snowflake programs are largely written using digits. To see the prettyprinted version of this code,
+with mnemonics and variable names substituted, use the `--print` or `-p` option:
+
+```
+./snowflake --print samples/hello-world.sn
+```
+
+The interpreter will produce the pretty-printed version:
+
+```
+VAR @00 HELLO WORLD!
+ << OUT @00
+```
+
 ### Run
 
-To see how the interpreter understands the Snowflake program, use the `--print` or `-p` option:
-
-```
-./snowflake --print your-snowflake-program.sn
-```
-
 To execute a Snowflake program, use the `--run` or `-r` option:
+
 ```
-./snowflake --run your-snowflake-program.sn
+./snowflake --run samples/hello-world.sn
+```
+
+The interpreter will run the code:
+
+```
+HELLO WORLD!
 ```
 
 ### Debug
