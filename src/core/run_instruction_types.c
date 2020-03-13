@@ -5,6 +5,7 @@
 #include "headers/type_conversion.h"
 #include "headers/bank.h"
 #include "headers/errors.h"
+#include "headers/string.h"
 
 /* Stores a variable in a bank; type is inferred.
  * VAR BANK LITERAL 
@@ -13,7 +14,7 @@ bool instruction_variable(Program *program, Parameters *parameters, InstructionP
 {
     char *literal = parameters->second.string;
 
-    if (is_float(literal) && strchr(literal, '.') != NULL)
+    if (is_float(literal) && has_period(literal))
     {
         return instruction_float(program, parameters, instruction_pointer);
     }

@@ -126,3 +126,8 @@ char *concatenate_strings(char *first, char *second, bool separate_with_space)
     // Return generated string.
     return output_string;
 }
+
+bool has_period(char *string)
+{
+    return (string != NULL && strchr(string, '.') != NULL);
+}

@@ -36,7 +36,7 @@ bool instruction_output(Program *program, Parameters *parameters, InstructionPoi
             case DEVICE_OUT:
                 bank_string_value = get_bank_as_string(bank);
                 log_debug("Sending Bank %02i (value: '%s') to Device %02i\n", bank->identifier, bank_string_value, device);
-                instruction_ok = send_to_output(bank_string_value);
+                instruction_ok = send_to_standard_output(bank_string_value);
                 if (bank_string_value != NULL) free(bank_string_value);
                 break;
             case DEVICE_IN:
@@ -89,7 +89,7 @@ bool instruction_input(Program *program, Parameters *parameters, InstructionPoin
                 instruction_ok = false;
                 break;
             case DEVICE_IN:
-                instruction_ok = receive_from_input(&string_size, &string);
+                instruction_ok = receive_from_standard_input(&string_size, &string);
                 if (instruction_ok)
                 {
                     log_debug("Setting '%s' to Bank %02i\n", string, bank->identifier);

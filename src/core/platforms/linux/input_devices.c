@@ -9,7 +9,7 @@ bool initialize_input()
     return true;
 }
 
-bool receive_from_input(int *string_size, char **string)
+bool receive_from_standard_input(int *string_size, char **string)
 {
     log_debug("Waiting for input...\n");
     size_t max_input_length = MAX_INPUT_LENGTH;

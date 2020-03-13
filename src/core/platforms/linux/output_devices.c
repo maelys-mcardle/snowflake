@@ -10,7 +10,7 @@ bool initialize_output()
     return true;
 }
 
-bool send_to_output(char *string)
+bool send_to_standard_output(char *string)
 {
     if (string != NULL)
     {
