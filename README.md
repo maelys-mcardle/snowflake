@@ -24,7 +24,7 @@ To compile the interpreter, run the command:
 make
 ```
 
-To compile a debug build, run the command:
+To compile with debug symbols run the command:
 ```
 make debug
 ```
@@ -45,9 +45,10 @@ To see how the interpreter understands the code file, run:
 ./snowflake --print your-code-file.sn
 ```
 
-If you run into issues, use the `--debug` option on the code. It will give more
-information about how the interpreter understood the code, and what it was running.
-You do not need the debug build of the interpreter to use this flag:
+If your Snowflake program isn't parsed or executed as expected, you can use
+the `--debug` option. This will give in-depth information about what the interpreter
+is doing at each step. You do not need the debug build of the interpreter to 
+use this flag:
 ```
 ./snowflake --print --run --debug your-code-file.sn
 ```
