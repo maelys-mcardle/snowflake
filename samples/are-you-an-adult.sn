@@ -22,24 +22,38 @@
 01 02 END           ;; Label 02 (end)
 03 00 00            ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
 
-;; The interpreter using the --print flag would output the following:
+;; ./snowflake --print samples/are-you-an-adult.sn 
 ;; 
-;; !!! ARE YOU AN ADULT    ;; Comment describing program.
-;;     @00 MSG             ;; Name Bank 00 "MSG"
-;;     @01 ADULT           ;; Name Bank 01 "ADULT"
-;;     @02 AGE             ;; Name Bank 02 "AGE"
-;; STR MSG HOW OLD ARE YOU ;; Store "HOW OLD ARE YOU" in Bank 00
-;; INT ADULT 18            ;; Store 18 (age of adulthood) in Bank 01  
-;;  << OUT MSG             ;; Display the message "HOW OLD ARE YOU"
-;;  >>  IN AGE             ;; Store the button input in Bank 02 (your age)
-;;  TO INT AGE             ;; Converts age to an integer.
-;; IF< AGE ADULT           ;; If Bank 02 (your age) is less than Bank 01 (age of adulthood)
-;;  -> IS ADULT            ;; ...Jump to label 01.
-;;  -> IS MINOR            ;; ...Otherwise jump to label 00.
-;; ### :00 IS ADULT        ;; Label 00 (for adults)
-;; STR MSG YOU ARE ADULT   ;; Store "YOU ARE ADULT" in Bank 00
-;;  -> END                 ;; Jump to label 02 (end).
-;; ### :01 IS MINOR        ;; Label 01 (for minors)
-;; STR MSG YOU ARE MINOR   ;; Store "YOU ARE MINOR" in Bank 00
-;; ### :02 END             ;; Label 02 (end)
-;;  << OUT MSG             ;; Display the message in Bank 00 ("YOU ARE ADULT" or "YOU ARE MINOR")
+;; !!! ARE YOU AN ADULT 
+;;     @00 MSG
+;;     @01 ADULT
+;;     @02 AGE
+;; STR MSG HOW OLD ARE YOU
+;; INT ADULT 18
+;;  << OUT MSG
+;;  >>  IN AGE
+;;  TO INT AGE
+;; IF< AGE ADULT
+;;  -> IS MINOR 
+;;  -> IS ADULT 
+;; ### :00 IS ADULT
+;; STR MSG YOU ARE ADULT
+;;  -> END 
+;; ### :01 IS MINOR
+;; STR MSG YOU ARE MINOR
+;; ### :02 END
+;;  << OUT MSG
+
+;; ./snowflake --run samples/are-you-an-adult.sn
+;;
+;; HOW OLD ARE YOU
+;; 23
+;; YOU ARE ADULT
+;;
+
+;; ./snowflake --run samples/are-you-an-adult.sn 
+;;
+;; HOW OLD ARE YOU
+;; 15
+;; YOU ARE MINOR
+;;

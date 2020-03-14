@@ -6,38 +6,60 @@
 02 01 CURRENT ;; Name Bank 01 "CURRENT"
 02 02 LAST    ;; Name Bank 02 "LAST"
 02 03 SUM     ;; Name Bank 03 "SUM"
+02 04 MSG     ;; Name Bank 04 "MSG"
+14 04 ENTER NUMBER ;; MSG = "ENTER NUMBER"
+03 00 04      ;; Output message.
 04 01 00      ;; User enters MAX. Stored in Bank 00.
 06 12 00      ;; Converts the user-input to an integer.
 12 01 01      ;; CURRENT NUMBER (Bank 01) is set to 1.
 12 02 01      ;; LAST NUMBER (Bank 02) is set to 1.
+14 04 FIBONACCI ;; MSG = "FIBONACCI"
+03 00 04      ;; Output message.
 01 00 START   ;; Start of loop
 05 03 01      ;; SUM = CURRENT NUMBER
 30 03 02      ;; SUM = SUM + LAST NUMBER
-03 00 03      ;; Output value of SUM
 24 03 00      ;; If SUM > MAX
 20 01         ;; ...go to end.
-05 02 01      ;; ...otherwise CURRENT NUMBER becomes LAST NUMBER
+03 00 03      ;; ...otherwise output value of SUM
+05 02 01      ;; CURRENT NUMBER becomes LAST NUMBER
 05 01 03      ;; SUM becomes CURRENT NUMBER
 20 00         ;; Start loop over.
 01 01 END     ;; End
 
-;; The above would be interpreted as the following:
-;; 
-;;     @00 MAX             ;; Name Bank 00 "MAX".
-;;     @01 CURRENT         ;; Name Bank 01 "CURRENT"
-;;     @02 LAST            ;; Name Bank 02 "LAST"
-;;     @03 SUM             ;; Name Bank 03 "SUM"
-;;  >>  IN MAX             ;; User enters MAX. Stored in Bank 00.
-;;  TO INT MAX             ;; Converts the user-input to an integer.
-;; INT CURRENT 01          ;; CURRENT NUMBER (Bank 01) is set to 1.
-;; INT LAST 01             ;; LAST NUMBER (Bank 02) is set to 1.
-;; ### :00 START           ;; Start of loop
-;;   = SUM CURRENT         ;; SUM = CURRENT NUMBER
-;;   + SUM LAST            ;; SUM = SUM + LAST NUMBER
-;;  << OUT SUM             ;; Output value of SUM
-;; IF> SUM MAX             ;; If SUM > MAX
-;;  -> END                 ;; ...go to end.
-;;   = LAST CURRENT        ;; ...otherwise CURRENT NUMBER becomes LAST NUMBER
-;;   = CURRENT SUM         ;; SUM becomes CURRENT NUMBER
-;;  -> START               ;; Start loop over.
-;; ### :01 END             ;; End
+;; ./snowflake --print samples/fibonacci.sn
+;;
+;;     @00 MAX
+;;     @01 CURRENT
+;;     @02 LAST
+;;     @03 SUM
+;;     @04 MSG
+;; STR MSG ENTER NUMBER
+;;  << OUT MSG
+;;  >>  IN MAX
+;;  TO INT MAX
+;; INT CURRENT 01
+;; INT LAST 01
+;; STR MSG FIBONACCI
+;;  << OUT MSG
+;; ### :00 START
+;;   = SUM CURRENT
+;;   + SUM LAST
+;; IF> SUM MAX
+;;  -> END 
+;;  << OUT SUM
+;;   = LAST CURRENT
+;;   = CURRENT SUM
+;;  -> START 
+;; ### :01 END
+
+;; ./snowflake --run samples/fibonacci.sn
+;;
+;; ENTER NUMBER
+;; 30
+;; FIBONACCI
+;; 2
+;; 3
+;; 5
+;; 8
+;; 13
+;; 21
