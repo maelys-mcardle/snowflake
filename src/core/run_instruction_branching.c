@@ -49,6 +49,80 @@ bool instruction_if_not_equal(Program *program, Parameters *parameters, Instruct
     return true;
 }
 
+bool instruction_if_greater_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+{
+    Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
+    Bank *second_bank = get_bank_from_parameter(program, &(parameters->second));
+    bool is_greater = false;
+
+    if (first_bank != NULL && second_bank != NULL)
+    {
+        BankType type = first_bank->type;
+        if (type == TYPE_INTEGER)
+        {
+            is_greater = 
+                get_bank_as_integer(first_bank) >
+                get_bank_as_integer(second_bank);
+        }
+        else if (type == TYPE_FLOAT)
+        {
+            is_greater = 
+                get_bank_as_float(first_bank) >
+                get_bank_as_float(second_bank);
+        }
+        else
+        {
+            is_greater = false;
+        }
+    }
+    else
+    {
+        is_greater = false;
+    }
+    
+    // If is not equal, run the next instruction. Otherwise skip it.
+    *instruction_pointer += (is_greater) ? 1 : 2;
+
+    return true;
+}
+
+bool instruction_if_lesser_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+{
+    Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
+    Bank *second_bank = get_bank_from_parameter(program, &(parameters->second));
+    bool is_lesser = false;
+
+    if (first_bank != NULL && second_bank != NULL)
+    {
+        BankType type = first_bank->type;
+        if (type == TYPE_INTEGER)
+        {
+            is_lesser = 
+                get_bank_as_integer(first_bank) <
+                get_bank_as_integer(second_bank);
+        }
+        else if (type == TYPE_FLOAT)
+        {
+            is_lesser = 
+                get_bank_as_float(first_bank) <
+                get_bank_as_float(second_bank);
+        }
+        else
+        {
+            is_lesser = false;
+        }
+    }
+    else
+    {
+        is_lesser = false;
+    }
+    
+    // If is not equal, run the next instruction. Otherwise skip it.
+    *instruction_pointer += (is_lesser) ? 1 : 2;
+
+    return true;
+}
+
 bool is_parameters_equal(Program *program, Parameters *parameters)
 {
     Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
@@ -88,7 +162,7 @@ bool is_parameters_equal(Program *program, Parameters *parameters)
         }
         else if (type == TYPE_ARRAY)
         {
-            // TO DO.
+            is_equal = false;
         }
     }
     else

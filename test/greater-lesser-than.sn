@@ -1,0 +1,62 @@
+;; TEST INTEGER GREATER THAN
+
+12 00 2 ;; @00 = 2
+12 01 1 ;; @01 = 1
+24 00 01 ;; If @00 > @01
+20 02    ;; ...Jump to INTEGER GREATER THAN
+20 00    ;; ...otherwise Jump to error
+
+01 02 INTEGER GREATER THAN ;; Label 02: INTEGER GREATER THAN
+14 00 INTEGER GREATER THAN OK
+03 00 00            ;; Output "INTEGER GREATER THAN OK"
+
+;; TEST INTEGER LESSER THAN
+
+12 00 1 ;; @00 = False
+12 01 2 ;; @01 = True
+25 00 01 ;; If @00 < @01
+20 03    ;; ...Jump to INTEGER LESSER THAN
+20 00    ;; ...otherwise Jump to error
+
+01 03 INTEGER LESSER THAN ;; Label 03: INTEGER LESSER THAN
+14 00 INTEGER LESSER THAN OK
+03 00 00            ;; Output "INTEGER LESSER THAN OK"
+
+;; TEST FLOAT GREATER THAN
+
+13 00 1.127 ;; @00 = True
+13 01 1.123 ;; @01 = True
+24 00 01 ;; If @00 > @01
+20 04    ;; ...Jump to FLOAT GREATER THAN
+20 00    ;; ...otherwise Jump to error
+
+01 04 FLOAT GREATER THAN ;; Label 04: FLOAT GREATER THAN
+14 00 FLOAT GREATER THAN OK
+03 00 00            ;; Output "FLOAT GREATER THAN OK"
+
+;; TEST FLOAT LESSER THAN
+
+13 00 1.123 ;; @00 = False
+13 01 1.127 ;; @01 = True
+25 00 01 ;; If @00 < @01
+20 05    ;; ...Jump to FLOAT LESSER THAN
+20 00    ;; ...otherwise Jump to error
+
+01 05 FLOAT LESSER THAN ;; Label 05: FLOAT LESSER THAN
+14 00 FLOAT LESSER THAN OK
+03 00 00            ;; Output "FLOAT LESSER THAN OK"
+
+;; TEST OK
+
+14 00 TEST OK!
+03 00 00        ;; Output "TEST OK!"
+
+20 01 ;; Jump to END
+
+;; TEST FAIL
+
+01 00 ERROR     ;; Label 00: ERROR
+14 00 TEST FAIL!
+03 00 00        ;; Output "TEST FAIL!"
+
+01 01 END       ;; Label 01: END
