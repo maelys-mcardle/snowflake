@@ -14,7 +14,7 @@ This repository contains the following:
 
 ## Author
 
-Snowflake was developed as a fun side-project by [Maëlys McArdle][1].
+Snowflake was developed as a fun side-project by [Maëlys McArdle][3].
 
 [3]: https://www.maelys.bio/
 
