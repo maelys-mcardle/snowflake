@@ -7,7 +7,7 @@
 02 02 LAST    ;; Name Bank 02 "LAST"
 02 03 SUM     ;; Name Bank 03 "SUM"
 02 04 MSG     ;; Name Bank 04 "MSG"
-14 04 ENTER NUMBER ;; MSG = "ENTER NUMBER"
+14 04 ENTER MAX ;; MSG = "ENTER MAX"
 03 00 04      ;; Output message.
 04 01 00      ;; User enters MAX. Stored in Bank 00.
 06 12 00      ;; Converts the user-input to an integer.
@@ -33,7 +33,7 @@
 ;;     @02 LAST
 ;;     @03 SUM
 ;;     @04 MSG
-;; STR MSG ENTER NUMBER
+;; STR MSG ENTER MAX
 ;;  << OUT MSG
 ;;  >>  IN MAX
 ;;  TO INT MAX
@@ -54,7 +54,7 @@
 
 ;; ./snowflake --run samples/fibonacci.sn
 ;;
-;; ENTER NUMBER
+;; ENTER MAX
 ;; 30
 ;; FIBONACCI
 ;; 2
