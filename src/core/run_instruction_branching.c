@@ -31,6 +31,7 @@ bool instruction_jump_bank(Program *program, Parameters *parameters, Instruction
 
 bool instruction_if_equal(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
+    log_debug("Comparing parameters for equality.\n");
     bool is_equal = is_parameters_equal(program, parameters);
 
     // If is equal, run the next instruction. Otherwise skip it.
@@ -41,6 +42,7 @@ bool instruction_if_equal(Program *program, Parameters *parameters, InstructionP
 
 bool instruction_if_not_equal(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
+    log_debug("Comparing parameters for inequality.\n");
     bool is_equal = is_parameters_equal(program, parameters);
 
     // If is not equal, run the next instruction. Otherwise skip it.
@@ -51,6 +53,7 @@ bool instruction_if_not_equal(Program *program, Parameters *parameters, Instruct
 
 bool instruction_if_greater_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
+    log_debug("Comparing parameters for greater than.\n");
     Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
     Bank *second_bank = get_bank_from_parameter(program, &(parameters->second));
     bool is_greater = false;
@@ -88,6 +91,7 @@ bool instruction_if_greater_than(Program *program, Parameters *parameters, Instr
 
 bool instruction_if_lesser_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
+     log_debug("Comparing parameters for lesser than.\n");
     Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
     Bank *second_bank = get_bank_from_parameter(program, &(parameters->second));
     bool is_lesser = false;
@@ -175,9 +179,27 @@ bool is_parameters_equal(Program *program, Parameters *parameters)
 
 bool is_string_equal(Bank *first_bank, Bank *second_bank)
 {
+    // Get the strings.
     char *first_string = get_bank_as_string(first_bank);
     char *second_string = get_bank_as_string(second_bank);
-    bool is_equal = strcmp(first_string, second_string) == 0;
+    bool is_equal = false;
+
+    // Compare the strings.
+    if (first_string != NULL && second_string != NULL)
+    {
+        log_debug("Comparing '%s' with '%s'\n.", first_string, second_string);
+        is_equal = strcmp(first_string, second_string) == 0;
+    }
+    else if (first_string == NULL && second_string == NULL)
+    {
+        is_equal = true;
+    }
+    else
+    {
+        is_equal = false;
+    }
+    
+    // Free the strings and return the findings.
     if (first_string != NULL) free(first_string);
     if (second_string != NULL) free(second_string);
     return is_equal;
