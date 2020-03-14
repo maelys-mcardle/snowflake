@@ -1,0 +1,111 @@
+
+;; TEST BOOLEAN EQUAL
+
+11 00 1 ;; @00 = True
+11 01 1 ;; @01 = True
+22 00 01 ;; If @00 == @01
+20 02    ;; ...Jump to BOOLEAN EQUAL
+20 00    ;; ...otherwise Jump to error
+
+01 02 BOOLEAN EQUAL ;; Label 02: BOOLEAN EQUAL
+14 00 BOOL EQUAL OK
+03 00 00            ;; Output "BOOL EQUAL OK"
+
+;; TEST BOOLEAN NOT EQUAL
+
+11 00 0 ;; @00 = False
+11 01 1 ;; @01 = True
+23 00 01 ;; If @00 == @01
+20 03    ;; ...Jump to BOOLEAN NOT EQUAL
+20 00    ;; ...otherwise Jump to error
+
+01 03 BOOLEAN NOT EQUAL ;; Label 02: BOOLEAN EQUAL
+14 00 BOOL NOT EQUAL OK
+03 00 00            ;; Output "BOOL NOT EQUAL OK"
+
+;; TEST INTEGER EQUAL
+
+12 00 1 ;; @00 = True
+12 01 1 ;; @01 = True
+22 00 01 ;; If @00 == @01
+20 04    ;; ...Jump to INTEGER EQUAL
+20 00    ;; ...otherwise Jump to error
+
+01 04 INTEGER EQUAL ;; Label 02: INTEGER EQUAL
+14 00 INTEGER EQUAL OK
+03 00 00            ;; Output "INTEGER EQUAL OK"
+
+;; TEST INTEGER NOT EQUAL
+
+12 00 0 ;; @00 = False
+12 01 1 ;; @01 = True
+23 00 01 ;; If @00 == @01
+20 05    ;; ...Jump to INTEGER NOT EQUAL
+20 00    ;; ...otherwise Jump to error
+
+01 05 INTEGER NOT EQUAL ;; Label 02: INTEGER EQUAL
+14 00 INTEGER NOT EQUAL OK
+03 00 00            ;; Output "INTEGER NOT EQUAL OK"
+
+;; TEST FLOAT EQUAL
+
+13 00 1.123 ;; @00 = True
+13 01 1.123 ;; @01 = True
+22 00 01 ;; If @00 == @01
+20 06    ;; ...Jump to FLOAT EQUAL
+20 00    ;; ...otherwise Jump to error
+
+01 06 FLOAT EQUAL ;; Label 02: FLOAT EQUAL
+14 00 FLOAT EQUAL OK
+03 00 00            ;; Output "FLOAT EQUAL OK"
+
+;; TEST FLOAT NOT EQUAL
+
+13 00 1.123 ;; @00 = False
+13 01 1.127 ;; @01 = True
+23 00 01 ;; If @00 == @01
+20 07    ;; ...Jump to FLOAT NOT EQUAL
+20 00    ;; ...otherwise Jump to error
+
+01 07 FLOAT NOT EQUAL ;; Label 02: FLOAT EQUAL
+14 00 FLOAT NOT EQUAL OK
+03 00 00            ;; Output "FLOAT NOT EQUAL OK"
+
+;; TEST STRING EQUAL
+
+14 00 dog ;; @00 = True
+14 01 dog ;; @01 = True
+22 00 01 ;; If @00 == @01
+20 08    ;; ...Jump to STRING EQUAL
+20 00    ;; ...otherwise Jump to error
+
+01 08 STRING EQUAL ;; Label 02: STRING EQUAL
+14 00 STRING EQUAL OK
+03 00 00            ;; Output "STRING EQUAL OK"
+
+;; TEST STRING NOT EQUAL
+
+14 00 dog ;; @00 = False
+14 01 cat ;; @01 = True
+23 00 01 ;; If @00 == @01
+20 09    ;; ...Jump to STRING NOT EQUAL
+20 00    ;; ...otherwise Jump to error
+
+01 09 STRING NOT EQUAL ;; Label 02: STRING EQUAL
+14 00 STRING NOT EQUAL OK
+03 00 00            ;; Output "STRING NOT EQUAL OK"
+
+;; TEST OK
+
+14 00 TEST OK!
+03 00 00        ;; Output "TEST OK!"
+
+20 01 ;; Jump to END
+
+;; TEST FAIL
+
+01 00 ERROR     ;; Label 00: ERROR
+14 00 TEST FAIL!
+03 00 00        ;; Output "TEST FAIL!"
+
+01 01 END       ;; Label 01: END
