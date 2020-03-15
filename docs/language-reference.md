@@ -1,4 +1,4 @@
-# Instruction Set
+# Language Reference
 
 ## Instructions
 
