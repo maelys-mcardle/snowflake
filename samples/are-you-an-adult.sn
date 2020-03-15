@@ -49,11 +49,9 @@
 ;; HOW OLD ARE YOU
 ;; 23
 ;; YOU ARE ADULT
-;;
 
 ;; ./snowflake --run samples/are-you-an-adult.sn 
 ;;
 ;; HOW OLD ARE YOU
 ;; 15
 ;; YOU ARE MINOR
-;;

@@ -18,7 +18,6 @@
 03 00 00            ;; Output the contents of MSG to the display ("RESULT")
 03 00 01            ;; Output the contents of A (the sum of the addition)
 
-;;
 ;; ./snowflake --print samples/add-two-numbers.sn  
 ;;
 ;; !!! ADD TWO NUMBERS 
@@ -36,9 +35,7 @@
 ;; VAR MSG RESULT
 ;;  << OUT MSG
 ;;  << OUT A
-;;
 
-;;
 ;; ./snowflake --run samples/add-two-numbers.sn 
 ;;
 ;; ENTER NUMBER
@@ -47,4 +44,3 @@
 ;; 3
 ;; RESULT
 ;; 15
-;;

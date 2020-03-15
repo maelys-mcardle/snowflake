@@ -17,15 +17,19 @@
 03 00 01            ;; Output BANK @01
 
 ;; ./snowflake --print samples/roll-the-dice.sn 
-:: STR @00 ROLL THE DICE
-::  << OUT @00
-::  >> RND @01
-:: INT @02 06
-:: INT @03 01
-::   % @01 @02
-::   + @01 @03
-::  << OUT @01
-::  
-:: ./snowflake --run samples/roll-the-dice.sn 
-:: ROLL THE DICE
-:: 5
+;; STR @00 ROLL THE DICE
+;;  << OUT @00
+;;  >> RND @01
+;; INT @02 06
+;; INT @03 01
+;;   % @01 @02
+;;   + @01 @03
+;;  << OUT @01
+
+;; ./snowflake --run samples/roll-the-dice.sn 
+;; ROLL THE DICE
+;; 5
+
+;; ./snowflake --run samples/roll-the-dice.sn 
+;; ROLL THE DICE
+;; 1
