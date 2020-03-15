@@ -7,10 +7,11 @@ This is what a simple "hello world" program looks like in Snowflake:
 03 00 01              ;; Display the contents of Bank 01
 ```
 
-Lines in Snowflake have the following format:
+Lines in Snowflake have the following format, where brackets indicate that
+the fields are optional:
 
 ```
-INSTRUCTION [PARAMETER] [PARAMETER]
+INSTRUCTION [PARAMETER] [PARAMETER] [;; COMMENT]
 ```
 
 The parameters can be optional, depending on the instruction. So the instruction
