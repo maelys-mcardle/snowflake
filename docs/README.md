@@ -146,14 +146,12 @@ ARRAYS
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 15    []        BANK            Converts BANK into an empty array.
-50   +[]        BANK1   BANK2   Appends the contents of BANK2 
-                                to the start of the BANK1 array.
-51   []+        BANK1   BANK2   Appends the contents of BANK2 
-                                to the end of the BANK1 array.
+50   +[]        BANK1   BANK2   Copies the contents of BANK2 into a 
+                                new first item of the BANK1 array.
+51   []+        BANK1   BANK2   Copies the contents of BANK2 into a 
+                                new last item of the BANK1 array.
 52   ?[]        BANK1   BANK2   Copies the first item of the BANK1 array into BANK2.
-                                BANK2 becomes the type of the first item in the BANK1 array.
 53   []?        BANK1   BANK2   Copies the last item of the BANK1 array into BANK2.
-                                BANK2 becomes the type of the last item in the BANK1 array.
 54   -[]        BANK            Removes the first item of the BANK array.
 55   []-        BANK            Removes the last item of the BANK array.
 56   >[]        BANK1   BANK2   Moves the first item of the BANK1 array 
