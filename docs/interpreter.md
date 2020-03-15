@@ -2,7 +2,7 @@
 
 The interpreter is used to execute Snowflake code as well as print 
 out a human-readable version. Before the interpreter can be used,
-it must first be **compiled**.
+it must first be **compiled**. Then programs can be run.
 
 ## Compile Interpreter
 
@@ -37,7 +37,7 @@ The interpreter will run the code:
 HELLO WORLD!
 ```
 
-## Display Human-Readable Code
+## Display Program Code
 
 Snowflake programs are largely written using digits. To see the human-readable version
 with mnemonics and variable names substituted, use the `--print` or `-p` option:
@@ -54,7 +54,7 @@ VAR @00 HELLO WORLD!
  << OUT @00
 ```
 
-## Debug Snowflake Programs
+## Debug Programs
 
 If a Snowflake program isn't parsed or executed as expected, use
 the `--debug` or `-d` option. This will give in-depth information 
@@ -65,9 +65,10 @@ the interpreter is not required.
 ./snowflake --print --run --debug your-snowflake-program.sn
 ```
 
-## Clean Interpreter Compilation Files
+## Remove Compilation Files
 
-To delete files created during compilation, run the command:
+To delete files created during the compilation of the 
+interpreter, run the command:
 
 ```
 make clean
