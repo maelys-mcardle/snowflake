@@ -12,7 +12,7 @@ void print_program(Program *program)
         program->instructions.instructions != NULL && 
         program->instructions.count > 0)
     {
-        for (int i = 0; i < program->instructions.count; i++)
+        for (InstructionIndex i = 0; i < program->instructions.count; i++)
         {
             log_debug("[Instruction %02i]\n", i);
             Instruction *instruction = program->instructions.instructions[i];
@@ -118,7 +118,7 @@ void print_identifier(Program *program, InstructionCode current_instruction, Ins
 
 char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier)
 {
-    for (int i = 0; i < program->instructions.count; i++)
+    for (InstructionIndex i = 0; i < program->instructions.count; i++)
     {
         Instruction *instruction = program->instructions.instructions[i];
         if (instruction->instruction == naming_instruction &&

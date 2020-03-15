@@ -71,48 +71,54 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
     // Load the instruction.
     //  * The instruction is extracted from the line of text.
     //  * Information about that instruction is retrieved.
+    bool instruction_extracted = false;
     bool instruction_exists = false;
-    int line_cursor = extract_instruction(line, max_line_length, &(instruction->instruction));
-    InstructionInfo instruction_info = get_instruction_info(
-        instruction->instruction, &instruction_exists);
+    int line_cursor = extract_instruction(line, max_line_length, &(instruction->instruction),
+        &instruction_extracted);
 
-    // Instruction exists.
-    if (instruction_exists)
+    if (instruction_extracted)
     {
-        // Note instruction exists.
-        log_debug("Found instruction %02i ('%c%c%c')\n", 
-            instruction->instruction,
-            instruction_info.mnemonic[0],
-            instruction_info.mnemonic[1],
-            instruction_info.mnemonic[2]);
+        InstructionInfo instruction_info = get_instruction_info(
+            instruction->instruction, &instruction_exists);
 
-        // Keep track of whether parameters were parsed ok.
-        bool first_parameter_missing = true;
-        bool second_parameter_missing = true;
-
-        // Load first parameter.
-        line_cursor = extract_parameter(line, max_line_length, line_cursor,
-            instruction_info.parameters.first, &(instruction->parameters.first),
-            &first_parameter_missing);
-
-        if (first_parameter_missing)
+        // Instruction exists.
+        if (instruction_exists)
         {
-            log_error(ERROR_MESG_PARAMETER_MISSING, instruction->instruction, 1);
+            // Note instruction exists.
+            log_debug("Found instruction %02i ('%c%c%c')\n", 
+                instruction->instruction,
+                instruction_info.mnemonic[0],
+                instruction_info.mnemonic[1],
+                instruction_info.mnemonic[2]);
+
+            // Keep track of whether parameters were parsed ok.
+            bool first_parameter_missing = true;
+            bool second_parameter_missing = true;
+
+            // Load first parameter.
+            line_cursor = extract_parameter(line, max_line_length, line_cursor,
+                instruction_info.parameters.first, &(instruction->parameters.first),
+                &first_parameter_missing);
+
+            if (first_parameter_missing)
+            {
+                log_error(ERROR_MESG_PARAMETER_MISSING, instruction->instruction, 1);
+            }
+
+            // Load second parameter.
+            line_cursor = extract_parameter(line, max_line_length, line_cursor,
+                instruction_info.parameters.second, &(instruction->parameters.second),
+                &second_parameter_missing);
+
+            if (second_parameter_missing)
+            {
+                log_error(ERROR_MESG_PARAMETER_MISSING, instruction->instruction, 2);
+            }
+
+            // Return if parameters were ok.
+            bool parameter_missing = first_parameter_missing || second_parameter_missing;
+            return !parameter_missing;
         }
-
-        // Load second parameter.
-        line_cursor = extract_parameter(line, max_line_length, line_cursor,
-            instruction_info.parameters.second, &(instruction->parameters.second),
-            &second_parameter_missing);
-
-        if (second_parameter_missing)
-        {
-            log_error(ERROR_MESG_PARAMETER_MISSING, instruction->instruction, 2);
-        }
-
-        // Return if parameters were ok.
-        bool parameter_missing = first_parameter_missing || second_parameter_missing;
-        return !parameter_missing;
     }
 
     // No instruction parsed.
@@ -206,10 +212,12 @@ bool store_parameter(ParameterType parameter_type, char *parameter_string, int m
 /* Extracts the instruction from the line.
  * @return the last character with the position.
  */
-int extract_instruction(char *line, int max_line_length, InstructionCode *instruction)
+int extract_instruction(char *line, int max_line_length, InstructionCode *instruction, bool *instruction_extracted)
 {
     char max_instruction_size = MAX_INSTRUCTION_SIZE;
     char instruction_string[max_instruction_size];
+    *instruction_extracted = false;
+    *instruction = 0;
 
     // Load instruction text.
     int end = parse_field(line, max_line_length, true, 
@@ -219,20 +227,9 @@ int extract_instruction(char *line, int max_line_length, InstructionCode *instru
     if (!is_string_end(instruction_string[0])) 
     {
         // Parse the instruction from text to an integer.
-        bool instruction_ok = false;
-        *instruction = string_to_integer(instruction_string, &instruction_ok);
-
-        // Could not parse instruction into an integer.
-        if (!instruction_ok)
-        {
-            *instruction = -1;
-        }
-
-    // No text was loaded.
-    }
-    else
-    {
-        *instruction = -1;
+        bool parse_to_integer_ok = false;
+        *instruction = string_to_integer(instruction_string, &parse_to_integer_ok);
+        *instruction_extracted = parse_to_integer_ok;
     }
 
     return end;

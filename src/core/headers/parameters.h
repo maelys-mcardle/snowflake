@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-typedef short Identifier;
+typedef unsigned short Identifier;
 
 typedef enum {
     PARAMETER_NONE = 0,

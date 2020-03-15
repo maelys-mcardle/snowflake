@@ -69,7 +69,7 @@ void run_program(Program *program)
         initialize_input();
         initialize_output();
 
-        InstructionPointer instruction_pointer = 0;
+        InstructionIndex instruction_pointer = 0;
         while (instruction_pointer < program->instructions.count)
         {
             Instruction *instruction = program->instructions.instructions[instruction_pointer];
@@ -78,7 +78,7 @@ void run_program(Program *program)
     }
 }
 
-bool run_instruction(Program *program, Instruction *instruction, InstructionPointer *instruction_pointer)
+bool run_instruction(Program *program, Instruction *instruction, InstructionIndex *instruction_pointer)
 {
     // If this is the debug mode, provide more logging.
     if (is_debug_mode())

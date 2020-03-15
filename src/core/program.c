@@ -32,7 +32,7 @@ void free_program(Program *program)
         if (program->instructions.instructions != NULL && 
             program->instructions.count > 0)
         {
-            for (int i = 0; i < program->instructions.count; i++)
+            for (InstructionIndex i = 0; i < program->instructions.count; i++)
             {
                 free_instruction(program->instructions.instructions[i]);
             }
@@ -72,9 +72,10 @@ bool append_instruction_to_program(Program *program, Instruction *instruction)
 bool set_program_bank(Program *program, Bank *bank)
 {
     // Get the existing index of the bank, if it's set.
-    int bank_index = get_program_bank_index(program, bank->identifier);
+    bool bank_exists = false;
+    BankIndex bank_index = get_program_bank_index(program, bank->identifier, &bank_exists);
 
-    if (bank_index == -1) 
+    if (!bank_exists) 
     {
         // Bank index doesn't exist. Append it.
         return append_bank_to_program(program, bank);
@@ -91,9 +92,10 @@ bool set_program_bank(Program *program, Bank *bank)
 bool remove_program_bank(Program *program, Identifier identifier)
 {
     // Get the existing index of the bank, if it's set.
-    int bank_index = get_program_bank_index(program, identifier);
+    bool bank_exists = false;
+    BankIndex bank_index = get_program_bank_index(program, identifier, &bank_exists);
 
-    if (bank_index == -1) 
+    if (!bank_exists) 
     {
         // Bank index doesn't exist. Nothing to delete.
         return true;
@@ -124,28 +126,31 @@ Bank *get_bank_from_parameter(Program *program, ParameterValue *parameter)
 
 Bank *get_program_bank(Program *program, Identifier identifier)
 {
-    int index = get_program_bank_index(program, identifier);
-    if (index >= 0) {
+    bool bank_exists = false;
+    BankIndex index = get_program_bank_index(program, identifier, &bank_exists);
+    if (bank_exists) {
         return program->banks.banks[index];
     }
     return NULL;
 }
 
 /* Gets the index in the banks of the bank with the target identifier. */
-int get_program_bank_index(Program *program, Identifier target_identifier)
+BankIndex get_program_bank_index(Program *program, Identifier target_identifier, bool *target_exists)
 {
     if (program->banks.banks != NULL && 
         program->banks.count > 0)
     {
-        for (int i = 0; i < program->banks.count; i++)
+        for (BankIndex i = 0; i < program->banks.count; i++)
         {
             if (program->banks.banks[i]->identifier == target_identifier) {
+                *target_exists = true;
                 return i;
             }
         }
     }
 
-    return -1;
+    *target_exists = false;
+    return 0;
 }
 
 bool append_bank_to_program(Program *program, Bank *bank)

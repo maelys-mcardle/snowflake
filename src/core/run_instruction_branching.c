@@ -3,14 +3,14 @@
 #include "headers/run_instruction_branching.h"
 #include "headers/logging.h"
 
-bool instruction_jump_label(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_jump_label(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     int target_label = parameters->first.identifier;
     bool instruction_ok = jump_to_label(program, instruction_pointer, target_label);
     return instruction_ok;
 }
 
-bool instruction_jump_bank(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_jump_bank(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     bool found_label = false;
     Bank *bank = get_bank_from_parameter(program, &(parameters->first));
@@ -29,7 +29,7 @@ bool instruction_jump_bank(Program *program, Parameters *parameters, Instruction
     return found_label;
 }
 
-bool instruction_if_equal(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_if_equal(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     log_debug("Comparing parameters for equality.\n");
     bool is_equal = is_parameters_equal(program, parameters);
@@ -40,7 +40,7 @@ bool instruction_if_equal(Program *program, Parameters *parameters, InstructionP
     return true;
 }
 
-bool instruction_if_not_equal(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_if_not_equal(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     log_debug("Comparing parameters for inequality.\n");
     bool is_equal = is_parameters_equal(program, parameters);
@@ -51,7 +51,7 @@ bool instruction_if_not_equal(Program *program, Parameters *parameters, Instruct
     return true;
 }
 
-bool instruction_if_greater_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_if_greater_than(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     log_debug("Comparing parameters for greater than.\n");
     Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
@@ -89,7 +89,7 @@ bool instruction_if_greater_than(Program *program, Parameters *parameters, Instr
     return true;
 }
 
-bool instruction_if_lesser_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_if_lesser_than(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
      log_debug("Comparing parameters for lesser than.\n");
     Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
@@ -205,13 +205,16 @@ bool is_string_equal(Bank *first_bank, Bank *second_bank)
     return is_equal;
 }
 
-bool jump_to_label(Program *program, InstructionPointer *instruction_pointer, int target_label)
+bool jump_to_label(Program *program, InstructionIndex *instruction_pointer, int target_label)
 {
     // Find the instruction with the label.
-    InstructionPointer new_instruction_pointer = get_label_instruction_pointer(program, target_label);
+    bool found_instruction_with_label = false;
+    InstructionIndex new_instruction_pointer = 
+        get_label_instruction_pointer(program, target_label,
+            &found_instruction_with_label);
     
     // Found instruction. Jumping to it.
-    if (new_instruction_pointer >= 0)
+    if (found_instruction_with_label)
     {
         log_debug("Jumping to instruction %02i.\n", new_instruction_pointer + 1);
         *instruction_pointer = new_instruction_pointer + 1;
@@ -227,17 +230,21 @@ bool jump_to_label(Program *program, InstructionPointer *instruction_pointer, in
     }
 }
 
-InstructionPointer get_label_instruction_pointer(Program *program, int target_label)
+InstructionIndex get_label_instruction_pointer(Program *program, int target_label, bool *target_found)
 {
-    for (int index = 0; index < program->instructions.count; index++)
+    // Locate instruction with label.
+    for (InstructionIndex index = 0; index < program->instructions.count; index++)
     {
         Instruction *instruction = program->instructions.instructions[index];
         if (instruction->instruction == INSTRUCTION_LABEL &&
             instruction->parameters.first.identifier == target_label)
         {
+            *target_found = true;
             return index;
         }
     }
 
-    return -1;
+    // Did not find instruction with label.
+    *target_found = false;
+    return 0;
 }

@@ -4,13 +4,16 @@
 #include "instructions.h"
 #include "bank.h"
 
+typedef unsigned int InstructionIndex;
+typedef unsigned int BankIndex;
+
 typedef struct {
-    int count;
+    BankIndex count;
     Bank **banks;
 } ProgramBanks;
 
 typedef struct {
-    int count;
+    InstructionIndex count;
     Instruction **instructions;
 } ProgramInstructions;
 
@@ -19,15 +22,13 @@ typedef struct {
     ProgramInstructions instructions;
 } Program;
 
-typedef int InstructionPointer;
-
 Program *new_program();
 void free_program(Program *program);
 bool append_instruction_to_program(Program *program, Instruction *instruction);
 bool append_bank_to_program(Program *program, Bank *bank);
 bool set_program_bank(Program *program, Bank *bank);
 bool resize_bank_array(Program *program, int new_count);
-int get_program_bank_index(Program *program, Identifier identifier);
+BankIndex get_program_bank_index(Program *program, Identifier identifier, bool *bank_exists);
 bool remove_program_bank(Program *program, Identifier identifier);
 Bank *get_program_bank(Program *program, Identifier identifier);
 Bank *get_bank_from_parameter(Program *program, ParameterValue *parameter);

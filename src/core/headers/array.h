@@ -2,8 +2,10 @@
 #define SNOWFLAKE_ARRAY_H
 #include <stdbool.h>
 
+typedef unsigned int ArrayCount;
+
 typedef struct {
-    int count;
+    ArrayCount count;
     void **items;
 } Array;
 

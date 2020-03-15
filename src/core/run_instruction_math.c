@@ -4,7 +4,7 @@
 #include "headers/string.h"
 #include "headers/logging.h"
 
-bool instruction_add(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_add(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
     Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
@@ -54,7 +54,7 @@ bool instruction_add(Program *program, Parameters *parameters, InstructionPointe
     return instruction_ok;
 }
 
-bool instruction_subtract(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_subtract(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
     Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
@@ -92,7 +92,7 @@ bool instruction_subtract(Program *program, Parameters *parameters, InstructionP
     return instruction_ok;
 }
 
-bool instruction_multiply(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_multiply(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
     Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
@@ -130,7 +130,7 @@ bool instruction_multiply(Program *program, Parameters *parameters, InstructionP
     return instruction_ok;
 }
 
-bool instruction_divide(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_divide(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
     Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
@@ -168,7 +168,7 @@ bool instruction_divide(Program *program, Parameters *parameters, InstructionPoi
     return instruction_ok;
 }
 
-bool instruction_modulo(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_modulo(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
     Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
@@ -207,7 +207,7 @@ bool instruction_modulo(Program *program, Parameters *parameters, InstructionPoi
     return instruction_ok;
 }
 
-bool instruction_power(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_power(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
     Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
@@ -247,7 +247,7 @@ bool instruction_power(Program *program, Parameters *parameters, InstructionPoin
     return instruction_ok;
 }
 
-bool instruction_square_root(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+bool instruction_square_root(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
     Bank *bank = get_bank_from_parameter(program, &(parameters->first));
     bool instruction_ok = false;
