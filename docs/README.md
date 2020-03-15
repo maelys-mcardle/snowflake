@@ -21,8 +21,24 @@ Snowflake is [Turing-complete][4] and uses the [Polish notation][5].
 
 ### Getting the Interpreter
 
-The `README.md` in the root of this project has the steps to compile and run
-the interpreter.
+To get and compile the interpreter, run the following:
+
+```
+# Clone the repository
+git clone git@github.com:maelys-mcardle/snowflake.git
+
+# Switch into the repository directory
+cd snowflake
+
+# Compile the interpreter
+make
+```
+
+Then test by running a sample file:
+
+```
+./snowflake --run samples/hello-world.sn
+```
 
 ### Hello, World!
 
