@@ -1,7 +1,8 @@
-# Interpreter
+# Snowflake Interpreter
 
-This project comes with an interpreter to execute Snowflake code. 
-To be able to use it, it first needs to be **compiled**.
+The interpreter is used to execute Snowflake code as well as print 
+out a human-readable version. Before the interpreter can be used,
+it must first be **compiled**.
 
 ## Compile Interpreter
 
@@ -38,14 +39,15 @@ HELLO WORLD!
 
 ### Display Snowflake Code
 
-Snowflake programs are largely written using digits. To see the parsed code with 
-mnemonics and variable names substituted, use the `--print` or `-p` option:
+Snowflake programs are largely written using digits. To see the human-readable version
+with mnemonics and variable names substituted, use the `--print` or `-p` option:
 
 ```
 ./snowflake --print samples/hello-world.sn
 ```
 
-The interpreter will produce the parsed version:
+For the `hello-world.sn` example above, the interpreter will produce 
+the following:
 
 ```
 VAR @00 HELLO WORLD!
