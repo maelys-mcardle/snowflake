@@ -14,7 +14,7 @@ This repository contains the following:
 
 ## Author
 
-Snowflake was developed for fun by [Maëlys McArdle][3].
+Snowflake was developed for fun by [Maëlys McArdle][4].
 
 [4]: https://www.maelys.bio/
 
