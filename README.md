@@ -18,7 +18,7 @@ Snowflake was developed for fun by [Maëlys McArdle][3].
 
 [4]: https://www.maelys.bio/
 
-## Interpreter
+## Getting Started
 
 To get and compile the Snowflake interpreter, run the following:
 
