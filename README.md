@@ -21,11 +21,13 @@ cd snowflake
 make
 ```
 
-Then test by running a sample file:
+Then test by running the `hello-world.sn` program:
 
 ```sh
 ./snowflake --run samples/hello-world.sn
 ```
+
+You should see `HELLO WORLD!` appear on-screen.
 
 More information about compiling and running the interpreter is 
 found in the dedicated [interpreter][2] documentation.
