@@ -8,7 +8,7 @@ To be able to use it, it first needs to be **compiled**.
 Compilation of the interpreter requires [make][4], a C compiler 
 with [c11][5] support, as well as [glibc][6].
 
-To compile the interpreter, run the command:
+To compile the interpreter, run the command from the project root:
 ```
 make
 ```
