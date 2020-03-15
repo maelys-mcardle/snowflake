@@ -23,8 +23,11 @@ Each line is one instruction.
 
 The line is split into fields by whitespace:
 * The first field is the instruction code. No mnemonics.
-* The second field is a parameter. This can be required, optional, or none.
-* The third field is a parameter. This can be required, optional, or none.
+* The second field is a parameter.
+* The third field is a parameter.
+
+Parameters can be required, optional, or none. Parameters can specify a 
+bank, device, type, label or literal. All except the literal are integers.
 
 All whitespace at the beginning or end of a field is trimmed.
 
