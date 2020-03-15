@@ -1,4 +1,4 @@
-# Snowflake
+# Snowflake Language
 
 **Snowflake** is a programming language made designed with microcontrollers as both the editing 
 and execution environment. It is designed for this hypothetical device:
@@ -17,30 +17,7 @@ Snowflake is [Turing-complete][4] and uses the [Polish notation][5].
 [4]: https://en.wikipedia.org/wiki/Turing_completeness
 [5]: https://en.wikipedia.org/wiki/Polish_notation
 
-## Overview
-
-### Getting the Interpreter
-
-To get and compile the interpreter, run the following:
-
-```
-# Clone the repository
-git clone git@github.com:maelys-mcardle/snowflake.git
-
-# Switch into the repository directory
-cd snowflake
-
-# Compile the interpreter
-make
-```
-
-Then test by running a sample file:
-
-```
-./snowflake --run samples/hello-world.sn
-```
-
-### Hello, World!
+## Hello, World!
 
 This is what a simple "hello world" program looks like in Snowflake:
 
@@ -49,7 +26,6 @@ This is what a simple "hello world" program looks like in Snowflake:
 03 00 01              ;; Display the contents of Bank 01
 ```
 
-At first glance, this can seem terrifying. It doesn't look to mean anything!
 Lines in Snowflake have the following format:
 
 ```
