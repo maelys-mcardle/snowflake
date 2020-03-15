@@ -5,10 +5,10 @@
 00 YOUR NAME    ;; "Your Name" Program
 02 00 MSG       ;; Name Bank 00 "MSG"
 02 01 NAME      ;; Name Bank 01 "NAME"
-14 00 WHAT IS YOUR NAME? ;; Stores "What is your name" in Bank "MSG"
+14 00 What is your name? ;; Stores "What is your name" in Bank "MSG"
 03 00 00        ;; Shows "What is your name?"
 04 01 01        ;; User enters their name in Bank "NAME"
-14 00 YOUR NAME IS ;; Stores "Your name is" in BANK "MSG"
+14 00 Your name is: ;; Stores "Your name is" in BANK "MSG"
 30 00 01        ;; Append your name to the "Your name is"
 03 00 00        ;; Shows "Your name is [Name]"
 
@@ -18,10 +18,10 @@
 ;; !!! YOUR NAME 
 ;;     @00 MSG
 ;;     @01 NAME
-;; STR MSG WHAT IS YOUR NAME?
+;; STR MSG What is your name?
 ;;  << OUT MSG
 ;;  >>  IN NAME
-;; STR MSG YOUR NAME IS
+;; STR MSG Your name is:
 ;;   + MSG NAME
 ;;  << OUT MSG
 ;;

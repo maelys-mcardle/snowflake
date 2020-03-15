@@ -1,14 +1,14 @@
 # Hello, World!
 
-This is what a simple "hello world" program looks like in Snowflake:
+This is what "hello world" looks like in Snowflake:
 
 ```
-10 01 HELLO WORLD!    ;; Store "HELLO WORLD!" in Bank 01
+10 01 Hello, World!   ;; Store "Hello, World!" in Bank 01
 03 00 01              ;; Display the contents of Bank 01
 ```
 
-Lines in Snowflake have the following format, where brackets indicate that
-the fields are optional:
+Lines in Snowflake have the following format, where square brackets 
+are fields that are optional:
 
 ```
 INSTRUCTION [PARAMETER] [PARAMETER] [;; COMMENT]
@@ -20,13 +20,13 @@ instructions, are documented in the [reference documentation][6].
 
 The first parameter is where the variable is stored, in this case, bank `01`. 
 The second parameter is what to store in the variable, in this case, the 
-string `HELLO WORLD!`. 
+string `Hello, World!`. 
 
 This is what the first line of the code above looks like when it's passed 
 through the Snowflake interpreter with the `--print` flag:
 
 ```
-VAR @00 HELLO WORLD!
+VAR @00 Hello, World!
 ```
 
 `VAR` for declaring a variable; the `@00` means bank `00`; and what follows is
@@ -41,7 +41,7 @@ This is what the first two lines of the code looks like when it's passed
 through the Snowflake interpreter with the `--print` flag:
 
 ```
-VAR @00 HELLO WORLD!
+VAR @00 Hello, World!
  << OUT @00
 ```
 

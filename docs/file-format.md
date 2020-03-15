@@ -3,7 +3,7 @@
 The contents of a Snowflake file looks like this:
 
 ```
-10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
+10 00 Hello, World!    ;; Store "Hello, World!" to Bank 00
 03 00 00              ;; Output the contents of Bank 00 to the LCD
 ```
 

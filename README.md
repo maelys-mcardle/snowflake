@@ -22,7 +22,7 @@ make
 ```
 
 Then test by running the `hello-world.sn` program. It should display
-`HELLO WORLD!` on-screen:
+`Hello, World!` on-screen:
 
 ```sh
 ./snowflake --run samples/hello-world.sn

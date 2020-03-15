@@ -34,7 +34,7 @@ To execute a Snowflake program, use the `--run` or `-r` option:
 The interpreter will run the code:
 
 ```
-HELLO WORLD!
+Hello, World!
 ```
 
 ## Display Program Code
@@ -50,7 +50,7 @@ For the `hello-world.sn` example above, the interpreter will produce
 the following:
 
 ```
-VAR @00 HELLO WORLD!
+VAR @00 Hello, World!
  << OUT @00
 ```
 

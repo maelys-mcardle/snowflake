@@ -1,20 +1,20 @@
 ;; Hello World
 ;; 
-;; This program outputs "Hello World!":
+;; This program outputs "Hello, World!":
 
-10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
+10 00 Hello, World!    ;; Store "Hello, World!" to Bank 00
 03 00 00              ;; Display the contents of Bank 00
 
 ;;
 ;; ./snowflake --print samples/hello-world.sn
 ;; 
-;; VAR @00 HELLO WORLD!
+;; VAR @00 Hello, World!
 ;;  << OUT @00
 ;;
 
 ;;
 ;; ./snowflake --run samples/hello-world.sn 
 ;;
-;; HELLO WORLD!
+;; Hello, World!
 ;;
 
