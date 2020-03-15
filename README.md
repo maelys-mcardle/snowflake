@@ -28,8 +28,8 @@ Then test by running the `hello-world.sn` program. It should display
 ./snowflake --run samples/hello-world.sn
 ```
 
-More information about compiling and running the interpreter is 
-found in the dedicated [interpreter][2] documentation.
+More information about compiling and running is 
+found in the [interpreter documentation][2].
 
 ## Writing Snowflake Code
 
