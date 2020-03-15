@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-typedef int Identifier;
+typedef short Identifier;
 
 typedef enum {
     PARAMETER_NONE = 0,
