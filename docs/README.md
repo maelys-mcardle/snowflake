@@ -23,7 +23,7 @@ The documentation is split into the following files:
 
 * The complete reference to the Snowflake programming language is found in [language-reference.md][6].
 * A first example file is analyzed in [hello-world.md][7].
-* Documentation for the interpreter is in [interpreter.md][8].
+* Documentation for compiling and using the interpreter is in [interpreter.md][8].
 * How this repository is laid out is covered in [repository-structure.md][9].
 
 [6]: language-reference.md
