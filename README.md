@@ -4,7 +4,7 @@ Snowflake is an interpreted programming language for microcontrollers.
 
 ## Author
 
-This was developed by [Maëlys McArdle][1].
+Language and interpreter developed by [Maëlys McArdle][1].
 
 ## Getting Started
 
@@ -28,8 +28,7 @@ Then test by running the `hello-world.sn` program. It should display
 ./snowflake --run samples/hello-world.sn
 ```
 
-More information about compiling and running is 
-found in the [interpreter documentation][2].
+More information is found in the [interpreter documentation][2].
 
 ## Writing Snowflake Code
 
