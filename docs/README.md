@@ -19,34 +19,59 @@ Snowflake is [Turing-complete][4] and uses the [Polish notation][5].
 
 ## Overview
 
+### Getting the Interpreter
+
+The `README.md` in the root of this project has the steps to compile and run
+the interpreter.
+
+### Hello, World!
+
 This is what a simple "hello world" program looks like in Snowflake:
 
 ```
-10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" in Bank 00
-03 00 00              ;; Display the contents of Bank 00
+10 01 HELLO WORLD!    ;; Store "HELLO WORLD!" in Bank 01
+03 00 01              ;; Display the contents of Bank 01
 ```
 
 At first glance, this can seem terrifying. It doesn't look to mean anything!
-This is what the code above looks like when it's passed through the Snowflake
-interpreter with the `--print` flag:
+Lines in Snowflake have the following format:
+
+```
+INSTRUCTION [PARAMETER] [PARAMETER]
+```
+
+The parameters can be optional, depending on the instruction. So the instruction
+on the first line `10` is to declare a variable. This instruction, along with all
+instructions, are documented in the [reference documentation][6].
+
+The first parameter is where the variable is stored, in this case, bank `01`. 
+The second parameter is what to store in the variable, in this case, the 
+string `HELLO WORLD!`. 
+
+This is what the first line of the code above looks like when it's passed 
+through the Snowflake interpreter with the `--print` flag:
+
+```
+VAR @00 HELLO WORLD!
+```
+
+`VAR` for declaring a variable; the `@00` means bank `00`; and what follows is
+the string that's stored in the bank.
+
+The second line, instruction `03` is for sending data to a device. The first
+parameter defines which device to send the information to. `00` means standard
+output, which is the display. The second parameter is which bank will have its
+contents sent to this device. In this case, bank `01`.
+
+This is what the first two lines of the code looks like when it's passed 
+through the Snowflake interpreter with the `--print` flag:
 
 ```
 VAR @00 HELLO WORLD!
  << OUT @00
 ```
 
-A little better, but still confusing. Snowflake uses the notion of banks to store
-information. A bank can store a boolean, integer, float, string or array. These
-banks are numbered. They don't have to be sequential. So in this case, in the first line,
-`HELLO WORLD!` is stored as a `VAR` (meaning variable where the type is determined 
-automatically) in bank `@00`. `VAR` is instruction `10`.
-
-The second line, instruction `03` is translated as `<<` meaning "send to device". 
-The contents of bank `@00` are being send to device `00`, which is the standard
-output. The display. This is translated as `OUT`.
-
-All these instructions are documented in the [instruction set reference documentation][6].
-The file format of the Snowflake code is also documented [here][7].
+The file format of the Snowflake code is documented [here][7].
 
 [6]: instruction-set.md
 [7]: file-format.md
