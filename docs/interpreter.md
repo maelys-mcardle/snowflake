@@ -37,7 +37,7 @@ The interpreter will run the code:
 HELLO WORLD!
 ```
 
-### Display Snowflake Code
+### Display Human-Readable Code
 
 Snowflake programs are largely written using digits. To see the human-readable version
 with mnemonics and variable names substituted, use the `--print` or `-p` option:
