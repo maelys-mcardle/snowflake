@@ -5,7 +5,7 @@
 
 bool instruction_jump_label(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
-    int target_label = parameters->first.integer;
+    int target_label = parameters->first.identifier;
     bool instruction_ok = jump_to_label(program, instruction_pointer, target_label);
     return instruction_ok;
 }
@@ -233,7 +233,7 @@ InstructionPointer get_label_instruction_pointer(Program *program, int target_la
     {
         Instruction *instruction = program->instructions.instructions[index];
         if (instruction->instruction == INSTRUCTION_LABEL &&
-            instruction->parameters.first.integer == target_label)
+            instruction->parameters.first.identifier == target_label)
         {
             return index;
         }

@@ -88,7 +88,7 @@ bool set_program_bank(Program *program, Bank *bank)
     }
 }
 
-bool remove_program_bank(Program *program, BankIdentifier identifier)
+bool remove_program_bank(Program *program, Identifier identifier)
 {
     // Get the existing index of the bank, if it's set.
     int bank_index = get_program_bank_index(program, identifier);
@@ -118,11 +118,11 @@ bool remove_program_bank(Program *program, BankIdentifier identifier)
 
 Bank *get_bank_from_parameter(Program *program, ParameterValue *parameter)
 {
-    short target_identifier = parameter->integer;
+    Identifier target_identifier = parameter->identifier;
     return get_program_bank(program, target_identifier);
 }
 
-Bank *get_program_bank(Program *program, BankIdentifier identifier)
+Bank *get_program_bank(Program *program, Identifier identifier)
 {
     int index = get_program_bank_index(program, identifier);
     if (index >= 0) {
@@ -132,7 +132,7 @@ Bank *get_program_bank(Program *program, BankIdentifier identifier)
 }
 
 /* Gets the index in the banks of the bank with the target identifier. */
-int get_program_bank_index(Program *program, BankIdentifier target_identifier)
+int get_program_bank_index(Program *program, Identifier target_identifier)
 {
     if (program->banks.banks != NULL && 
         program->banks.count > 0)
@@ -184,7 +184,7 @@ bool resize_bank_array(Program *program, int new_count)
 
 Bank *new_bank_from_parameter(ParameterValue *parameter)
 {
-    int identifier = parameter->integer;
+    Identifier identifier = parameter->identifier;
     Bank *bank = new_bank(identifier);
     return bank;
 }
@@ -206,12 +206,12 @@ Bank *get_or_new_bank_from_parameter(Program *program, ParameterValue *parameter
 
 Device get_device_from_parameter(Parameters *parameters)
 {
-    Device device = parameters->first.integer;
+    Device device = parameters->first.identifier;
     return device;
 }
 
 BankType get_type_from_parameter(Parameters *parameters)
 {
-    Device device = parameters->first.integer;
+    Device device = parameters->first.identifier;
     return device;
 }

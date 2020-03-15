@@ -6,7 +6,7 @@
 #include "headers/errors.h"
 #include "headers/type_conversion.h"
 
-Bank *new_bank(BankIdentifier identifier)
+Bank *new_bank(Identifier identifier)
 {
     Bank *bank = (Bank *) malloc(sizeof(Bank));
     if (bank != NULL)

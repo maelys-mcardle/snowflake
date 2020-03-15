@@ -5,10 +5,10 @@
 void free_parameter(ParameterType type, ParameterValue value)
 {
     if (is_parameter_literal(type) &&
-        value.string != NULL)
+        value.literal != NULL)
     {
-      free(value.string);
-      value.string = NULL;
+      free(value.literal);
+      value.literal = NULL;
     }
 }
 

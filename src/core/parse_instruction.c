@@ -154,7 +154,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     }
     else
     {
-        parameter_value->string = NULL;
+        parameter_value->literal = NULL;
     }
 
     // Determine if the parameter is missing.
@@ -173,11 +173,11 @@ bool store_parameter(ParameterType parameter_type, char *parameter_string, int m
     {
         // If it's a literal, allocate memory, and copy the string.
         size_t allocation_size = strnlen(parameter_string, max_parameter_size);
-        parameter_value->string = malloc(allocation_size + 1);
+        parameter_value->literal = malloc(allocation_size + 1);
         
-        if (parameter_value->string != NULL)
+        if (parameter_value->literal != NULL)
         {
-            strncpy(parameter_value->string, parameter_string, allocation_size);
+            strncpy(parameter_value->literal, parameter_string, allocation_size);
             return true;
         }
         else
@@ -189,7 +189,7 @@ bool store_parameter(ParameterType parameter_type, char *parameter_string, int m
     {
         // If it's any other value (banks, devices, labels, type) interpret as integer.
         bool parsed_integer_ok;
-        parameter_value->integer = string_to_integer(parameter_string, &parsed_integer_ok);
+        parameter_value->identifier = string_to_integer(parameter_string, &parsed_integer_ok);
         
         if (parsed_integer_ok)
         {

@@ -12,7 +12,7 @@
  */
 bool instruction_variable(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
-    char *literal = parameters->second.string;
+    char *literal = parameters->second.literal;
 
     if (is_float(literal) && has_period(literal))
     {
@@ -36,7 +36,7 @@ bool instruction_boolean(Program *program, Parameters *parameters, InstructionPo
     bool is_boolean;
 
     // Convert literal to boolean.
-    char *boolean_string = parameters->second.string;
+    char *boolean_string = parameters->second.literal;
     int boolean_value = string_to_boolean(boolean_string, &is_boolean);
 
     // Boolean is valid.
@@ -70,7 +70,7 @@ bool instruction_integer(Program *program, Parameters *parameters, InstructionPo
     bool is_integer;
 
     // Convert literal to integer.
-    char *integer_string = parameters->second.string;
+    char *integer_string = parameters->second.literal;
     int integer_value = string_to_integer(integer_string, &is_integer);
 
     // Integer is valid.
@@ -104,7 +104,7 @@ bool instruction_float(Program *program, Parameters *parameters, InstructionPoin
     bool is_float;
 
     // Convert literal to float.
-    char *float_string = parameters->second.string;
+    char *float_string = parameters->second.literal;
     float float_value = string_to_float(float_string, &is_float);
 
     // Float is valid.
@@ -135,7 +135,7 @@ bool instruction_float(Program *program, Parameters *parameters, InstructionPoin
  */
 bool instruction_string(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
-    char *string = parameters->second.string;
+    char *string = parameters->second.literal;
 
     // Create a bank if it doesn't exist.
     Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->first));

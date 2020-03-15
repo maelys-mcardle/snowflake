@@ -3,6 +3,8 @@
 
 #include <stdbool.h>
 
+typedef int Identifier;
+
 typedef enum {
     PARAMETER_NONE = 0,
     PARAMETER_LABEL,
@@ -15,8 +17,8 @@ typedef enum {
 } ParameterType;
 
 typedef union {
-    int integer;
-    char *string;
+    Identifier identifier;
+    char *literal;
 } ParameterValue;
 
 void free_parameter(ParameterType type, ParameterValue value);

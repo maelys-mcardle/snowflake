@@ -1,7 +1,7 @@
 #ifndef SNOWFLAKE_BANK_H
 #define SNOWFLAKE_BANK_H
 #include <stdbool.h>
-
+#include "parameters.h"
 
 #define MAX_PARAMETER_SIZE   256
 
@@ -11,8 +11,6 @@
 #define TYPE_FLOAT_STRING "FLT"
 #define TYPE_STRING_STRING "STR"
 #define TYPE_ARRAY_STRING " []"
-
-typedef short BankIdentifier;
 
 typedef struct {
     int count;
@@ -37,12 +35,12 @@ typedef enum {
 } BankType;
 
 typedef struct {
-    BankIdentifier identifier;
+    Identifier identifier;
     BankValue value;
     BankType type;
 } Bank;
 
-Bank *new_bank(BankIdentifier identifier);
+Bank *new_bank(Identifier identifier);
 void free_bank(Bank *bank);
 void clear_bank_value(Bank *bank);
 void free_array(Bank *bank);

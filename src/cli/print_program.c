@@ -70,23 +70,23 @@ bool print_parameter(Program *program, InstructionCode current_instruction, Para
             return false;
         case PARAMETER_BANK:
             log_debug("bank: ");
-            print_identifier(program, current_instruction, INSTRUCTION_NAME_BANK, value.integer, "@%02i");
+            print_identifier(program, current_instruction, INSTRUCTION_NAME_BANK, value.identifier, "@%02i");
             return true;
         case PARAMETER_LABEL:
             log_debug("label: ");
-            print_identifier(program, current_instruction, INSTRUCTION_LABEL, value.integer, ":%02i");
+            print_identifier(program, current_instruction, INSTRUCTION_LABEL, value.identifier, ":%02i");
             return true;
         case PARAMETER_TYPE:
             log_debug("type: ");
-            return print_type(value.integer);
+            return print_type(value.identifier);
         case PARAMETER_DEVICE:
             log_debug("device: ");
-            return print_device(value.integer);
+            return print_device(value.identifier);
         case PARAMETER_LITERAL:
             log_debug("literal: ");
-            if (value.string != NULL)
+            if (value.literal != NULL)
             {
-                printf("%s", value.string);
+                printf("%s", value.literal);
                 return true;
             }
             return false;
@@ -122,9 +122,9 @@ char *get_name(Program *program, InstructionCode naming_instruction, int target_
     {
         Instruction *instruction = program->instructions.instructions[i];
         if (instruction->instruction == naming_instruction &&
-            instruction->parameters.first.integer == target_identifier)
+            instruction->parameters.first.identifier == target_identifier)
         {
-            return instruction->parameters.second.string;
+            return instruction->parameters.second.literal;
         }
     }
 
