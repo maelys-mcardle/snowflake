@@ -1,4 +1,4 @@
-# Snowflake Language
+# Snowflake
 
 **Snowflake** is a programming language made designed with microcontrollers as both the editing 
 and execution environment. It is designed for this hypothetical device:
@@ -17,3 +17,16 @@ Snowflake is [Turing-complete][4] and uses the [Polish notation][5].
 [4]: https://en.wikipedia.org/wiki/Turing_completeness
 [5]: https://en.wikipedia.org/wiki/Polish_notation
 
+## Documentation
+
+The documentation is split into the following files:
+
+* The complete reference to the Snowflake programming language is found in [language-reference.md][6].
+* A first example file is analyzed in [hello-world.md][7].
+* Documentation for the interpreter is in [interpreter.md][8].
+* How this repository is laid out is covered in [repository-structure.md][9].
+
+[6]: language-reference.md
+[7]: hello-world.md
+[8]: interpreter.md
+[9]: repository-structure.md
