@@ -1,19 +1,37 @@
 # Snowflake File Format
 
-Snowflake programs are stored in plaintext ASCII as `.sn` files. 
-
-The different fields are separated by spaces or tabs.
-
-The different instructions are separated by a newline.
-
-Mnemonics are not used in `.sn` files.
-
-Any whitespace in a literal field is treated as part of that literal, except for the whitespace at the start or end. It is trimmed.
+The contents of a Snowflake file looks like this:
 
 ```
 10 00 HELLO WORLD!    ;; Store "HELLO WORLD!" to Bank 00
 03 00 00              ;; Output the contents of Bank 00 to the LCD
 ```
 
-Anything that follows the last `;;` is treated as a comment and ignored. These comments
+## File Extension
+
+Snowflake programs have the `.sn` file extension by convention.
+
+## Character Set
+
+Snowflake files are plaintext.
+
+Snowflake programs are stored in ASCII. UTF-8 is not supported with this interpreter.
+
+## Instructions
+
+Each line is one instruction.
+
+The line is split into fields by whitespace:
+* The first field is the instruction code. No mnemonics.
+* The second field is a parameter. This can be required, optional, or none.
+* The third field is a parameter. This can be required, optional, or none.
+
+All whitespace at the beginning or end of a field is trimmed.
+
+Any whitespace in a literal field is treated as part of that literal, 
+except for the whitespace at the start or end, which is also trimmed.
+
+## Comments
+
+Anything that follows `;;` is treated as a comment and ignored. These comments
 may not be displayed in an interpreter. Empty lines are ignored.
