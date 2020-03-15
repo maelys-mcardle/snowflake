@@ -5,88 +5,37 @@ The language is like a [human-writeable byte code][1].
 
 This repository contains the following:
 
-* The Snowflake interpreter. See below.
-* Documentation on how to write Snowflake programs. See the [docs][1] directory. 
-* Example Snowflake code. See the [samples][2] directory.
+* The Snowflake interpreter. See the [interpreter][1] documentation.
+* Documentation on how to write Snowflake programs. See the [docs][2] directory. 
+* Example Snowflake code. See the [samples][3] directory.
 
-[1]: docs/
-[2]: samples/
+[1]: docs/interpreter.md
+[2]: docs/
+[3]: samples/
 
 ## Author
 
-Snowflake was developed as a fun side-project by [Maëlys McArdle][3].
+Snowflake was developed for fun by [Maëlys McArdle][3].
 
-[3]: https://www.maelys.bio/
+[4]: https://www.maelys.bio/
 
 ## Interpreter
 
-This project comes with an interpreter to execute Snowflake code. 
-To be able to use it, it first needs to be **compiled**.
+To get and compile the Snowflake interpreter, run the following:
 
-### Compile Interpreter
-
-Compilation of the interpreter requires [make][4], a C compiler 
-with [c11][5] support, as well as [glibc][6].
-
-To compile the interpreter, run the command:
 ```
+# Clone the repository
+git clone git@github.com:maelys-mcardle/snowflake.git
+
+# Switch into the repository directory
+cd snowflake
+
+# Compile the interpreter
 make
 ```
 
-To compile with debug symbols run the command:
-```
-make debug
-```
-
-[4]: https://en.wikipedia.org/wiki/Make_(software)
-[5]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
-[6]: https://en.wikipedia.org/wiki/GNU_C_Library
-
-### Run Snowflake Programs
-
-To execute a Snowflake program, use the `--run` or `-r` option:
+Then test by running a sample file:
 
 ```
 ./snowflake --run samples/hello-world.sn
-```
-
-The interpreter will run the code:
-
-```
-HELLO WORLD!
-```
-
-### Display Snowflake Code
-
-Snowflake programs are largely written using digits. To see the parsed code with 
-mnemonics and variable names substituted, use the `--print` or `-p` option:
-
-```
-./snowflake --print samples/hello-world.sn
-```
-
-The interpreter will produce the parsed version:
-
-```
-VAR @00 HELLO WORLD!
- << OUT @00
-```
-
-### Debug Snowflake Programs
-
-If a Snowflake program isn't parsed or executed as expected, use
-the `--debug` or `-d` option. This will give in-depth information 
-about what the interpreter is doing at each step. The debug build of 
-the interpreter is not required.
-
-```
-./snowflake --print --run --debug your-snowflake-program.sn
-```
-
-### Clean Interpreter Compilation Files
-
-To delete files created during compilation, run the command:
-
-```
-make clean
 ```
