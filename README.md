@@ -1,7 +1,6 @@
 # Snowflake
 
-Snowflake is an interpreted programming language made for microcontrollers. 
-The language is like a [human-writeable byte code][1].
+Snowflake is an interpreted programming language made for microcontrollers.
 
 This repository contains the following:
 
