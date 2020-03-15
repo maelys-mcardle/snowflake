@@ -1,13 +1,13 @@
 # Snowflake
 
-Snowflake is an interpreted programming language made for microcontrollers. The language is 
-conceptually [somewhere in-between machine code and BASIC][1].
+Snowflake is an interpreted programming language made for microcontrollers. 
+The language is [something in-between machine code and BASIC][1].
 
 This repository contains the following:
 
-* Code to compile and run the interpreter. See below for more information.
-* Documentation on how to code with the language. See the [docs][1] directory. 
-* Examples of Snowflake programs. See the [samples][2] directory.
+* The Snowflake interpreter. See below.
+* Documentation on how to write Snowflake programs. See the [docs][1] directory. 
+* Example Snowflake code. See the [samples][2] directory.
 
 [1]: docs/
 [2]: samples/
@@ -20,11 +20,13 @@ Snowflake was developed as a fun side-project by [Maëlys McArdle][3].
 
 ## Interpreter
 
-This project comes with an interpreter to parse and execute Snowflake code.
+This project comes with an interpreter to execute Snowflake code. 
+To be able to use it, it first needs to be **compiled**.
 
 ### Compile Interpreter
 
-Compilation of the interpreter requires [make][4], a C compiler with [c11][5] support, as well as [glibc][6].
+Compilation of the interpreter requires [make][4], a C compiler 
+with [c11][5] support, as well as [glibc][6].
 
 To compile the interpreter, run the command:
 ```
@@ -40,22 +42,6 @@ make debug
 [5]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 [6]: https://en.wikipedia.org/wiki/GNU_C_Library
 
-### Show Pretty-Printed Snowflake Code
-
-Snowflake programs are largely written using digits. To see the pretty-printed version of this code,
-with mnemonics and variable names substituted, use the `--print` or `-p` option:
-
-```
-./snowflake --print samples/hello-world.sn
-```
-
-The interpreter will produce the pretty-printed version:
-
-```
-VAR @00 HELLO WORLD!
- << OUT @00
-```
-
 ### Run Snowflake Programs
 
 To execute a Snowflake program, use the `--run` or `-r` option:
@@ -70,12 +56,28 @@ The interpreter will run the code:
 HELLO WORLD!
 ```
 
+### Display Snowflake Code
+
+Snowflake programs are largely written using digits. To see the parsed code with 
+mnemonics and variable names substituted, use the `--print` or `-p` option:
+
+```
+./snowflake --print samples/hello-world.sn
+```
+
+The interpreter will produce the parsed version:
+
+```
+VAR @00 HELLO WORLD!
+ << OUT @00
+```
+
 ### Debug Snowflake Programs
 
-If your Snowflake program isn't parsed or executed as expected, you can use
-the `--debug` or `-d` option. This will give in-depth information about what 
-the interpreter is doing at each step. You do not need the debug build of 
-the interpreter to use this flag:
+If a Snowflake program isn't parsed or executed as expected, use
+the `--debug` or `-d` option. This will give in-depth information 
+about what the interpreter is doing at each step. The debug build of 
+the interpreter is not required.
 
 ```
 ./snowflake --print --run --debug your-snowflake-program.sn
@@ -84,6 +86,7 @@ the interpreter to use this flag:
 ### Clean Interpreter Compilation Files
 
 To delete files created during compilation, run the command:
+
 ```
 make clean
 ```
