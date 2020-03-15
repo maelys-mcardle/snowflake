@@ -27,7 +27,8 @@ Then test by running a sample file:
 ./snowflake --run samples/hello-world.sn
 ```
 
-More information is found in the [interpreter][2] documentation.
+More information about compiling and running the interpreter is 
+found in the dedicated [interpreter][2] documentation.
 
 ## Writing Snowflake Code
 
