@@ -42,13 +42,13 @@ written in Snowflake which gives a random number between 1 and 6:
 03 00 00            ;; Output "ROLL THE DICE"
 
 ;; Set the values.
-04 03 01            ;; BANK @01 = RANDOM_NUMBER
+04 03 01            ;; BANK @01 = RANDOM_NUMBER()
 12 02 06            ;; BANK @02 = 6
 12 03 01            ;; BANK @03 = 1
 
 ;; Provide a random number between 1 and 6.
-34 01 02            ;; BANK @01 = RANDOM_NUMBER % 6
-30 01 03            ;; BANK @01 = (RANDOM_NUMBER % 6) + 1
+34 01 02            ;; BANK @01 = (BANK @01) % 6
+30 01 03            ;; BANK @01 = (BANK @01) + 1
 03 00 01            ;; Output BANK @01
 ```
 
