@@ -10,7 +10,7 @@ This side-project was developed for fun by [Maëlys McArdle][1].
 
 To get and compile the Snowflake interpreter, run the following:
 
-```
+```sh
 # Clone the repository
 git clone git@github.com:maelys-mcardle/snowflake.git
 
@@ -23,7 +23,7 @@ make
 
 Then test by running a sample file:
 
-```
+```sh
 ./snowflake --run samples/hello-world.sn
 ```
 
