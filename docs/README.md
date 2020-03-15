@@ -21,9 +21,9 @@ Snowflake is [Turing-complete][4] and uses the [Polish notation][5].
 
 The documentation is split into the following files:
 
+* Documentation for compiling and using the interpreter is in [interpreter.md][8].
 * The complete reference to the Snowflake programming language is found in [language-reference.md][6].
 * A first example file is analyzed in [hello-world.md][7].
-* Documentation for compiling and using the interpreter is in [interpreter.md][8].
 * The snowflake file format is covered in [file-format.md][10].
 * How this repository is laid out is covered in [project-structure.md][9].
 
