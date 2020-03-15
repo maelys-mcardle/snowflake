@@ -109,7 +109,7 @@ bool set_empty_bank_array(Bank *bank)
     return true;
 }
 
-bool set_bank_array(Bank *bank, BankArray *value)
+bool set_bank_array(Bank *bank, Array *value)
 {
     log_debug("Set array for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
@@ -330,7 +330,7 @@ bool copy_bank(Bank *destination, Bank *source)
     }
     else if (source->type == TYPE_ARRAY)
     {
-        BankArray *source_value = get_bank_array(source, &source_ok);
+        Array *source_value = get_bank_array(source, &source_ok);
         destination_ok = set_bank_array(destination, source_value);
     }
 
@@ -388,7 +388,7 @@ char *get_bank_string(Bank *bank, bool *ok)
     return NULL;
 }
 
-BankArray *get_bank_array(Bank *bank, bool *ok)
+Array *get_bank_array(Bank *bank, bool *ok)
 {
     if (bank != NULL && bank->type == TYPE_ARRAY)
     {

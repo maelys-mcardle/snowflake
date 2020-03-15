@@ -16,13 +16,13 @@ snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		run_instruction_types.o run_instruction_basic.o input_devices.o \
 		string.o parameters.o instruction_info.o run_instruction_branching.o \
 		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
-		logging.o
+		logging.o array.o
 	cc -o snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
 		output_devices.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o input_devices.o \
 		string.o parameters.o instruction_info.o run_instruction_branching.o \
 		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
-		logging.o $(CFLAGS)
+		logging.o array.o $(CFLAGS)
 
 main.o: src/cli/main.c src/cli/headers/main.h
 	cc -c src/cli/main.c $(CFLAGS)
@@ -87,10 +87,13 @@ parameters.o: src/core/parameters.c src/core/headers/parameters.h
 type_conversion.o: src/core/type_conversion.c src/core/headers/type_conversion.h
 	cc -c src/core/type_conversion.c $(CFLAGS)
 
+array.o: src/core/array.c src/core/headers/array.h
+	cc -c src/core/array.c $(CFLAGS)
+
 clean:
 	rm snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
 		output_devices.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o input_devices.o \
 		string.o parameters.o instruction_info.o run_instruction_branching.o \
 		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
-		logging.o
+		logging.o array.o

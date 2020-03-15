@@ -2,6 +2,7 @@
 #define SNOWFLAKE_BANK_H
 #include <stdbool.h>
 #include "parameters.h"
+#include "array.h"
 
 #define MAX_PARAMETER_SIZE   256
 
@@ -12,17 +13,12 @@
 #define TYPE_STRING_STRING "STR"
 #define TYPE_ARRAY_STRING " []"
 
-typedef struct {
-    int count;
-    void **items;
-} BankArray;
-
 typedef union {
     int integer;
     float floating;
     bool boolean;
     char *string;
-    BankArray array;
+    Array array;
 } BankValue;
 
 typedef enum {
@@ -52,14 +48,14 @@ bool set_bank_boolean(Bank *bank, bool value);
 bool set_bank_integer(Bank *bank, int value);
 bool set_bank_float(Bank *bank, float value);
 bool set_bank_string(Bank *bank, char *value);
-bool set_bank_array(Bank *bank, BankArray *value);
+bool set_bank_array(Bank *bank, Array *value);
 bool set_empty_bank_array(Bank *bank);
 
 bool get_bank_boolean(Bank *bank, bool *ok);
 int get_bank_integer(Bank *bank, bool *ok);
 float get_bank_float(Bank *bank, bool *ok);
 char *get_bank_string(Bank *bank, bool *ok);
-BankArray *get_bank_array(Bank *bank, bool *ok);
+Array *get_bank_array(Bank *bank, bool *ok);
 
 bool get_bank_as_boolean(Bank *bank);
 int get_bank_as_integer(Bank *bank);
