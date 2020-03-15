@@ -8,7 +8,7 @@ and execution environment. It is designed for this hypothetical device:
 * The output is 20 characters wide.
 
 Conceptualize a device that's a mish-mash of a [KIM-1][2] and a 1980's pocket computer like 
-the [Sharp PC-1500][3]. This resulting language is like a human-writeable byte code.
+the [Sharp PC-1500][3]. This resulting language is like human-writeable bytecode.
 Snowflake is [Turing-complete][4] and uses the [Polish notation][5].
 
 [1]: https://en.wikipedia.org/wiki/E.161
