@@ -58,4 +58,4 @@ string `cats are cute`) are preserved.
 See the [samples directory][2] for examples of Snowflake files.
 
 [1]: language-reference.md
-[2]: ../../samples/
+[2]: ../samples/
