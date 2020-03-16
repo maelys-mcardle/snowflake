@@ -3,7 +3,7 @@
 The contents of a Snowflake file looks like this:
 
 ```
-10 00 Hello, World!    ;; Store "Hello, World!" to Bank 00
+10 00 Hello, World!   ;; Store "Hello, World!" to Bank 00
 03 00 00              ;; Output the contents of Bank 00 to the LCD
 ```
 
@@ -43,7 +43,8 @@ INSTRUCTION PARAMETER PARAMETER ;; COMMENT
 Comments are optional. Fields are split by whitespace. Parameters can specify a 
 `TYPE`, `BANK`, `LABEL`, `DEVICE` or `LITERAL`. All except the literal are 
 positive whole numbers. Literals can be whole numbers, decimal numbers, or
-a string.
+a string. Consult the [language reference][1] for more on types, banks, labels,
+devices and literals.
 
 Whitespace operates a little differently for literals. The whitespace preceding
 or following a literal is discarded, but the whitespace in a literal (eg. the
@@ -53,3 +54,5 @@ string `cats are cute`) are preserved.
 
 Anything that follows `;;` is treated as a comment and ignored. These comments
 may not be displayed in an interpreter. Empty lines are ignored.
+
+[1]: language-reference.md
