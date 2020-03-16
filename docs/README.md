@@ -2,22 +2,23 @@
 
 **Snowflake** is both a programming language and interpreter.
 
-The hypothetical device it is designed for is something in-between a [KIM-1][2] 
-and a 1980's pocket computer like the [Sharp PC-1500][3]. The target hardware has
-these properties:
+The hypothetical device it is designed for is something in-between a 1970's microprocessor
+trainer like the [KIM-1][2] and a 1980's pocket computer like the [Sharp PC-1500][3]. 
+The target hardware has these properties:
 
 * Memory-bound rather than CPU-bound.
 * [Numeric keypad][1] as the alphanumeric input device.
 * 20 characters wide output.
 
-The resulting language looks like human-writeable bytecode. Snowflake is 
-[Turing-complete][4] and uses the [Polish notation][5].
+The resulting language looks like human-writeable [bytecode][4]. The interpreter provides facilities
+to make it human-readable. Snowflake is [Turing-complete][5] and uses the [Polish notation][6].
 
 [1]: https://en.wikipedia.org/wiki/E.161
 [2]: https://en.wikipedia.org/wiki/KIM-1
 [3]: https://en.wikipedia.org/wiki/Sharp_PC-1500
-[4]: https://en.wikipedia.org/wiki/Turing_completeness
-[5]: https://en.wikipedia.org/wiki/Polish_notation
+[4]: https://en.wikipedia.org/wiki/Bytecode
+[5]: https://en.wikipedia.org/wiki/Turing_completeness
+[6]: https://en.wikipedia.org/wiki/Polish_notation
 
 ## Documentation
 
