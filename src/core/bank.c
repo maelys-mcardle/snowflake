@@ -5,6 +5,7 @@
 #include "headers/logging.h"
 #include "headers/errors.h"
 #include "headers/type_conversion.h"
+#include "headers/array.h"
 
 Bank *new_bank(Identifier identifier)
 {
@@ -26,20 +27,19 @@ void free_bank(Bank *bank)
     if (bank != NULL)
     {
         free_string(bank);
-        free_array(bank);
+        free_bank_array(bank);
         free(bank);
     }
 }
 
-void free_array(Bank *bank)
+void free_bank_array(Bank *bank)
 {
     if (bank != NULL &&
-        bank->type == TYPE_ARRAY &&
-        bank->value.array.items != NULL)
+        bank->type == TYPE_ARRAY && 
+        bank->value.array != NULL)
     {
-        free(bank->value.array.items);
-        bank->value.array.items = NULL;
-        bank->value.array.count = 0;
+        free_array(bank->value.array);
+        bank->value.array = NULL;
     }
 }
 
@@ -57,7 +57,7 @@ void free_string(Bank *bank)
 void clear_bank_value(Bank *bank)
 {
     free_string(bank);
-    free_array(bank);
+    free_bank_array(bank);
     bank->type = TYPE_VARIABLE;
 }
 
@@ -104,8 +104,7 @@ bool set_empty_bank_array(Bank *bank)
     log_debug("Set array for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
     bank->type = TYPE_ARRAY;
-    bank->value.array.count = 0;
-    bank->value.array.items = NULL;
+    bank->value.array = new_array();
     return true;
 }
 
@@ -114,8 +113,7 @@ bool set_bank_array(Bank *bank, Array *value)
     log_debug("Set array for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
     bank->type = TYPE_ARRAY;
-    bank->value.array.count = value->count;
-    bank->value.array.items = NULL;
+    bank->value.array = copy_array(value);
     return true;
 }
 
@@ -169,7 +167,7 @@ int get_bank_as_integer(Bank *bank)
         case TYPE_STRING:
             return string_to_integer(bank->value.string, &ok);
         case TYPE_ARRAY:
-            return bank->value.array.count;
+            return get_array_count(bank->value.array);
         default:
             return 0;
     }
@@ -197,7 +195,7 @@ float get_bank_as_float(Bank *bank)
         case TYPE_STRING:
             return string_to_float(bank->value.string, &ok);
         case TYPE_ARRAY:
-            return bank->value.array.count;
+            return get_array_count(bank->value.array);
         default:
             return 0.;
     }
@@ -394,7 +392,7 @@ Array *get_bank_array(Bank *bank, bool *ok)
     {
         log_debug("Read array from Bank %02i.\n", bank->identifier);
         *ok = true;
-        return &bank->value.array;
+        return bank->value.array;
     }
 
     *ok = false;

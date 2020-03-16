@@ -7,6 +7,7 @@
 #include "headers/input_devices.h"
 #include "headers/devices.h"
 #include "headers/errors.h"
+#include "headers/array.h"
 
 bool instruction_noop(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
@@ -234,7 +235,8 @@ bool instruction_length(Program *program, Parameters *parameters, InstructionInd
     {
         instruction_ok = 
             set_bank_integer(bank_to_store_length_in, 
-                get_bank_array(bank_to_get_length_from, &parse_ok)->count);
+                get_array_count(
+                    get_bank_array(bank_to_get_length_from, &parse_ok)));
     }
     else
     {

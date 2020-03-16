@@ -18,7 +18,7 @@ typedef union {
     float floating;
     bool boolean;
     char *string;
-    Array array;
+    Array *array;
 } BankValue;
 
 typedef enum {
@@ -39,7 +39,7 @@ typedef struct {
 Bank *new_bank(Identifier identifier);
 void free_bank(Bank *bank);
 void clear_bank_value(Bank *bank);
-void free_array(Bank *bank);
+void free_bank_array(Bank *bank);
 void free_string(Bank *bank);
 bool copy_bank(Bank *destination, Bank *source);
 bool convert_bank(Bank *bank, BankType to_type);
