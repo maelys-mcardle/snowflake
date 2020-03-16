@@ -22,6 +22,20 @@ interpreter implementation.
 
 Each line is one instruction.
 
+Lines in Snowflake have the following format:
+
+```
+INSTRUCTION                     ;; COMMENT
+```
+
+```
+INSTRUCTION PARAMETER           ;; COMMENT
+```
+
+```
+INSTRUCTION PARAMETER PARAMETER ;; COMMENT
+```
+
 The line is split into fields by whitespace:
 * The first field is the instruction code. No mnemonics.
 * The second field is a parameter.
