@@ -1,15 +1,15 @@
 # Snowflake
 
-**Snowflake** is both the programming language and interpreter.
+**Snowflake** is both a programming language and interpreter.
 
-The hypothetical device it is designed for has these limitations:
+The hypothetical device it is designed for is something in-between a [KIM-1][2] 
+and a 1980's pocket computer like the [Sharp PC-1500][3]. It is:
 
 * Memory-bound rather than CPU-bound.
 * [Numeric keypad][1] as the alphanumeric input device.
 * 20 characters wide output.
 
-Conceptualize a [KIM-1][2] meets a 1980's pocket computer like the [Sharp PC-1500][3].
-This resulting language is like human-writeable bytecode. Snowflake is 
+This language is like human-writeable bytecode. Snowflake is 
 [Turing-complete][4] and uses the [Polish notation][5].
 
 [1]: https://en.wikipedia.org/wiki/E.161
