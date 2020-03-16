@@ -30,7 +30,7 @@ when it's passed through the Snowflake interpreter with the `--print` flag:
 VAR @00 Hello, World!
 ```
 
-`VAR` for declaring a variable; the `@00` means bank `00`; and what follows is
+`VAR` for declaring a variable; the `@01` means bank `01`; and what follows is
 the string that's stored in the bank.
 
 The second line, instruction `03` is for sending data to a device. The first
@@ -42,8 +42,8 @@ This is what the first two lines of the code looks like when it's passed
 through the Snowflake interpreter with the `--print` flag:
 
 ```
-VAR @00 Hello, World!
- << OUT @00
+VAR @01 Hello, World!
+ << OUT @01
 ```
 
 The file format of the Snowflake code is documented [here][3].
