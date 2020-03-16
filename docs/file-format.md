@@ -18,9 +18,14 @@ Snowflake files are plaintext.
 Snowflake programs are stored in ASCII. UTF-8 is not supported with the included
 interpreter implementation.
 
+## Comments
+
+Anything that follows `;;` on a line is treated as a comment and ignored. These comments
+may not be displayed in an interpreter.
+
 ## Instructions
 
-Each line is one instruction.
+Each line is one instruction. Empty lines are acceptable. Lines with only a comment are also acceptable.
 
 Depending on the instruction, lines in Snowflake have the following format:
 
@@ -49,10 +54,5 @@ devices and literals.
 Whitespace operates a little differently for literals. The whitespace preceding
 or following a literal is discarded, but the whitespace in a literal (eg. the
 string `cats are cute`) are preserved.
-
-## Comments
-
-Anything that follows `;;` is treated as a comment and ignored. These comments
-may not be displayed in an interpreter. Empty lines are ignored.
 
 [1]: language-reference.md
