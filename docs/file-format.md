@@ -55,4 +55,6 @@ Whitespace operates a little differently for literals. The whitespace preceding
 or following a literal is discarded, but the whitespace in a literal (eg. the
 string `cats are cute`) are preserved.
 
+See the samples directory for examples of Snowflake files.
+
 [1]: language-reference.md
