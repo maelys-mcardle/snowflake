@@ -6,8 +6,8 @@ it must first be **compiled**. Then programs can be run.
 
 ## Prerequisites
 
-Compilation of the interpreter requires [make][4], a C compiler 
-with [c11][5] support, as well as [glibc][6].
+Compilation of the interpreter requires [make][1], a C compiler 
+with [c11][2] support, as well as [glibc][3].
 
 On Ubuntu, run the following to install these requirements:
 
