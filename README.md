@@ -4,7 +4,7 @@ Snowflake is an interpreted programming language for microcontrollers.
 
 ## Author
 
-[Maëlys McArdle][1]
+[Maëlys McArdle][1].
 
 ## Getting Started
 
