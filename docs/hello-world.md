@@ -26,9 +26,9 @@ a variable. Its first parameter defines where the variable is stored, in this ca
 bank `01`. The second parameter is what to store in the variable, in this case, the 
 string `Hello, World!`. 
 
-That's not very readable. The interpreter has a `--print` flag to help with this.
-This is what the first line of the code above looks like when it's passed 
-through the Snowflake interpreter with the `--print` flag:
+All these numbers do not make for readable code. The interpreter has a `--print` 
+flag to help with this. This is what the first line of the code above looks like
+when it's passed through the Snowflake interpreter with the `--print` flag:
 
 ```
 VAR @00 Hello, World!
