@@ -7,21 +7,26 @@ This is what "hello world" looks like in Snowflake:
 03 00 01              ;; Display the contents of Bank 01
 ```
 
-Lines in Snowflake have the following format, where square brackets 
-are fields that are optional:
+Lines in Snowflake have the following format:
 
 ```
-INSTRUCTION [PARAMETER] [PARAMETER] [;; COMMENT]
+INSTRUCTION PARAMETER           ;; COMMENT
 ```
 
-The parameters can be optional, depending on the instruction. So the instruction
-on the first line `10` is to declare a variable. This instruction, along with all
-instructions, are documented in the [reference documentation][6].
+```
+INSTRUCTION PARAMETER PARAMETER ;; COMMENT
+```
 
-The first parameter is where the variable is stored, in this case, bank `01`. 
-The second parameter is what to store in the variable, in this case, the 
+Whether there's one parameter or two depends on the instruction. All instructions
+and their parameters are documented in the [reference documentation][6]. Comments
+are optional.
+
+The first line of the hello world example has the `10` instruction code, which declares
+a variable. Its first parameter defines where the variable is stored, in this case, 
+bank `01`. The second parameter is what to store in the variable, in this case, the 
 string `Hello, World!`. 
 
+That's not very readable. The interpreter has a `--print` flag to help with this.
 This is what the first line of the code above looks like when it's passed 
 through the Snowflake interpreter with the `--print` flag:
 
