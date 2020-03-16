@@ -13,13 +13,6 @@ The target hardware has these properties:
 The resulting language looks like human-writeable [bytecode][4]. The interpreter provides facilities
 to make it human-readable. Snowflake is [Turing-complete][5] and uses the [Polish notation][6].
 
-[1]: https://en.wikipedia.org/wiki/E.161
-[2]: https://en.wikipedia.org/wiki/KIM-1
-[3]: https://en.wikipedia.org/wiki/Sharp_PC-1500
-[4]: https://en.wikipedia.org/wiki/Bytecode
-[5]: https://en.wikipedia.org/wiki/Turing_completeness
-[6]: https://en.wikipedia.org/wiki/Polish_notation
-
 ## Documentation
 
 The documentation is split into the following files:
@@ -30,6 +23,12 @@ The documentation is split into the following files:
 * The snowflake file format ([file-format.md][11]).
 * How this repository is laid out ([project-structure.md][10]).
 
+[1]: https://en.wikipedia.org/wiki/E.161
+[2]: https://en.wikipedia.org/wiki/KIM-1
+[3]: https://en.wikipedia.org/wiki/Sharp_PC-1500
+[4]: https://en.wikipedia.org/wiki/Bytecode
+[5]: https://en.wikipedia.org/wiki/Turing_completeness
+[6]: https://en.wikipedia.org/wiki/Polish_notation
 [7]: language-reference.md
 [8]: hello-world.md
 [9]: interpreter.md
