@@ -129,23 +129,21 @@ ARRAYS
 CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ---  ---------  --------------  -----------
 15    []        BANK            Converts BANK into an empty array.
-50   +[]        BANK1   BANK2   Copies the contents of BANK2 into a 
+50   +[]        BANK1   BANK2   Moves the contents of BANK2 into a 
                                 new first item of the BANK1 array.
-51   []+        BANK1   BANK2   Copies the contents of BANK2 into a 
+51   []+        BANK1   BANK2   Moves the contents of BANK2 into a 
                                 new last item of the BANK1 array.
-52   ?[]        BANK1   BANK2   Copies the first item of the BANK1 array 
+52   -[]        BANK1   BANK2   Moves the first item of the BANK1 array
                                 into BANK2.
-53   []?        BANK1   BANK2   Copies the last item of the BANK1 array 
+53   []-        BANK1   BANK2   Moves the last item of the BANK1 array
                                 into BANK2.
-54   -[]        BANK            Removes the first item of the BANK array.
-55   []-        BANK            Removes the last item of the BANK array.
-56   >[]        BANK1   BANK2   Moves the first item of the BANK1 array 
+54   >[]        BANK1   BANK2   Moves the first item of the BANK1 array 
                                 to the index specified in BANK2.
-57   []<        BANK1   BANK2   Moves the last item of the BANK1 array 
+55   []<        BANK1   BANK2   Moves the last item of the BANK1 array 
                                 to the index specified in BANK2.
-58   [<]        BANK1   BANK2   Moves an item at the index specified in BANK2 
+56   [<]        BANK1   BANK2   Moves an item at the index specified in BANK2 
                                 to the first item of the array BANK1.
-59   [>]        BANK1   BANK2   Moves an item at the index specified in BANK2 
+57   [>]        BANK1   BANK2   Moves an item at the index specified in BANK2 
                                 to the last item of the array BANK1.
 
 Note: These instructions are only performed on ARRAY types.
