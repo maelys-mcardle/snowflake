@@ -15,7 +15,8 @@ Snowflake programs have the `.sn` file extension by convention.
 
 Snowflake files are plaintext.
 
-Snowflake programs are stored in ASCII. UTF-8 is not supported with this interpreter.
+Snowflake programs are stored in ASCII. UTF-8 is not supported with the included
+interpreter implementation.
 
 ## Instructions
 
