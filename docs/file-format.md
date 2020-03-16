@@ -22,32 +22,32 @@ interpreter implementation.
 
 Each line is one instruction.
 
-Lines in Snowflake have the following format:
+Depending on the instruction, lines in Snowflake have the following format:
 
 ```
 INSTRUCTION                     ;; COMMENT
 ```
 
+...or:
+
 ```
 INSTRUCTION PARAMETER           ;; COMMENT
 ```
+
+...or:
 
 ```
 INSTRUCTION PARAMETER PARAMETER ;; COMMENT
 ```
 
-The line is split into fields by whitespace:
-* The first field is the instruction code. No mnemonics.
-* The second field is a parameter.
-* The third field is a parameter.
+Comments are optional. Fields are split by whitespace. Parameters can specify a 
+`TYPE`, `BANK`, `LABEL`, `DEVICE` or `LITERAL`. All except the literal are 
+positive whole numbers. Literals can be whole numbers, decimal numbers, or
+a string.
 
-Parameters can be required, optional, or none. Parameters can specify a 
-bank, device, type, label or literal. All except the literal are integers.
-
-All whitespace at the beginning or end of a field is trimmed.
-
-Any whitespace in a literal field is treated as part of that literal, 
-except for the whitespace at the start or end, which is also trimmed.
+Whitespace operates a little differently for literals. The whitespace preceding
+or following a literal is discarded, but the whitespace in a literal (eg. the
+string `cats are cute`) are preserved.
 
 ## Comments
 
