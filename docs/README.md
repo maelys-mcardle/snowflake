@@ -1,7 +1,8 @@
 # Snowflake
 
-**Snowflake** is both the programming language and interpreter. The hypothetical
-device it is designed for has these limitations:
+**Snowflake** is both the programming language and interpreter.
+
+The hypothetical device it is designed for has these limitations:
 
 * Memory-bound rather than CPU-bound.
 * [Numeric keypad][1] as the alphanumeric input device.
