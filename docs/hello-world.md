@@ -7,17 +7,13 @@ This is what "hello world" looks like in Snowflake:
 03 00 01              ;; Display the contents of Bank 01
 ```
 
-Lines in Snowflake have the following format:
-
-```
-INSTRUCTION PARAMETER           ;; COMMENT
-```
+These lines in Snowflake have the following format:
 
 ```
 INSTRUCTION PARAMETER PARAMETER ;; COMMENT
 ```
 
-Whether there's one parameter or two depends on the instruction. All instructions
+The number of parameters depends on the instruction. All instructions
 and their parameters are documented in the [reference documentation][1]. Comments
 are optional.
 
