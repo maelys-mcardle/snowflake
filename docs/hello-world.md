@@ -18,7 +18,7 @@ INSTRUCTION PARAMETER PARAMETER ;; COMMENT
 ```
 
 Whether there's one parameter or two depends on the instruction. All instructions
-and their parameters are documented in the [reference documentation][6]. Comments
+and their parameters are documented in the [reference documentation][1]. Comments
 are optional.
 
 The first line of the hello world example has the `10` instruction code, which declares
@@ -26,7 +26,7 @@ a variable. Its first parameter defines where the variable is stored, in this ca
 bank `01`. The second parameter is what to store in the variable, in this case, the 
 string `Hello, World!`. 
 
-All these numbers do not make for readable code. The interpreter has a `--print` 
+All these numbers do not make for readable code. [The interpreter][2] has a `--print` 
 flag to help with this. This is what the first line of the code above looks like
 when it's passed through the Snowflake interpreter with the `--print` flag:
 
@@ -50,14 +50,14 @@ VAR @00 Hello, World!
  << OUT @00
 ```
 
-The file format of the Snowflake code is documented [here][7].
-
-[6]: instruction-set.md
-[7]: file-format.md
-[8]: project-structure.md
+The file format of the Snowflake code is documented [here][3].
 
 **Note:**
 
 * An `@` in front of the `@00` denotes that it's referring to Bank 00.
 * An `:` in front of the `:00` denotes that it's referring to Label 00.
 * A lack of `@` or `:` in front of a number/string denotes that it's referring to a literal.
+
+[1]: language-reference.md
+[2]: interpreter.md
+[3]: file-format.md
