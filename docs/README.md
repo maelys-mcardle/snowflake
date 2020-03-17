@@ -10,8 +10,9 @@ The target hardware has these properties:
 * [Numeric keypad][1] as the alphanumeric input device.
 * 20 characters wide output.
 
-The resulting language looks like human-writeable [bytecode][4]. The interpreter provides facilities
-to make it human-readable. Snowflake is [Turing-complete][5] and uses the [Polish notation][6].
+The resulting language is likewise something between machine code and BASIC. It is
+[bytecode][4] in plaintext that the interpreter provides facilities to make 
+human-readable. Snowflake is [Turing-complete][5] and uses the [Polish notation][6].
 
 ## Documentation
 
