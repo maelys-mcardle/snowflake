@@ -10,6 +10,10 @@ Below is the full instruction set supported by Snowflake. There are different ty
 values: `LITERAL`, `LABEL`, `BANK`, `TYPE`, and `DEVICE`. A value between square brackets,
 such as `[LITERAL]`, indicates that this value is optional.
 
+While the instruction will be refered to by its instruction code in the code, the 
+interpreter will substitute the instruction code for its mnemonic when the code is 
+displayed by the interpreter
+
 ```
 BASIC
 
@@ -164,18 +168,30 @@ for literals, are represented exclusively as positive whole numbers.
 
 Snowflake uses the concept of a **bank** to store a value. These values have a type, which can either be boolean, integer, floating point, string or array. 
 
-Banks are refered to by a numeric identifier. The numbers must be positive, but don't have to follow one another, nor be sequential. There can be gaps between these numbers. Banks can also be given a string-based name with the `02` instruction. While the bank will be refered to by its numeric identifier in the code, the interpreter will substitute the bank number for a name when the code is displayed by the interpreter. Banks come into existence when they are refered to by an instruction.
+Banks are refered to by a numeric identifier. The numbers must be positive, but don't have to 
+follow one another, nor be sequential. There can be gaps between these numbers. Banks can also 
+be given a string-based name with the `02` instruction. While the bank will be refered to by its 
+numeric identifier in the code, the interpreter will substitute the bank number for a name when 
+the code is displayed by the interpreter. Banks come into existence when they are refered to 
+by an instruction.
 
 ### Labels
 
 Snowflake uses the concept of a **label** for jumping between different points in the code. 
 
-Labels are refered to by a numeric identifier. The numbers must be positive, but don't have to follow one another, nor be sequential. There can be gaps between these numbers. Labels are defined with the `01` instruction. Labels can also be given a string-based name with the same instruction. While the label will be refered to by its numeric identifier in the code, the interpreter will substitute the label number for a name when the code is displayed by the interpreter
+Labels are refered to by a numeric identifier. The numbers must be positive, but don't have to 
+follow one another, nor be sequential. There can be gaps between these numbers. Labels are 
+defined with the `01` instruction. Labels can also be given a string-based name with the same 
+instruction. While the label will be refered to by its numeric identifier in the code, the 
+interpreter will substitute the label number for a name when the code is displayed by the interpreter.
 
 ### Devices
 
 Devices refer to hardware or a virtual device that the Snowflake interpreter can interact with. This
 is how data is sent to the screen, and received from the keyboard.
+
+While the device will be refered to by its numeric identifier in the code, the interpreter will substitute 
+the device number for its mnemonic when the code is displayed by the interpreter.
 
 ```
 DEVICE  MNEMONIC  DESCRIPTION 
@@ -193,11 +209,16 @@ DEVICE  MNEMONIC  DESCRIPTION
                   Input and output are both integers.
 ```
 
-**The difference between `IN` and `BTN`:** `IN` stores the input to a BANK after the `ENTER` button is pressed. This can contain multiple characters. The `BTN` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed.
+**The difference between `IN` and `BTN`:** `IN` stores the input to a BANK after the `ENTER` button is pressed.
+This can contain multiple characters. The `BTN` stores the input immediately after a single key is pressed. 
+It will return a number corresponding to the key code of the button presed.
 
 ### Types
 
 Types are a code used to specify the type of data stored in a Bank.
+
+While the type will be refered to by its numeric identifier in the code, the interpreter will substitute 
+the number for its mnemonic when the code is displayed by the interpreter.
 
 ```
 TYPES
