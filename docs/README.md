@@ -11,8 +11,8 @@ The target hardware has these properties:
 * 20 characters wide output.
 
 The resulting language is likewise something between machine code and BASIC. It is
-[bytecode][4] in plaintext that the interpreter provides facilities to make 
-human-readable. Snowflake is [Turing-complete][5] and uses the [Polish notation][6].
+plaintext [bytecode][4] that the interpreter provides facilities to make human-readable.
+Snowflake is [Turing-complete][5] and uses the [Polish notation][6].
 
 ## Documentation
 
