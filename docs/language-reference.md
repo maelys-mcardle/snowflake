@@ -202,6 +202,9 @@ TYPE  MNEMONIC  DESCRIPTION
 15    []        Array
 ```
 
+`VAR` is distinct from the other types, as values are never stored as a variable. Rather,
+they are immediately inferred and stored as a `INT`, `FLT` or `STR`.
+
 ### Literals
 
 `LITERAL` can be variable, boolean, integer, floating point, or string.
