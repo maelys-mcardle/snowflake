@@ -1,8 +1,8 @@
 # Language Reference
 
-Snowflake has instructions. Instructions are like commands telling the interpreter to perform a task.
-Each instruction has up to two parameters, depending on the instruction. Parameters specify extra 
-information needed to complete the task.
+Snowflake has **instructions** and **parameters**. Instructions are commands telling the interpreter 
+to perform a task. Each instruction has up to two parameters. Parameters specify extra 
+information the instruction needs to complete the task.
 
 This documentation covers these concepts and all the supported instructions.
 
