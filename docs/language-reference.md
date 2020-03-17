@@ -203,16 +203,12 @@ TYPES
 
 TYPE  MNEMONIC  DESCRIPTION
 ---  ---------  -----------
-10   VAR        Variable
 11   BLN        Boolean
 12   INT        Integer
 13   FLT        Float
 14   STR        String
 15    []        Array
 ```
-
-`VAR` is distinct from the other types, as values are never stored as a variable. Rather,
-they are immediately inferred and stored as a `INT`, `FLT` or `STR`.
 
 ### Literals
 
