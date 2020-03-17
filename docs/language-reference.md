@@ -4,8 +4,6 @@ Snowflake has **instructions** and **parameters**. Instructions are commands tel
 to perform a task. Each instruction has up to two parameters. Parameters specify extra 
 information the instruction needs to complete the task.
 
-This documentation covers these concepts and all the supported instructions.
-
 ## Instructions
 
 Below is the full instruction set supported by Snowflake. There are different types of 
