@@ -4,6 +4,16 @@ There are:
 
 * Instructions
 * Parameters
+  * Banks
+  * Labels
+  * Devices
+  * Types
+  * Literals
+    * Variable
+    * Boolean
+    * Integer
+    * Float
+    * String
 
 ## Instructions
 
