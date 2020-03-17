@@ -161,14 +161,21 @@ Snowflake uses the concept of a **Label** for jumping between different points i
 
 ## Literals
 
-`LITERAL` can be boolean, integer, floating point, or string.
+`LITERAL` can be variable, boolean, integer, floating point, or string.
 
-If literals are inferred, it's according to the following rules:
+### Variable
+
+Variables automatically infer a type based on the input.
+
+Values are determined according to the following rules:
+
 * If 0-9 is entered, its stored as an INTEGER.
 * If 0-9 with a . is entered, its stored as a FLOAT.
 * If any other characters are entered, its stored as a STRING.
 
-## Boolean Values
+### Boolean Values
+
+Boolean are stored as a `0` or a `1`.
 
 ```
 VALUE   MEANING
@@ -178,6 +185,19 @@ VALUE   MEANING
 ```
 
 **Note**: Any value other than zero is treated as true.
+
+### Integer
+
+Integers are 16 or 32 bit numbers, depending on the compilation target of the interpreter.
+
+### Float
+
+Floats are 32-bit floating point values.
+
+### String
+
+Strings are ASCII strings with the default interpreter implementation. Unicode is not
+supported with the default interpreter implementation.
 
 ## Devices
 
