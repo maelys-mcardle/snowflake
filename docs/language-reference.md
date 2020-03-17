@@ -1,19 +1,10 @@
 # Language Reference
 
-There are:
+Snowflake has instructions. Instructions are like commands telling the interpreter to perform a task.
+Each instruction has up to two parameters, depending on the instruction. Parameters specify extra 
+information needed to complete the task.
 
-* Instructions
-* Parameters
-  * Banks
-  * Labels
-  * Devices
-  * Types
-  * Literals
-    * Variable
-    * Boolean
-    * Integer
-    * Float
-    * String
+This documentation covers these concepts and all the supported instructions.
 
 ## Instructions
 
