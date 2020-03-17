@@ -159,6 +159,10 @@ Note: These instructions are only performed on ARRAY types.
 
 ## Parameters
 
+Banks, Labels, Devices and Types are all positive whole numbers.
+
+Literals can be anything.
+
 ### Banks
 
 Snowflake uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, string or array. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
@@ -168,6 +172,9 @@ Snowflake uses the concept of a **Bank** to store a value. These values have a t
 Snowflake uses the concept of a **Label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
 ### Devices
+
+Devices refer to hardware or a virtual device that the Snowflake interpreter can interact with. This
+is how data is sent to the screen, and received from the keyboard.
 
 ```
 DEVICE  MNEMONIC  DESCRIPTION 
@@ -188,6 +195,8 @@ DEVICE  MNEMONIC  DESCRIPTION
 **The difference between `IN` and `BTN`:** `IN` stores the input to a BANK after the `ENTER` button is pressed. This can contain multiple characters. The `BTN` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed.
 
 ### Types
+
+Types are a code used to specify the type of a Bank.
 
 ```
 TYPES
