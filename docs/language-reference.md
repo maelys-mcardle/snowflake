@@ -196,7 +196,7 @@ DEVICE  MNEMONIC  DESCRIPTION
 
 ### Types
 
-Types are a code used to specify the type of a Bank.
+Types are a code used to specify the type of data stored in a Bank.
 
 ```
 TYPES
