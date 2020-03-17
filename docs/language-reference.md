@@ -157,9 +157,8 @@ Note: These instructions are only performed on ARRAY types.
 
 ## Parameters
 
-Banks, Labels, Devices and Types are all positive whole numbers.
-
-Literals can be anything.
+Parameters can be **banks**, **labels**, **devices**, **types** or **literals**. All of these, except
+for literals, are represented exclusively as positive whole numbers.
 
 ### Banks
 
