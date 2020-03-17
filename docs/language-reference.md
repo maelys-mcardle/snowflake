@@ -162,11 +162,13 @@ for literals, are represented exclusively as positive whole numbers.
 
 ### Banks
 
-Snowflake uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, string or array. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
+Snowflake uses the concept of a **bank** to store a value. These values have a type, which can either be boolean, integer, floating point, string or array. 
+
+Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names with the `02` instruction. The interpreter will substitute the bank number for a name, if one is provided. Banks come into existence when they are refered to by an instruction. Using the `08` instruction (`DEL`) will erase all data for a bank.
 
 ### Labels
 
-Snowflake uses the concept of a **Label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
+Snowflake uses the concept of a **Label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels are defined with the `01` instruction (`###`). Labels can also be given names with the same instruction. The interpreter will substitute the bank number for a name, if one is provided. Labels cannot be erased.
 
 ### Devices
 
