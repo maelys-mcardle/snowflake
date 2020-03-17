@@ -1,5 +1,10 @@
 # Language Reference
 
+There are:
+
+* Instructions
+* Parameters
+
 ## Instructions
 
 Below is the full instruction set supported by Snowflake. There are different types of 
@@ -9,7 +14,7 @@ such as `[LITERAL]`, indicates that this value is optional.
 ```
 BASIC
 
-CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
+CODE  MNEMONIC  PARAMETERS       DESCRIPTION
 ---  ---------  --------------   -----------
 00   !!!        [LITERAL]        A comment.
                                  Defining a comment is optional.
@@ -47,7 +52,7 @@ CODE  MNEMONIC  ARGUMENTS        DESCRIPTION
 ```
 TYPES
 
-CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
+CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
 10   VAR        BANK LITERAL    Stores LITERAL in BANK. 
                                 Type is inferred: depending on the 
@@ -63,7 +68,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ```
 BRANCHING
 
-CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
+CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
 20    ->        LABEL           Jumps to a LABEL.
                                 If the label does not exist, the jump is ignored.
@@ -92,7 +97,7 @@ CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
 ```
 MATH
 
-CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
+CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
 30     +        BANK1   BANK2   Add BANK2 to BANK1. Result in BANK1.
 31     -        BANK1   BANK2   Subtract BANK2 from BANK1. Result in BANK1.
@@ -111,7 +116,7 @@ Note: These instructions are only performed on INTEGER and FLOAT types.
 ```
 LOGICAL 
 
-CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
+CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
 40   !          BANK            Logical NOT. Inverts the value of BANK.
 41   &          BANK1   BANK2   Logical AND. Result stored in BANK1.
@@ -126,7 +131,7 @@ Note: These instructions are only performed on BOOLEAN and INTEGER types.
 ```
 ARRAYS 
 
-CODE  MNEMONIC  ARGUMENTS       DESCRIPTION
+CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
 15    []        BANK            Converts BANK into an empty array.
 50   +[]        BANK1   BANK2   Moves the contents of BANK2 into a 
@@ -151,55 +156,17 @@ Note: These instructions are only performed on ARRAY types.
       bank array isn't defined.
 ```
 
-## Banks
+## Parameters
+
+### Banks
 
 Snowflake uses the concept of a **Bank** to store a value. These values have a type, which can either be boolean, integer, floating point, string or array. Banks are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Banks can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
-## Labels
+### Labels
 
 Snowflake uses the concept of a **Label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels can also be given names. The interpreter will substitute the bank number for a name, if one is provided.
 
-## Literals
-
-`LITERAL` can be variable, boolean, integer, floating point, or string.
-
-### Variable
-
-Variables automatically infer a type based on the input.
-
-Values are determined according to the following rules:
-
-* If 0-9 is entered, its stored as an INTEGER.
-* If 0-9 with a . is entered, its stored as a FLOAT.
-* If any other characters are entered, its stored as a STRING.
-
-### Boolean Values
-
-Boolean are stored as a `0` or a `1`.
-
-```
-VALUE   MEANING
-------  -------
-0       False
-1       True
-```
-
-**Note**: Any value other than zero is treated as true.
-
-### Integer
-
-Integers are 16 or 32 bit numbers, depending on the compilation target of the interpreter.
-
-### Float
-
-Floats are 32-bit floating point values.
-
-### String
-
-Strings are ASCII strings with the default interpreter implementation. Unicode is not
-supported with the default interpreter implementation.
-
-## Devices
+### Devices
 
 ```
 DEVICE  MNEMONIC  DESCRIPTION 
@@ -219,16 +186,56 @@ DEVICE  MNEMONIC  DESCRIPTION
 
 **The difference between `IN` and `BTN`:** `IN` stores the input to a BANK after the `ENTER` button is pressed. This can contain multiple characters. The `BTN` stores the input immediately after a single key is pressed. It will return a number corresponding to the key code of the button presed.
 
-## Types
+### Types
 
 ```
 TYPES
 
 TYPE  MNEMONIC  DESCRIPTION
 ---  ---------  -----------
+10   VAR        Variable
 11   BLN        Boolean
 12   INT        Integer
 13   FLT        Float
 14   STR        String
 15    []        Array
 ```
+
+### Literals
+
+`LITERAL` can be variable, boolean, integer, floating point, or string.
+
+#### Variable
+
+Variables automatically infer a type based on the input:
+
+* If a whole number is entered, its stored as an integer.
+* If a decimal number is entered, its stored as a float.
+* If any other characters are entered, its stored as a string.
+
+#### Boolean Values
+
+Boolean are stored as a `0` or a `1`.
+
+```
+VALUE   MEANING
+------  -------
+0       False
+1       True
+```
+
+**Note**: Any value other than zero is treated as true.
+
+#### Integer
+
+Integers are 16 or 32 bit numbers, depending on the compilation target of the interpreter.
+
+#### Float
+
+Floats are 32-bit floating point values.
+
+#### String
+
+Strings are ASCII strings with the default interpreter implementation. Unicode is not
+supported with the default interpreter implementation.
+
