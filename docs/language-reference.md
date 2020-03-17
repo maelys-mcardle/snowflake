@@ -12,7 +12,7 @@ such as `[LITERAL]`, indicates that this value is optional.
 
 While the instruction will be refered to by its instruction code in the code, the 
 interpreter will substitute the instruction code for its mnemonic when the code is 
-displayed by the interpreter
+displayed by the interpreter.
 
 ```
 BASIC
