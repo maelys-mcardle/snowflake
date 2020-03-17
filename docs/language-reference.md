@@ -168,7 +168,7 @@ Banks are numbered. The numbers don't have to follow one another, or be sequenti
 
 ### Labels
 
-Snowflake uses the concept of a **Label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels are defined with the `01` instruction (`###`). Labels can also be given names with the same instruction. The interpreter will substitute the bank number for a name, if one is provided. Labels cannot be erased.
+Snowflake uses the concept of a **label** for jumping between different points in the code. Like banks, labels are numbered. The numbers don't have to follow one another, or be sequential. There can be gaps. Labels are defined with the `01` instruction (`###`). Labels can also be given names with the same instruction. The interpreter will substitute the bank number for a name, if one is provided. Labels cannot be erased.
 
 ### Devices
 
@@ -211,7 +211,7 @@ TYPE  MNEMONIC  DESCRIPTION
 
 ### Literals
 
-`LITERAL` can be variable, boolean, integer, floating point, or string.
+Literals can be variable, boolean, integer, floating point, or string.
 
 #### Variable
 
