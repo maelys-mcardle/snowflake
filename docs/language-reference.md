@@ -230,7 +230,7 @@ VALUE   MEANING
 1       True
 ```
 
-**Note**: Any value other than zero is treated as true.
+**Note**: Non-zero values are treated as true.
 
 #### Integer
 
@@ -242,6 +242,6 @@ Floats are 32-bit floating point values.
 
 #### String
 
-Strings are ASCII strings with the default interpreter implementation. Unicode is not
+Strings are in ASCII with the default interpreter implementation. Unicode is not
 supported with the default interpreter implementation.
 
