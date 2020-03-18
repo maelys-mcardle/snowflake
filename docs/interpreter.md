@@ -2,7 +2,7 @@
 
 The interpreter is used to execute Snowflake code as well as print 
 out a human-readable version. Before the interpreter can be used,
-it must first be **compiled**. Then programs can be run.
+it must first be **compiled**.
 
 ## Prerequisites
 
