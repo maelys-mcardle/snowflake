@@ -101,6 +101,7 @@ ArrayCount get_array_count(Array *array)
     return (array != NULL) ? array->count : 0;
 }
 
+/* Add an item to end of an array.*/
 bool push(Array *array, ArrayItem *item)
 {
     // Unused parameters. This is done to suppress compiler warnings.
@@ -110,15 +111,17 @@ bool push(Array *array, ArrayItem *item)
     return true;
 }
 
-bool pop(Array *array, ArrayItem *item)
+/* Remove last element of an array. */
+ArrayItem *pop(Array *array, ArrayItem *item)
 {
     // Unused parameters. This is done to suppress compiler warnings.
     (void)(array);
     (void)(item);
 
-    return true;
+    return NULL;
 }
 
+/* Add an element to the start of an array. */
 bool unshift(Array *array, ArrayItem *item)
 {
     // Unused parameters. This is done to suppress compiler warnings.
@@ -128,13 +131,14 @@ bool unshift(Array *array, ArrayItem *item)
     return true;
 }
 
-bool shift(Array *array, ArrayItem *item)
+/* Remove element at start of an array. */
+ArrayItem *shift(Array *array, ArrayItem *item)
 {
     // Unused parameters. This is done to suppress compiler warnings.
     (void)(array);
     (void)(item);
 
-    return true;
+    return NULL;
 }
 
 bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index)
