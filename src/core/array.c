@@ -139,10 +139,19 @@ bool shift(Array *array, ArrayItem *item)
 
 bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index)
 {
-    // Unused parameters. This is done to suppress compiler warnings.
-    (void)(array);
-    (void)(first_index);
-    (void)(second_index);
+    log_debug("Swapping index items %i and %i.\n", first_index, second_index);
+    if (array != NULL)
+    {
+        if (first_index < array->count &&
+            second_index < array->count)
+        {
+            ArrayItem *first_item = array->items[first_index];
+            ArrayItem *second_item = array->items[second_index];
+            array->items[first_index] = second_item;
+            array->items[second_index] = first_item;
+            return true;
+        }
+    }
 
-    return true;
+    return false;
 }
