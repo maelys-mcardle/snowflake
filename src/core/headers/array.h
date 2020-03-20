@@ -18,7 +18,7 @@ typedef struct {
 Array *new_array();
 void free_array(Array *array);
 void free_array_item(ArrayItem *item);
-bool resize_array_index(Array *array, ArrayCount new_count);
+bool resize_array(Array *array, ArrayCount new_count);
 ArrayCount get_array_count(Array *array);
 Array *copy_array(Array *source);
 bool copy_array_items(Array *destination, Array *source);

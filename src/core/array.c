@@ -53,7 +53,7 @@ Array *copy_array(Array *source)
     return destination;
 }
 
-bool resize_array_index(Array *array, ArrayCount new_count)
+bool resize_array(Array *array, ArrayCount new_count)
 {
     ArrayItem **new_items = realloc(array->items, sizeof(ArrayItem *) * new_count);
     if (new_items != NULL)
@@ -76,7 +76,7 @@ bool copy_array_items(Array *destination, Array *source)
         return NULL;
     }
 
-    bool ok = resize_array_index(destination, source->count);
+    bool ok = resize_array(destination, source->count);
     if (ok)
     {
         for (ArrayIndex index = 0; index < source->count; index++)
