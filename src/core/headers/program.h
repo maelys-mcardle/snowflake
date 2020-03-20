@@ -5,15 +5,17 @@
 #include "bank.h"
 
 typedef unsigned int InstructionIndex;
+typedef InstructionIndex InstructionCount;
 typedef unsigned int BankIndex;
+typedef BankIndex BankCount;
 
 typedef struct {
-    BankIndex count;
+    BankCount count;
     Bank **banks;
 } ProgramBanks;
 
 typedef struct {
-    InstructionIndex count;
+    InstructionCount count;
     Instruction **instructions;
 } ProgramInstructions;
 

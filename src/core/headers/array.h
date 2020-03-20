@@ -3,15 +3,30 @@
 #include <stdbool.h>
 
 typedef unsigned int ArrayIndex;
+typedef ArrayIndex ArrayCount;
+typedef void *ArrayItem;
+typedef void (*FreeArrayItemFunction)(ArrayItem array_item);
+typedef ArrayItem (*CopyArrayItemFunction)(ArrayItem source_item);
 
 typedef struct {
-    ArrayIndex count;
-    void **items;
+    ArrayCount count;
+    ArrayItem *items;
+    FreeArrayItemFunction free_array_item_function;
+    CopyArrayItemFunction copy_array_item_function;
 } Array;
 
 Array *new_array();
 void free_array(Array *array);
-ArrayIndex get_array_count(Array *array);
+void free_array_item(ArrayItem item);
+ArrayCount get_array_count(Array *array);
 Array *copy_array(Array *source);
+ArrayItem *copy_array_items(Array *source);
+ArrayItem copy_array_item(ArrayItem source_item);
+
+bool push(Array *array, ArrayItem *item);
+bool pop(Array *array, ArrayItem *item);
+bool unshift(Array *array, ArrayItem *item);
+bool shift(Array *array, ArrayItem *item);
+bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index);
 
 #endif
