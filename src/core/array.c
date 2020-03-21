@@ -101,26 +101,78 @@ ArrayCount get_array_count(Array *array)
     return (array != NULL) ? array->count : 0;
 }
 
-/* Add an element to the index of an array. */
-bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index)
+bool insert_array_first(Array *array, ArrayItem *item)
 {
-    // Unused parameters. This is done to suppress compiler warnings.
-    (void)(array);
-    (void)(item);
-    (void)(index);
+    return insert_array_item(array, item, 0);
+}
+
+bool insert_array_last(Array *array, ArrayItem *item)
+{
+    return insert_array_item(array, item, array->count);
+}
+
+ArrayItem *remove_array_first(Array *array)
+{
+    return remove_array_item(array, 0);
+}
+
+ArrayItem *remove_array_last(Array *array)
+{
+    return remove_array_item(array, array->count);
+}
+
+/* Add an element to the index of an array. */
+bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index_to_insert)
+{
+    // Resize the array to fit the new item.
+    bool resize_ok = resize_array(array, array->count + 1);
+    if (!resize_ok)
+    {
+        return false;
+    }
+
+    // Shift all the items by one above the index to insert.
+    for (ArrayIndex index = index_to_insert + 1; index < array->count; index++)
+    {
+        array->items[index] = array->items[index - 1];
+    }
+
+    // Insert the item at the index. If it's at a value
+    // that is bigger than the array, add it to the end.
+    if (index_to_insert < array->count)
+    {
+        array->items[index_to_insert] = item;
+    }
+    else
+    {
+        array->items[array->count - 1] = item;
+    }
 
     return true;
 }
 
 /* Remove element at the index of an array. */
-ArrayItem *remove_array_item(Array *array, ArrayItem *item, ArrayIndex index)
+ArrayItem *remove_array_item(Array *array, ArrayIndex index_to_remove)
 {
-    // Unused parameters. This is done to suppress compiler warnings.
-    (void)(array);
-    (void)(item);
-    (void)(index);
+    // Obtaining value that doesn't exist.
+    if (index_to_remove >= array->count)
+    {
+        return NULL;
+    }
 
-    return NULL;
+    // Get the item.
+    ArrayItem *item = array->items[index_to_remove];
+
+    // Shift all the items by one above the index to insert.
+    for (ArrayIndex index = index_to_remove; index < array->count - 1; index++)
+    {
+        array->items[index] = array->items[index + 1];
+    }
+
+    // Resize the array down.
+    resize_array(array, array->count - 1);
+
+    return item;
 }
 
 bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index)

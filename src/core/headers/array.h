@@ -20,12 +20,19 @@ void free_array(Array *array);
 void free_array_item(ArrayItem *item);
 bool resize_array(Array *array, ArrayCount new_count);
 ArrayCount get_array_count(Array *array);
+
 Array *copy_array(Array *source);
 bool copy_array_items(Array *destination, Array *source);
 ArrayItem *copy_array_item(ArrayItem *source_item);
 
 bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index);
-ArrayItem *remove_array_item(Array *array, ArrayItem *item, ArrayIndex index);
+ArrayItem *remove_array_item(Array *array, ArrayIndex index);
+
+bool insert_array_first(Array *array, ArrayItem *item);
+bool insert_array_last(Array *array, ArrayItem *item);
+ArrayItem *remove_array_first(Array *array);
+ArrayItem *remove_array_last(Array *array);
+
 bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index);
 
 #endif
