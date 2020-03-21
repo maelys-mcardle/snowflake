@@ -55,11 +55,14 @@ Array *copy_array(Array *source)
 
 bool resize_array(Array *array, ArrayCount new_count)
 {
+    log_debug("Resizing array to %i items.\n", new_count);
+
     if (array == NULL)
     {
+        log_debug("Array is NULL, aborting.\n");
         return false;
     }
-    
+
     ArrayItem **new_items = realloc(array->items, sizeof(ArrayItem *) * new_count);
     if (new_items != NULL)
     {
@@ -78,6 +81,7 @@ bool copy_array_items(Array *destination, Array *source)
 {
     if (source == NULL || destination == NULL)
     {
+        log_debug("Array is NULL, aborting.\n");
         return false;
     }
     
@@ -179,12 +183,14 @@ ArrayItem *remove_array_item(Array *array, ArrayIndex index_to_remove)
     log_debug("Removing item at position %i of array.\n", index_to_remove);
     if (array == NULL)
     {
+        log_debug("Array is NULL.\n");
         return NULL;
     }
 
     // Obtaining value that doesn't exist.
     if (index_to_remove >= array->count)
     {
+        log_debug("Removing value that doesn't exist.\n");
         return NULL;
     }
 
@@ -218,6 +224,11 @@ bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_in
             return true;
         }
     }
+    else
+    {
+        log_debug("Array is NULL.\n");
+    }
+    
 
     return false;
 }
