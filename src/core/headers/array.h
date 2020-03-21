@@ -24,7 +24,7 @@ Array *copy_array(Array *source);
 bool copy_array_items(Array *destination, Array *source);
 ArrayItem *copy_array_item(ArrayItem *source_item);
 
-bool add_array_item(Array *array, ArrayItem *item, ArrayIndex index);
+bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index);
 ArrayItem *remove_array_item(Array *array, ArrayItem *item, ArrayIndex index);
 bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index);
 
