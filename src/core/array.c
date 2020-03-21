@@ -102,7 +102,7 @@ ArrayCount get_array_count(Array *array)
 }
 
 /* Add an element to the index of an array. */
-bool add(Array *array, ArrayItem *item, ArrayIndex index)
+bool add_array_item(Array *array, ArrayItem *item, ArrayIndex index)
 {
     // Unused parameters. This is done to suppress compiler warnings.
     (void)(array);
@@ -113,7 +113,7 @@ bool add(Array *array, ArrayItem *item, ArrayIndex index)
 }
 
 /* Remove element at the index of an array. */
-ArrayItem *remove(Array *array, ArrayItem *item, ArrayIndex index)
+ArrayItem *remove_array_item(Array *array, ArrayItem *item, ArrayIndex index)
 {
     // Unused parameters. This is done to suppress compiler warnings.
     (void)(array);
