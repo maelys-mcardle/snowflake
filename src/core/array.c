@@ -55,6 +55,11 @@ Array *copy_array(Array *source)
 
 bool resize_array(Array *array, ArrayCount new_count)
 {
+    if (array == NULL)
+    {
+        return false;
+    }
+    
     ArrayItem **new_items = realloc(array->items, sizeof(ArrayItem *) * new_count);
     if (new_items != NULL)
     {
@@ -71,9 +76,16 @@ bool resize_array(Array *array, ArrayCount new_count)
 
 bool copy_array_items(Array *destination, Array *source)
 {
+    if (source == NULL || destination == NULL)
+    {
+        return false;
+    }
+    
     if (source->count == 0)
     {
-        return NULL;
+        destination->count = 0;
+        destination->items = NULL;
+        return true;
     }
 
     bool ok = resize_array(destination, source->count);
@@ -103,27 +115,37 @@ ArrayCount get_array_count(Array *array)
 
 bool insert_array_first(Array *array, ArrayItem *item)
 {
+    log_debug("Inserting item at start of array.\n");
     return insert_array_item(array, item, 0);
 }
 
 bool insert_array_last(Array *array, ArrayItem *item)
 {
+    log_debug("Inserting item at end of array.\n");
     return insert_array_item(array, item, array->count);
 }
 
 ArrayItem *remove_array_first(Array *array)
 {
+    log_debug("Removing item at start of array.\n");
     return remove_array_item(array, 0);
 }
 
 ArrayItem *remove_array_last(Array *array)
 {
+    log_debug("Removing item at end of array.\n");
     return remove_array_item(array, array->count);
 }
 
 /* Add an element to the index of an array. */
 bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index_to_insert)
 {
+    log_debug("Inserting item at position %i of array.\n", index_to_insert);
+    if (array == NULL)
+    {
+        return false;
+    }
+
     // Resize the array to fit the new item.
     bool resize_ok = resize_array(array, array->count + 1);
     if (!resize_ok)
@@ -154,6 +176,12 @@ bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index_to_insert
 /* Remove element at the index of an array. */
 ArrayItem *remove_array_item(Array *array, ArrayIndex index_to_remove)
 {
+    log_debug("Removing item at position %i of array.\n", index_to_remove);
+    if (array == NULL)
+    {
+        return NULL;
+    }
+
     // Obtaining value that doesn't exist.
     if (index_to_remove >= array->count)
     {
