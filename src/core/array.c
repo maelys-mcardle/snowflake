@@ -102,7 +102,7 @@ ArrayCount get_array_count(Array *array)
 }
 
 /* Add an element to the index of an array. */
-bool add_array_item(Array *array, ArrayItem *item, ArrayIndex index)
+bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index)
 {
     // Unused parameters. This is done to suppress compiler warnings.
     (void)(array);
