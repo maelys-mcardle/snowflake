@@ -37,7 +37,7 @@ typedef struct {
 } Bank;
 
 Bank *new_bank(Identifier identifier);
-void free_bank(Bank *bank);
+void free_bank(void *bank);
 void clear_bank_value(Bank *bank);
 void free_bank_array(Bank *bank);
 void free_string(Bank *bank);

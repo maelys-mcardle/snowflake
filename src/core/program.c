@@ -14,6 +14,9 @@ Program *new_program()
     {
         program->instructions = new_array();
         program->instructions->free_array_item_function = free_instruction;
+
+        program->banks = new_array();
+        program->banks->free_array_item_function = free_bank;
     }
     else
     {
@@ -30,6 +33,7 @@ void free_program(Program *program)
     {
         // Free the program.
         free_array(program->instructions);
+        free_array(program->banks);
         free(program);
     }
 }
@@ -39,7 +43,7 @@ void free_program(Program *program)
  */
 bool append_instruction_to_program(Program *program, Instruction *instruction)
 {
-    return insert_array_last(program->instructions, instruction);
+    return append_array(program->instructions, instruction);
 }
 
 bool set_program_bank(Program *program, Bank *bank)
@@ -55,10 +59,10 @@ bool set_program_bank(Program *program, Bank *bank)
     }
     else
     {
-        // Bank index already exists. Replace it.
-        free_bank(program->banks.banks[bank_index]);
-        program->banks.banks[bank_index] = bank;
-        return true;
+        // Bank index already exists. Delete old. Replace with new.
+        Bank *old_bank = (Bank *) remove_array_item(program->banks, bank_index);
+        free_bank(old_bank);
+        return insert_array_item(program->banks, (ArrayItem *) bank, bank_index);
     }
 }
 
@@ -76,18 +80,9 @@ bool remove_program_bank(Program *program, Identifier identifier)
     else
     {
         // Bank index exists. Delete bank.
-        free_bank(program->banks.banks[bank_index]);
-
-        // Shift all the bank indices above down by one.
-        int end = program->banks.count;
-        for (int remaining_index = bank_index; remaining_index < end - 1; remaining_index++)
-        {
-            program->banks.banks[remaining_index] = 
-                program->banks.banks[remaining_index + 1];
-        }
-
-        bool resize_ok = resize_bank_array(program, end - 1);
-        return resize_ok;
+        Bank *bank = (Bank *) remove_array_item(program->banks, bank_index);
+        free_bank(bank);
+        return true;
     }
 }
 
@@ -102,7 +97,7 @@ Bank *get_program_bank(Program *program, Identifier identifier)
     bool bank_exists = false;
     BankIndex index = get_program_bank_index(program, identifier, &bank_exists);
     if (bank_exists) {
-        return program->banks.banks[index];
+        return (Bank *) get_array_item(program->banks, index);
     }
     return NULL;
 }
@@ -110,12 +105,12 @@ Bank *get_program_bank(Program *program, Identifier identifier)
 /* Gets the index in the banks of the bank with the target identifier. */
 BankIndex get_program_bank_index(Program *program, Identifier target_identifier, bool *target_exists)
 {
-    if (program->banks.banks != NULL && 
-        program->banks.count > 0)
+    if (program->banks != NULL)
     {
-        for (BankIndex i = 0; i < program->banks.count; i++)
+        for (BankIndex i = 0; i < get_array_count(program->banks); i++)
         {
-            if (program->banks.banks[i]->identifier == target_identifier) {
+            Bank *bank = (Bank *) get_array_item(program->banks, i);
+            if (bank->identifier == target_identifier) {
                 *target_exists = true;
                 return i;
             }
@@ -128,36 +123,7 @@ BankIndex get_program_bank_index(Program *program, Identifier target_identifier,
 
 bool append_bank_to_program(Program *program, Bank *bank)
 {
-    int new_count = program->banks.count + 1;
-    bool resize_ok = resize_bank_array(program, new_count);
-
-    if (resize_ok)
-    {
-        int last_item = new_count - 1;
-        program->banks.banks[last_item] = bank;
-    }
-
-    return resize_ok;
-}
-
-bool resize_bank_array(Program *program, int new_count)
-{
-    int new_array_size = sizeof(Bank *) * new_count;
-    Bank** new_array = (Bank**) realloc(
-        program->banks.banks, 
-        new_array_size);
-
-    if (new_array != NULL)
-    {
-        program->banks.banks = new_array;
-        program->banks.count = new_count;
-        return true;
-    }
-    else
-    {
-        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
-        return false;
-    }
+    return append_array(program->banks, (ArrayItem *) bank);
 }
 
 Bank *new_bank_from_parameter(ParameterValue *parameter)

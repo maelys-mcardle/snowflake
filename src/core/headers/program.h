@@ -11,12 +11,7 @@ typedef ArrayIndex BankIndex;
 typedef BankIndex BankCount;
 
 typedef struct {
-    BankCount count;
-    Bank **banks;
-} ProgramBanks;
-
-typedef struct {
-    ProgramBanks banks;
+    Array *banks;
     Array *instructions;
 } Program;
 
@@ -25,7 +20,6 @@ void free_program(Program *program);
 bool append_instruction_to_program(Program *program, Instruction *instruction);
 bool append_bank_to_program(Program *program, Bank *bank);
 bool set_program_bank(Program *program, Bank *bank);
-bool resize_bank_array(Program *program, int new_count);
 BankIndex get_program_bank_index(Program *program, Identifier identifier, bool *bank_exists);
 bool remove_program_bank(Program *program, Identifier identifier);
 Bank *get_program_bank(Program *program, Identifier identifier);

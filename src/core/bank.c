@@ -22,7 +22,7 @@ Bank *new_bank(Identifier identifier)
     return bank;
 }
 
-void free_bank(Bank *bank)
+void free_bank(void *bank)
 {
     if (bank != NULL)
     {

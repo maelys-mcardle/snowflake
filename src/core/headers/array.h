@@ -28,8 +28,8 @@ ArrayItem *copy_array_item(ArrayItem *source_item);
 bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index);
 ArrayItem *remove_array_item(Array *array, ArrayIndex index);
 
-bool insert_array_first(Array *array, ArrayItem *item);
-bool insert_array_last(Array *array, ArrayItem *item);
+bool prepend_array(Array *array, ArrayItem *item);
+bool append_array(Array *array, ArrayItem *item);
 ArrayItem *remove_array_first(Array *array);
 ArrayItem *remove_array_last(Array *array);
 ArrayItem *get_array_first(Array *array);

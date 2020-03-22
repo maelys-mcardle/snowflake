@@ -117,13 +117,13 @@ ArrayCount get_array_count(Array *array)
     return (array != NULL) ? array->count : 0;
 }
 
-bool insert_array_first(Array *array, ArrayItem *item)
+bool prepend_array(Array *array, ArrayItem *item)
 {
     log_debug("Inserting item at start of array.\n");
     return insert_array_item(array, item, 0);
 }
 
-bool insert_array_last(Array *array, ArrayItem *item)
+bool append_array(Array *array, ArrayItem *item)
 {
     log_debug("Inserting item at end of array.\n");
     return insert_array_item(array, item, array->count);
