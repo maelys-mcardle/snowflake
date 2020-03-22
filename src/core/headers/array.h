@@ -32,6 +32,10 @@ bool insert_array_first(Array *array, ArrayItem *item);
 bool insert_array_last(Array *array, ArrayItem *item);
 ArrayItem *remove_array_first(Array *array);
 ArrayItem *remove_array_last(Array *array);
+ArrayItem *get_array_first(Array *array);
+ArrayItem *get_array_last(Array *array);
+ArrayItem *get_array_index(Array *array, ArrayIndex index);
+
 
 bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index);
 
