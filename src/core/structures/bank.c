@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <string.h>
-#include "headers/string.h"
-#include "headers/bank.h"
-#include "headers/logging.h"
-#include "headers/errors.h"
-#include "headers/type_conversion.h"
-#include "headers/array.h"
+#include "structures/string.h"
+#include "structures/bank.h"
+#include "platforms/logging.h"
+#include "errors.h"
+#include "structures/type_conversion.h"
+#include "structures/array.h"
 
 Bank *new_bank(Identifier identifier)
 {

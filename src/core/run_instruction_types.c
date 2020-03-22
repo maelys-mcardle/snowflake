@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <string.h>
-#include "headers/run_instruction_types.h"
-#include "headers/logging.h"
-#include "headers/type_conversion.h"
-#include "headers/bank.h"
-#include "headers/errors.h"
-#include "headers/string.h"
+#include "run_instruction_types.h"
+#include "platforms/logging.h"
+#include "structures/type_conversion.h"
+#include "structures/bank.h"
+#include "errors.h"
+#include "structures/string.h"
 
 /* Stores a variable in a bank; type is inferred.
  * VAR BANK LITERAL 

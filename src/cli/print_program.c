@@ -1,7 +1,7 @@
 #include <stdlib.h>
-#include "../core/headers/logging.h"
-#include "../core/headers/devices.h"
-#include "../core/headers/array.h"
+#include "platforms/logging.h"
+#include "structures/devices.h"
+#include "structures/array.h"
 #include "headers/print_program.h"
 
 /* Prints an entire Snowflake program. */

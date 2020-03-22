@@ -1,8 +1,8 @@
 #include <string.h>
 #include <stdlib.h>
-#include "headers/run_instruction_branching.h"
-#include "headers/logging.h"
-#include "headers/array.h"
+#include "run_instruction_branching.h"
+#include "platforms/logging.h"
+#include "structures/array.h"
 
 bool instruction_jump_label(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {

@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
-#include "../../headers/logging.h"
+#include "platforms/logging.h"
 
 bool debug_mode = false;
 

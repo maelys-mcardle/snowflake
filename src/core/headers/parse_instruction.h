@@ -2,8 +2,8 @@
 #define SNOWFLAKE_PARSE_INSTRUCTION_H
 
 #include <stdbool.h>
-#include "program.h"
-#include "instructions.h"
+#include "structures/program.h"
+#include "structures/instructions.h"
 
 #define MAX_INSTRUCTION_SIZE 3
 

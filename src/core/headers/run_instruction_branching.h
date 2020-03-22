@@ -1,8 +1,8 @@
 #ifndef SNOWFLAKE_RUN_INSTRUCTION_BRANCHING_H
 #define SNOWFLAKE_RUN_INSTRUCTION_BRANCHING_H
 #include <stdbool.h>
-#include "program.h"
-#include "instructions.h"
+#include "structures/program.h"
+#include "structures/instructions.h"
 
 bool instruction_jump_label(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer);
 bool instruction_jump_bank(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer);

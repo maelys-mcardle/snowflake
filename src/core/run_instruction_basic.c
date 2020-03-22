@@ -1,13 +1,13 @@
 #include <stdlib.h>
 #include <string.h>
-#include "headers/run_instruction_basic.h"
-#include "headers/bank.h"
-#include "headers/logging.h"
-#include "headers/output_devices.h"
-#include "headers/input_devices.h"
-#include "headers/devices.h"
-#include "headers/errors.h"
-#include "headers/array.h"
+#include "run_instruction_basic.h"
+#include "structures/bank.h"
+#include "platforms/logging.h"
+#include "platforms/output_devices.h"
+#include "platforms/input_devices.h"
+#include "structures/devices.h"
+#include "errors.h"
+#include "structures/array.h"
 
 bool instruction_noop(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {

@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "headers/program.h"
-#include "headers/errors.h"
-#include "headers/logging.h"
+#include "structures/program.h"
+#include "errors.h"
+#include "platforms/logging.h"
 
 /* Creates a new program and allocates memory.
  * @return The initialized program.

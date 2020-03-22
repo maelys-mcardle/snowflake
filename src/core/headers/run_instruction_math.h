@@ -1,8 +1,8 @@
 #ifndef SNOWFLAKE_RUN_INSTRUCTION_MATH_H
 #define SNOWFLAKE_RUN_INSTRUCTION_MATH_H
 #include <stdbool.h>
-#include "program.h"
-#include "instructions.h"
+#include "structures/program.h"
+#include "structures/instructions.h"
 
 bool instruction_add(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer);
 bool instruction_subtract(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer);

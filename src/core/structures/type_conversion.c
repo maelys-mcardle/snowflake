@@ -1,7 +1,7 @@
 #include <errno.h>
 #include <stdlib.h>
-#include "headers/logging.h"
-#include "headers/type_conversion.h"
+#include "platforms/logging.h"
+#include "structures/type_conversion.h"
 
 bool string_to_boolean(char *string, bool *ok)
 {

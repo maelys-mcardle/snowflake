@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <math.h>
-#include "headers/run_instruction_math.h"
-#include "headers/string.h"
-#include "headers/logging.h"
+#include "run_instruction_math.h"
+#include "structures/string.h"
+#include "platforms/logging.h"
 
 bool instruction_add(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {

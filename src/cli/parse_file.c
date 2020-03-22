@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "headers/parse_file.h"
-#include "../core/headers/parse_instruction.h"
-#include "../core/headers/errors.h"
-#include "../core/headers/logging.h"
-#include "../core/headers/string.h"
+#include "parse_instruction.h"
+#include "errors.h"
+#include "platforms/logging.h"
+#include "structures/string.h"
 
 /* Process a snowflake file. */
 int parse_snowflake_file(Program *program, const char *filename)

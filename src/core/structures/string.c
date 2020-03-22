@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "headers/string.h"
+#include "structures/string.h"
 
 bool strip_end_whitespace(char *string, int max_string_length)
 {

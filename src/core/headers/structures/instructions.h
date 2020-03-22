@@ -1,7 +1,9 @@
-#ifndef SNOWFLAKE_INSTRUCTION_INFO_H
-#define SNOWFLAKE_INSTRUCTION_INFO_H
+#ifndef SNOWFLAKE_INSTRUCTIONS_H
+#define SNOWFLAKE_INSTRUCTIONS_H
 #include <stdbool.h>
+#include "devices.h"
 #include "parameters.h"
+#include "bank.h"
 
 typedef enum {
     INSTRUCTION_COMMENT         = 0,
@@ -48,6 +50,16 @@ typedef enum {
 } InstructionCode;
 
 typedef struct {
+    ParameterValue first;
+    ParameterValue second;
+} Parameters;
+
+typedef struct {
+    InstructionCode instruction;
+    Parameters parameters;
+} Instruction;
+
+typedef struct {
     ParameterType first;
     ParameterType second;
 } ParameterInfo;
@@ -57,6 +69,8 @@ typedef struct {
     ParameterInfo parameters;
 } InstructionInfo;
 
+Instruction *new_instruction();
+void free_instruction(void *instruction);
 InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists);
 void set_mnemonic(InstructionInfo *info, char *mnemonic);
 

@@ -1,8 +1,8 @@
 #ifndef SNOWFLAKE_RUN_INSTRUCTION_TYPES_H
 #define SNOWFLAKE_RUN_INSTRUCTION_TYPES_H
 #include <stdbool.h>
-#include "program.h"
-#include "instructions.h"
+#include "structures/program.h"
+#include "structures/instructions.h"
 
 bool instruction_variable(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer);
 bool instruction_boolean(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer);

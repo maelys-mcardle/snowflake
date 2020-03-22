@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../headers/input_devices.h"
-#include "../../headers/logging.h"
-#include "../../headers/string.h"
+#include "platforms/input_devices.h"
+#include "platforms/logging.h"
+#include "structures/string.h"
 
 bool initialize_input()
 {

@@ -1,7 +1,7 @@
 #include <stdlib.h>
-#include "headers/array.h"
-#include "headers/errors.h"
-#include "headers/logging.h"
+#include "structures/array.h"
+#include "errors.h"
+#include "platforms/logging.h"
 
 Array *new_array()
 {

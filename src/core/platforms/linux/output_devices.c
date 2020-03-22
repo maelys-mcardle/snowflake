@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../headers/output_devices.h"
+#include "platforms/output_devices.h"
 
 bool initialize_output()
 {

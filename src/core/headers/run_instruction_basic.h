@@ -1,8 +1,8 @@
 #ifndef SNOWFLAKE_RUN_INSTRUCTION_BASIC_H
 #define SNOWFLAKE_RUN_INSTRUCTION_BASIC_H
 #include <stdbool.h>
-#include "program.h"
-#include "instructions.h"
+#include "structures/program.h"
+#include "structures/instructions.h"
 
 bool instruction_noop(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer);
 bool instruction_output(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer);

@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include "headers/run_instruction_logic.h"
-#include "headers/logging.h"
+#include "run_instruction_logic.h"
+#include "platforms/logging.h"
 
 bool instruction_not(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers/parameters.h"
+#include "structures/parameters.h"
 
 void free_parameter(ParameterType type, ParameterValue value)
 {
