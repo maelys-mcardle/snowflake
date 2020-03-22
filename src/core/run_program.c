@@ -11,6 +11,7 @@
 #include "headers/bank.h"
 #include "headers/errors.h"
 #include "headers/logging.h"
+#include "headers/array.h"
 
 InstructionFunction all_instruction_functions[] = {
     [INSTRUCTION_COMMENT]         = &instruction_noop,
@@ -61,16 +62,15 @@ void run_program(Program *program)
     log_debug("Executing program...\n");
 
     if (program != NULL && 
-        program->instructions.instructions != NULL && 
-        program->instructions.count > 0)
+        program->instructions != NULL)
     {
         initialize_input();
         initialize_output();
 
         InstructionIndex instruction_pointer = 0;
-        while (instruction_pointer < program->instructions.count)
+        while (instruction_pointer < get_array_count(program->instructions))
         {
-            Instruction *instruction = program->instructions.instructions[instruction_pointer];
+            Instruction *instruction = (Instruction *) get_array_item(program->instructions, instruction_pointer);
             run_instruction(program, instruction, &instruction_pointer);
         }
     }

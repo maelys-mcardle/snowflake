@@ -17,6 +17,6 @@ typedef struct {
 } Instruction;
 
 Instruction *new_instruction();
-void free_instruction(Instruction *instruction);
+void free_instruction(void *instruction);
 
 #endif

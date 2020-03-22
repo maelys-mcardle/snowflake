@@ -144,16 +144,16 @@ ArrayItem *remove_array_last(Array *array)
 ArrayItem *get_array_first(Array *array)
 {
     log_debug("Get item at start of array.\n");
-    return get_array_index(array, 0);
+    return get_array_item(array, 0);
 }
 
 ArrayItem *get_array_last(Array *array)
 {
     log_debug("Get item at end of array.\n");
-    return get_array_index(array, array->count - 1);
+    return get_array_item(array, array->count - 1);
 }
 
-ArrayItem *get_array_index(Array *array, ArrayIndex index_to_get)
+ArrayItem *get_array_item(Array *array, ArrayIndex index_to_get)
 {
     log_debug("Get item at position %i of array.\n", index_to_get);
     if (index_to_get < array->count)

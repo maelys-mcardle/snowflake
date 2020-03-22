@@ -9,8 +9,9 @@ Instruction *new_instruction()
     return instruction;
 }
 
-void free_instruction(Instruction *instruction)
+void free_instruction(void *instruction_ptr)
 {
+    Instruction *instruction = (Instruction *) instruction_ptr;
     if (instruction != NULL)
     {
         bool instruction_exists = false;

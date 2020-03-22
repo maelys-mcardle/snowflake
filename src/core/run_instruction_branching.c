@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "headers/run_instruction_branching.h"
 #include "headers/logging.h"
+#include "headers/array.h"
 
 bool instruction_jump_label(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
 {
@@ -233,9 +234,9 @@ bool jump_to_label(Program *program, InstructionIndex *instruction_pointer, int 
 InstructionIndex get_label_instruction_pointer(Program *program, int target_label, bool *target_found)
 {
     // Locate instruction with label.
-    for (InstructionIndex index = 0; index < program->instructions.count; index++)
+    for (InstructionIndex index = 0; index < get_array_count(program->instructions); index++)
     {
-        Instruction *instruction = program->instructions.instructions[index];
+        Instruction *instruction = (Instruction *) get_array_item(program->instructions, index);
         if (instruction->instruction == INSTRUCTION_LABEL &&
             instruction->parameters.first.identifier == target_label)
         {

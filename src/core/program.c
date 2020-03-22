@@ -12,8 +12,8 @@ Program *new_program()
     Program *program = (Program *) malloc(sizeof(Program));
     if (program != NULL)
     {
-        program->instructions.count = 0;
-        program->instructions.instructions = NULL;
+        program->instructions = new_array();
+        program->instructions->free_array_item_function = free_instruction;
     }
     else
     {
@@ -28,17 +28,8 @@ void free_program(Program *program)
 {
     if (program != NULL)
     {
-        // Free all the instructions.
-        if (program->instructions.instructions != NULL && 
-            program->instructions.count > 0)
-        {
-            for (InstructionIndex i = 0; i < program->instructions.count; i++)
-            {
-                free_instruction(program->instructions.instructions[i]);
-            }
-        }
-
         // Free the program.
+        free_array(program->instructions);
         free(program);
     }
 }
@@ -48,25 +39,7 @@ void free_program(Program *program)
  */
 bool append_instruction_to_program(Program *program, Instruction *instruction)
 {
-    int new_count = program->instructions.count + 1;
-    int new_array_size = sizeof(Instruction *) * new_count;
-    Instruction** new_array = (Instruction**) realloc(
-        program->instructions.instructions, 
-        new_array_size);
-
-    if (new_array != NULL)
-    {
-        int last_item = new_count - 1;
-        program->instructions.instructions = new_array;
-        program->instructions.count = new_count;
-        program->instructions.instructions[last_item] = instruction;
-        return true;
-    }
-    else
-    {
-        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
-        return false;
-    }
+    return insert_array_last(program->instructions, instruction);
 }
 
 bool set_program_bank(Program *program, Bank *bank)

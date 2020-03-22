@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "../core/headers/logging.h"
 #include "../core/headers/devices.h"
+#include "../core/headers/array.h"
 #include "headers/print_program.h"
 
 /* Prints an entire Snowflake program. */
@@ -9,13 +10,12 @@ void print_program(Program *program)
     log_debug("Printing program...\n");
 
     if (program != NULL && 
-        program->instructions.instructions != NULL && 
-        program->instructions.count > 0)
+        program->instructions != NULL)
     {
-        for (InstructionIndex i = 0; i < program->instructions.count; i++)
+        for (ArrayIndex i = 0; i <  get_array_count(program->instructions); i++)
         {
             log_debug("[Instruction %02i]\n", i);
-            Instruction *instruction = program->instructions.instructions[i];
+            Instruction *instruction = (Instruction *) get_array_item(program->instructions, i);
             print_instruction(program, instruction);
         }
     }
@@ -118,9 +118,9 @@ void print_identifier(Program *program, InstructionCode current_instruction, Ins
 
 char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier)
 {
-    for (InstructionIndex i = 0; i < program->instructions.count; i++)
+    for (InstructionIndex i = 0; i < get_array_count(program->instructions); i++)
     {
-        Instruction *instruction = program->instructions.instructions[i];
+        Instruction *instruction = (Instruction *) get_array_item(program->instructions, i);
         if (instruction->instruction == naming_instruction &&
             instruction->parameters.first.identifier == target_identifier)
         {

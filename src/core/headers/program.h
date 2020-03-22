@@ -3,10 +3,11 @@
 #include <stdbool.h>
 #include "instructions.h"
 #include "bank.h"
+#include "array.h"
 
-typedef unsigned int InstructionIndex;
+typedef ArrayIndex InstructionIndex;
 typedef InstructionIndex InstructionCount;
-typedef unsigned int BankIndex;
+typedef ArrayIndex BankIndex;
 typedef BankIndex BankCount;
 
 typedef struct {
@@ -15,13 +16,8 @@ typedef struct {
 } ProgramBanks;
 
 typedef struct {
-    InstructionCount count;
-    Instruction **instructions;
-} ProgramInstructions;
-
-typedef struct {
     ProgramBanks banks;
-    ProgramInstructions instructions;
+    Array *instructions;
 } Program;
 
 Program *new_program();
