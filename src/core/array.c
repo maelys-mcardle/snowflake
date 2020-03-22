@@ -23,12 +23,12 @@ Array *new_array()
 
 void free_array(Array *array)
 {
-    log_debug("Free array.");
+    log_debug("Free array.\n");
     if (array != NULL)
     {
         for (ArrayIndex index = 0; index < array->count; index++)
         {
-            log_debug("Free array item %i of %i.\n", index, array->count);
+            log_debug("Free array item %i of %i.\n", index + 1, array->count);
             ArrayItem *item = array->items[index];
             array->free_array_item_function(item);
         }
@@ -155,7 +155,6 @@ ArrayItem *get_array_last(Array *array)
 
 ArrayItem *get_array_item(Array *array, ArrayIndex index_to_get)
 {
-    log_debug("Get item at position %i of array.\n", index_to_get);
     if (index_to_get < array->count)
     {
         return array->items[index_to_get];
