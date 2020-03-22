@@ -18,6 +18,7 @@ typedef struct {
 Array *new_array();
 void free_array(Array *array);
 void free_array_item(ArrayItem *item);
+
 bool resize_array(Array *array, ArrayCount new_count);
 ArrayCount get_array_count(Array *array);
 
@@ -25,17 +26,16 @@ Array *copy_array(Array *source);
 bool copy_array_items(Array *destination, Array *source);
 ArrayItem *copy_array_item(ArrayItem *source_item);
 
-bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index);
-ArrayItem *remove_array_item(Array *array, ArrayIndex index);
-
 bool prepend_array(Array *array, ArrayItem *item);
 bool append_array(Array *array, ArrayItem *item);
-ArrayItem *remove_array_first(Array *array);
-ArrayItem *remove_array_last(Array *array);
+bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index);
+
 ArrayItem *get_array_first(Array *array);
 ArrayItem *get_array_last(Array *array);
 ArrayItem *get_array_item(Array *array, ArrayIndex index);
-
+ArrayItem *remove_array_first(Array *array);
+ArrayItem *remove_array_last(Array *array);
+ArrayItem *remove_array_item(Array *array, ArrayIndex index);
 
 bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index);
 
