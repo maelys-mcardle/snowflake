@@ -38,7 +38,7 @@ void free_array(Array *array)
 
 void free_array_item(ArrayItem *item)
 {
-    log_debug("Call to free item at %p.\n", item);
+    (void)(item);
 }
 
 Array *copy_array(Array *source)
@@ -96,7 +96,8 @@ bool copy_array_items(Array *destination, Array *source)
     if (ok)
     {
         for (ArrayIndex index = 0; index < source->count; index++)
-        {
+        {    
+            log_debug("Copy array item %i of %i.\n", index + 1, source->count);
             destination->items[index] = 
                 source->copy_array_item_function(
                     source->items[index]);
@@ -108,7 +109,6 @@ bool copy_array_items(Array *destination, Array *source)
 
 ArrayItem *copy_array_item(ArrayItem *source_item)
 {
-    log_debug("Call to copy item at %p.\n", source_item);
     return source_item;
 }
 
@@ -253,6 +253,5 @@ bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_in
         log_debug("Array is NULL.\n");
     }
     
-
     return false;
 }
