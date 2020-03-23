@@ -4,7 +4,7 @@
 #include <string.h>
 #include <getopt.h>
 #include "headers/main.h"
-#include "headers/parse_file.h"
+#include "parse_file.h"
 #include "headers/print_program.h"
 #include "errors.h"
 #include "structures/program.h"

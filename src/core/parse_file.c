@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers/parse_file.h"
+#include "parse_file.h"
 #include "parse_instruction.h"
 #include "errors.h"
 #include "platforms/logging.h"
