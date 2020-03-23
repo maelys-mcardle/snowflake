@@ -19,7 +19,7 @@ void log_debug(const char * format, ... )
     if (debug_mode) {
         va_list args;
         va_start(args, format);
-        print_with_va_list(format, args, true);
+        print_with_va_list(format, args, false);
         va_end(args);
     }
 }
