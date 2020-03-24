@@ -86,15 +86,13 @@ CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 24   IF>        BANK1   BANK2   If BANK1 is greater than BANK2,
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
-                                This instruction is only performed on
-                                integer and float types. The next
-                                instruction is skipped for other types.
 25   IF<        BANK1   BANK2   If BANK1 is less than BANK2,
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
-                                This instruction is only performed on
-                                integer and float types. The next
-                                instruction is skipped for other types.
+
+Note: Greater than / lesser than comparisons are only performed on 
+      INTEGER and FLOAT types. The subsequent instruction is skipped
+      for all other types.
 ```
 
 ```
