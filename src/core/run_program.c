@@ -47,14 +47,14 @@ InstructionFunction all_instruction_functions[] = {
     [INSTRUCTION_AND]             = &instruction_and,
     [INSTRUCTION_OR]              = &instruction_or,
     [INSTRUCTION_XOR]             = &instruction_xor,
-    [INSTRUCTION_BANK_TO_FIRST]   = &instruction_noop,
-    [INSTRUCTION_BANK_TO_LAST]    = &instruction_noop,
-    [INSTRUCTION_FIRST_TO_BANK]   = &instruction_noop,
-    [INSTRUCTION_LAST_TO_BANK]    = &instruction_noop,
-    [INSTRUCTION_FIRST_TO_INDEX]  = &instruction_noop,
-    [INSTRUCTION_LAST_TO_INDEX]   = &instruction_noop,
-    [INSTRUCTION_INDEX_TO_FIRST]  = &instruction_noop,
-    [INSTRUCTION_INDEX_TO_LAST]   = &instruction_noop
+    [INSTRUCTION_BANK_TO_FIRST]   = &instruction_bank_to_first,
+    [INSTRUCTION_BANK_TO_LAST]    = &instruction_bank_to_last,
+    [INSTRUCTION_FIRST_TO_BANK]   = &instruction_first_to_bank,
+    [INSTRUCTION_LAST_TO_BANK]    = &instruction_last_to_bank,
+    [INSTRUCTION_FIRST_TO_INDEX]  = &instruction_first_to_index,
+    [INSTRUCTION_LAST_TO_INDEX]   = &instruction_last_to_index,
+    [INSTRUCTION_INDEX_TO_FIRST]  = &instruction_index_to_first,
+    [INSTRUCTION_INDEX_TO_LAST]   = &instruction_index_to_last
 };
 
 void run_program(Program *program)
