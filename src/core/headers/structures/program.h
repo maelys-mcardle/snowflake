@@ -22,6 +22,7 @@ bool append_bank_to_program(Program *program, Bank *bank);
 bool set_program_bank(Program *program, Bank *bank);
 BankIndex get_program_bank_index(Program *program, Identifier identifier, bool *bank_exists);
 bool remove_program_bank(Program *program, Identifier identifier);
+Bank *remove_program_bank_without_freeing(Program *program, Identifier identifier);
 Bank *get_program_bank(Program *program, Identifier identifier);
 Bank *get_bank_from_parameter(Program *program, ParameterValue *parameter);
 Bank *new_bank_from_parameter(ParameterValue *parameter);

@@ -221,7 +221,7 @@ ArrayItem *remove_array_item(Array *array, ArrayIndex index_to_remove)
     // Get the item.
     ArrayItem *item = array->items[index_to_remove];
 
-    // Shift all the items by one above the index to insert.
+    // Shift all the items by one above the index to remove.
     for (ArrayIndex index = index_to_remove; index < array->count - 1; index++)
     {
         array->items[index] = array->items[index + 1];
@@ -233,25 +233,49 @@ ArrayItem *remove_array_item(Array *array, ArrayIndex index_to_remove)
     return item;
 }
 
-bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index)
+bool shift_array_index(Array *array, ArrayIndex from_index, ArrayIndex to_index)
 {
-    log_debug("Swapping index items %i and %i.\n", first_index, second_index);
-    if (array != NULL)
+    log_debug("Moving item at position %i of array to position %i.\n", 
+        from_index, to_index);
+
+    if (array == NULL)
     {
-        if (first_index < array->count &&
-            second_index < array->count)
-        {
-            ArrayItem *first_item = array->items[first_index];
-            ArrayItem *second_item = array->items[second_index];
-            array->items[first_index] = second_item;
-            array->items[second_index] = first_item;
-            return true;
-        }
+        log_debug("Array is NULL.\n");
+        return false;
+    }
+
+    // Obtaining value that doesn't exist.
+    if (from_index >= array->count)
+    {
+        log_debug("Moving from an index that doesn't exist.\n");
+        return false;
+    }
+
+    // Get the item.
+    ArrayItem *item = array->items[from_index];
+
+    // Shift left all the items by one above the index to remove.
+    for (ArrayIndex index = from_index; index < array->count - 1; index++)
+    {
+        array->items[index] = array->items[index + 1];
+    }
+
+    // Shift right all the items by one above the index to insert.
+    for (ArrayIndex index = to_index + 1; index < array->count; index++)
+    {
+        array->items[index] = array->items[index - 1];
+    }
+
+    // Insert the item at the index. If it's at a value
+    // that is bigger than the array, add it to the end.
+    if (to_index < array->count)
+    {
+        array->items[to_index] = item;
     }
     else
     {
-        log_debug("Array is NULL.\n");
+        array->items[array->count - 1] = item;
     }
     
-    return false;
+    return true;
 }

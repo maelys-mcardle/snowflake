@@ -68,6 +68,13 @@ bool set_program_bank(Program *program, Bank *bank)
 
 bool remove_program_bank(Program *program, Identifier identifier)
 {
+    Bank *bank = remove_program_bank_without_freeing(program, identifier);
+    if (bank != NULL) free(bank);
+    return true;
+}
+
+Bank *remove_program_bank_without_freeing(Program *program, Identifier identifier)
+{
     // Get the existing index of the bank, if it's set.
     bool bank_exists = false;
     BankIndex bank_index = get_program_bank_index(program, identifier, &bank_exists);
@@ -75,16 +82,16 @@ bool remove_program_bank(Program *program, Identifier identifier)
     if (!bank_exists) 
     {
         // Bank index doesn't exist. Nothing to delete.
-        return true;
+        return NULL;
     }
     else
     {
         // Bank index exists. Delete bank.
         Bank *bank = (Bank *) remove_array_item(program->banks, bank_index);
-        free_bank(bank);
-        return true;
+        return bank;
     }
 }
+
 
 Bank *get_bank_from_parameter(Program *program, ParameterValue *parameter)
 {

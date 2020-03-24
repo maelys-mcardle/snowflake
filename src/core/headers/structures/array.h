@@ -36,7 +36,6 @@ ArrayItem *get_array_item(Array *array, ArrayIndex index);
 ArrayItem *remove_array_first(Array *array);
 ArrayItem *remove_array_last(Array *array);
 ArrayItem *remove_array_item(Array *array, ArrayIndex index);
-
-bool swap_index_items(Array *array, ArrayIndex first_index, ArrayIndex second_index);
+bool shift_array_index(Array *array, ArrayIndex from_index, ArrayIndex to_index);
 
 #endif
