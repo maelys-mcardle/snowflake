@@ -31,5 +31,7 @@ BankType get_type_from_parameter(Parameters *parameters);
 void increment_instruction(InstructionPointer *instruction_pointer);
 void skip_next_instruction(InstructionPointer *instruction_pointer);
 void go_to_instruction(InstructionPointer *instruction_pointer, InstructionPointer new_location);
+InstructionCount get_instruction_count(Program *program);
+Instruction *get_instruction(Program *program, InstructionPointer instruction_pointer);
 
 #endif

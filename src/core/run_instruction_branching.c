@@ -262,9 +262,9 @@ bool jump_to_label(Program *program, InstructionPointer *instruction_pointer, in
 InstructionPointer get_label_instruction_pointer(Program *program, int target_label, bool *target_found)
 {
     // Locate instruction with label.
-    for (InstructionPointer index = 0; index < get_array_count(program->instructions); index++)
+    for (InstructionPointer index = 0; index < get_instruction_count(program); index++)
     {
-        Instruction *instruction = (Instruction *) get_array_item(program->instructions, index);
+        Instruction *instruction = get_instruction(program, index);
         if (instruction->instruction == INSTRUCTION_LABEL &&
             instruction->parameters.first.identifier == target_label)
         {

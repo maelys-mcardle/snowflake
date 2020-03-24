@@ -12,10 +12,10 @@ void print_program(Program *program)
     if (program != NULL && 
         program->instructions != NULL)
     {
-        for (ArrayIndex i = 0; i <  get_array_count(program->instructions); i++)
+        for (InstructionPointer i = 0; i < get_instruction_count(program); i++)
         {
             log_debug("[Instruction %02i]\n", i);
-            Instruction *instruction = (Instruction *) get_array_item(program->instructions, i);
+            Instruction *instruction = get_instruction(program, i);
             print_instruction(program, instruction);
         }
     }
@@ -118,9 +118,9 @@ void print_identifier(Program *program, InstructionCode current_instruction, Ins
 
 char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier)
 {
-    for (InstructionPointer i = 0; i < get_array_count(program->instructions); i++)
+    for (InstructionPointer i = 0; i < get_instruction_count(program); i++)
     {
-        Instruction *instruction = (Instruction *) get_array_item(program->instructions, i);
+        Instruction *instruction = get_instruction(program, i);
         if (instruction->instruction == naming_instruction &&
             instruction->parameters.first.identifier == target_identifier)
         {

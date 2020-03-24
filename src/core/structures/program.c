@@ -174,3 +174,14 @@ void go_to_instruction(InstructionPointer *instruction_pointer, InstructionPoint
 {
     *instruction_pointer = new_location;
 }
+
+InstructionCount get_instruction_count(Program *program)
+{
+    return get_array_count(program->instructions);
+}
+
+Instruction *get_instruction(Program *program, InstructionPointer instruction_pointer)
+{
+    Instruction *instruction = (Instruction *) get_array_item(program->instructions, instruction_pointer);
+    return instruction;
+}

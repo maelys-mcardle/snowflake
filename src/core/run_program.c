@@ -68,9 +68,9 @@ void run_program(Program *program)
         initialize_output();
 
         InstructionPointer instruction_pointer = 0;
-        while (instruction_pointer < get_array_count(program->instructions))
+        while (instruction_pointer < get_instruction_count(program))
         {
-            Instruction *instruction = (Instruction *) get_array_item(program->instructions, instruction_pointer);
+            Instruction *instruction = get_instruction(program, instruction_pointer);
             run_instruction(program, instruction, &instruction_pointer);
         }
     }
