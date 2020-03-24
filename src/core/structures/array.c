@@ -63,17 +63,31 @@ bool resize_array(Array *array, ArrayCount new_count)
         return false;
     }
 
-    ArrayItem **new_items = realloc(array->items, sizeof(ArrayItem *) * new_count);
-    if (new_items != NULL)
+    if (new_count > 0)
     {
-        array->items = new_items;
-        array->count = new_count;
-        return true;
+        // New count 
+        ArrayItem **new_items = realloc(array->items, sizeof(ArrayItem *) * new_count);
+        if (new_items != NULL)
+        {
+            array->items = new_items;
+            array->count = new_count;
+            return true;
+        }
+        else
+        {
+            log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+            return false;
+        }
     }
     else
     {
-        log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
-        return false;
+        if (array->items != NULL)
+        {
+            free(array->items);
+        }
+        array->items = NULL;
+        array->count = 0;
+        return true;
     }
 }
 

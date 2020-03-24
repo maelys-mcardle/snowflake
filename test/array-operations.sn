@@ -1,0 +1,26 @@
+15 00    ;; Bank @00 = []
+14 01 A  ;; Bank @01 = "A"
+14 02 B  ;; Bank @02 = "B"
+14 03 C  ;; Bank @03 = "C"
+
+51 00 01 ;; Bank @00 = ["A"]
+51 00 02 ;; Bank @00 = ["A", "B"]
+51 00 03 ;; Bank @00 = ["A", "B", "C"]
+
+12 04 01 ;; Bank @04 = 1
+56 00 04 ;; Bank @00 = ["B", "A", "C"]
+
+52 00 05 ;; Bank @05 = "B"
+         ;; Bank @00 = ["A", "C"]
+
+03 00 05 ;; Output Bank @05 to screen
+
+52 00 05 ;; Bank @05 = "A"
+         ;; Bank @00 = ["C"]
+         
+03 00 05 ;; Output Bank @05 to screen
+
+52 00 05 ;; Bank @05 = "C"
+         ;; Bank @00 = []
+         
+03 00 05 ;; Output Bank @05 to screen
