@@ -67,7 +67,7 @@ void run_program(Program *program)
         initialize_input();
         initialize_output();
 
-        InstructionIndex instruction_pointer = 0;
+        InstructionPointer instruction_pointer = 0;
         while (instruction_pointer < get_array_count(program->instructions))
         {
             Instruction *instruction = (Instruction *) get_array_item(program->instructions, instruction_pointer);
@@ -76,7 +76,7 @@ void run_program(Program *program)
     }
 }
 
-bool run_instruction(Program *program, Instruction *instruction, InstructionIndex *instruction_pointer)
+bool run_instruction(Program *program, Instruction *instruction, InstructionPointer *instruction_pointer)
 {
     // If this is the debug mode, provide more logging.
     if (is_debug_mode())

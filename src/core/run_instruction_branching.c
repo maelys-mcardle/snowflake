@@ -4,14 +4,14 @@
 #include "platforms/logging.h"
 #include "structures/array.h"
 
-bool instruction_jump_label(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_jump_label(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     int target_label = parameters->first.identifier;
     bool instruction_ok = jump_to_label(program, instruction_pointer, target_label);
     return instruction_ok;
 }
 
-bool instruction_jump_bank(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_jump_bank(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool found_label = false;
     Bank *bank = get_bank_from_parameter(program, &(parameters->first));
@@ -24,35 +24,49 @@ bool instruction_jump_bank(Program *program, Parameters *parameters, Instruction
     else
     {
         log_debug("Bank was not defined for jump. Going to next instruction.\n");
-        *instruction_pointer += 1;
+        increment_instruction(instruction_pointer);
     }
     
     return found_label;
 }
 
-bool instruction_if_equal(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_if_equal(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     log_debug("Comparing parameters for equality.\n");
     bool is_equal = is_parameters_equal(program, parameters);
 
     // If is equal, run the next instruction. Otherwise skip it.
-    *instruction_pointer += (is_equal) ? 1 : 2;
+    if (is_equal) 
+    {
+        increment_instruction(instruction_pointer);
+    }
+    else
+    {
+        skip_next_instruction(instruction_pointer);
+    }
 
     return true;
 }
 
-bool instruction_if_not_equal(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_if_not_equal(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     log_debug("Comparing parameters for inequality.\n");
     bool is_equal = is_parameters_equal(program, parameters);
 
     // If is not equal, run the next instruction. Otherwise skip it.
-    *instruction_pointer += (!is_equal) ? 1 : 2;
+    if (!is_equal) 
+    {
+        increment_instruction(instruction_pointer);
+    }
+    else
+    {
+        skip_next_instruction(instruction_pointer);
+    }
 
     return true;
 }
 
-bool instruction_if_greater_than(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_if_greater_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     log_debug("Comparing parameters for greater than.\n");
     Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
@@ -85,12 +99,19 @@ bool instruction_if_greater_than(Program *program, Parameters *parameters, Instr
     }
     
     // If is not equal, run the next instruction. Otherwise skip it.
-    *instruction_pointer += (is_greater) ? 1 : 2;
+    if (is_greater) 
+    {
+        increment_instruction(instruction_pointer);
+    }
+    else
+    {
+        skip_next_instruction(instruction_pointer);
+    }
 
     return true;
 }
 
-bool instruction_if_lesser_than(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_if_lesser_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
      log_debug("Comparing parameters for lesser than.\n");
     Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
@@ -123,7 +144,14 @@ bool instruction_if_lesser_than(Program *program, Parameters *parameters, Instru
     }
     
     // If is not equal, run the next instruction. Otherwise skip it.
-    *instruction_pointer += (is_lesser) ? 1 : 2;
+    if (is_lesser) 
+    {
+        increment_instruction(instruction_pointer);
+    }
+    else
+    {
+        skip_next_instruction(instruction_pointer);
+    }
 
     return true;
 }
@@ -206,11 +234,11 @@ bool is_string_equal(Bank *first_bank, Bank *second_bank)
     return is_equal;
 }
 
-bool jump_to_label(Program *program, InstructionIndex *instruction_pointer, int target_label)
+bool jump_to_label(Program *program, InstructionPointer *instruction_pointer, int target_label)
 {
     // Find the instruction with the label.
     bool found_instruction_with_label = false;
-    InstructionIndex new_instruction_pointer = 
+    InstructionPointer new_instruction_pointer = 
         get_label_instruction_pointer(program, target_label,
             &found_instruction_with_label);
     
@@ -218,7 +246,7 @@ bool jump_to_label(Program *program, InstructionIndex *instruction_pointer, int 
     if (found_instruction_with_label)
     {
         log_debug("Jumping to instruction %02i.\n", new_instruction_pointer + 1);
-        *instruction_pointer = new_instruction_pointer + 1;
+        go_to_instruction(instruction_pointer, new_instruction_pointer + 1);
         return true;
     }
 
@@ -226,15 +254,15 @@ bool jump_to_label(Program *program, InstructionIndex *instruction_pointer, int 
     else
     {
         log_debug("Jumping to non-existent label. Going to next instruction.\n");
-        *instruction_pointer += 1;
+        increment_instruction(instruction_pointer);
         return false;
     }
 }
 
-InstructionIndex get_label_instruction_pointer(Program *program, int target_label, bool *target_found)
+InstructionPointer get_label_instruction_pointer(Program *program, int target_label, bool *target_found)
 {
     // Locate instruction with label.
-    for (InstructionIndex index = 0; index < get_array_count(program->instructions); index++)
+    for (InstructionPointer index = 0; index < get_array_count(program->instructions); index++)
     {
         Instruction *instruction = (Instruction *) get_array_item(program->instructions, index);
         if (instruction->instruction == INSTRUCTION_LABEL &&

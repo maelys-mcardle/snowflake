@@ -9,7 +9,7 @@
 #include "errors.h"
 #include "structures/array.h"
 
-bool instruction_noop(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_noop(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     // Unused parameters. This is done to suppress compiler warnings.
     (void)(program);
@@ -18,11 +18,11 @@ bool instruction_noop(Program *program, Parameters *parameters, InstructionIndex
     // Perform no-op.
     bool instruction_ok = true;
     log_debug("No-op instruction.\n");
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }
 
-bool instruction_output(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_output(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *bank = get_bank_from_parameter(program, &(parameters->second));
     Device device = get_device_from_parameter(parameters);
@@ -60,11 +60,11 @@ bool instruction_output(Program *program, Parameters *parameters, InstructionInd
         }  
     }
     
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }
 
-bool instruction_input(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_input(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     // Get the bank. If it doesn't exist, create it.
     Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->second));
@@ -114,11 +114,11 @@ bool instruction_input(Program *program, Parameters *parameters, InstructionInde
         }
     }
     
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }
 
-bool instruction_delete(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_delete(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *bank = get_bank_from_parameter(program, &(parameters->first));
     bool instruction_ok = true;
@@ -133,11 +133,11 @@ bool instruction_delete(Program *program, Parameters *parameters, InstructionInd
         instruction_ok = remove_program_bank(program, bank->identifier);
     }
     
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }
 
-bool instruction_type(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_type(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = false;
 
@@ -160,11 +160,11 @@ bool instruction_type(Program *program, Parameters *parameters, InstructionIndex
         instruction_ok = set_bank_integer(bank_to_store_type_in, 0);
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }
 
-bool instruction_copy(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_copy(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = false;
 
@@ -189,11 +189,11 @@ bool instruction_copy(Program *program, Parameters *parameters, InstructionIndex
         instruction_ok = remove_program_bank(program, bank_destination->identifier);
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok; 
 }
 
-bool instruction_convert(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_convert(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = false;
 
@@ -207,12 +207,12 @@ bool instruction_convert(Program *program, Parameters *parameters, InstructionIn
         instruction_ok = convert_bank(bank, to_type);
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }
 
 
-bool instruction_length(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_length(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *bank_to_store_length_in = get_or_new_bank_from_parameter(program, &(parameters->first));
     Bank *bank_to_get_length_from = get_bank_from_parameter(program, &(parameters->second));
@@ -244,6 +244,6 @@ bool instruction_length(Program *program, Parameters *parameters, InstructionInd
             set_bank_integer(bank_to_store_length_in, 0);
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }

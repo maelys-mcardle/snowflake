@@ -10,7 +10,7 @@
 /* Stores a variable in a bank; type is inferred.
  * VAR BANK LITERAL 
  */
-bool instruction_variable(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_variable(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     char *literal = parameters->second.literal;
 
@@ -31,7 +31,7 @@ bool instruction_variable(Program *program, Parameters *parameters, InstructionI
 /* Stores a boolean in a bank.
  * BLN BANK LITERAL 
  */
-bool instruction_boolean(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_boolean(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool is_boolean;
 
@@ -58,14 +58,14 @@ bool instruction_boolean(Program *program, Parameters *parameters, InstructionIn
         log_error(ERROR_MESG_LITERAL_IS_NOT_BOOLEAN, boolean_string);
     }
     
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return is_boolean;
 }
 
 /* Stores an integer in a bank.
  * INT BANK LITERAL 
  */
-bool instruction_integer(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_integer(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool is_integer;
 
@@ -92,14 +92,14 @@ bool instruction_integer(Program *program, Parameters *parameters, InstructionIn
         log_error(ERROR_MESG_LITERAL_IS_NOT_INTEGER, integer_string);
     }
     
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return is_integer;
 }
 
 /* Stores a float in a bank.
  * FLT BANK LITERAL 
  */
-bool instruction_float(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_float(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool is_float;
 
@@ -126,14 +126,14 @@ bool instruction_float(Program *program, Parameters *parameters, InstructionInde
         log_error(ERROR_MESG_LITERAL_IS_NOT_FLOAT, float_value);
     }
     
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return is_float;
 }
 
 /* Stores a string in a bank.
  * STR BANK LITERAL 
  */
-bool instruction_string(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_string(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     char *string = parameters->second.literal;
 
@@ -148,11 +148,11 @@ bool instruction_string(Program *program, Parameters *parameters, InstructionInd
             bank->identifier, string);
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return true;
 }
 
-bool instruction_array(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_array(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     // Create a bank if it doesn't exist.
     Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->first));
@@ -165,6 +165,6 @@ bool instruction_array(Program *program, Parameters *parameters, InstructionInde
             bank->identifier);
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return true;
 }

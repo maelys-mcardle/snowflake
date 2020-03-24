@@ -2,7 +2,7 @@
 #include "run_instruction_logic.h"
 #include "platforms/logging.h"
 
-bool instruction_not(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_not(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *parameter = get_bank_from_parameter(program, &(parameters->first));
     bool instruction_ok = false;
@@ -33,11 +33,11 @@ bool instruction_not(Program *program, Parameters *parameters, InstructionIndex 
         }
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }
 
-bool instruction_and(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_and(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
     Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
@@ -71,11 +71,11 @@ bool instruction_and(Program *program, Parameters *parameters, InstructionIndex 
         }
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }
 
-bool instruction_or(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_or(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
     Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
@@ -109,11 +109,11 @@ bool instruction_or(Program *program, Parameters *parameters, InstructionIndex *
         }
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }
 
-bool instruction_xor(Program *program, Parameters *parameters, InstructionIndex *instruction_pointer)
+bool instruction_xor(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *left_parameter = get_bank_from_parameter(program, &(parameters->first));
     Bank *right_parameter = get_bank_from_parameter(program, &(parameters->second));
@@ -147,6 +147,6 @@ bool instruction_xor(Program *program, Parameters *parameters, InstructionIndex 
         }
     }
 
-    *instruction_pointer += 1;
+    increment_instruction(instruction_pointer);
     return instruction_ok;
 }

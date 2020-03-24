@@ -4,9 +4,9 @@
 #include "structures/program.h"
 #include "structures/instructions.h"
 
-typedef bool (*InstructionFunction)(Program *, Parameters *, InstructionIndex *);
+typedef bool (*InstructionFunction)(Program *, Parameters *, InstructionPointer *);
 
 void run_program(Program *program);
-bool run_instruction(Program *program, Instruction *instruction, InstructionIndex *instruction_pointer);
+bool run_instruction(Program *program, Instruction *instruction, InstructionPointer *instruction_pointer);
 
 #endif

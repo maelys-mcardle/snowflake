@@ -5,8 +5,8 @@
 #include "bank.h"
 #include "array.h"
 
-typedef ArrayIndex InstructionIndex;
-typedef InstructionIndex InstructionCount;
+typedef ArrayIndex InstructionPointer;
+typedef InstructionPointer InstructionCount;
 typedef ArrayIndex BankIndex;
 typedef BankIndex BankCount;
 
@@ -28,5 +28,8 @@ Bank *new_bank_from_parameter(ParameterValue *parameter);
 Bank *get_or_new_bank_from_parameter(Program *program, ParameterValue *parameter);
 Device get_device_from_parameter(Parameters *parameters);
 BankType get_type_from_parameter(Parameters *parameters);
+void increment_instruction(InstructionPointer *instruction_pointer);
+void skip_next_instruction(InstructionPointer *instruction_pointer);
+void go_to_instruction(InstructionPointer *instruction_pointer, InstructionPointer new_location);
 
 #endif

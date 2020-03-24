@@ -118,7 +118,7 @@ void print_identifier(Program *program, InstructionCode current_instruction, Ins
 
 char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier)
 {
-    for (InstructionIndex i = 0; i < get_array_count(program->instructions); i++)
+    for (InstructionPointer i = 0; i < get_array_count(program->instructions); i++)
     {
         Instruction *instruction = (Instruction *) get_array_item(program->instructions, i);
         if (instruction->instruction == naming_instruction &&

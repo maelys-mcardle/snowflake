@@ -159,3 +159,18 @@ BankType get_type_from_parameter(Parameters *parameters)
     Device device = parameters->first.identifier;
     return device;
 }
+
+void increment_instruction(InstructionPointer *instruction_pointer)
+{
+    *instruction_pointer += 1;
+}
+
+void skip_next_instruction(InstructionPointer *instruction_pointer)
+{
+    *instruction_pointer += 2;
+}
+
+void go_to_instruction(InstructionPointer *instruction_pointer, InstructionPointer new_location)
+{
+    *instruction_pointer = new_location;
+}
