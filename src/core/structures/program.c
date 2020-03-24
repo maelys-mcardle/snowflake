@@ -156,8 +156,8 @@ Device get_device_from_parameter(Parameters *parameters)
 
 BankType get_type_from_parameter(Parameters *parameters)
 {
-    Device device = parameters->first.identifier;
-    return device;
+    BankType type = parameters->first.identifier;
+    return type;
 }
 
 void increment_instruction(InstructionPointer *instruction_pointer)
