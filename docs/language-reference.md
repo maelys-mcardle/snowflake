@@ -89,9 +89,9 @@ CODE  MNEMONIC  PARAMETERS      DESCRIPTION
                                 run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
 
-Note: Greater than / lesser than comparisons are only performed on 
-      INTEGER and FLOAT types. The subsequent instruction is skipped
-      for all other types.
+Note: Equality checks can be performed on all types except ARRAY.
+      Greater than / lesser than comparisons are only performed on 
+      INTEGER and FLOAT types.
 ```
 
 ```
