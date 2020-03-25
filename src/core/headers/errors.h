@@ -38,8 +38,6 @@
 #define ERROR_CODE_DEVICE_NOT_SUPPORTED_FOR_INPUT 16
 #define ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_INPUT "Device %02i does not support input.\n"
 #define ERROR_CODE_UNEXPECTED_NULL_VALUE 17
-#define ERROR_MESG_UNEXPECTED_NULL_VALUE "A value was NULL that should not have been.\n"
-#define ERROR_CODE_BUG_IN_CODE 18
-#define ERROR_MESG_BUG_IN_CODE "If you see this, there's a bug in the code.\n"
+#define ERROR_MESG_UNEXPECTED_NULL_VALUE "There is a bug with Snowflake! A value was NULL that shouldn't have been.\n"
 
 #endif
