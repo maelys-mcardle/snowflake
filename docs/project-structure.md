@@ -33,11 +33,13 @@ sure the interpeter is working as expected.
 
 ## The `src` directory
 
-The `src/cli` directory contains the code specific for the command-line program 
-(`main.c`, the code to read command-line arguments, print code, and read local files.) 
-The `src/cli/headers` directory is specific to the header files for that command-line code.
+The `src/cli` directory contains the code specific for the command-line program:
+* This is a front-end for the interpreter.
+* The `src/cli` directory contains the code for running the interpreter from the command-line.
+* The `src/cli/headers` directory is specific to the header files for that command-line code.
 
-The `src/core` directory contains the code for the Snowflake interpreter itself:
+The `src/core` directory contains the code for the inner workings of the interpreter:
+* This is the back-end of the interpreter.
 * The `src/core` directory contains the code to parse Snowflake code, and 
   execute Snowflake code.
 * The `src/core/headers` contains all the `.h` files.
