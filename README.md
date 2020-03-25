@@ -52,8 +52,9 @@ written in Snowflake which gives a random number between 1 and 6:
 03 00 01            ;; Output BANK @01
 ```
 
-To learn how to write code in Snowflake, see the [documentation][3].
-To other examples of code, see the [samples directory][4].
+To learn how to write code in Snowflake, see the [documentation][3]. 
+
+To see other examples of code, see the [samples directory][4].
 
 [1]: https://www.maelys.bio/
 [2]: docs/interpreter.md
