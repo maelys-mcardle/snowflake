@@ -59,20 +59,21 @@ bool set_program_bank(Program *program, Bank *new_bank)
     if (!bank_exists) 
     {
         // Bank index doesn't exist. Append it.
+        log_debug("Adding Bank %02i to program at Bank Index %i.\n", new_bank->identifier, bank_index);
         return append_bank_to_program(program, new_bank);
     }
     else
     {
         // Bank index already exists. Delete old. Replace with new.
         Bank *old_bank = (Bank *) remove_array_item(program->banks, bank_index);
-        if (old_bank == new_bank) {
-            log_error(ERROR_MESG_BUG_IN_CODE);
-        }
-        else
-        {
+
+        // If both banks are pointing to the same memory location, don't free it.
+        if (old_bank != new_bank) {
             free_bank(old_bank);
         }
-        log_debug("Adding Bank %02i to program at bank index %i.\n", new_bank->identifier, bank_index);
+        
+        // Indicate that the bank is being replaced.
+        log_debug("Replacing Bank %02i in program at Bank Index %i.\n", new_bank->identifier, bank_index);
         return insert_array_item(program->banks, (ArrayItem *) new_bank, bank_index);
     }
 }

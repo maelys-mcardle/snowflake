@@ -196,7 +196,7 @@ bool insert_array_item(Array *array, ArrayItem *item, ArrayIndex index_to_insert
     }
 
     // Shift all the items by one above the index to insert.
-    for (ArrayIndex index = index_to_insert + 1; index < array->count; index++)
+    for (ArrayIndex index = array->count - 1; index > index_to_insert; index--)
     {
         array->items[index] = array->items[index - 1];
     }
@@ -245,51 +245,4 @@ ArrayItem *remove_array_item(Array *array, ArrayIndex index_to_remove)
     resize_array(array, array->count - 1);
 
     return item;
-}
-
-bool shift_array_index(Array *array, ArrayIndex from_index, ArrayIndex to_index)
-{
-    log_debug("Moving item at position %i of array to position %i.\n", 
-        from_index, to_index);
-
-    if (array == NULL)
-    {
-        log_debug("Array is NULL.\n");
-        return false;
-    }
-
-    // Obtaining value that doesn't exist.
-    if (from_index >= array->count)
-    {
-        log_debug("Moving from an index that doesn't exist.\n");
-        return false;
-    }
-
-    // Get the item.
-    ArrayItem *item = array->items[from_index];
-
-    // Shift left all the items by one above the index to remove.
-    for (ArrayIndex index = from_index; index < array->count - 1; index++)
-    {
-        array->items[index] = array->items[index + 1];
-    }
-
-    // Shift right all the items by one above the index to insert.
-    for (ArrayIndex index = to_index + 1; index < array->count; index++)
-    {
-        array->items[index] = array->items[index - 1];
-    }
-
-    // Insert the item at the index. If it's at a value
-    // that is bigger than the array, add it to the end.
-    if (to_index < array->count)
-    {
-        array->items[to_index] = item;
-    }
-    else
-    {
-        array->items[array->count - 1] = item;
-    }
-    
-    return true;
 }

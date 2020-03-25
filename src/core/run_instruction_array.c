@@ -157,7 +157,10 @@ bool array_to_bank(Program *program, Parameters *parameters, ArrayPosition posit
         (position == FIRST) ?
             (Bank *) remove_array_first(array):
             (Bank *) remove_array_last(array);
-    
+
+    // A check was already made to make sure that the array wasn't empty.
+    // If no items was returned, then something is going wrong. Maybe
+    // out of memory.
     if (bank == NULL)
     {
         log_error(ERROR_MESG_UNEXPECTED_NULL_VALUE);
@@ -212,7 +215,14 @@ bool array_shift_positions(Program *program, Parameters *parameters, ArrayPositi
     ArrayIndex from_index = get_array_index_from_position(from, array, index_in_bank);
     ArrayIndex to_index = get_array_index_from_position(to, array, index_in_bank);
 
-    return shift_array_index(array, from_index, to_index);
+    bool move_ok = false;
+    ArrayItem *item = remove_array_item(array, from_index);
+    if (item != NULL)
+    {
+        move_ok = insert_array_item(array, item, to_index);
+    }
+    
+    return move_ok;
 }
 
 ArrayIndex get_array_index_from_position(ArrayPosition position, Array *array, ArrayIndex index)
