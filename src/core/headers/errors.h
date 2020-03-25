@@ -37,5 +37,7 @@
 #define ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_OUTPUT "Device %02i does not support output.\n"
 #define ERROR_CODE_DEVICE_NOT_SUPPORTED_FOR_INPUT 16
 #define ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_INPUT "Device %02i does not support input.\n"
+#define ERROR_CODE_UNEXPECTED_NULL_VALUE 17
+#define ERROR_MESG_UNEXPECTED_NULL_VALUE "A value was NULL that should not have been.\n"
 
 #endif

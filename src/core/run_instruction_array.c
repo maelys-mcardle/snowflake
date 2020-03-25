@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "platforms/logging.h"
 #include "structures/array.h"
+#include "errors.h"
 #include "run_instruction_array.h"
 
 bool instruction_bank_to_first(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
@@ -146,13 +147,25 @@ bool array_to_bank(Program *program, Parameters *parameters, ArrayPosition posit
     // Get the identifier for the bank.
     Identifier bank_identifier = parameters->second.identifier;
 
+    log_debug("Moving %s item of array in Bank %02i into Bank %02i.\n",
+        position == FIRST ? "first" : "last",
+        array_parameter->identifier,
+        bank_identifier);
+
     // Get the item from the array.
     Bank *bank =
         (position == FIRST) ?
             (Bank *) remove_array_first(array):
             (Bank *) remove_array_last(array);
     
-    // Set the identifier for the bank to the new value.
+    if (bank == NULL)
+    {
+        log_error(ERROR_MESG_UNEXPECTED_NULL_VALUE);
+        return false;
+    }
+
+    // The identifier on the bank retrieved from the array will be
+    // out of date. Change it to the new one.
     bank->identifier = bank_identifier;
 
     // Insert bank into program.

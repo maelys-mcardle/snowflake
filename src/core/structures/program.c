@@ -66,6 +66,7 @@ bool set_program_bank(Program *program, Bank *bank)
         // Bank index already exists. Delete old. Replace with new.
         Bank *old_bank = (Bank *) remove_array_item(program->banks, bank_index);
         free_bank(old_bank);
+        log_debug("Adding Bank %02i to program at bank index %i.\n", bank->identifier, bank_index);
         return insert_array_item(program->banks, (ArrayItem *) bank, bank_index);
     }
 }
