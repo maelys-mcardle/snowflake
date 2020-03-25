@@ -4,7 +4,7 @@
 #include "platforms/logging.h"
 #include "structures/string.h"
 
-bool initialize_input()
+bool initialize_input_devices()
 {
     return true;
 }

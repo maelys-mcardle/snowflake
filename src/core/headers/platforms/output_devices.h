@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include <stdbool.h>
 
-bool initialize_output();
+bool initialize_output_devices();
 bool send_to_standard_output(char *string);
 bool send_to_random(int seed);
 

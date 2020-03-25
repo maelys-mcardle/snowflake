@@ -64,8 +64,8 @@ void run_program(Program *program)
     if (program != NULL && 
         program->instructions != NULL)
     {
-        initialize_input();
-        initialize_output();
+        initialize_input_devices();
+        initialize_output_devices();
 
         InstructionPointer instruction_pointer = 0;
         while (instruction_pointer < get_instruction_count(program))

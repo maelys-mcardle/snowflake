@@ -3,7 +3,7 @@
 #include <time.h>
 #include "platforms/output_devices.h"
 
-bool initialize_output()
+bool initialize_output_devices()
 {
     // Seed the random number generator.
     srand(time(NULL));
