@@ -23,12 +23,12 @@ Array *new_array()
 
 void free_array(Array *array)
 {
-    log_debug("Free array.\n");
     if (array != NULL)
     {
+        log_debug("Free array of %i items.\n", array->count);
         for (ArrayIndex index = 0; index < array->count; index++)
         {
-            log_debug("Free array item %i of %i.\n", index + 1, array->count);
+            log_debug("Free item %i of %i.\n", index + 1, array->count);
             ArrayItem *item = array->items[index];
             array->free_array_item_function(item);
         }

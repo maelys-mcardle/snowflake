@@ -31,9 +31,13 @@ void free_program(Program *program)
 {
     if (program != NULL)
     {
-        // Free the program.
+        log_debug("Freeing all program instructions.\n");
         free_array(program->instructions);
+
+        log_debug("Freeing all program banks.\n");
         free_array(program->banks);
+
+        log_debug("Freeing program.\n");
         free(program);
     }
 }

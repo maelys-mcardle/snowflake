@@ -26,6 +26,7 @@ void free_bank(void *bank)
 {
     if (bank != NULL)
     {
+        log_debug("Freeing Bank %02i.\n", ((Bank *) bank)->identifier);
         free_string(bank);
         free_bank_array(bank);
         free(bank);

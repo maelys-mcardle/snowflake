@@ -14,6 +14,7 @@ void free_instruction(void *instruction_ptr)
     Instruction *instruction = (Instruction *) instruction_ptr;
     if (instruction != NULL)
     {
+        log_debug("Freeing instruction.\n");
         bool instruction_exists = false;
         InstructionInfo info = get_instruction_info(
             instruction->instruction, &instruction_exists);
