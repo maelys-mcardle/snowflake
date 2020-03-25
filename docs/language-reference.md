@@ -38,10 +38,9 @@ CODE  MNEMONIC  PARAMETERS       DESCRIPTION
 05     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
                                  BANK1 takes on the type of BANK2.
                                  If BANK2 is unallocated, BANK1 is deleted.
-06    TO        TYPE    BANK     Converts BANK to the type set by TYPE.
-                                 This is equivalent to types instructions below,
-                                 where the LITERAL is instead the value in the BANK.
+06    TO        TYPE    BANK     Converts the contents of BANK to the type set by TYPE.
                                  If BANK is unallocated, default values are used.
+                                 If TYPE is `15` (array), an empty array is created.
 07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1.
                                  This type is stored as an integer.
                                  If BANK2 is unallocated, stores 0 in BANK1.

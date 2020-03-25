@@ -15,8 +15,7 @@ Program *new_program()
         program->instructions = new_array();
         program->instructions->free_array_item_function = free_instruction;
 
-        program->banks = new_array();
-        program->banks->free_array_item_function = free_bank;
+        program->banks = new_bank_array();
     }
     else
     {

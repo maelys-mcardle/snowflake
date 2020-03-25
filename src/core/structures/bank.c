@@ -105,8 +105,23 @@ bool set_empty_bank_array(Bank *bank)
     log_debug("Set array for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
     bank->type = TYPE_ARRAY;
-    bank->value.array = new_array();
+    bank->value.array = new_bank_array();
     return true;
+}
+
+Array *new_bank_array()
+{
+    Array *array = new_array();
+    array->free_array_item_function = free_bank;
+    array->copy_array_item_function = copy_bank_array_item;
+    return array;
+}
+
+ArrayItem *copy_bank_array_item(ArrayItem *source_item)
+{
+    Bank *destination = new_bank(0);
+    copy_bank(destination, (Bank *) source_item);
+    return destination;
 }
 
 bool set_bank_array(Bank *bank, Array *value)

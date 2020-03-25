@@ -7,6 +7,8 @@
 51 00 02 ;; Bank @00 = ["A", "B"]
 51 00 03 ;; Bank @00 = ["A", "B", "C"]
 
+05 10 00 ;; Bank @10 = @00
+
 12 04 01 ;; Bank @04 = 1
 56 00 04 ;; Bank @00 = ["B", "A", "C"]
 
@@ -21,6 +23,25 @@
 03 00 05 ;; Output Bank @05 to screen
 
 52 00 05 ;; Bank @05 = "C"
+         ;; Bank @00 = []
+         
+03 00 05 ;; Output Bank @05 to screen
+
+08 00    ;; Delete Bank @00
+
+;; -----
+
+52 10 05 ;; Bank @05 = "A"
+         ;; Bank @10 = ["B", "C"]
+
+03 00 05 ;; Output Bank @05 to screen
+
+52 10 05 ;; Bank @05 = "B"
+         ;; Bank @10 = ["C"]
+         
+03 00 05 ;; Output Bank @05 to screen
+
+52 10 05 ;; Bank @05 = "C"
          ;; Bank @00 = []
          
 03 00 05 ;; Output Bank @05 to screen

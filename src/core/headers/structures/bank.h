@@ -62,4 +62,7 @@ int get_bank_as_integer(Bank *bank);
 float get_bank_as_float(Bank *bank);
 char *get_bank_as_string(Bank *bank);
 
+Array *new_bank_array();
+ArrayItem *copy_bank_array_item(ArrayItem *source_item);
+
 #endif
