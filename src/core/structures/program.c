@@ -50,24 +50,30 @@ bool append_instruction_to_program(Program *program, Instruction *instruction)
     return append_array(program->instructions, instruction);
 }
 
-bool set_program_bank(Program *program, Bank *bank)
+bool set_program_bank(Program *program, Bank *new_bank)
 {
     // Get the existing index of the bank, if it's set.
     bool bank_exists = false;
-    BankIndex bank_index = get_program_bank_index(program, bank->identifier, &bank_exists);
+    BankIndex bank_index = get_program_bank_index(program, new_bank->identifier, &bank_exists);
 
     if (!bank_exists) 
     {
         // Bank index doesn't exist. Append it.
-        return append_bank_to_program(program, bank);
+        return append_bank_to_program(program, new_bank);
     }
     else
     {
         // Bank index already exists. Delete old. Replace with new.
         Bank *old_bank = (Bank *) remove_array_item(program->banks, bank_index);
-        free_bank(old_bank);
-        log_debug("Adding Bank %02i to program at bank index %i.\n", bank->identifier, bank_index);
-        return insert_array_item(program->banks, (ArrayItem *) bank, bank_index);
+        if (old_bank == new_bank) {
+            log_error(ERROR_MESG_BUG_IN_CODE);
+        }
+        else
+        {
+            free_bank(old_bank);
+        }
+        log_debug("Adding Bank %02i to program at bank index %i.\n", new_bank->identifier, bank_index);
+        return insert_array_item(program->banks, (ArrayItem *) new_bank, bank_index);
     }
 }
 

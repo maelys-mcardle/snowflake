@@ -98,14 +98,14 @@ bool bank_to_array(Program *program, Parameters *parameters, ArrayPosition posit
     }
 
     // Add the bank to the array.
-    bool prepend_ok = 
+    bool operation_ok = 
         (position == FIRST) ? 
             prepend_array(array, (ArrayItem *) bank_parameter):
             append_array(array, (ArrayItem *) bank_parameter);
 
     // Clear the bank from the main program memory, now that it's in
     // the array.
-    if (prepend_ok)
+    if (operation_ok)
     {
         instruction_ok = 
             remove_program_bank_without_freeing(
