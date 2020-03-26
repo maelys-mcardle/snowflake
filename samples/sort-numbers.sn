@@ -34,7 +34,7 @@
 00 CHECK IF ALL NUMBERS ENTERED
 
 37 02                             ;;  +1 LOOP_ITERATION
-25 02 03                          ;; IF< LOOP_ITERATION MAX_NUM_TO_SORT
+25 02 01                          ;; IF< LOOP_ITERATION MAX_NUM_TO_SORT
 20 00                             ;;  -> ENTER_NUMBER_LOOP
 
 00 SORT NUMBERS
