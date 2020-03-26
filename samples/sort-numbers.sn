@@ -5,6 +5,12 @@
 02 02 LOOP_ITERATION             ;; @02 LOOP_ITERATION
 02 03 NUM_TO_PUT_IN_ARRAY        ;; @03 NUM_TO_PUT_IN_ARRAY
 02 04 ARRAY                      ;; @04 ARRAY
+02 05 SORTED_ARRAY               ;; @05 SORTED_ARRAY
+02 06 ARRAY_SIZE                 ;; @06 ARRAY_SIZE
+02 07 SORTED_ARRAY_SIZE          ;; @07 SORTED_ARRAY_SIZE
+02 08 LOWEST_NUM                 ;; @08 LOWEST_NUM
+02 09 ARRAY_INDEX                ;; @09 ARRAY_INDEX
+02 10 NUM_AT_INDEX               ;; @10 NUM_AT_INDEX
 
 00 ASK THE USER HOW MANY NUMBERS TO SORT
 
@@ -21,7 +27,7 @@
 12 02 0                           ;; INT LOOP_ITERATION 0
 15 04                             ;;  [] ARRAY
 
-01 00 ENTER_NUMBER_LOOP           ;; ### :00 ENTER_NUMBER_LOOP
+01 00 ENTER_NUMBER_LOOP_START     ;; ### :00 ENTER_NUMBER_LOOP_START
 14 00 Enter a number:             ;; STR QUESTION Enter a...
 03 00 00                          ;;  << OUT QUESTION
 
@@ -35,7 +41,23 @@
 
 37 02                             ;;  +1 LOOP_ITERATION
 25 02 01                          ;; IF< LOOP_ITERATION MAX_NUM_TO_SORT
-20 00                             ;;  -> ENTER_NUMBER_LOOP
+20 00                             ;;  -> ENTER_NUMBER_LOOP_START
 
 00 SORT NUMBERS
 
+15 05                             ;;  [] SORTED_ARRAY
+01 01 SORT_LOOP_START             ;; ### :01 SORT_LOOP_START
+
+00 CHECK ARRAY IS ALREADY SORTED
+
+09 06 04                          ;; LEN ARRAY_SIZE ARRAY
+09 07 05                          ;; LEN SORTED_ARRAY_SIZE SORTED_ARRAY
+22 06 07                          ;; IF= ARRAY_SIZE SORTED_ARRAY_SIZE
+20 02                             ;;  -> SORT_LOOP_END
+
+00 FIND THE LOWEST NUMBER
+
+12 09 0                           ;; INT ARRAY_INDEX 0
+
+
+01 02 SORT_LOOP_END               ;; ### :02 SORT_LOOP_END
