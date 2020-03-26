@@ -55,7 +55,7 @@ bool instruction_index_to_first(Program *program, Parameters *parameters, Instru
 
 bool instruction_index_to_last(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
-    bool instruction_ok = array_shift_positions(program, parameters, FIRST, LAST);
+    bool instruction_ok = array_shift_positions(program, parameters, INDEX, LAST);
     increment_instruction(instruction_pointer);
     return instruction_ok;
 }
