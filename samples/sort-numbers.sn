@@ -1,0 +1,41 @@
+00 NAME BANKS
+
+02 00 QUESTION                   ;; @00 QUESTION
+02 01 MAX_NUM_TO_SORT            ;; @01 MAX_NUM_TO_SORT
+02 02 LOOP_ITERATION             ;; @02 LOOP_ITERATION
+02 03 NUM_TO_PUT_IN_ARRAY        ;; @03 NUM_TO_PUT_IN_ARRAY
+02 04 ARRAY                      ;; @04 ARRAY
+
+00 ASK THE USER HOW MANY NUMBERS TO SORT
+
+14 00 Amount of numbers to sort:  ;; STR QUESTION Amount of...
+03 00 00                          ;;  << OUT QUESTION
+
+00 GET THE NUMBER
+
+04 01 01                          ;;  >>  IN MAX_NUM_TO_SORT 
+06 12 01                          ;;  TO INT MAX_NUM_TO_SORT 
+
+00 ASK THE USER TO ENTER NUMBERS
+
+12 02 0                           ;; INT LOOP_ITERATION 0
+15 04                             ;;  [] ARRAY
+
+01 00 ENTER_NUMBER_LOOP           ;; ### :00 ENTER_NUMBER_LOOP
+14 00 Enter a number:             ;; STR QUESTION Enter a...
+03 00 00                          ;;  << OUT QUESTION
+
+00 GET THE NUMBER AND ADD TO ARRAY
+
+04 01 03                          ;;  >> IN NUM_TO_PUT_IN_ARRAY
+06 12 03                          ;;  TO INT NUM_TO_PUT_IN_ARRAY
+50 04 03                          ;; +[] ARRAY NUM_TO_PUT_IN_ARRAY
+
+00 CHECK IF ALL NUMBERS ENTERED
+
+37 02                             ;;  +1 LOOP_ITERATION
+25 02 03                          ;; IF< LOOP_ITERATION MAX_NUM_TO_SORT
+20 00                             ;;  -> ENTER_NUMBER_LOOP
+
+00 SORT NUMBERS
+

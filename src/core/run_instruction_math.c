@@ -280,3 +280,38 @@ bool instruction_square_root(Program *program, Parameters *parameters, Instructi
     increment_instruction(instruction_pointer);
     return instruction_ok;
 }
+
+bool instruction_increment(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+{
+    Bank *bank = get_bank_from_parameter(program, &(parameters->first));
+    bool instruction_ok = false;
+
+    if (bank != NULL)
+    {
+        log_debug("Incrementing Bank %02i.\n", 
+            bank->identifier);
+
+        switch (bank->type)
+        {
+            case TYPE_INTEGER:
+                log_debug("Incrementing integer.\n");
+                instruction_ok = 
+                    set_bank_integer(bank, 
+                        get_bank_as_integer(bank) + 1);
+                break;
+            case TYPE_FLOAT: 
+                log_debug("Incrementing float.\n");
+                 instruction_ok = 
+                    set_bank_float(bank, 
+                        get_bank_as_float(bank) + 1);
+                break;
+            default:
+                log_debug("Ignoring increment - it's for an unsupported type.\n");
+                instruction_ok = false;
+                break;
+        }
+    }
+
+    increment_instruction(instruction_pointer);
+    return instruction_ok;
+}
