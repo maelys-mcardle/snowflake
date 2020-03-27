@@ -53,6 +53,9 @@ number between 1 and 6:
 03 00 01            ;; Output BANK @01
 ```
 
+In the example above, everything after the double semi-colon (`;;`) is
+a comment and won't be executed.
+
 To learn how to write code in Snowflake, see the [documentation][3]. 
 
 To see other examples of code, see the [samples directory][4].
