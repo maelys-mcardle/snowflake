@@ -12,5 +12,7 @@ bool instruction_modulo(Program *program, Parameters *parameters, InstructionPoi
 bool instruction_power(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
 bool instruction_square_root(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
 bool instruction_increment(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
+bool instruction_decrement(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
+bool add_value(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer, int value_to_add);
 
 #endif

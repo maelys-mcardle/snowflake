@@ -283,30 +283,40 @@ bool instruction_square_root(Program *program, Parameters *parameters, Instructi
 
 bool instruction_increment(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
+    return add_value(program, parameters, instruction_pointer, 1);
+}
+
+bool instruction_decrement(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
+{
+    return add_value(program, parameters, instruction_pointer, -1);
+}
+
+bool add_value(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer, int value_to_add)
+{
     Bank *bank = get_bank_from_parameter(program, &(parameters->first));
     bool instruction_ok = false;
 
     if (bank != NULL)
     {
-        log_debug("Incrementing Bank %02i.\n", 
-            bank->identifier);
+        log_debug("Adding %i to Bank %02i.\n", 
+            value_to_add, bank->identifier);
 
         switch (bank->type)
         {
             case TYPE_INTEGER:
-                log_debug("Incrementing integer.\n");
+                log_debug("Adding %i to integer.\n", value_to_add);
                 instruction_ok = 
                     set_bank_integer(bank, 
-                        get_bank_as_integer(bank) + 1);
+                        get_bank_as_integer(bank) + value_to_add);
                 break;
             case TYPE_FLOAT: 
-                log_debug("Incrementing float.\n");
+                log_debug("Adding %i to float.\n", value_to_add);
                  instruction_ok = 
                     set_bank_float(bank, 
-                        get_bank_as_float(bank) + 1);
+                        get_bank_as_float(bank) + value_to_add);
                 break;
             default:
-                log_debug("Ignoring increment - it's for an unsupported type.\n");
+                log_debug("Ignoring addition - it's for an unsupported type.\n");
                 instruction_ok = false;
                 break;
         }

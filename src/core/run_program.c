@@ -44,6 +44,7 @@ InstructionFunction all_instruction_functions[] = {
     [INSTRUCTION_POWER]           = &instruction_power,
     [INSTRUCTION_SQUARE_ROOT]     = &instruction_square_root,
     [INSTRUCTION_INCREMENT]       = &instruction_increment,
+    [INSTRUCTION_DECREMENT]       = &instruction_decrement,
     [INSTRUCTION_NOT]             = &instruction_not,
     [INSTRUCTION_AND]             = &instruction_and,
     [INSTRUCTION_OR]              = &instruction_or,

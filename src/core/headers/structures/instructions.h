@@ -36,6 +36,7 @@ typedef enum {
     INSTRUCTION_POWER           = 35,
     INSTRUCTION_SQUARE_ROOT     = 36,
     INSTRUCTION_INCREMENT       = 37,
+    INSTRUCTION_DECREMENT       = 38,
     INSTRUCTION_NOT             = 40,
     INSTRUCTION_AND             = 41,
     INSTRUCTION_OR              = 42,

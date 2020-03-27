@@ -58,6 +58,14 @@
 00 FIND THE LOWEST NUMBER
 
 12 09 0                           ;; INT ARRAY_INDEX 0
+52 04 08                          ;; -[] ARRAY LOWEST_NUM
+
+01 03 GET_LOWEST_NUMBER_LOOP_START 
+
+00 CHECK IF ARRAY EXHAUSTED
+
+09 06 04                          ;; LEN ARRAY_SIZE ARRAY
+22 06 09                          ;; IF= ARRAY_SIZE ARRAY_INDEX
 
 
 01 02 SORT_LOOP_END               ;; ### :02 SORT_LOOP_END
