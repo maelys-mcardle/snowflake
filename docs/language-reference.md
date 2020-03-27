@@ -275,7 +275,7 @@ Variables automatically infer a type based on the input:
 * If a decimal number is entered, its stored as a float.
 * If any other characters are entered, its stored as a string.
 
-### Boolean Values
+### Boolean
 
 Boolean are stored as a `0` or a `1`.
 
@@ -301,7 +301,7 @@ Floats are 32-bit floating point values.
 Strings are in ASCII with the default interpreter implementation. Unicode is not
 supported with the default interpreter implementation.
 
-### Arrays
+### Array
 
 Arrays store values; these can be boolean, integers, float, string, or other arrays.
 Arrays are zero-indexed and dynamically resized to fit their contents. The index of the
