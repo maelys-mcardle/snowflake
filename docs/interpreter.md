@@ -29,10 +29,12 @@ following command. It will create the directory `snowflake` which
 will contain all this code:
 
 ```sh
-# Clone the repository
 git clone git@github.com:maelys-mcardle/snowflake.git
+```
 
-# Switch into the repository directory
+Then switch into the `snowflake` directory:
+
+```sh
 cd snowflake
 ```
 
