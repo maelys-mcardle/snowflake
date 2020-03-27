@@ -160,14 +160,14 @@ Note: These instructions are only performed on ARRAY types.
 
 ## Parameters
 
-Parameters can be **banks**, **labels**, **devices**, **types** or **literals**. All of these, except
-for literals, are represented exclusively as positive integers.
+Parameters can be **banks**, **labels**, **devices**, **types** or **literals**.
 
 ### Banks
 
 *Positive integer.*
 
-Snowflake uses the concept of a **bank** to store a value. These values have a type, which can either be boolean, integer, floating point, string or array. 
+Snowflake uses the concept of a **bank** to store a value. These values have a type, which can 
+either be boolean, integer, floating point, string or array. 
 
 Banks are refered to by a numeric identifier. The numbers must be positive, but don't have to 
 follow one another, nor be sequential. There can be gaps between these numbers. Banks can also 
