@@ -165,6 +165,8 @@ for literals, are represented exclusively as positive integers.
 
 ### Banks
 
+*Positive integer.*
+
 Snowflake uses the concept of a **bank** to store a value. These values have a type, which can either be boolean, integer, floating point, string or array. 
 
 Banks are refered to by a numeric identifier. The numbers must be positive, but don't have to 
@@ -176,6 +178,8 @@ by an instruction.
 
 ### Labels
 
+*Positive integer.*
+
 Snowflake uses the concept of a **label** for jumping between different points in the code. 
 
 Labels are refered to by a numeric identifier. The numbers must be positive, but don't have to 
@@ -185,6 +189,8 @@ instruction. While the label will be refered to by its numeric identifier in the
 interpreter will substitute the label number for a name when the code is displayed by the interpreter.
 
 ### Devices
+
+*Positive integer.*
 
 Devices refer to hardware or a virtual device that the Snowflake interpreter can interact with. This
 is how data is sent to the screen, and received from the keyboard.
@@ -214,6 +220,8 @@ It will return a number corresponding to the key code of the button presed.
 
 ### Types
 
+*Positive integer.*
+
 Types are a code used to specify the type of data stored in a Bank.
 
 While the type will be refered to by its numeric identifier in the code, the interpreter will substitute 
@@ -233,7 +241,11 @@ TYPE  MNEMONIC  DESCRIPTION
 
 ### Literals
 
-Literals can be variable, boolean, integer, floating point, or string.
+*String.*
+
+Literals represent any value. They are initially taken in as a string,
+and then interpreted as a variable, boolean, integer, floating point, 
+or string depending on the instruction.
 
 #### Variable
 
@@ -258,7 +270,7 @@ VALUE   MEANING
 
 #### Integer
 
-Integers are 16 or 32 bit numbers, depending on the compilation target of the interpreter.
+Integers are 16 or 32 bit, depending on the compilation target of the interpreter.
 
 #### Float
 
