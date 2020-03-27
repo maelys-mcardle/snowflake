@@ -19,8 +19,9 @@ BASIC
 
 CODE  MNEMONIC  PARAMETERS       DESCRIPTION
 ---  ---------  --------------   -----------
-00   !!!        [LITERAL]        A comment.
-                                 Defining a comment is optional.
+00   !!!        [LITERAL]        A comment that is embedded with the code.
+                                 For comments not embedded in the code, use
+                                 double semi-colons (";;").
 01   ###        LABEL  [LITERAL] A label. 
                                  Labels are positive integers.
                                  Names are optional. They are strings when defined.
