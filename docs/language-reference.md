@@ -269,3 +269,16 @@ Floats are 32-bit floating point values.
 Strings are in ASCII with the default interpreter implementation. Unicode is not
 supported with the default interpreter implementation.
 
+## Comments
+
+There's two types of comments in Snowflake. There are comments that are embedded with the
+code, and will be kept during execution. Use instruction `00` (`!!!`) for those. 
+
+Then there are comments that are discarded on execution. These follow the double 
+semi-colon `;;`. They can be on the same line as an instruction. For example:
+
+```
+00 SET AN INTEGER
+12 00 42            ;; Set Bank 00 to be an integer of value 42.
+```
+
