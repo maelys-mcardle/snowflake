@@ -32,9 +32,10 @@ More information is found in the [interpreter documentation][2].
 
 ## Writing Snowflake Code
 
-Snowflake code looks a bit like machine code. There are instructions, devices,
-banks and labels and these are all written using digits. Here's one program
-written in Snowflake which gives a random number between 1 and 6:
+Snowflake code looks a bit like machine code. Most of it is written using 
+digits, reflecting the limited input devices its intended to support for
+programming it. Here's one program written in Snowflake which gives a random 
+number between 1 and 6:
 
 ```
 ;; Output title.
