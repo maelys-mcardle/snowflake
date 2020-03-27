@@ -134,7 +134,7 @@ ARRAYS
 
 CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
-15    []        BANK            Converts BANK into an empty array.
+15    []        BANK            Stores an empty array into BANK.
 50   +[]        BANK1   BANK2   Moves the contents of BANK2 into a 
                                 new first item of the BANK1 array.
 51   []+        BANK1   BANK2   Moves the contents of BANK2 into a 
