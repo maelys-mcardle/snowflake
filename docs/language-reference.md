@@ -276,8 +276,9 @@ There's two types of comments in Snowflake:
   * Use instruction `00` (`!!!`) for those.
   * These comments behave like any other instruction.
 * There are comments that are discarded on execution. 
-  * Use the semi-colon `;;` for those. 
-  * This can be on the same line as an instruction. 
+  * These comments follow a double semi-colon `;;`.
+  * These comments can be on their own line.
+  * These comments can also be on the same line as an instruction. 
 
 Here's an example with both types of comments:
 
