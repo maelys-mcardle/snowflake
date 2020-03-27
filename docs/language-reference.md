@@ -154,7 +154,7 @@ CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 
 Note: These instructions are only performed on ARRAY types.
       All other types are ignored. Instruction is ignored if the
-      bank array isn't defined.
+      bank array isn't defined. Arrays are zero-indexed.
 ```
 
 ## Parameters
