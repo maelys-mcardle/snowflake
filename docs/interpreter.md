@@ -7,18 +7,33 @@ it must first be **compiled**.
 ## Prerequisites
 
 Compilation of the interpreter requires [make][1], a C compiler 
-with [c11][2] support, as well as [glibc][3].
+with [c11][2] support, as well as [glibc][3]. Downloading the
+interpreter requires [git][4].
 
 On Ubuntu, run the following to install these requirements:
 
 ```sh
-sudo apt install build-essential
+sudo apt install build-essential git
 ```
 
 On Fedora, run the following to install these requirements:
 
 ```sh
-dnf install @development-tools
+dnf install @development-tools git
+```
+
+## Download Repository
+
+To download this repository containing the interpreter, run the
+following command. It will create the directory `snowflake` which
+will contain all this code:
+
+```sh
+# Clone the repository
+git clone git@github.com:maelys-mcardle/snowflake.git
+
+# Switch into the repository directory
+cd snowflake
 ```
 
 ## Compile Interpreter
@@ -89,3 +104,4 @@ make clean
 [1]: https://en.wikipedia.org/wiki/Make_(software)
 [2]: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 [3]: https://en.wikipedia.org/wiki/GNU_C_Library
+[4]: https://git-scm.com/
