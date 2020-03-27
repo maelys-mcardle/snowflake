@@ -247,40 +247,6 @@ Literals represent any value. They are initially taken in as a string,
 and then interpreted as a variable, boolean, integer, floating point, 
 or string depending on the instruction.
 
-#### Variable
-
-Variables automatically infer a type based on the input:
-
-* If a whole number is entered, its stored as an integer.
-* If a decimal number is entered, its stored as a float.
-* If any other characters are entered, its stored as a string.
-
-#### Boolean Values
-
-Boolean are stored as a `0` or a `1`.
-
-```
-VALUE   MEANING
-------  -------
-0       False
-1       True
-```
-
-**Note**: Non-zero values are treated as true.
-
-#### Integer
-
-Integers are 16 or 32 bit, depending on the compilation target of the interpreter.
-
-#### Float
-
-Floats are 32-bit floating point values.
-
-#### String
-
-Strings are in ASCII with the default interpreter implementation. Unicode is not
-supported with the default interpreter implementation.
-
 ## Comments
 
 There's two types of comments in Snowflake:
@@ -299,3 +265,44 @@ Here's an example with both types of comments:
 12 00 42            ;; Set Bank 00 to be an integer of value 42.
 ```
 
+## More on Types
+
+### Variable
+
+Variables automatically infer a type based on the input:
+
+* If a whole number is entered, its stored as an integer.
+* If a decimal number is entered, its stored as a float.
+* If any other characters are entered, its stored as a string.
+
+### Boolean Values
+
+Boolean are stored as a `0` or a `1`.
+
+```
+VALUE   MEANING
+------  -------
+0       False
+1       True
+```
+
+**Note**: Non-zero values are treated as true.
+
+### Integer
+
+Integers are 16 or 32 bit, depending on the compilation target of the interpreter.
+
+### Float
+
+Floats are 32-bit floating point values.
+
+### String
+
+Strings are in ASCII with the default interpreter implementation. Unicode is not
+supported with the default interpreter implementation.
+
+### Arrays
+
+Arrays store values; these can be boolean, integers, float, string, or other arrays.
+Arrays are zero-indexed and dynamically resized to fit their contents. The index of the
+array is a positive integer.
