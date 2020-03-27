@@ -160,7 +160,7 @@ Note: These instructions are only performed on ARRAY types.
 ## Parameters
 
 Parameters can be **banks**, **labels**, **devices**, **types** or **literals**. All of these, except
-for literals, are represented exclusively as positive whole numbers.
+for literals, are represented exclusively as positive integers.
 
 ### Banks
 
