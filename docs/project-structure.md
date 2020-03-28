@@ -26,7 +26,7 @@ This repository has the following directory structure.
 The root project directory contains the following:
 * The `docs` directory contains documentation for how to code in Snowflake.
 * The `samples` directory contains example Snowflake code files.
-* The `src` directory contains all the code for the project. 
+* The `src` directory contains all the code for the interpreter. 
 * The `test` directory contains Snowflake files that test that the interpreter
   itself doesn't have any bugs.
 * The `LICENSE` file contains the copyright license for the project.
