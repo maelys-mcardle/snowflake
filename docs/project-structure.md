@@ -4,19 +4,19 @@ This repository has the following directory structure.
 
 ```
 .
-├── docs
-├── samples
-├── src
-│   ├── cli
-│   │   └── headers
-│   └── core
-│       ├── headers
-│       │   ├── platforms
-│       │   └── structures
-│       ├── platforms
-│       │   └── linux
-│       └── structures
-├── test
+├── docs/
+├── samples/
+├── src/
+│   ├── cli/
+│   │   └── headers/
+│   └── core/
+│       ├── headers/
+│       │   ├── platforms/
+│       │   └── structures/
+│       ├── platforms/
+│       │   └── linux/
+│       └── structures/
+├── test/
 ├── LICENSE
 ├── Makefile
 └── README.md
