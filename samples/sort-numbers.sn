@@ -1,6 +1,6 @@
 00 NAME BANKS
 
-02 00 QUESTION                   ;; @00 QUESTION
+02 00 MESSAGE                    ;; @00 MESSAGE
 02 01 MAX_NUM_TO_SORT            ;; @01 MAX_NUM_TO_SORT
 02 02 LOOP_ITERATION             ;; @02 LOOP_ITERATION
 02 03 NUM_TO_PUT_IN_ARRAY        ;; @03 NUM_TO_PUT_IN_ARRAY
@@ -15,8 +15,8 @@
 
 00 ASK THE USER HOW MANY NUMBERS TO SORT
 
-14 00 Amount of numbers to sort:  ;; STR QUESTION Amount of...
-03 00 00                          ;;  << OUT QUESTION
+14 00 Amount of numbers to sort:  ;; STR MESSAGE Amount of...
+03 00 00                          ;;  << OUT MESSAGE
 
 00 GET THE NUMBER
 
@@ -29,8 +29,8 @@
 15 04                             ;;  [] ARRAY
 
 01 00 ENTER_NUMBER_LOOP_START     ;; ### :00 ENTER_NUMBER_LOOP_START
-14 00 Enter a number:             ;; STR QUESTION Enter a...
-03 00 00                          ;;  << OUT QUESTION
+14 00 Enter a number:             ;; STR MESSAGE Enter a...
+03 00 00                          ;;  << OUT MESSAGE
 
 00 GET THE NUMBER AND ADD TO ARRAY
 
@@ -51,9 +51,9 @@
 
 00 CHECK ARRAY IS ALREADY SORTED
 
+12 11 0                           ;; INT ZERO 0
 09 06 04                          ;; LEN ARRAY_SIZE ARRAY
-09 07 05                          ;; LEN SORTED_ARRAY_SIZE SORTED_ARRAY
-22 06 07                          ;; IF= ARRAY_SIZE SORTED_ARRAY_SIZE
+22 06 11                          ;; IF= ARRAY_SIZE ZERO
 20 02                             ;;  -> SORT_LOOP_END
 
 00 FIND THE LOWEST NUMBER
@@ -66,13 +66,15 @@
 00 CHECK IF ARRAY EXHAUSTED
 
 09 06 04                          ;; LEN ARRAY_SIZE ARRAY
-38 06                             ;;  -1 ARRAY_SIZE
-22 06 09                          ;; IF= ARRAY_SIZE ARRAY_INDEX
+25 09 06                          ;; IF< ARRAY_INDEX ARRAY_SIZE
+20 11                             ;;  -> GRAB_NUMBER_FROM_ARRAY
 20 04                             ;;  -> GET_LOWEST_NUMBER_LOOP_END
 
-00 GRAB NUMBER FROM ARRAY
+01 11 GRAB_NUMBER_FROM_ARRAY
 
+56 04 09                          ;; [<] ARRAY ARRAY_INDEX
 52 04 10                          ;; -[] ARRAY NUM_AT_INDEX
+
 25 10 08                          ;; IF< NUM_AT_INDEX LOWEST_NUM
 20 05                             ;;  -> NUM_AT_INDEX_IS_LOWER
 20 06                             ;;  -> NUM_AT_INDEX_IS_HIGHER
@@ -80,12 +82,14 @@
 01 05 NUM_AT_INDEX_IS_LOWER
 
 50 04 08                          ;; +[] ARRAY LOWEST_NUM
+57 04 09                          ;; [>] ARRAY ARRAY_INDEX
 05 08 10                          ;;   = LOWEST_NUM NUM_AT_INDEX
 20 07                             ;;  -> GO_TO_NEXT_ARRAY_ITEM
 
 01 06 NUM_AT_INDEX_IS_HIGHER
 
 50 04 10                          ;; +[] ARRAY NUM_AT_INDEX
+57 04 09                          ;; [>] ARRAY ARRAY_INDEX
 20 07                             ;;  -> GO_TO_NEXT_ARRAY_ITEM
 
 01 07 GO_TO_NEXT_ARRAY_ITEM
@@ -100,11 +104,13 @@
 
 01 02 SORT_LOOP_END               ;; ### :02 SORT_LOOP_END
 
+14 00 Sorted numbers:             ;; STR MESSAGE Sorted...
+03 00 00                          ;;  << OUT MESSAGE
+
 01 08 PRINT_SORTED_NUMBER_START
 
 00 CHECK IF ARRAY EXHAUSTED
 
-12 11 0                           ;; INT ZERO 0
 09 06 05                          ;; LEN ARRAY_SIZE SORTED_ARRAY
 22 06 11                          ;; IF= ARRAY_SIZE ZERO
 20 09                             ;;  -> PRINT_SORTED_NUMBER_END
@@ -116,3 +122,5 @@
 20 08                             ;;  -> PRINT_SORTED_NUMBER_START
 
 01 09 PRINT_SORTED_NUMBER_END
+
+01 10 PROGRAM_END
