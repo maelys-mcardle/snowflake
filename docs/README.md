@@ -23,7 +23,7 @@ The documentation is split into the following files:
 * Break-down of a snowflake file ([hello-world.md][8]).
 * The snowflake file format ([file-format.md][11]).
 * How this repository is laid out ([project-structure.md][10]).
-* Why this project exists([rationale.md][12]).
+* Why this project exists ([rationale.md][12]).
 
 [1]: https://en.wikipedia.org/wiki/E.161
 [2]: https://en.wikipedia.org/wiki/KIM-1
