@@ -1,3 +1,7 @@
+;;
+;; NAME BANKS
+;;
+
 00 NAME BANKS
 
 02 00 MESSAGE                    ;; @00 MESSAGE
@@ -12,6 +16,10 @@
 02 09 ARRAY_INDEX                ;; @09 ARRAY_INDEX
 02 10 NUM_AT_INDEX               ;; @10 NUM_AT_INDEX
 02 11 ZERO                       ;; @11 ZERO
+
+;;
+;; GET NUMBERS TO SORT
+;;
 
 00 ASK THE USER HOW MANY NUMBERS TO SORT
 
@@ -36,13 +44,17 @@
 
 04 01 03                          ;;  >> IN NUM_TO_PUT_IN_ARRAY
 06 12 03                          ;;  TO INT NUM_TO_PUT_IN_ARRAY
-50 04 03                          ;; +[] ARRAY NUM_TO_PUT_IN_ARRAY
+51 04 03                          ;; []+ ARRAY NUM_TO_PUT_IN_ARRAY
 
 00 CHECK IF ALL NUMBERS ENTERED
 
 37 02                             ;;  +1 LOOP_ITERATION
 25 02 01                          ;; IF< LOOP_ITERATION MAX_NUM_TO_SORT
 20 00                             ;;  -> ENTER_NUMBER_LOOP_START
+
+;;
+;; SORT NUMBERS
+;;
 
 00 SORT NUMBERS
 
@@ -56,7 +68,7 @@
 22 06 11                          ;; IF= ARRAY_SIZE ZERO
 20 02                             ;;  -> SORT_LOOP_END
 
-00 FIND THE LOWEST NUMBER
+00 GRAB THE FIRST NUMBER
 
 12 09 0                           ;; INT ARRAY_INDEX 0
 52 04 08                          ;; -[] ARRAY LOWEST_NUM
@@ -82,7 +94,6 @@
 01 05 NUM_AT_INDEX_IS_LOWER
 
 50 04 08                          ;; +[] ARRAY LOWEST_NUM
-57 04 09                          ;; [>] ARRAY ARRAY_INDEX
 05 08 10                          ;;   = LOWEST_NUM NUM_AT_INDEX
 20 07                             ;;  -> GO_TO_NEXT_ARRAY_ITEM
 
@@ -103,6 +114,10 @@
 20 01                             ;;  -> SORT_LOOP_START
 
 01 02 SORT_LOOP_END               ;; ### :02 SORT_LOOP_END
+
+;;
+;; SHOW SORTED NUMBERS
+;;
 
 14 00 Sorted numbers:             ;; STR MESSAGE Sorted...
 03 00 00                          ;;  << OUT MESSAGE
