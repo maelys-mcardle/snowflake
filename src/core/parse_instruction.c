@@ -184,6 +184,7 @@ bool store_parameter(ParameterType parameter_type, char *parameter_string, int m
         if (parameter_value->literal != NULL)
         {
             strncpy(parameter_value->literal, parameter_string, allocation_size);
+            parameter_value->literal[allocation_size] = CHAR_END_STRING;
             return true;
         }
         else

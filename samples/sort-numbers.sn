@@ -1,8 +1,6 @@
-;;
-;; NAME BANKS
-;;
-
+00
 00 NAME BANKS
+00
 
 02 00 MESSAGE                    ;; @00 MESSAGE
 02 01 MAX_NUM_TO_SORT            ;; @01 MAX_NUM_TO_SORT
@@ -17,21 +15,18 @@
 02 10 NUM_AT_INDEX               ;; @10 NUM_AT_INDEX
 02 11 ZERO                       ;; @11 ZERO
 
-;;
-;; GET NUMBERS TO SORT
-;;
+00
+00 GET NUMBERS TO SORT
+00
 
 00 ASK THE USER HOW MANY NUMBERS TO SORT
 
 14 00 Amount of numbers to sort:  ;; STR MESSAGE Amount of...
 03 00 00                          ;;  << OUT MESSAGE
-
-00 GET THE NUMBER
-
 04 01 01                          ;;  >>  IN MAX_NUM_TO_SORT 
 06 12 01                          ;;  TO INT MAX_NUM_TO_SORT 
 
-00 ASK THE USER TO ENTER NUMBERS
+00 ASK THE USER TO ENTER NUMBERS TO BE SORTED
 
 12 02 0                           ;; INT LOOP_ITERATION 0
 15 04                             ;;  [] ARRAY
@@ -40,23 +35,17 @@
 14 00 Enter a number:             ;; STR MESSAGE Enter a...
 03 00 00                          ;;  << OUT MESSAGE
 
-00 GET THE NUMBER AND ADD TO ARRAY
-
 04 01 03                          ;;  >> IN NUM_TO_PUT_IN_ARRAY
 06 12 03                          ;;  TO INT NUM_TO_PUT_IN_ARRAY
 51 04 03                          ;; []+ ARRAY NUM_TO_PUT_IN_ARRAY
-
-00 CHECK IF ALL NUMBERS ENTERED
 
 37 02                             ;;  +1 LOOP_ITERATION
 25 02 01                          ;; IF< LOOP_ITERATION MAX_NUM_TO_SORT
 20 00                             ;;  -> ENTER_NUMBER_LOOP_START
 
-;;
-;; SORT NUMBERS
-;;
-
+00
 00 SORT NUMBERS
+00
 
 15 05                             ;;  [] SORTED_ARRAY
 01 01 SORT_LOOP_START             ;; ### :01 SORT_LOOP_START
@@ -115,27 +104,46 @@
 
 01 02 SORT_LOOP_END               ;; ### :02 SORT_LOOP_END
 
-;;
-;; SHOW SORTED NUMBERS
-;;
+00
+00 SHOW SORTED NUMBERS
+00
 
 14 00 Sorted numbers:             ;; STR MESSAGE Sorted...
 03 00 00                          ;;  << OUT MESSAGE
 
-01 08 PRINT_SORTED_NUMBER_START
+01 08 PRINT_SORTED_NUMBERS_LOOP
 
 00 CHECK IF ARRAY EXHAUSTED
 
 09 06 05                          ;; LEN ARRAY_SIZE SORTED_ARRAY
 22 06 11                          ;; IF= ARRAY_SIZE ZERO
-20 09                             ;;  -> PRINT_SORTED_NUMBER_END
+20 09                             ;;  -> PROGRAM_END
 
 00 GRAB AND PRINT NUMBER
 
 52 05 08                          ;; -[] SORTED_ARRAY LOWEST_NUM
 03 00 08                          ;;  << OUT LOWEST_NUM
-20 08                             ;;  -> PRINT_SORTED_NUMBER_START
+20 08                             ;;  -> PRINT_SORTED_NUMBERS_LOOP
 
-01 09 PRINT_SORTED_NUMBER_END
+01 09 PROGRAM_END
 
-01 10 PROGRAM_END
+
+;; ./snowflake --run samples/sort-numbers.sn 
+;; Amount of numbers to sort:
+;; 5
+;; Enter a number:
+;; 23
+;; Enter a number:
+;; 42
+;; Enter a number:
+;; 3
+;; Enter a number:
+;; 12
+;; Enter a number:
+;; 9
+;; Sorted numbers:
+;; 3
+;; 9
+;; 12
+;; 23
+;; 42
