@@ -1,5 +1,5 @@
 ;; ----------
-00 NAME BANKS
+;; NAME BANKS
 ;; ----------
 
 02 00 MESSAGE                    ;; @00 MESSAGE
@@ -16,7 +16,7 @@
 02 11 ZERO                       ;; @11 ZERO
 
 ;; -------------------
-00 GET NUMBERS TO SORT
+;; GET NUMBERS TO SORT
 ;; -------------------
 
 00 ASK THE USER HOW MANY NUMBERS TO SORT
@@ -44,7 +44,7 @@
 20 00                             ;;  -> ENTER_NUMBER_LOOP
 
 ;; ------------
-00 SORT NUMBERS
+;; SORT NUMBERS
 ;; ------------
 
 15 05                             ;;  [] SORTED_ARRAY
@@ -102,7 +102,7 @@
 20 01                             ;;  -> SORT_LOOP_START
 
 ;; -------------------
-00 SHOW SORTED NUMBERS
+;; SHOW SORTED NUMBERS
 ;; ------------------
 
 01 02 SHOW_SORTED_NUMBERS
@@ -125,6 +125,85 @@
 20 08                             ;;  -> PRINT_NUMBERS_LOOP
 
 01 09 PROGRAM_END
+
+;; ./snowflake --print samples/sort-numbers.sn 
+;;     @00 MESSAGE
+;;     @01 MAX_NUM_TO_SORT
+;;     @02 LOOP_ITERATION
+;;     @03 NUM_TO_PUT_IN_ARRAY
+;;     @04 ARRAY
+;;     @05 SORTED_ARRAY
+;;     @06 ARRAY_SIZE
+;;     @07 SORTED_ARRAY_SIZE
+;;     @08 LOWEST_NUM
+;;     @09 ARRAY_INDEX
+;;     @10 NUM_AT_INDEX
+;;     @11 ZERO
+;; !!! ASK THE USER HOW MANY NUMBERS TO SORT 
+;; STR MESSAGE Amount of numbers to sort:
+;;  << OUT MESSAGE
+;;  >>  IN MAX_NUM_TO_SORT
+;;  TO INT MAX_NUM_TO_SORT
+;; !!! ASK THE USER TO ENTER NUMBERS TO BE SORTED 
+;; INT LOOP_ITERATION 0
+;;  [] ARRAY 
+;; ### :00 ENTER_NUMBER_LOOP
+;; STR MESSAGE Enter a number:
+;;  << OUT MESSAGE
+;;  >>  IN NUM_TO_PUT_IN_ARRAY
+;;  TO INT NUM_TO_PUT_IN_ARRAY
+;; []+ ARRAY NUM_TO_PUT_IN_ARRAY
+;;  +1 LOOP_ITERATION 
+;; IF< LOOP_ITERATION MAX_NUM_TO_SORT
+;;  -> ENTER_NUMBER_LOOP 
+;;  [] SORTED_ARRAY 
+;; ### :01 SORT_LOOP_START
+;; !!! CHECK ARRAY IS ALREADY SORTED 
+;; INT ZERO 0
+;; LEN ARRAY_SIZE ARRAY
+;; IF= ARRAY_SIZE ZERO
+;;  -> SHOW_SORTED_NUMBERS 
+;; !!! GRAB THE FIRST NUMBER 
+;; INT ARRAY_INDEX 0
+;; -[] ARRAY LOWEST_NUM
+;; ### :03 GET_LOWEST_NUMBER_LOOP_START
+;; !!! CHECK IF ARRAY EXHAUSTED 
+;; LEN ARRAY_SIZE ARRAY
+;; IF< ARRAY_INDEX ARRAY_SIZE
+;;  -> GRAB_NUMBER_FROM_ARRAY 
+;;  -> GET_LOWEST_NUMBER_LOOP_END 
+;; ### :11 GRAB_NUMBER_FROM_ARRAY
+;; [<] ARRAY ARRAY_INDEX
+;; -[] ARRAY NUM_AT_INDEX
+;; IF< NUM_AT_INDEX LOWEST_NUM
+;;  -> NUM_AT_INDEX_IS_LOWER 
+;;  -> NUM_AT_INDEX_IS_HIGHER 
+;; ### :05 NUM_AT_INDEX_IS_LOWER
+;; +[] ARRAY LOWEST_NUM
+;;   = LOWEST_NUM NUM_AT_INDEX
+;;  -> GO_TO_NEXT_ARRAY_ITEM 
+;; ### :06 NUM_AT_INDEX_IS_HIGHER
+;; +[] ARRAY NUM_AT_INDEX
+;;  -> GO_TO_NEXT_ARRAY_ITEM 
+;; ### :07 GO_TO_NEXT_ARRAY_ITEM
+;;  +1 ARRAY_INDEX 
+;;  -> GET_LOWEST_NUMBER_LOOP_START 
+;; ### :04 GET_LOWEST_NUMBER_LOOP_END
+;; []+ SORTED_ARRAY LOWEST_NUM
+;;  -> SORT_LOOP_START 
+;; ### :02 SHOW_SORTED_NUMBERS
+;; STR MESSAGE Sorted numbers:
+;;  << OUT MESSAGE
+;; ### :08 PRINT_NUMBERS_LOOP
+;; !!! CHECK IF ALL NUMBERS PRINTED 
+;; LEN ARRAY_SIZE SORTED_ARRAY
+;; IF= ARRAY_SIZE ZERO
+;;  -> PROGRAM_END 
+;; !!! GRAB NEXT NUMBER AND PRINT IT 
+;; -[] SORTED_ARRAY LOWEST_NUM
+;;  << OUT LOWEST_NUM
+;;  -> PRINT_NUMBERS_LOOP 
+;; ### :09 PROGRAM_END
 
 ;; ./snowflake --run samples/sort-numbers.sn 
 ;; Amount of numbers to sort:
