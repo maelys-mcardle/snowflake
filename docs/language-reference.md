@@ -22,11 +22,10 @@ CODE  MNEMONIC  PARAMETERS       DESCRIPTION
 00   !!!        [LITERAL]        A comment that is embedded with the code.
                                  For comments not embedded in the code, use
                                  double semi-colons (";;").
-01   ###        LABEL  [LITERAL] A label. 
+01   ###        LABEL  [LITERAL] A label: this defines where jumps can jump to.
                                  Labels are positive integers.
-                                 The literal is an optional name to assign the label.
-                                 Names are strings.
-                                 Labels and their names should be unique.
+                                 Labels can be assigned a name with a string stored
+                                 in the literal.
                                  You can only define each label once.
 02              BANK    LITERAL  Assign a name to a BANK. 
                                  Banks are positive integers.
