@@ -1,4 +1,4 @@
-# Directory Structure
+# Project Directory Structure
 
 This repository has the following directory structure.
 
