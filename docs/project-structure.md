@@ -24,8 +24,8 @@ The root project directory contains the following:
 * The `docs` directory contains documentation for how to code in Snowflake.
 * The `samples` directory contains example Snowflake code files.
 * The `src` directory contains all the code for the project. 
-* The `test` directory contains Snowflake files and their expected results to make
-  sure the interpeter is working as expected.
+* The `test` directory contains Snowflake files that test that the interpreter
+  itself doesn't have any bugs.
 * The `README.md` file contains information about this project.
 * The `Makefile` file contains the script to compile the interpreter.
 
