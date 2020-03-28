@@ -16,7 +16,10 @@ This repository has the following directory structure.
 │       ├── platforms
 │       │   └── linux
 │       └── structures
-└── test
+├── test
+├── LICENSE
+├── Makefile
+└── README.md
 
 ```
 
@@ -26,8 +29,9 @@ The root project directory contains the following:
 * The `src` directory contains all the code for the project. 
 * The `test` directory contains Snowflake files that test that the interpreter
   itself doesn't have any bugs.
-* The `README.md` file contains information about this project.
+* The `LICENSE` file contains the copyright license for the project.
 * The `Makefile` file contains the script to compile the interpreter.
+* The `README.md` file contains information about this project.
 
 ## The `src` directory
 
