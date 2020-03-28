@@ -89,7 +89,6 @@
 01 06 NUM_AT_INDEX_IS_HIGHER
 
 50 04 10                          ;; +[] ARRAY NUM_AT_INDEX
-57 04 09                          ;; [>] ARRAY ARRAY_INDEX
 20 07                             ;;  -> GO_TO_NEXT_ARRAY_ITEM
 
 01 07 GO_TO_NEXT_ARRAY_ITEM
