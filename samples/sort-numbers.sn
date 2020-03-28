@@ -1,3 +1,9 @@
+;; Sorting algorithm example code.
+;;
+;; The user enters a set of numbers. Then the algorith iterates over the
+;; set, removes the number with the lowest value, and appends that number
+;; to a second array. The numbers in that second array are thus in order.
+
 ;; ----------
 ;; NAME BANKS
 ;; ----------
