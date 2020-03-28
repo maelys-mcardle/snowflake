@@ -30,7 +30,7 @@ The root project directory contains the following:
 * The `test` directory contains Snowflake files that test that the interpreter
   itself doesn't have any bugs.
 * The `LICENSE` file contains the copyright license for the project.
-* The `Makefile` file contains the script to compile the interpreter.
+* The `Makefile` file is the script to compile the interpreter.
 * The `README.md` file contains information about this project.
 
 ## The `src` directory
