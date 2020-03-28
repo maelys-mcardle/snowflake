@@ -24,14 +24,15 @@ CODE  MNEMONIC  PARAMETERS       DESCRIPTION
                                  double semi-colons (";;").
 01   ###        LABEL  [LITERAL] A label. 
                                  Labels are positive integers.
-                                 Names are optional. They are strings when defined.
+                                 The literal is an optional name to assign the label.
+                                 Names are strings.
                                  Labels and their names should be unique.
-                                 Re-defining a label is undefined behaviour.
+                                 You can only define each label once.
 02              BANK    LITERAL  Assign a name to a BANK. 
                                  Banks are positive integers.
                                  Names are strings.
                                  This instruction is not required to use a bank.
-                                 Re-defining a bank is undefined behaviour.
+                                 You can only name each bank once.
 03    <<        DEVICE  BANK     Send BANK contents to a DEVICE.
                                  Devices are positive integers.
 04    >>        DEVICE  BANK     Receive DEVICE data into a BANK.
