@@ -37,7 +37,7 @@ bool instruction_add(Program *program, Parameters *parameters, InstructionPointe
                 log_debug("Doing string concatenation.\n");
                 left_string = get_bank_as_string(left_parameter);
                 right_string = get_bank_as_string(right_parameter);
-                combined_string = concatenate_strings(left_string, right_string, true);
+                combined_string = join_strings(left_string, right_string, true);
                 instruction_ok = set_bank_string(left_parameter, combined_string);
                 if (left_string != NULL) free(left_string);
                 if (right_string != NULL) free(right_string);

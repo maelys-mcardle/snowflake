@@ -106,7 +106,7 @@ bool strip_comment(char *line, int max_line_length)
     return false;
 }
 
-char *concatenate_strings(char *first, char *second, bool separate_with_space)
+char *join_strings(char *first, char *second, bool separate_with_space)
 {
     // Compute the final size of the string.
     int concatenated_size =

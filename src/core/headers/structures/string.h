@@ -12,7 +12,7 @@ bool is_whitespace(char character);
 bool is_string_end(char character);
 bool strip_end_whitespace(char *string, int max_string_length);
 bool strip_comment(char *line, int max_line_length);
-char *concatenate_strings(char *first, char *second, bool separate_with_space);
+char *join_strings(char *first, char *second, bool separate_with_space);
 bool has_period(char *string);
 
 #endif
