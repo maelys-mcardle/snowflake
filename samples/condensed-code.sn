@@ -7,7 +7,7 @@
 ;; To condense code:
 ;; - Remove comments
 ;; - Remove instruction 00 (embedded comment)
-;; - Remove literal from instruction 01 (label)
+;; - Remove name from instruction 01 (label)
 ;; - Remove instruction 02 (name bank)
 ;; - Remove all leading zeroes from banks, devices, etc.
 
