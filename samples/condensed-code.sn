@@ -9,7 +9,7 @@
 ;; - Remove instruction 00 (embedded comment)
 ;; - Remove name from instruction 01 (label)
 ;; - Remove instruction 02 (name bank)
-;; - Remove all leading zeroes from banks, devices, etc.
+;; - Remove all leading zeroes
 
 14 0 Amount of numbers to sort:
 3 0 0
