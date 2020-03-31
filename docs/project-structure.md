@@ -8,7 +8,6 @@ This repository has the following directory structure.
 ├── samples/
 ├── src/
 │   ├── cli/
-│   │   └── headers/
 │   └── core/
 │       ├── headers/
 │       │   ├── platforms/
@@ -35,10 +34,8 @@ The root project directory contains the following:
 
 ## The `src` directory
 
-The `src/cli` directory contains the code specific for the command-line program:
-* This is a front-end for the interpreter.
-* The `src/cli` directory contains the code for running the interpreter from the command-line.
-* The `src/cli/headers` directory is specific to the header files for that command-line code.
+The `src/cli` directory contains the code specific for the interpreter's
+command-line application.
 
 The `src/core` directory contains the code for the inner workings of the interpreter:
 * This is the back-end of the interpreter.
