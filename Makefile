@@ -30,8 +30,8 @@ main.o: src/cli/main.c src/cli/headers/main.h
 parse_file.o: src/core/parse_file.c src/core/headers/parse_file.h
 	cc -c src/core/parse_file.c $(CFLAGS)
 
-print_program.o: src/cli/print_program.c src/cli/headers/print_program.h 
-	cc -c src/cli/print_program.c $(CFLAGS)
+print_program.o: src/core/print_program.c src/core/headers/print_program.h 
+	cc -c src/core/print_program.c $(CFLAGS)
 
 parse_instruction.o: src/core/parse_instruction.c src/core/headers/parse_instruction.h
 	cc -c src/core/parse_instruction.c $(CFLAGS)

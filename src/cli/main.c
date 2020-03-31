@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <getopt.h>
-#include "headers/main.h"
-#include "parse_file.h"
-#include "headers/print_program.h"
-#include "errors.h"
 #include "structures/program.h"
 #include "platforms/logging.h"
+#include "headers/main.h"
+#include "parse_file.h"
+#include "print_program.h"
+#include "errors.h"
 #include "run_program.h"
 
 /* Starting point of the program. */
