@@ -6,7 +6,7 @@
 #include "headers/print_program.h"
 
 /* Prints an entire Snowflake program. */
-char *print_program(Program *program)
+char *get_printable_program(Program *program)
 {
     log_debug("Printing program...\n");
     char *program_string = NULL;
@@ -18,7 +18,7 @@ char *print_program(Program *program)
         {
             log_debug("[Instruction %02i]\n", i);
             Instruction *instruction = get_instruction(program, i);
-            char *instruction_string = print_instruction(program, instruction);
+            char *instruction_string = get_printable_instruction(program, instruction);
 
             if (instruction_string != NULL)
             {
@@ -32,7 +32,7 @@ char *print_program(Program *program)
 }
 
 /* Prints a line of Snowflake. */
-char *print_instruction(Program *program, Instruction *instruction)
+char *get_printable_instruction(Program *program, Instruction *instruction)
 {
     bool instruction_exists = false;
     InstructionInfo instruction_info = get_instruction_info(
@@ -53,7 +53,7 @@ char *print_instruction(Program *program, Instruction *instruction)
     char *instruction_string = append_string(NULL, mnemonic);
 
     // Print first parameter.
-    char *first_parameter = print_parameter(
+    char *first_parameter = get_printable_parameter(
         program,
         instruction->instruction,
         instruction_info.parameters.first, 
@@ -67,7 +67,7 @@ char *print_instruction(Program *program, Instruction *instruction)
     }
 
     // Print second parameter.
-    char *second_parameter = print_parameter(
+    char *second_parameter = get_printable_parameter(
         program,
         instruction->instruction,
         instruction_info.parameters.second, 
@@ -87,7 +87,7 @@ char *print_instruction(Program *program, Instruction *instruction)
 /* Prints a parameter, if one is defined.
  * @return True if a parameter is defined; false if not.
  */
-char *print_parameter(Program *program, InstructionCode current_instruction, ParameterType type, ParameterValue value)
+char *get_printable_parameter(Program *program, InstructionCode current_instruction, ParameterType type, ParameterValue value)
 {
     (void)(program);
     (void)(current_instruction);
@@ -96,13 +96,13 @@ char *print_parameter(Program *program, InstructionCode current_instruction, Par
         case PARAMETER_NONE:
             return NULL;
         case PARAMETER_BANK:
-            return print_identifier(program, current_instruction, INSTRUCTION_NAME_BANK, value.identifier, "@%02i");
+            return get_printable_identifier(program, current_instruction, INSTRUCTION_NAME_BANK, value.identifier, "@%02i");
         case PARAMETER_LABEL:
-            return print_identifier(program, current_instruction, INSTRUCTION_LABEL, value.identifier, ":%02i");
+            return get_printable_identifier(program, current_instruction, INSTRUCTION_LABEL, value.identifier, ":%02i");
         case PARAMETER_TYPE:
-            return print_type(value.identifier);
+            return get_printable_type(value.identifier);
         case PARAMETER_DEVICE:
-            return print_device(value.identifier);
+            return get_printable_device(value.identifier);
         case PARAMETER_LITERAL:
             if (value.literal != NULL)
             {
@@ -114,7 +114,7 @@ char *print_parameter(Program *program, InstructionCode current_instruction, Par
     }
 }
 
-char *print_identifier(Program *program, InstructionCode current_instruction, InstructionCode naming_instruction, int target_identifier, char *format)
+char *get_printable_identifier(Program *program, InstructionCode current_instruction, InstructionCode naming_instruction, int target_identifier, char *format)
 {
     // Lookup name of label.
     if (current_instruction != naming_instruction)
@@ -150,7 +150,7 @@ char *get_name(Program *program, InstructionCode naming_instruction, int target_
 /* Prints a device, if one is defined.
  * @return True if a device is defined; false if not.
  */
-char *print_device(int device)
+char *get_printable_device(int device)
 {
     switch (device)
     {
@@ -167,7 +167,7 @@ char *print_device(int device)
     }
 }
 
-char *print_type(int type)
+char *get_printable_type(int type)
 {
     switch (type)
     {
