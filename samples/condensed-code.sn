@@ -3,6 +3,13 @@
 ;; This is the same code as "sort-numbers.sn", but with
 ;; all the extraneous information removed, reducing the
 ;; program to 397 bytes.
+;;
+;; To condense code:
+;; - Remove comments
+;; - Remove instruction 00 (embedded comment)
+;; - Remove name from instruction 01 (label)
+;; - Remove instruction 02 (name bank)
+;; - Remove all leading zeroes
 
 14 0 Amount of numbers to sort:
 3 0 0
