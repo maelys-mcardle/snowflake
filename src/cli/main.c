@@ -5,11 +5,11 @@
 #include <getopt.h>
 #include "structures/program.h"
 #include "platforms/logging.h"
-#include "headers/main.h"
 #include "parse_file.h"
 #include "print_program.h"
 #include "errors.h"
 #include "run_program.h"
+#include "main.h"
 
 /* Starting point of the program. */
 int main (int argc, char **argv) 
