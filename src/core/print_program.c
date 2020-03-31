@@ -89,8 +89,6 @@ char *get_printable_instruction(Program *program, Instruction *instruction)
  */
 char *get_printable_parameter(Program *program, InstructionCode current_instruction, ParameterType type, ParameterValue value)
 {
-    (void)(program);
-    (void)(current_instruction);
     switch (get_parameter_type_without_flags(type))
     {
         case PARAMETER_NONE:
@@ -132,21 +130,6 @@ char *get_printable_identifier(Program *program, InstructionCode current_instruc
     return append_string(NULL, numeric_identifier);
 }
 
-char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier)
-{
-    for (InstructionPointer i = 0; i < get_instruction_count(program); i++)
-    {
-        Instruction *instruction = get_instruction(program, i);
-        if (instruction->instruction == naming_instruction &&
-            instruction->parameters.first.identifier == target_identifier)
-        {
-            return instruction->parameters.second.literal;
-        }
-    }
-
-    return NULL;
-}
-
 /* Prints a device, if one is defined.
  * @return True if a device is defined; false if not.
  */
@@ -186,4 +169,19 @@ char *get_printable_type(int type)
         default:
             return NULL;
     }
+}
+
+char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier)
+{
+    for (InstructionPointer i = 0; i < get_instruction_count(program); i++)
+    {
+        Instruction *instruction = get_instruction(program, i);
+        if (instruction->instruction == naming_instruction &&
+            instruction->parameters.first.identifier == target_identifier)
+        {
+            return instruction->parameters.second.literal;
+        }
+    }
+
+    return NULL;
 }
