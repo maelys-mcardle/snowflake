@@ -1,9 +1,6 @@
 #ifndef SNOWFLAKE_ERRORS_H
 #define SNOWFLAKE_ERRORS_H
 
-#include <stdio.h>
-#include <stdarg.h>
-
 #define SUCCESS 0
 #define ERROR_CODE_NO_FILE_SPECIFIED 1
 #define ERROR_MESG_NO_FILE_SPECIFIED "Please specify a file to open.\n"

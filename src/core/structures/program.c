@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include "structures/program.h"
 #include "errors.h"
 #include "platforms/logging.h"

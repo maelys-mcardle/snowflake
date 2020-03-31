@@ -1,7 +1,6 @@
 #ifndef SNOWFLAKE_INPUT_DEVICES_H
 #define SNOWFLAKE_INPUT_DEVICES_H
 
-#include <stdio.h>
 #include <stdbool.h>
 #define MAX_INPUT_LENGTH 255
 

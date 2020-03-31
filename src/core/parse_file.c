@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "parse_file.h"
 #include "parse_instruction.h"
