@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include "structures/string.h"
 
@@ -125,6 +126,36 @@ char *join_strings(char *first, char *second, bool separate_with_space)
 
     // Return generated string.
     return output_string;
+}
+
+char *append_string(char *full_text, char *to_append)
+{
+    if (to_append != NULL)
+    {
+        size_t new_size = 
+            ((full_text != NULL) ? strlen(full_text) : 0 ) + 
+            strlen(to_append) + 1;
+        
+        char *appended_full_text = (char *) realloc(full_text, new_size);
+
+        if (appended_full_text != NULL)
+        {
+            if(full_text != NULL)
+            {
+                strncat(appended_full_text, to_append, new_size - 1);
+                appended_full_text[new_size -1] = CHAR_END_STRING;
+                return appended_full_text;
+            }
+            else
+            {
+                memcpy(appended_full_text, to_append, new_size - 1);
+                appended_full_text[new_size -1] = CHAR_END_STRING;
+                return appended_full_text;
+            }
+        } 
+    }
+
+    return full_text;
 }
 
 bool has_period(char *string)

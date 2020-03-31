@@ -51,7 +51,12 @@ int parse_snowflake_file_and_run(bool print_code, bool run_code, char *snowflake
     // Print out the code.
     if (print_code)
     {
-        print_program(program);
+        char *program_string = print_program(program);
+        if (program_string != NULL)
+        {
+            printf("%s", program_string);
+            free(program_string);
+        }
     }
 
     // Execute the code.

@@ -14,5 +14,6 @@ bool strip_end_whitespace(char *string, int max_string_length);
 bool strip_comment(char *line, int max_line_length);
 char *join_strings(char *first, char *second, bool separate_with_space);
 bool has_period(char *string);
+char *append_string(char *full_text, char *to_append);
 
 #endif

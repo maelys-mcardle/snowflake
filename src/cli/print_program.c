@@ -2,12 +2,14 @@
 #include "platforms/logging.h"
 #include "structures/devices.h"
 #include "structures/array.h"
+#include "structures/string.h"
 #include "headers/print_program.h"
 
 /* Prints an entire Snowflake program. */
-void print_program(Program *program)
+char *print_program(Program *program)
 {
     log_debug("Printing program...\n");
+    char *program_string = NULL;
 
     if (program != NULL && 
         program->instructions != NULL)
@@ -16,104 +18,118 @@ void print_program(Program *program)
         {
             log_debug("[Instruction %02i]\n", i);
             Instruction *instruction = get_instruction(program, i);
-            print_instruction(program, instruction);
+            char *instruction_string = print_instruction(program, instruction);
+
+            if (instruction_string != NULL)
+            {
+                program_string = append_string(program_string, instruction_string);
+                free(instruction_string);
+            }
         }
     }
+
+    return program_string; 
 }
 
 /* Prints a line of Snowflake. */
-void print_instruction(Program *program, Instruction *instruction)
+char *print_instruction(Program *program, Instruction *instruction)
 {
     bool instruction_exists = false;
     InstructionInfo instruction_info = get_instruction_info(
         instruction->instruction, &instruction_exists);
 
+    // If instruction doesn't exist, return NULL.
+    if (!instruction_exists)
+    {
+        return NULL;
+    }
+
     // Print mnemonic.
-    printf("%c%c%c ",
+    char mnemonic[] = {
         instruction_info.mnemonic[0],
         instruction_info.mnemonic[1],
-        instruction_info.mnemonic[2]);
+        instruction_info.mnemonic[2],
+        CHAR_END_STRING };
+    char *instruction_string = append_string(NULL, mnemonic);
 
     // Print first parameter.
-    bool has_parameter = print_parameter(
+    char *first_parameter = print_parameter(
         program,
         instruction->instruction,
         instruction_info.parameters.first, 
         instruction->parameters.first);
 
-    // Print the space that separates the parameter.
-    if (has_parameter)
+    if (first_parameter != NULL)
     {
-        printf(" ");
+        instruction_string = append_string(instruction_string, " ");
+        instruction_string = append_string(instruction_string, first_parameter);
+        free(first_parameter);
     }
 
     // Print second parameter.
-    print_parameter(
+    char *second_parameter = print_parameter(
         program,
         instruction->instruction,
         instruction_info.parameters.second, 
         instruction->parameters.second);
+    
+    if (second_parameter != NULL)
+    {
+        instruction_string = append_string(instruction_string, " ");
+        instruction_string = append_string(instruction_string, second_parameter);
+        free(second_parameter);
+    }
 
     // Print end of line.
-    printf("\n");
+    return append_string(instruction_string, "\n");
 }
 
 /* Prints a parameter, if one is defined.
  * @return True if a parameter is defined; false if not.
  */
-bool print_parameter(Program *program, InstructionCode current_instruction, ParameterType type, ParameterValue value)
+char *print_parameter(Program *program, InstructionCode current_instruction, ParameterType type, ParameterValue value)
 {
+    (void)(program);
+    (void)(current_instruction);
     switch (get_parameter_type_without_flags(type))
     {
         case PARAMETER_NONE:
-            log_debug("none: ");
-            return false;
+            return NULL;
         case PARAMETER_BANK:
-            log_debug("bank: ");
-            print_identifier(program, current_instruction, INSTRUCTION_NAME_BANK, value.identifier, "@%02i");
-            return true;
+            return print_identifier(program, current_instruction, INSTRUCTION_NAME_BANK, value.identifier, "@%02i");
         case PARAMETER_LABEL:
-            log_debug("label: ");
-            print_identifier(program, current_instruction, INSTRUCTION_LABEL, value.identifier, ":%02i");
-            return true;
+            return print_identifier(program, current_instruction, INSTRUCTION_LABEL, value.identifier, ":%02i");
         case PARAMETER_TYPE:
-            log_debug("type: ");
             return print_type(value.identifier);
         case PARAMETER_DEVICE:
-            log_debug("device: ");
             return print_device(value.identifier);
         case PARAMETER_LITERAL:
-            log_debug("literal: ");
             if (value.literal != NULL)
             {
-                printf("%s", value.literal);
-                return true;
+                return append_string(NULL, value.literal);
             }
-            return false;
+            return NULL;
         default:
-            return false;
+            return NULL;
     }
 }
 
-void print_identifier(Program *program, InstructionCode current_instruction, InstructionCode naming_instruction, int target_identifier, char *format)
+char *print_identifier(Program *program, InstructionCode current_instruction, InstructionCode naming_instruction, int target_identifier, char *format)
 {
-    bool found_name = false;
-
     // Lookup name of label.
     if (current_instruction != naming_instruction)
     {
         char *identifier_name = get_name(program, naming_instruction, target_identifier);
         if (identifier_name != NULL)
         {
-            printf("%s", identifier_name);
-            found_name = true;
+            return append_string(NULL, identifier_name);
         }
     }
 
-    if (!found_name)
-    {
-        printf(format, target_identifier);
-    }
+    // Did not find name.
+    char numeric_identifier[MAX_IDENTIFIER_SIZE];
+    snprintf(numeric_identifier, MAX_IDENTIFIER_SIZE, format, target_identifier);
+    return append_string(NULL, numeric_identifier);
 }
 
 char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier)
@@ -134,50 +150,40 @@ char *get_name(Program *program, InstructionCode naming_instruction, int target_
 /* Prints a device, if one is defined.
  * @return True if a device is defined; false if not.
  */
-bool print_device(int device)
+char *print_device(int device)
 {
     switch (device)
     {
         case DEVICE_OUT:
-            printf(DEVICE_OUT_STRING);
-            return true;
+            return append_string(NULL, DEVICE_OUT_STRING);
         case DEVICE_IN:
-            printf(DEVICE_IN_STRING);
-            return true;
+            return append_string(NULL, DEVICE_IN_STRING);
         case DEVICE_BTN:
-            printf(DEVICE_BTN_STRING);
-            return true;
+            return append_string(NULL, DEVICE_BTN_STRING);
         case DEVICE_RND:
-            printf(DEVICE_RND_STRING);
-            return true;
+            return append_string(NULL, DEVICE_RND_STRING);
         default:
-            return false;
+            return NULL;
     }
 }
 
-bool print_type(int type)
+char *print_type(int type)
 {
     switch (type)
     {
         case TYPE_VARIABLE:
-            printf(TYPE_VARIABLE_STRING);
-            return true;
+            return append_string(NULL, TYPE_VARIABLE_STRING);
         case TYPE_BOOLEAN:
-            printf(TYPE_BOOLEAN_STRING);
-            return true;
+            return append_string(NULL, TYPE_BOOLEAN_STRING);
         case TYPE_INTEGER:
-            printf(TYPE_INTEGER_STRING);
-            return true;
+            return append_string(NULL, TYPE_INTEGER_STRING);
         case TYPE_FLOAT:
-            printf(TYPE_FLOAT_STRING);
-            return true;
+            return append_string(NULL, TYPE_FLOAT_STRING);
         case TYPE_STRING:
-            printf(TYPE_STRING_STRING);
-            return true;
+            return append_string(NULL, TYPE_STRING_STRING);
         case TYPE_ARRAY:
-            printf(TYPE_ARRAY_STRING);
-            return true;
+            return append_string(NULL, TYPE_ARRAY_STRING);
         default:
-            return false;
+            return NULL;
     }
 }
