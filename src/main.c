@@ -83,7 +83,7 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
     static struct option long_options[] =
     {
         {ARGUMENT_DEBUG_FULL, no_argument, 0, ARGUMENT_DEBUG},
-        {ARGUMENT_PRINT_FULL, no_argument, 0, ARGUMENT_DEBUG},
+        {ARGUMENT_PRINT_FULL, no_argument, 0, ARGUMENT_PRINT},
         {ARGUMENT_RUN_FULL, no_argument, 0, ARGUMENT_RUN},
         {0, 0, 0, 0}
     };

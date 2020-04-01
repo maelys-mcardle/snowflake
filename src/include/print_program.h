@@ -12,6 +12,7 @@ char *get_printable_parameter(Program *program, InstructionCode current_instruct
 char *get_printable_identifier(Program *program, InstructionCode current_instruction, InstructionCode naming_instruction, int target_identifier, char *format);
 char *get_printable_device(int device);
 char *get_printable_type(int type);
+char *get_printable_instruction_mnemonic(InstructionInfo *instruction_info);
 char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier);
 
 #endif
