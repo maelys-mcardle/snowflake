@@ -5,8 +5,6 @@
 #include "core/instructions.h"
 
 bool instruction_noop(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
-bool instruction_output(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
-bool instruction_input(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
 bool instruction_delete(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
 bool instruction_type(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
 bool instruction_copy(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);

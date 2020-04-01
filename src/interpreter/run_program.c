@@ -3,6 +3,7 @@
 #include "run_instruction_array.h"
 #include "run_instruction_basic.h"
 #include "run_instruction_branching.h"
+#include "run_instruction_io.h"
 #include "run_instruction_logic.h"
 #include "run_instruction_math.h"
 #include "run_instruction_types.h"
