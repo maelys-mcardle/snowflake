@@ -106,22 +106,28 @@ bool strip_comment(char *line, int max_line_length)
     return false;
 }
 
-char *join_strings(char *first, char *second, bool separate_with_space)
+char *join_strings(char *first, char *second, StringSeparator seperator)
 {
     // Compute the final size of the string.
-    int concatenated_size =
-        ((first != NULL) ? strlen(first) : 0) +
-        ((second != NULL) ? strlen(second) : 0) +
-        (separate_with_space ? 1 : 0) + 1;
+    int concatenated_size = 1;
+    if (first != NULL)
+        concatenated_size += strlen(first);
+    if (second != NULL)
+        concatenated_size += strlen(second);
+    if (seperator == SEPERATOR_SPACE)
+        concatenated_size += 1;
 
     // Allocate memory for the string.
     char *output_string = malloc(concatenated_size);
 
     // Generate the string.
     output_string[0] = CHAR_END_STRING;
-    if (first != NULL) strncat(output_string, first, concatenated_size);
-    if (first != NULL && separate_with_space) strncat(output_string, " ", concatenated_size);
-    if (second != NULL) strncat(output_string, second, concatenated_size);
+    if (first != NULL) 
+        strncat(output_string, first, concatenated_size);
+    if (first != NULL && seperator == SEPERATOR_SPACE) 
+        strncat(output_string, " ", concatenated_size);
+    if (second != NULL)
+        strncat(output_string, second, concatenated_size);
 
     // Return generated string.
     return output_string;

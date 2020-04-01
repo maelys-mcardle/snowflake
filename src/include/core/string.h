@@ -8,11 +8,16 @@
 #define CHAR_TAB '\t'
 #define CHAR_END_STRING '\0'
 
+typedef enum {
+    SEPERATOR_SPACE,
+    SEPARATOR_NO_SPACE
+} StringSeparator;
+
 bool is_whitespace(char character);
 bool is_string_end(char character);
 bool strip_end_whitespace(char *string, int max_string_length);
 bool strip_comment(char *line, int max_line_length);
-char *join_strings(char *first, char *second, bool separate_with_space);
+char *join_strings(char *first, char *second, StringSeparator seperator);
 bool has_period(char *string);
 char *append_string(char *full_text, char *to_append);
 
