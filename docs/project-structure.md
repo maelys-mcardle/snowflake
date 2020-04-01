@@ -7,14 +7,13 @@ This repository has the following directory structure.
 ├── docs/
 ├── samples/
 ├── src/
-│   ├── cli/
-│   └── core/
-│       ├── headers/
-│       │   ├── platforms/
-│       │   └── structures/
+│   ├── include/
+│   │   ├── platforms/
+│   │   └── core/
+│   └── interpreter/
 │       ├── platforms/
 │       │   └── linux/
-│       └── structures/
+│       └── core/
 ├── test/
 ├── LICENSE
 ├── Makefile
@@ -34,15 +33,19 @@ The root project directory contains the following:
 
 ## The `src` directory
 
-The `src/cli` directory contains the code specific for the interpreter's
-command-line application.
+The `src/` directory contains the code specific for the interpreter's
+command-line application. The front-end are in the `main.c` and `main.h`
+files.
 
-The `src/core` directory contains the code for the inner workings of the interpreter:
-* This is the back-end of the interpreter.
-* The `src/core` directory contains the code to parse Snowflake code, and 
-  execute Snowflake code.
-* The `src/core/headers` contains all the `.h` files.
-* The `src/core/platforms` directory contains the code that changes depending
+The `src/interpreter` directory contains the code for parsing, printing and
+running Snowflake code. Similarly:
+* The `src/interpreter/core` directory contains the basic data structures and 
+  the functions to manipulate them, such as for Banks, Instructions, and the Program.
+* The `src/interpreter/platforms` directory contains the code that changes depending
   on the platform (eg. `linux` or `arduino`).
-* The `src/core/structures` directory contains the data structures and the functions
-  to manipulate them, such as for Banks, Instructions, and the Program.
+
+The `src/include` directory contains the header files for the `src/interpreter`.
+* The `src/include/core` directory contains the header files for
+  `src/interpreter/core`.
+* The `src/include/platforms` contains the header files for 
+  `src/interpreter/platforms`.
