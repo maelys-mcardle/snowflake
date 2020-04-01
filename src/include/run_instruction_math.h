@@ -14,5 +14,6 @@ bool instruction_square_root(Program *program, Parameters *parameters, Instructi
 bool instruction_increment(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
 bool instruction_decrement(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer);
 bool add_value(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer, int value_to_add);
+char *join_strings(char *left_string, char *right_string);
 
 #endif

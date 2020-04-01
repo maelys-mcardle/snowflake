@@ -37,7 +37,7 @@ bool instruction_add(Program *program, Parameters *parameters, InstructionPointe
                 log_debug("Doing string concatenation.\n");
                 left_string = get_bank_as_string(left_parameter);
                 right_string = get_bank_as_string(right_parameter);
-                combined_string = join_strings(left_string, right_string, SEPERATOR_SPACE);
+                combined_string = join_strings(left_string, right_string);
                 instruction_ok = set_bank_string(left_parameter, combined_string);
                 if (left_string != NULL) free(left_string);
                 if (right_string != NULL) free(right_string);
@@ -324,4 +324,26 @@ bool add_value(Program *program, Parameters *parameters, InstructionPointer *ins
 
     increment_instruction(instruction_pointer);
     return instruction_ok;
+}
+
+char *join_strings(char *left_string, char *right_string)
+{
+    char *joined_string = append_string(NULL, "");
+
+    if (left_string != NULL)
+    {
+        joined_string = append_string(joined_string, left_string);
+    }
+
+    if (left_string != NULL && right_string != NULL)
+    {
+        joined_string = append_string(joined_string, " ");
+    }
+
+    if (right_string != NULL)
+    {
+        joined_string = append_string(joined_string, right_string);
+    }
+
+    return joined_string;
 }
