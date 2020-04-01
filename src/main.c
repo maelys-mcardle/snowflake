@@ -51,12 +51,7 @@ int parse_snowflake_file_and_run(bool print_code, bool run_code, char *snowflake
     // Print out the code.
     if (print_code)
     {
-        char *program_string = get_printable_program(program);
-        if (program_string != NULL)
-        {
-            printf("%s", program_string);
-            free(program_string);
-        }
+        print_program(program);
     }
 
     // Execute the code.
@@ -73,13 +68,23 @@ int parse_snowflake_file_and_run(bool print_code, bool run_code, char *snowflake
     return return_code;
 }
 
+void print_program(Program *program)
+{
+    char *program_string = get_printable_program(program);
+    if (program_string != NULL)
+    {
+        printf("%s", program_string);
+        free(program_string);
+    }
+}
+
 bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, char **file_path)
 {
     static struct option long_options[] =
     {
-        {"debug", no_argument, 0, 'd'},
-        {"print", no_argument, 0, 'p'},
-        {"run", no_argument, 0, 'r'},
+        {ARGUMENT_DEBUG_FULL, no_argument, 0, ARGUMENT_DEBUG},
+        {ARGUMENT_PRINT_FULL, no_argument, 0, ARGUMENT_DEBUG},
+        {ARGUMENT_RUN_FULL, no_argument, 0, ARGUMENT_RUN},
         {0, 0, 0, 0}
     };
 
@@ -100,19 +105,19 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, ch
 
         switch (current_option)
         {
-            case 'd':
+            case ARGUMENT_DEBUG:
                 enable_debug_mode();
                 break;
             
-            case 'p':
+            case ARGUMENT_PRINT:
                 *print_code = true;
                 break;
             
-            case 'r':
+            case ARGUMENT_RUN:
                 *run_code = true;
                 break;
 
-            case '?':
+            case ARGUMENT_UNKNOWN:
                 // Unknown argument.
                 return false;
         }        
