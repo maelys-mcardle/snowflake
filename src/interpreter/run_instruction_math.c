@@ -3,6 +3,7 @@
 #include "run_instruction_math.h"
 #include "core/string.h"
 #include "platforms/logging.h"
+#include "errors.h"
 
 bool instruction_add(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
@@ -44,10 +45,21 @@ bool instruction_add(Program *program, Parameters *parameters, InstructionPointe
                 if (combined_string != NULL) free(combined_string);
                 break;
             default:
-                log_debug("Ignoring addition - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "addition", left_parameter->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else if (left_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "addition", parameters->first.identifier);
+    }
+    else if (right_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "addition", parameters->second.identifier);
     }
 
     increment_instruction(instruction_pointer);
@@ -82,10 +94,21 @@ bool instruction_subtract(Program *program, Parameters *parameters, InstructionP
                         get_bank_as_float(right_parameter));
                 break;
             default:
-                log_debug("Ignoring subtraction - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "subtraction", left_parameter->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else if (left_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "subtraction", parameters->first.identifier);
+    }
+    else if (right_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "subtraction", parameters->second.identifier);
     }
 
     increment_instruction(instruction_pointer);
@@ -120,10 +143,21 @@ bool instruction_multiply(Program *program, Parameters *parameters, InstructionP
                         get_bank_as_float(right_parameter));
                 break;
             default:
-                log_debug("Ignoring multiplication - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "multiplication", left_parameter->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else if (left_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "multiplication", parameters->first.identifier);
+    }
+    else if (right_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "multiplication", parameters->second.identifier);
     }
 
     increment_instruction(instruction_pointer);
@@ -158,10 +192,21 @@ bool instruction_divide(Program *program, Parameters *parameters, InstructionPoi
                         get_bank_as_float(right_parameter));
                 break;
             default:
-                log_debug("Ignoring division - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "division", left_parameter->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else if (left_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "division", parameters->first.identifier);
+    }
+    else if (right_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "division", parameters->second.identifier);
     }
 
     increment_instruction(instruction_pointer);
@@ -197,10 +242,21 @@ bool instruction_modulo(Program *program, Parameters *parameters, InstructionPoi
                             get_bank_as_float(right_parameter)));
                 break;
             default:
-                log_debug("Ignoring modulo - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "modulo", left_parameter->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else if (left_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "modulo", parameters->first.identifier);
+    }
+    else if (right_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "modulo", parameters->second.identifier);
     }
 
     increment_instruction(instruction_pointer);
@@ -237,10 +293,21 @@ bool instruction_power(Program *program, Parameters *parameters, InstructionPoin
                             get_bank_as_float(right_parameter)));
                 break;
             default:
-                log_debug("Ignoring power - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "power", left_parameter->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else if (left_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "power", parameters->first.identifier);
+    }
+    else if (right_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "power", parameters->second.identifier);
     }
 
     increment_instruction(instruction_pointer);
@@ -271,10 +338,16 @@ bool instruction_square_root(Program *program, Parameters *parameters, Instructi
                         sqrtf(get_bank_as_float(bank)));
                 break;
             default:
-                log_debug("Ignoring square root - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "square root", bank->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "square root", parameters->first.identifier);
     }
 
     increment_instruction(instruction_pointer);
@@ -316,10 +389,16 @@ bool add_value(Program *program, Parameters *parameters, InstructionPointer *ins
                         get_bank_as_float(bank) + value_to_add);
                 break;
             default:
-                log_debug("Ignoring addition - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "increment/decrement", bank->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "increment/decrement", parameters->first.identifier);
     }
 
     increment_instruction(instruction_pointer);

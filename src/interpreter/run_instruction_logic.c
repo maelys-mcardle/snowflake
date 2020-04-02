@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "run_instruction_logic.h"
 #include "platforms/logging.h"
+#include "errors.h"
 
 bool instruction_not(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
@@ -27,11 +28,18 @@ bool instruction_not(Program *program, Parameters *parameters, InstructionPointe
                         !get_bank_as_boolean(parameter));
                 break;
             default:
-                log_debug("Ignoring logical NOT - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "logical NOT", parameter->identifier);
                 instruction_ok = false;
                 break;
         }
     }
+    else
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "logical NOT", parameters->first.identifier);
+    }
+    
 
     increment_instruction(instruction_pointer);
     return instruction_ok;
@@ -65,10 +73,21 @@ bool instruction_and(Program *program, Parameters *parameters, InstructionPointe
                         get_bank_as_boolean(right_parameter));
                 break;
             default:
-                log_debug("Ignoring logical AND - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "logical AND", left_parameter->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else if (left_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "logical AND", parameters->first.identifier);
+    }
+    else if (right_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "logical AND", parameters->second.identifier);
     }
 
     increment_instruction(instruction_pointer);
@@ -103,10 +122,21 @@ bool instruction_or(Program *program, Parameters *parameters, InstructionPointer
                         get_bank_as_boolean(right_parameter));
                 break;
             default:
-                log_debug("Ignoring logical OR - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "logical OR", left_parameter->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else if (left_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "logical OR", parameters->first.identifier);
+    }
+    else if (right_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "logical OR", parameters->second.identifier);
     }
 
     increment_instruction(instruction_pointer);
@@ -141,10 +171,21 @@ bool instruction_xor(Program *program, Parameters *parameters, InstructionPointe
                         get_bank_as_boolean(right_parameter));
                 break;
             default:
-                log_debug("Ignoring logical XOR - it's for an unsupported type.\n");
+                log_error(ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE,
+                    "logical XOR", left_parameter->identifier);
                 instruction_ok = false;
                 break;
         }
+    }
+    else if (left_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "logical XOR", parameters->first.identifier);
+    }
+    else if (right_parameter == NULL)
+    {
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "logical XOR", parameters->second.identifier);
     }
 
     increment_instruction(instruction_pointer);

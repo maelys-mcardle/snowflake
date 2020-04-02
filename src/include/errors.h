@@ -36,5 +36,11 @@
 #define ERROR_MESG_DEVICE_NOT_SUPPORTED_FOR_INPUT "Device %02i does not support input.\n"
 #define ERROR_CODE_UNEXPECTED_NULL_VALUE 17
 #define ERROR_MESG_UNEXPECTED_NULL_VALUE "There is a bug with Snowflake! A value was NULL that shouldn't have been.\n"
+#define ERROR_CODE_IGNORING_OPERATION_UNSUPPORTED_TYPE 18
+#define ERROR_MESG_IGNORING_OPERATION_UNSUPPORTED_TYPE "Ignoring %s as Bank %02i is the wrong type.\n"
+#define ERROR_CODE_IGNORING_OPERATION_BANK_UNDEFINED 19
+#define ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED "Ignoring %s as Bank %02i had no value.\n"
+#define ERROR_CODE_IGNORING_OPERATION_BANK_NOT_ARRAY 20
+#define ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY "Ignoring %s as Bank %02i was not an array.\n"
 
 #endif

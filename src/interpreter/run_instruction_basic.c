@@ -27,7 +27,8 @@ bool instruction_delete(Program *program, Parameters *parameters, InstructionPoi
 
     if (bank == NULL)
     {
-        log_debug("Asked to delete unallocated bank.\n");
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "deletion", parameters->first.identifier);
     }
     else
     {

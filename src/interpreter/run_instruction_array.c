@@ -69,15 +69,15 @@ bool bank_to_array(Program *program, Parameters *parameters, ArrayPosition posit
     // Only do the action if the bank and array are defined.
     if (array_parameter == NULL)
     {
-        log_debug("Bank %02i does not contain an array; aborting.\n",
-            parameters->first.identifier);
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY,
+            "bank insertion to array", parameters->first.identifier);
         return false;
     }
 
     if (bank_parameter == NULL)
     {
-        log_debug("Bank %02i contains nothing; aborting.\n",
-            parameters->second.identifier);
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED,
+            "bank insertion to array", parameters->first.identifier);
         return false;
     }
         
@@ -92,8 +92,8 @@ bool bank_to_array(Program *program, Parameters *parameters, ArrayPosition posit
 
     if (!read_array_ok)
     {
-        log_debug("Bank %02i does not contain an array; aborting.\n",
-            array_parameter->identifier);
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY,
+            "bank insertion to array", array_parameter->identifier);
         return false;
     }
 
@@ -121,8 +121,8 @@ bool array_to_bank(Program *program, Parameters *parameters, ArrayPosition posit
     Bank *array_parameter = get_bank_from_parameter(program, &(parameters->first));
     if (array_parameter == NULL)
     {
-        log_debug("Bank %02i does not contain an array; aborting.\n",
-            parameters->first.identifier);
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY,
+            "array item to bank", parameters->first.identifier);
         return false;
     }
 
@@ -131,8 +131,8 @@ bool array_to_bank(Program *program, Parameters *parameters, ArrayPosition posit
     Array *array = get_bank_array(array_parameter, &read_array_ok);
     if (!read_array_ok)
     {
-        log_debug("Bank %02i does not contain an array; aborting.\n",
-            array_parameter->identifier);
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY,
+            "array item to bank", array_parameter->identifier);
         return false;
     }
 
@@ -185,15 +185,15 @@ bool array_shift_positions(Program *program, Parameters *parameters, ArrayPositi
     // Only do the action if the bank and array are defined.
     if (array_parameter == NULL)
     {
-        log_debug("Bank %02i does not contain an array; aborting.\n",
-            parameters->first.identifier);
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY,
+            "array shift item", parameters->first.identifier);
         return false;
     }
 
     if (bank_parameter == NULL)
     {
-        log_debug("Bank %02i contains nothing; aborting.\n",
-            parameters->second.identifier);
+         log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED,
+            "array shift item", parameters->second.identifier);
         return false;
     }
         
@@ -207,8 +207,8 @@ bool array_shift_positions(Program *program, Parameters *parameters, ArrayPositi
     Array *array = get_bank_array(array_parameter, &read_array_ok);
     if (!read_array_ok)
     {
-        log_debug("Bank %02i does not contain an array; aborting.\n",
-            array_parameter->identifier);
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY,
+            "array shift item", array_parameter->identifier);
         return false;
     }
     ArrayIndex index_in_bank = get_bank_as_integer(bank_parameter);

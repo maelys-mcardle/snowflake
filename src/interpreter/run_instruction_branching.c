@@ -3,6 +3,7 @@
 #include "run_instruction_branching.h"
 #include "platforms/logging.h"
 #include "core/array.h"
+#include "errors.h"
 
 bool instruction_jump_label(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
@@ -23,7 +24,8 @@ bool instruction_jump_bank(Program *program, Parameters *parameters, Instruction
     }
     else
     {
-        log_debug("Bank was not defined for jump. Going to next instruction.\n");
+        log_error(ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED, 
+            "jump", parameters->first.identifier);
         increment_instruction(instruction_pointer);
     }
     
@@ -191,7 +193,7 @@ bool is_parameters_equal(Program *program, Parameters *parameters)
         }
         else if (type == TYPE_STRING)
         {
-            is_equal =  is_string_equal(first_bank, second_bank);
+            is_equal = is_string_equal(first_bank, second_bank);
         }
         else if (type == TYPE_ARRAY)
         {
