@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "parse_instruction.h"
-#include "print_program.h"
 #include "errors.h"
 #include "platforms/logging.h"
 #include "core/instructions.h"
