@@ -127,16 +127,19 @@ char *get_printable_instruction(Program *program, Instruction *instruction)
 /* Prints a parameter, if one is defined.
  * @return True if a parameter is defined; false if not.
  */
-char *get_printable_parameter(Program *program, InstructionCode current_instruction, ParameterType type, ParameterValue value)
+char *get_printable_parameter(Program *program, InstructionCode current_instruction, 
+    ParameterType type, ParameterValue value)
 {
     switch (get_parameter_type_without_flags(type))
     {
         case PARAMETER_NONE:
             return NULL;
         case PARAMETER_BANK:
-            return get_printable_identifier(program, current_instruction, INSTRUCTION_NAME_BANK, value.identifier, "@%02i");
+            return get_printable_identifier(program, current_instruction, 
+                INSTRUCTION_NAME_BANK, value.identifier, "@%02i");
         case PARAMETER_LABEL:
-            return get_printable_identifier(program, current_instruction, INSTRUCTION_LABEL, value.identifier, ":%02i");
+            return get_printable_identifier(program, current_instruction, 
+                INSTRUCTION_LABEL, value.identifier, ":%02i");
         case PARAMETER_TYPE:
             return get_printable_type(value.identifier);
         case PARAMETER_DEVICE:
@@ -152,7 +155,8 @@ char *get_printable_parameter(Program *program, InstructionCode current_instruct
     }
 }
 
-char *get_printable_identifier(Program *program, InstructionCode current_instruction, InstructionCode naming_instruction, int target_identifier, char *format)
+char *get_printable_identifier(Program *program, InstructionCode current_instruction, 
+    InstructionCode naming_instruction, int target_identifier, char *format)
 {
     // Lookup name of label.
     if (current_instruction != naming_instruction)
