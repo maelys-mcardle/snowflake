@@ -45,8 +45,7 @@ char *get_printable_instruction(Program *program, Instruction *instruction)
     }
 
     // Get mnemonic.
-    char *instruction_string = 
-        get_printable_instruction_mnemonic(&instruction_info);
+    char *instruction_string = append_string(NULL, instruction_info.mnemonic);
 
     // Get first parameter.
     char *first_parameter = get_printable_parameter(
@@ -78,17 +77,6 @@ char *get_printable_instruction(Program *program, Instruction *instruction)
 
     // Print end of line.
     return append_string(instruction_string, "\n");
-}
-
-char *get_printable_instruction_mnemonic(InstructionInfo *instruction_info)
-{
-    char mnemonic[] = {
-        instruction_info->mnemonic[0],
-        instruction_info->mnemonic[1],
-        instruction_info->mnemonic[2],
-        CHAR_END_STRING };
-
-    return append_string(NULL, mnemonic);
 }
 
 /* Prints a parameter, if one is defined.

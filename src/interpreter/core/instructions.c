@@ -2,6 +2,7 @@
 #include "core/instructions.h"
 #include "platforms/logging.h"
 #include "core/bank.h"
+#include "core/string.h"
 
 Instruction *new_instruction()
 {
@@ -271,4 +272,5 @@ void set_mnemonic(InstructionInfo *info, char *mnemonic)
     info->mnemonic[0] = mnemonic[0];
     info->mnemonic[1] = mnemonic[1];
     info->mnemonic[2] = mnemonic[2];
+    info->mnemonic[3] = CHAR_END_STRING;
 }

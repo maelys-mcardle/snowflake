@@ -67,7 +67,7 @@ typedef struct {
 } ParameterInfo;
 
 typedef struct {
-    char mnemonic[3];
+    char mnemonic[4];
     ParameterInfo parameters;
 } InstructionInfo;
 

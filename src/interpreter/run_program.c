@@ -88,16 +88,13 @@ bool run_instruction(Program *program, Instruction *instruction, InstructionPoin
         bool instruction_exists = false;
         InstructionInfo info = get_instruction_info(
             instruction->instruction, &instruction_exists);
-        char *mnemonic = get_printable_instruction_mnemonic(&info);
 
         log_debug("[Executing Instruction %02i]\n"
             "Instruction Code: %02i\n"
             "Instruction Mnemonic: '%s'\n",
             *instruction_pointer,
             instruction->instruction,
-            mnemonic);
-        
-        if (mnemonic != NULL) free(mnemonic);
+            info.mnemonic);
     }
 
     // Get the instruction to execute.

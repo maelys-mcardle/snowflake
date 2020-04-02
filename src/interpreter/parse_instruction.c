@@ -85,9 +85,9 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
         if (instruction_exists)
         {
             // Note instruction exists.
-            char *mnemonic = get_printable_instruction_mnemonic(&instruction_info);
-            log_debug("Found instruction %02i ('%s')\n", instruction->instruction, mnemonic);
-            if (mnemonic != NULL) free(mnemonic);
+            log_debug("Found instruction %02i ('%s')\n", 
+                instruction->instruction,
+                instruction_info.mnemonic);
 
             // Keep track of whether parameters were parsed ok.
             bool first_parameter_missing = true;
