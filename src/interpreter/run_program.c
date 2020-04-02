@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "print_program.h"
 #include "run_program.h"
 #include "run_instruction_array.h"
 #include "run_instruction_basic.h"
@@ -87,15 +88,16 @@ bool run_instruction(Program *program, Instruction *instruction, InstructionPoin
         bool instruction_exists = false;
         InstructionInfo info = get_instruction_info(
             instruction->instruction, &instruction_exists);
-        
+        char *mnemonic = get_printable_instruction_mnemonic(&info);
+
         log_debug("[Executing Instruction %02i]\n"
             "Instruction Code: %02i\n"
-            "Instruction Mnemonic: '%c%c%c'\n",
+            "Instruction Mnemonic: '%s'\n",
             *instruction_pointer,
             instruction->instruction,
-            info.mnemonic[0],
-            info.mnemonic[1],
-            info.mnemonic[2]);
+            mnemonic);
+        
+        if (mnemonic != NULL) free(mnemonic);
     }
 
     // Get the instruction to execute.

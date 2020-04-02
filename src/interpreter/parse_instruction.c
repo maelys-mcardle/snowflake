@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "parse_instruction.h"
+#include "print_program.h"
 #include "errors.h"
 #include "platforms/logging.h"
 #include "core/instructions.h"
@@ -84,11 +85,9 @@ bool parse_instruction_from_line(Instruction *instruction, char *line, int max_l
         if (instruction_exists)
         {
             // Note instruction exists.
-            log_debug("Found instruction %02i ('%c%c%c')\n", 
-                instruction->instruction,
-                instruction_info.mnemonic[0],
-                instruction_info.mnemonic[1],
-                instruction_info.mnemonic[2]);
+            char *mnemonic = get_printable_instruction_mnemonic(&instruction_info);
+            log_debug("Found instruction %02i ('%s')\n", instruction->instruction, mnemonic);
+            if (mnemonic != NULL) free(mnemonic);
 
             // Keep track of whether parameters were parsed ok.
             bool first_parameter_missing = true;
