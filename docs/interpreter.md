@@ -83,6 +83,27 @@ VAR @00 Hello, World!
  << OUT @00
 ```
 
+To also display line numbers, use the `--lineno` or `-l` option:
+
+```sh
+./snowflake --print --lineno samples/your-name.sn
+```
+
+For the `your-name.sn` example above, the interpreter will produce
+the following:
+
+```
+1 !!! YOUR NAME
+2     @00 MSG
+3     @01 NAME
+4 STR MSG What is your name?
+5  << OUT MSG
+6  >>  IN NAME
+7 STR MSG Your name is:
+8   + MSG NAME
+9  << OUT MSG
+```
+
 ## Debug Programs
 
 If a Snowflake program isn't parsed or executed as expected, use
