@@ -152,8 +152,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     if (has_parameter_string)
     {
         stored_parameter = store_parameter(
-            parameter_type, parameter_string, 
-            max_parameter_size, parameter_value);
+            parameter_type, parameter_string, parameter_value);
     }
     else
     {
@@ -167,7 +166,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     return end_position;
 }
 
-bool store_parameter(ParameterType parameter_type, char *parameter_string, int max_parameter_size, ParameterValue *parameter_value)
+bool store_parameter(ParameterType parameter_type, char *parameter_string, ParameterValue *parameter_value)
 {
     // Store the parameter.
     // * Literals are stored as strings.
@@ -175,18 +174,12 @@ bool store_parameter(ParameterType parameter_type, char *parameter_string, int m
     if (is_parameter_literal(parameter_type))
     {
         // If it's a literal, allocate memory, and copy the string.
-        size_t allocation_size = strnlen(parameter_string, max_parameter_size);
-        parameter_value->literal = malloc(allocation_size + 1);
-        
-        if (parameter_value->literal != NULL)
-        {
-            strncpy(parameter_value->literal, parameter_string, allocation_size);
-            parameter_value->literal[allocation_size] = CHAR_END_STRING;
-            return true;
-        }
-        else
+        parameter_value->literal = new_string(parameter_string);
+
+        if (parameter_value->literal == NULL)
         {
             log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
+            return false;
         }
     }
     else
@@ -195,16 +188,14 @@ bool store_parameter(ParameterType parameter_type, char *parameter_string, int m
         bool parsed_integer_ok;
         parameter_value->identifier = string_to_integer(parameter_string, &parsed_integer_ok);
         
-        if (parsed_integer_ok)
-        {
-            return true;
-        }
-        else
+        if (!parsed_integer_ok)
         {
             log_error(ERROR_MESG_COULD_NOT_PARSE_INTEGER, parameter_string);
+            return false;
         } 
     }
-    return false;
+
+    return true;
 }
 
 /* Extracts the instruction from the line.

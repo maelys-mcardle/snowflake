@@ -94,9 +94,7 @@ bool set_bank_string(Bank *bank, char *value)
     log_debug("Set string for Bank %02i.\n", bank->identifier);
     clear_bank_value(bank);
     bank->type = TYPE_STRING;
-    size_t string_length = strlen(value);
-    bank->value.string = malloc(string_length + 1);
-    strncpy(bank->value.string, value, string_length + 1);
+    bank->value.string = new_string(value);
     return true;
 }
 
