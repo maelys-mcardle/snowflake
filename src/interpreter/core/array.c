@@ -59,7 +59,7 @@ bool resize_array(Array *array, ArrayCount new_count)
 
     if (array == NULL)
     {
-        log_debug("Array is NULL, aborting.\n");
+        log_error(ERROR_MESG_ARRAY_IS_NULL);
         return false;
     }
 
@@ -95,7 +95,7 @@ bool copy_array_items(Array *destination, Array *source)
 {
     if (source == NULL || destination == NULL)
     {
-        log_debug("Array is NULL, aborting.\n");
+        log_error(ERROR_MESG_ARRAY_IS_NULL);
         return false;
     }
     
@@ -221,7 +221,7 @@ ArrayItem *remove_array_item(Array *array, ArrayIndex index_to_remove)
     log_debug("Removing item at position %i of array.\n", index_to_remove);
     if (array == NULL)
     {
-        log_debug("Array is NULL.\n");
+        log_error(ERROR_MESG_ARRAY_IS_NULL);
         return NULL;
     }
 

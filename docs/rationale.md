@@ -14,8 +14,8 @@ creating a new programming language. Out came Snowflake.
 
 Snowflake supports input/output devices, has high-level types such as strings
 and arrays, and can do a "hello, world!" in two lines of code. When compiled
-for size on Linux the interpreter is about 60 kilobytes. Complex programs in
-Snowflake take hundreds of bytes of memory.
+for size on Linux the interpreter consumes about 60 kilobytes of storage and 
+consumes about 80 kilobytes of memory.
 
 But more importantly, it's been fun to out together.
 

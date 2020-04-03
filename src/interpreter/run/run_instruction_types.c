@@ -157,7 +157,7 @@ bool instruction_array(Program *program, Parameters *parameters, InstructionPoin
     // Create a bank if it doesn't exist.
     Bank *bank = get_or_new_bank_from_parameter(program, &(parameters->first));
 
-    // Set the strubg for the bank.
+    // Set the string for the bank.
     if (bank != NULL && 
         set_empty_bank_array(bank))
     {
