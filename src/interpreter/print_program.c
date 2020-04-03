@@ -61,7 +61,7 @@ char *get_printable_line_number_format(InstructionCount total_lines)
     }
     
     snprintf(string_format, sizeof(string_format), "%%0%ii ", digits_wide);
-    return alloc_string(string_format);
+    return new_string(string_format);
 }
 
 char *get_printable_line_number(char *string_format, InstructionCount current_line)
@@ -73,7 +73,7 @@ char *get_printable_line_number(char *string_format, InstructionCount current_li
 
     char line_number[MAX_IDENTIFIER_SIZE + 2];
     snprintf(line_number, sizeof(line_number), string_format, current_line + 1);
-    return alloc_string(line_number);
+    return new_string(line_number);
 }
 
 /* Prints a line of Snowflake. */
@@ -90,7 +90,7 @@ char *get_printable_instruction(Program *program, Instruction *instruction)
     }
 
     // Get mnemonic.
-    char *instruction_string = alloc_string(instruction_info.mnemonic);
+    char *instruction_string = new_string(instruction_info.mnemonic);
 
     // Get first parameter.
     char *first_parameter = get_printable_parameter(
@@ -147,7 +147,7 @@ char *get_printable_parameter(Program *program, InstructionCode current_instruct
         case PARAMETER_LITERAL:
             if (value.literal != NULL)
             {
-                return alloc_string(value.literal);
+                return new_string(value.literal);
             }
             return NULL;
         default:
@@ -164,14 +164,14 @@ char *get_printable_identifier(Program *program, InstructionCode current_instruc
         char *identifier_name = get_name(program, naming_instruction, target_identifier);
         if (identifier_name != NULL)
         {
-            return alloc_string(identifier_name);
+            return new_string(identifier_name);
         }
     }
 
     // Did not find name.
     char numeric_identifier[MAX_IDENTIFIER_SIZE];
     snprintf(numeric_identifier, MAX_IDENTIFIER_SIZE, format, target_identifier);
-    return alloc_string(numeric_identifier);
+    return new_string(numeric_identifier);
 }
 
 /* Prints a device, if one is defined.
@@ -182,13 +182,13 @@ char *get_printable_device(int device)
     switch (device)
     {
         case DEVICE_OUT:
-            return alloc_string(DEVICE_OUT_STRING);
+            return new_string(DEVICE_OUT_STRING);
         case DEVICE_IN:
-            return alloc_string(DEVICE_IN_STRING);
+            return new_string(DEVICE_IN_STRING);
         case DEVICE_BTN:
-            return alloc_string(DEVICE_BTN_STRING);
+            return new_string(DEVICE_BTN_STRING);
         case DEVICE_RND:
-            return alloc_string(DEVICE_RND_STRING);
+            return new_string(DEVICE_RND_STRING);
         default:
             return NULL;
     }
@@ -199,17 +199,17 @@ char *get_printable_type(int type)
     switch (type)
     {
         case TYPE_VARIABLE:
-            return alloc_string(TYPE_VARIABLE_STRING);
+            return new_string(TYPE_VARIABLE_STRING);
         case TYPE_BOOLEAN:
-            return alloc_string(TYPE_BOOLEAN_STRING);
+            return new_string(TYPE_BOOLEAN_STRING);
         case TYPE_INTEGER:
-            return alloc_string(TYPE_INTEGER_STRING);
+            return new_string(TYPE_INTEGER_STRING);
         case TYPE_FLOAT:
-            return alloc_string(TYPE_FLOAT_STRING);
+            return new_string(TYPE_FLOAT_STRING);
         case TYPE_STRING:
-            return alloc_string(TYPE_STRING_STRING);
+            return new_string(TYPE_STRING_STRING);
         case TYPE_ARRAY:
-            return alloc_string(TYPE_ARRAY_STRING);
+            return new_string(TYPE_ARRAY_STRING);
         default:
             return NULL;
     }

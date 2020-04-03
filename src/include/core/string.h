@@ -13,7 +13,7 @@ bool is_string_end(char character);
 bool strip_end_whitespace(char *string, int max_string_length);
 bool strip_comment(char *line, int max_line_length);
 bool has_period(char *string);
-char *alloc_string(char *original_string);
+char *new_string(char *original_string);
 char *append_string(char *full_text, char *to_append);
 
 #endif
