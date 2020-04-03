@@ -2,6 +2,41 @@
 #include <string.h>
 #include "core/string.h"
 
+char *new_string(char *original_string)
+{
+    return append_string(NULL, original_string);
+}
+
+char *append_string(char *full_text, char *to_append)
+{
+    if (to_append != NULL)
+    {
+        size_t new_size = 
+            ((full_text != NULL) ? strlen(full_text) : 0 ) + 
+            strlen(to_append) + 1;
+        
+        char *appended_full_text = (char *) realloc(full_text, new_size);
+
+        if (appended_full_text != NULL)
+        {
+            if(full_text != NULL)
+            {
+                strncat(appended_full_text, to_append, new_size - 1);
+                appended_full_text[new_size -1] = CHAR_END_STRING;
+                return appended_full_text;
+            }
+            else
+            {
+                memcpy(appended_full_text, to_append, new_size - 1);
+                appended_full_text[new_size -1] = CHAR_END_STRING;
+                return appended_full_text;
+            }
+        } 
+    }
+
+    return full_text;
+}
+
 bool strip_end_whitespace(char *string, int max_string_length)
 {
     int index = 0;
@@ -104,41 +139,6 @@ bool strip_comment(char *line, int max_line_length)
     }
 
     return false;
-}
-
-char *new_string(char *original_string)
-{
-    return append_string(NULL, original_string);
-}
-
-char *append_string(char *full_text, char *to_append)
-{
-    if (to_append != NULL)
-    {
-        size_t new_size = 
-            ((full_text != NULL) ? strlen(full_text) : 0 ) + 
-            strlen(to_append) + 1;
-        
-        char *appended_full_text = (char *) realloc(full_text, new_size);
-
-        if (appended_full_text != NULL)
-        {
-            if(full_text != NULL)
-            {
-                strncat(appended_full_text, to_append, new_size - 1);
-                appended_full_text[new_size -1] = CHAR_END_STRING;
-                return appended_full_text;
-            }
-            else
-            {
-                memcpy(appended_full_text, to_append, new_size - 1);
-                appended_full_text[new_size -1] = CHAR_END_STRING;
-                return appended_full_text;
-            }
-        } 
-    }
-
-    return full_text;
 }
 
 bool has_period(char *string)

@@ -8,12 +8,12 @@
 #define CHAR_TAB '\t'
 #define CHAR_END_STRING '\0'
 
+char *new_string(char *original_string);
+char *append_string(char *full_text, char *to_append);
 bool is_whitespace(char character);
 bool is_string_end(char character);
 bool strip_end_whitespace(char *string, int max_string_length);
 bool strip_comment(char *line, int max_line_length);
 bool has_period(char *string);
-char *new_string(char *original_string);
-char *append_string(char *full_text, char *to_append);
 
 #endif
