@@ -255,7 +255,7 @@ bool jump_to_label(Program *program, InstructionPointer *instruction_pointer, in
     // Did not find instruction. Going to next.
     else
     {
-        log_debug("Jumping to non-existent label. Going to next instruction.\n");
+        log_error(ERROR_MESG_IGNORING_OPERATION_LABEL_NOT_FOUND, "Jump", target_label);
         increment_instruction(instruction_pointer);
         return false;
     }

@@ -42,5 +42,8 @@
 #define ERROR_MESG_IGNORING_OPERATION_BANK_UNDEFINED "Ignoring %s as Bank %02i had no value.\n"
 #define ERROR_CODE_IGNORING_OPERATION_BANK_NOT_ARRAY 20
 #define ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY "Ignoring %s as Bank %02i was not an array.\n"
+#define ERROR_CODE_IGNORING_OPERATION_LABEL_NOT_FOUND 21
+#define ERROR_MESG_IGNORING_OPERATION_LABEL_NOT_FOUND "Ignoring %s Label %02i does not exist.\n"
+
 
 #endif
