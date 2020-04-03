@@ -106,6 +106,11 @@ bool strip_comment(char *line, int max_line_length)
     return false;
 }
 
+char *alloc_string(char *original_string)
+{
+    return append_string(NULL, original_string);
+}
+
 char *append_string(char *full_text, char *to_append)
 {
     if (to_append != NULL)

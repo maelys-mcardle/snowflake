@@ -407,7 +407,7 @@ bool add_value(Program *program, Parameters *parameters, InstructionPointer *ins
 
 char *join_strings(char *left_string, char *right_string)
 {
-    char *joined_string = append_string(NULL, "");
+    char *joined_string = alloc_string("");
 
     if (left_string != NULL)
     {
