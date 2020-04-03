@@ -20,10 +20,6 @@ char *get_printable_program(Program *program, bool show_line_number)
 
         for (InstructionPointer i = 0; i < total_instructions; i++)
         {
-            log_debug("[Instruction %02i]\n", i);
-            Instruction *instruction = get_instruction(program, i);
-            char *instruction_string = get_printable_instruction(program, instruction);
-
             if (show_line_number)
             {
                 char *line_number_string = get_printable_line_number(line_number_format, i);
@@ -34,6 +30,8 @@ char *get_printable_program(Program *program, bool show_line_number)
                 }
             }
 
+            Instruction *instruction = get_instruction(program, i);
+            char *instruction_string = get_printable_instruction(program, instruction);
             if (instruction_string != NULL)
             {
                 program_string = append_string(program_string, instruction_string);
