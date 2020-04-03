@@ -112,7 +112,7 @@ about what the interpreter is doing at each step. The debug build of
 the interpreter is not required.
 
 ```sh
-./snowflake --print --run --debug your-snowflake-program.sn
+./snowflake --run --debug your-snowflake-program.sn
 ```
 
 ## Remove Compilation Files
