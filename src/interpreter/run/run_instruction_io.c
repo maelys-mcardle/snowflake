@@ -3,7 +3,7 @@
 #include "platforms/input_devices.h"
 #include "platforms/logging.h"
 #include "errors.h"
-#include "run_instruction_io.h"
+#include "run/run_instruction_io.h"
 
 bool instruction_output(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {

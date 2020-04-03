@@ -1,7 +1,7 @@
 #include <stdlib.h>
-#include "run_instruction_logic.h"
+#include "run/run_instruction_logic.h"
 #include "platforms/logging.h"
-#include "bank_operations.h"
+#include "run/bank_operations.h"
 #include "errors.h"
 
 bool instruction_not(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)

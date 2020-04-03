@@ -5,10 +5,10 @@
 #include <getopt.h>
 #include "core/program.h"
 #include "platforms/logging.h"
-#include "parse_file.h"
-#include "print_program.h"
+#include "parse/parse_file.h"
+#include "print/print_program.h"
 #include "errors.h"
-#include "run_program.h"
+#include "run/run_program.h"
 #include "main.h"
 
 /* Starting point of the program. */

@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "run_instruction_types.h"
+#include "run/run_instruction_types.h"
 #include "platforms/logging.h"
 #include "core/type_conversion.h"
 #include "core/bank.h"

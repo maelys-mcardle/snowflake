@@ -4,7 +4,7 @@
 #include "core/devices.h"
 #include "core/array.h"
 #include "core/string.h"
-#include "print_program.h"
+#include "print/print_program.h"
 
 /* Prints an entire Snowflake program. */
 char *get_printable_program(Program *program, bool show_line_number)

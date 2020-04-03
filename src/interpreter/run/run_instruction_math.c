@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <math.h>
-#include "run_instruction_math.h"
+#include "run/run_instruction_math.h"
 #include "core/string.h"
 #include "platforms/logging.h"
-#include "bank_operations.h"
+#include "run/bank_operations.h"
 #include "errors.h"
 
 bool instruction_add(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)

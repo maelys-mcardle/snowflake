@@ -2,7 +2,7 @@
 #include "platforms/logging.h"
 #include "core/array.h"
 #include "errors.h"
-#include "run_instruction_array.h"
+#include "run/run_instruction_array.h"
 
 bool instruction_bank_to_first(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {

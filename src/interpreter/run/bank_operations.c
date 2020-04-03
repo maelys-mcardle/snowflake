@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <math.h>
-#include "bank_operations.h"
+#include "run/bank_operations.h"
 #include "errors.h"
 #include "core/string.h"
 #include "platforms/logging.h"

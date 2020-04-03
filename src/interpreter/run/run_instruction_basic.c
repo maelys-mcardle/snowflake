@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "run_instruction_basic.h"
+#include "run/run_instruction_basic.h"
 #include "core/bank.h"
 #include "platforms/logging.h"
 #include "core/devices.h"

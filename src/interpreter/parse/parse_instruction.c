@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "parse_instruction.h"
+#include "parse/parse_instruction.h"
 #include "errors.h"
 #include "platforms/logging.h"
 #include "core/instructions.h"
