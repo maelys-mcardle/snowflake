@@ -258,6 +258,9 @@ InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
             break;
         default:
             // No instruction exists.
+            set_mnemonic(&info, "  ");
+            info.parameters.first = PARAMETER_NONE;
+            info.parameters.second = PARAMETER_NONE;
             *exists = false;
             return info;
     }
