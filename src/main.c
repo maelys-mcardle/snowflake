@@ -53,7 +53,7 @@ int parse_snowflake_file_and_run(bool print_code, bool run_code, bool line_numbe
     // Print out the code.
     if (print_code)
     {
-        print_program(program, line_numbers ? WITH_LINE_NUMBER : WITHOUT_LINE_NUMBER);
+        print_program(program, line_numbers);
     }
 
     // Execute the code.
@@ -70,9 +70,9 @@ int parse_snowflake_file_and_run(bool print_code, bool run_code, bool line_numbe
     return return_code;
 }
 
-void print_program(Program *program, LineNumbering line_numbering)
+void print_program(Program *program, bool show_line_number)
 {
-    char *program_string = get_printable_program(program, line_numbering);
+    char *program_string = get_printable_program(program, show_line_number);
     if (program_string != NULL)
     {
         printf("%s", program_string);

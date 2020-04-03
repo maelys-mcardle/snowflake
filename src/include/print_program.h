@@ -6,12 +6,7 @@
 
 #define MAX_IDENTIFIER_SIZE 12
 
-typedef enum {
-    WITHOUT_LINE_NUMBER,
-    WITH_LINE_NUMBER
-} LineNumbering;
-
-char *get_printable_program(Program *program, LineNumbering line_numbering);
+char *get_printable_program(Program *program, bool show_line_number);
 char *get_printable_instruction(Program *program, Instruction *instruction);
 char *get_printable_parameter(Program *program, InstructionCode current_instruction, ParameterType type, ParameterValue value);
 char *get_printable_identifier(Program *program, InstructionCode current_instruction, InstructionCode naming_instruction, int target_identifier, char *format);

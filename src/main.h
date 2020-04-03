@@ -13,6 +13,6 @@
 
 bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, bool *line_numbers, char **file_path);
 int parse_snowflake_file_and_run(bool print_code, bool run_code, bool line_numbers, char *snowflake_file);
-void print_program(Program *program, LineNumbering line_numbering);
+void print_program(Program *program, bool show_line_number);
 
 #endif

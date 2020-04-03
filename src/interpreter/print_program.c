@@ -7,7 +7,7 @@
 #include "print_program.h"
 
 /* Prints an entire Snowflake program. */
-char *get_printable_program(Program *program, LineNumbering line_numbering)
+char *get_printable_program(Program *program, bool show_line_number)
 {
     log_debug("Printing program...\n");
     char *program_string = NULL;
@@ -24,7 +24,7 @@ char *get_printable_program(Program *program, LineNumbering line_numbering)
             Instruction *instruction = get_instruction(program, i);
             char *instruction_string = get_printable_instruction(program, instruction);
 
-            if (line_numbering == WITH_LINE_NUMBER)
+            if (show_line_number)
             {
                 char *line_number_string = get_printable_line_number(line_number_format, i);
                 if (line_number_string != NULL)
