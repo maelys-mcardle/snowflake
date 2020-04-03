@@ -13,6 +13,7 @@ char *get_printable_identifier(Program *program, InstructionCode current_instruc
 char *get_printable_device(int device);
 char *get_printable_type(int type);
 char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier);
+char *get_printable_instruction_line(Program *program, InstructionPointer instruction_pointer, char *line_number_format);
 char *get_printable_line_number_format(InstructionCount total_lines);
 char *get_printable_line_number(char *string_format, InstructionCount current_line);
 
