@@ -24,8 +24,8 @@ snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
 		logging.o array.o run_instruction_io.o bank_operations.o $(CFLAGS)
 
-main.o: src/main.c src/main.h
-	cc -c src/main.c $(CFLAGS)
+main.o: src/cli/main.c src/cli/main.h
+	cc -c src/cli/main.c $(CFLAGS)
 
 parse_file.o: src/interpreter/parse/parse_file.c src/include/parse/parse_file.h
 	cc -c src/interpreter/parse/parse_file.c $(CFLAGS)
