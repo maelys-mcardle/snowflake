@@ -16,13 +16,15 @@ snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 		run_instruction_types.o run_instruction_basic.o input_devices.o \
 		string.o parameters.o run_instruction_branching.o \
 		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
-		logging.o array.o run_instruction_io.o bank_operations.o 
+		logging.o array.o run_instruction_io.o bank_operations.o \
+		print_instruction.o 
 	cc -o snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
 		output_devices.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o input_devices.o \
 		string.o parameters.o run_instruction_branching.o \
 		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
-		logging.o array.o run_instruction_io.o bank_operations.o $(CFLAGS)
+		logging.o array.o run_instruction_io.o bank_operations.o \
+		print_instruction.o $(CFLAGS)
 
 main.o: src/cli/main.c src/cli/main.h
 	cc -c src/cli/main.c $(CFLAGS)
@@ -32,6 +34,9 @@ parse_file.o: src/interpreter/parse/parse_file.c src/include/parse/parse_file.h
 
 print_program.o: src/interpreter/print/print_program.c src/include/print/print_program.h 
 	cc -c src/interpreter/print/print_program.c $(CFLAGS)
+
+print_instruction.o: src/interpreter/print/print_instruction.c src/include/print/print_instruction.h 
+	cc -c src/interpreter/print/print_instruction.c $(CFLAGS)
 
 parse_instruction.o: src/interpreter/parse/parse_instruction.c src/include/parse/parse_instruction.h
 	cc -c src/interpreter/parse/parse_instruction.c $(CFLAGS)
@@ -99,4 +104,5 @@ clean:
 		run_instruction_types.o run_instruction_basic.o input_devices.o \
 		string.o parameters.o run_instruction_branching.o \
 		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
-		logging.o array.o run_instruction_io.o bank_operations.o 
+		logging.o array.o run_instruction_io.o bank_operations.o \
+		print_instruction.o 
