@@ -43,7 +43,7 @@ The `src/` directory contains the code specific for the interpreter's
 command-line application.
 
 The `src/cli` directory contains the code for the command-line front-end
-to the Snowflake interpreter.
+to the Snowflake interpreter. **This is where the `main.c` file is found.**
 
 The `src/interpreter` directory contains the code for parsing, printing and
 running Snowflake code. Similarly:
