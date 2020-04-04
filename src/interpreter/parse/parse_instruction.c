@@ -261,7 +261,7 @@ int parse_field(char *line, int max_line_length, bool stop_at_whitespace,
         else if (output_index == 0 &&
             is_whitespace(character))
         {
-            // do nothing.
+            continue;
         }
 
         // Whitespace after instruction is understood
