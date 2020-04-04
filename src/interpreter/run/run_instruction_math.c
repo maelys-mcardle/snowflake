@@ -75,7 +75,7 @@ bool add_value(Program *program, Parameters *parameters, InstructionPointer *ins
             set_bank_integer(add_value_bank, value_to_add);
 
             instruction_ok = bank_operation_addition(
-                 bank, add_value_bank, "Increment/Decrement");
+                bank, add_value_bank, "Increment/Decrement");
         
             free_bank(add_value_bank);
          }
