@@ -73,6 +73,9 @@ bool add_value(Program *program, Parameters *parameters, InstructionPointer *ins
 
         instruction_ok = bank_operation_addition(
             bank, add_value_bank, "Increment/Decrement");
+        
+        if (add_value_bank != NULL) 
+            free_bank(add_value_bank);
     }
     else
     {
