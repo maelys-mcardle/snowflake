@@ -4,14 +4,20 @@
 #include <string.h>
 #include <getopt.h>
 #include "core/program.h"
-#include "platforms/logging.h"
 #include "parse/parse_file.h"
+#include "platforms/logging.h"
 #include "print/print_program.h"
-#include "errors.h"
 #include "run/run_program.h"
+#include "errors.h"
 #include "main.h"
 
-/* Starting point of the program. */
+/**
+ * Entry-point for CLI front-end to interpreter.
+ * 
+ * @param argc number of command-line arguments.
+ * @param argv command-line arguments.
+ * @return error code.
+ */
 int main (int argc, char **argv) 
 {
     bool no_unrecognized_arguments = false;
@@ -42,44 +48,17 @@ int main (int argc, char **argv)
     return parse_snowflake_file_and_run(print_code, run_code, line_numbers, file_path);
 }
 
-int parse_snowflake_file_and_run(bool print_code, bool run_code, bool line_numbers, char *snowflake_file)
-{
-    // Initialize the program.
-    Program *program = new_program();
- 
-    // Load the snowflake code.
-    int return_code = parse_snowflake_file(program, snowflake_file);
-    
-    // Print out the code.
-    if (print_code)
-    {
-        print_program(program, line_numbers);
-    }
-
-    // Execute the code.
-    if (run_code)
-    {
-        run_program(program);
-    }
-    
-    // Free the memory allocated to the program.
-    free_program(program);
-
-    // Exit with the return code supplied by processing
-    // the snowflake file.
-    return return_code;
-}
-
-void print_program(Program *program, bool show_line_number)
-{
-    char *program_string = get_printable_program(program, show_line_number);
-    if (program_string != NULL)
-    {
-        printf("%s", program_string);
-        free(program_string);
-    }
-}
-
+/**
+ * Parses the command-line arguments to the interpreter.
+ * 
+ * @param argc number of command-line arguments.
+ * @param argv command-line arguments.
+ * @param print_code whether the --print flag is set.
+ * @param run_code whether the --run flag is set.
+ * @param line_numbers whether the --lineno flag is set.
+ * @param file_path path to the .sn file.
+ * @return whether all arguments were parsed.
+ */
 bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, bool *line_numbers, char **file_path)
 {
     static struct option long_options[] =
@@ -127,8 +106,7 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, bo
             case ARGUMENT_UNKNOWN:
                 // Unknown argument.
                 return false;
-        }        
-
+        }
     }
 
     // Positional argument is the file path.
@@ -139,4 +117,57 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, bo
 
     // No unknown argument.
     return true;
+}
+
+/**
+ * Parses, prints, and runs the snowflake file.
+ * 
+ * @param print_code whether the --print flag is set.
+ * @param run_code whether the --run flag is set.
+ * @param line_numbers whether the --lineno flag is set.
+ * @param snowflake_file path to the .sn file.
+ * @return exit code.
+ */
+int parse_snowflake_file_and_run(bool print_code, bool run_code, bool line_numbers, char *snowflake_file)
+{
+    // Initialize the program.
+    Program *program = new_program();
+ 
+    // Load the snowflake code.
+    int return_code = parse_snowflake_file(program, snowflake_file);
+    
+    // Print out the code.
+    if (print_code)
+    {
+        print_program(program, line_numbers);
+    }
+
+    // Execute the code.
+    if (run_code)
+    {
+        run_program(program);
+    }
+    
+    // Free the memory allocated to the program.
+    free_program(program);
+
+    // Exit with the return code supplied by processing
+    // the snowflake file.
+    return return_code;
+}
+
+/**
+ * Prints the snowflake program.
+ * 
+ * @param program the parsed snowflake program.
+ * @param line_numbers whether the --lineno flag is set.
+ */
+void print_program(Program *program, bool show_line_number)
+{
+    char *program_string = get_printable_program(program, show_line_number);
+    if (program_string != NULL)
+    {
+        printf("%s", program_string);
+        free(program_string);
+    }
 }
