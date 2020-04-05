@@ -183,42 +183,118 @@ bool set_empty_bank_array(Bank *bank)
     return true;
 }
 
+
 /**
- * Creates a new array specific to banks.
+ * Gets the bank value as a boolean.
+ * The bank itself must be a boolean.
  * 
- * @return array formatted for banks.
+ * @param bank bank to get value from.
+ * @param ok whether the value was obtained.
+ * @return the interpreted value.
  */
-Array *new_bank_array()
+bool get_bank_boolean(Bank *bank, bool *ok)
 {
-    Array *array = new_array();
-    array->free_array_item_function = free_bank_array_item;
-    array->copy_array_item_function = copy_bank_array_item;
-    return array;
+    if (bank != NULL && bank->type == TYPE_BOOLEAN)
+    {
+        log_debug("Read boolean from Bank %02i.\n", bank->identifier);
+        *ok = true;
+        return bank->value.boolean;
+    }
+
+    *ok = false;
+    return false;
 }
 
 /**
- * Copies a bank in an array.
+ * Gets the bank value as an integer.
+ * The bank itself must be a integer.
  * 
- * @param source_item item to copy from.
- * @return copy of item.
+ * @param bank bank to get value from.
+ * @param ok whether the value was obtained.
+ * @return the interpreted value.
  */
-ArrayItem *copy_bank_array_item(ArrayItem *source_item)
+int get_bank_integer(Bank *bank, bool *ok)
 {
-    Bank *destination = new_bank(0);
-    copy_bank(destination, (Bank *) source_item);
-    return destination;
+    if (bank != NULL && bank->type == TYPE_INTEGER)
+    {
+        log_debug("Read integer from Bank %02i.\n", bank->identifier);
+        *ok = true;
+        return bank->value.integer;
+    }
+
+    *ok = false;
+    return 0;
 }
 
 /**
- * Frees a bank in an array.
+ * Gets the bank value as a float.
+ * The bank itself must be a float.
  * 
- * @param bank bank item to free.
+ * @param bank bank to get value from.
+ * @param ok whether the value was obtained.
+ * @return the interpreted value.
  */
-void free_bank_array_item(ArrayItem *bank)
+float get_bank_float(Bank *bank, bool *ok)
 {
-    free_bank((Bank *) bank);
+    if (bank != NULL && bank->type == TYPE_FLOAT)
+    {
+        *ok = true;
+        return bank->value.floating;
+    }
+
+    *ok = false;
+    return 0.0;
 }
 
+/**
+ * Gets the bank value as a string.
+ * The bank itself must be a string.
+ * 
+ * @param bank bank to get value from.
+ * @param ok whether the value was obtained.
+ * @return the interpreted value.
+ */
+char *get_bank_string(Bank *bank, bool *ok)
+{
+    if (bank != NULL && bank->type == TYPE_STRING)
+    {
+        log_debug("Read string from Bank %02i.\n", bank->identifier);
+        *ok = true;
+        return bank->value.string;
+    }
+
+    *ok = false;
+    return NULL;
+}
+
+/**
+ * Gets the bank value as an array.
+ * The bank itself must be an array.
+ * 
+ * @param bank bank to get value from.
+ * @param ok whether the value was obtained.
+ * @return the interpreted value.
+ */
+Array *get_bank_array(Bank *bank, bool *ok)
+{
+    if (bank != NULL && bank->type == TYPE_ARRAY)
+    {
+        log_debug("Read array from Bank %02i.\n", bank->identifier);
+        *ok = true;
+        return bank->value.array;
+    }
+
+    *ok = false;
+    return NULL;
+}
+
+/**
+ * Interprets the bank value as a boolean.
+ * The bank itself can contain any value.
+ * 
+ * @param bank bank to get value from.
+ * @return the interpreted value.
+ */
 bool get_bank_as_boolean(Bank *bank)
 {
     if (bank == NULL)
@@ -247,6 +323,13 @@ bool get_bank_as_boolean(Bank *bank)
     }
 }
 
+/**
+ * Interprets the bank value as an integer.
+ * The bank itself can contain any value.
+ * 
+ * @param bank bank to get value from.
+ * @return the interpreted value.
+ */
 int get_bank_as_integer(Bank *bank)
 {
     if (bank == NULL)
@@ -275,6 +358,13 @@ int get_bank_as_integer(Bank *bank)
     }
 }
 
+/**
+ * Interprets the bank value as a float.
+ * The bank itself can contain any value.
+ * 
+ * @param bank bank to get value from.
+ * @return the interpreted value.
+ */
 float get_bank_as_float(Bank *bank)
 {
     if (bank == NULL)
@@ -303,6 +393,13 @@ float get_bank_as_float(Bank *bank)
     }
 }
 
+/**
+ * Interprets the bank value as a string.
+ * The bank itself can contain any value.
+ * 
+ * @param bank bank to get value from.
+ * @return the interpreted value.
+ */
 char *get_bank_as_string(Bank *bank)
 {
     if (bank == NULL)
@@ -353,6 +450,13 @@ char *get_bank_as_string(Bank *bank)
     return output_string;
 }
 
+/**
+ * Converts bank to the specified type.
+ * 
+ * @param bank bank to convert.
+ * @param to_type the type to convert the bank value to.
+ * @return whether the operation was successful.
+ */
 bool convert_bank(Bank *bank, BankType to_type)
 {
     bool convert_ok = false;
@@ -399,6 +503,13 @@ bool convert_bank(Bank *bank, BankType to_type)
     return convert_ok;
 }
 
+/**
+ * Copies the bank.
+ * 
+ * @param destination where to copy the bank to.
+ * @param source where to copy the bank from.
+ * @return whether the operation was successful.
+ */
 bool copy_bank(Bank *destination, Bank *source)
 {
     bool source_ok = false;
@@ -437,66 +548,38 @@ bool copy_bank(Bank *destination, Bank *source)
     return source_ok && destination_ok;
 }
 
-bool get_bank_boolean(Bank *bank, bool *ok)
+/**
+ * Creates a new array specific to banks.
+ * 
+ * @return array formatted for banks.
+ */
+Array *new_bank_array()
 {
-    if (bank != NULL && bank->type == TYPE_BOOLEAN)
-    {
-        log_debug("Read boolean from Bank %02i.\n", bank->identifier);
-        *ok = true;
-        return bank->value.boolean;
-    }
-
-    *ok = false;
-    return false;
+    Array *array = new_array();
+    array->free_array_item_function = free_bank_array_item;
+    array->copy_array_item_function = copy_bank_array_item;
+    return array;
 }
 
-int get_bank_integer(Bank *bank, bool *ok)
+/**
+ * Copies a bank in an array.
+ * 
+ * @param source_item item to copy from.
+ * @return copy of item.
+ */
+ArrayItem *copy_bank_array_item(ArrayItem *source_item)
 {
-    if (bank != NULL && bank->type == TYPE_INTEGER)
-    {
-        log_debug("Read integer from Bank %02i.\n", bank->identifier);
-        *ok = true;
-        return bank->value.integer;
-    }
-
-    *ok = false;
-    return 0;
+    Bank *destination = new_bank(0);
+    copy_bank(destination, (Bank *) source_item);
+    return destination;
 }
 
-float get_bank_float(Bank *bank, bool *ok)
+/**
+ * Frees a bank in an array.
+ * 
+ * @param bank bank item to free.
+ */
+void free_bank_array_item(ArrayItem *bank)
 {
-    if (bank != NULL && bank->type == TYPE_FLOAT)
-    {
-        *ok = true;
-        return bank->value.floating;
-    }
-
-    *ok = false;
-    return 0.0;
-}
-
-char *get_bank_string(Bank *bank, bool *ok)
-{
-    if (bank != NULL && bank->type == TYPE_STRING)
-    {
-        log_debug("Read string from Bank %02i.\n", bank->identifier);
-        *ok = true;
-        return bank->value.string;
-    }
-
-    *ok = false;
-    return NULL;
-}
-
-Array *get_bank_array(Bank *bank, bool *ok)
-{
-    if (bank != NULL && bank->type == TYPE_ARRAY)
-    {
-        log_debug("Read array from Bank %02i.\n", bank->identifier);
-        *ok = true;
-        return bank->value.array;
-    }
-
-    *ok = false;
-    return NULL;
+    free_bank((Bank *) bank);
 }
