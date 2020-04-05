@@ -1,10 +1,12 @@
 #include <stdlib.h>
-#include "core/program.h"
-#include "errors.h"
 #include "platforms/logging.h"
+#include "errors.h"
+#include "core/program.h"
 
-/* Creates a new program and allocates memory.
- * @return The initialized program.
+/**
+ * Creates a new program and allocates memory.
+ *
+ * @return the initialized program.
  */
 Program *new_program()
 {
@@ -22,7 +24,11 @@ Program *new_program()
     return program;
 }
 
-/* Free the allocated data for the program. */
+/**
+ * Free the allocated data for the program.
+ * 
+ * @param program the program to free. 
+ */
 void free_program(Program *program)
 {
     if (program != NULL)
@@ -38,7 +44,63 @@ void free_program(Program *program)
     }
 }
 
-/* Adds an instruction to the program.
+
+/** 
+ * Creates a new instruction array.
+ * 
+ * @return the new instruction array.
+ */
+Array *new_instruction_array()
+{
+    Array *instruction_array = new_array();
+
+    if (instruction_array != NULL)
+    {
+        instruction_array->free_array_item_function = free_instruction_array_item;
+    }
+    
+    return instruction_array;
+}
+
+/**
+ * Free the instruction contained in the array item.
+ * 
+ * @param instruction instruction contained in the array item.
+ */
+void free_instruction_array_item(ArrayItem *instruction)
+{
+    free_instruction((Instruction *) instruction);
+}
+
+/**
+ * Fetches the total number of instructions in the program.
+ * 
+ * @param program program containing the instructions.
+ * @return the number of instructions.
+ */
+InstructionCount get_instruction_count(Program *program)
+{
+    return get_array_count(program->instructions);
+}
+
+/**
+ * Gets the instruction at the specified instruction pointer.
+ * 
+ * @param program containing the instructions.
+ * @param instruction_pointer the instruction pointer to the instruction.
+ * @return the instruction at the specified instruction pointer.
+ */
+Instruction *get_instruction(Program *program, InstructionPointer instruction_pointer)
+{
+    Instruction *instruction = (Instruction *) get_array_item(program->instructions, instruction_pointer);
+    return instruction;
+}
+
+/** 
+ * Adds an instruction to the program.
+ * 
+ * @param program the program to append the instruction to.
+ * @param instruction the instruction to append.
  * @return True if the instruction was added, false if not.
  */
 bool append_instruction_to_program(Program *program, Instruction *instruction)
@@ -46,6 +108,16 @@ bool append_instruction_to_program(Program *program, Instruction *instruction)
     return append_array(program->instructions, instruction);
 }
 
+/**
+ * Adds or replaces a bank to the program.
+ * 
+ * If there's no bank with the same identifier in the program, it adds it.
+ * If there's a bank with the same identifier in the program, it replaces it.
+ *
+ * @param program the program to add/replace the bank for.
+ * @param new_bank the bank to set in the program.
+ * @return whether the operation was successful.
+ */
 bool set_program_bank(Program *program, Bank *new_bank)
 {
     // Get the existing index of the bank, if it's set.
@@ -74,6 +146,13 @@ bool set_program_bank(Program *program, Bank *new_bank)
     }
 }
 
+/**
+ * Removes a bank with the specified identifier from the program.
+ * 
+ * @param program program to remove the bank from.
+ * @param identifier identifier of the bank to remove.
+ * @return whether the operation was successful.
+ */
 bool remove_program_bank(Program *program, Identifier identifier)
 {
     Bank *bank = remove_program_bank_without_freeing(program, identifier);
@@ -81,6 +160,14 @@ bool remove_program_bank(Program *program, Identifier identifier)
     return true;
 }
 
+/**
+ * Removes a bank with the specified identifier from the program.
+ * It does not unallocate the memory associated with the bank.
+ * 
+ * @param program program to remove the bank from.
+ * @param identifier identifier of the bank to remove.
+ * @return the bank that was removed.
+ */
 Bank *remove_program_bank_without_freeing(Program *program, Identifier identifier)
 {
     // Get the existing index of the bank, if it's set.
@@ -100,13 +187,26 @@ Bank *remove_program_bank_without_freeing(Program *program, Identifier identifie
     }
 }
 
-
+/**
+ * Retrieves the bank based on the identifier stored in the parameter.
+ * 
+ * @param program program to get the bank from.
+ * @param parameter the parameter containing the identifier.
+ * @return the bank that was retrieved from the program.
+ */
 Bank *get_bank_from_parameter(Program *program, ParameterValue *parameter)
 {
     Identifier target_identifier = parameter->identifier;
     return get_program_bank(program, target_identifier);
 }
 
+/**
+ * Retrieves the bank based on the identifier.
+ * 
+ * @param program program to get the bank from.
+ * @param identifier the identifier for the bank.
+ * @return the bank that was retrieved from the program.
+ */
 Bank *get_program_bank(Program *program, Identifier identifier)
 {
     bool bank_exists = false;
@@ -117,7 +217,14 @@ Bank *get_program_bank(Program *program, Identifier identifier)
     return NULL;
 }
 
-/* Gets the index in the banks of the bank with the target identifier. */
+/**
+ * Gets the index in the banks of the bank with the target identifier.
+ *
+ * @param program the program that has the index.
+ * @param target_identifier identifier of the bank in the program.
+ * @param target_exists whether the specified bank was found in the program.
+ * @return the index of the bank in the array of banks of the program.
+ */
 BankIndex get_program_bank_index(Program *program, Identifier target_identifier, bool *target_exists)
 {
     if (program->banks != NULL)
@@ -136,11 +243,24 @@ BankIndex get_program_bank_index(Program *program, Identifier target_identifier,
     return 0;
 }
 
+/**
+ * Appends the bank to the program bank array.
+ * 
+ * @param program the program to append the bank to.
+ * @param bank the bank to add to the program.
+ * @return whether the operation was successful.
+ */
 bool append_bank_to_program(Program *program, Bank *bank)
 {
     return append_array(program->banks, (ArrayItem *) bank);
 }
 
+/**
+ * Creates a new bank. It's identifier is taken from the parameter.
+ * 
+ * @param parameter parameter that specifies the bank identifier.
+ * @return the new bank.
+ */
 Bank *new_bank_from_parameter(ParameterValue *parameter)
 {
     Identifier identifier = parameter->identifier;
@@ -148,6 +268,13 @@ Bank *new_bank_from_parameter(ParameterValue *parameter)
     return bank;
 }
 
+/**
+ * Fetches a bank from the program with the specified identifier.
+ * If the bank doesn't exist, it creates it.
+ * 
+ * @param program program containing the bank.
+ * @param parameter parameter specifying the bank identifier.
+ */
 Bank *get_or_new_bank_from_parameter(Program *program, ParameterValue *parameter)
 {
     Bank *bank = get_bank_from_parameter(program, parameter);
@@ -163,57 +290,58 @@ Bank *get_or_new_bank_from_parameter(Program *program, ParameterValue *parameter
     return bank;
 }
 
+/**
+ * Retrieves the device type from the parameter.
+ * 
+ * @param parameters the parameters specifying the device type.
+ * @return the device type.
+ */
 Device get_device_from_parameter(Parameters *parameters)
 {
     Device device = parameters->first.identifier;
     return device;
 }
 
+/**
+ * Retrieves the type type from the parameter.
+ * 
+ * @param parameters the parameters specifying the type type.
+ * @return the type type.
+ */
 BankType get_type_from_parameter(Parameters *parameters)
 {
     BankType type = parameters->first.identifier;
     return type;
 }
 
+/**
+ * Increments the instruction pointer.
+ * 
+ * @param instruction_pointer the instruction pointer to modify.
+ */
 void increment_instruction(InstructionPointer *instruction_pointer)
 {
     *instruction_pointer += 1;
 }
 
+/**
+ * Increments the instruction pointer by two.
+ * 
+ * @param instruction_pointer the instruction pointer to modify.
+ */
 void skip_next_instruction(InstructionPointer *instruction_pointer)
 {
     *instruction_pointer += 2;
 }
 
+/**
+ * Sets the instruction pointer to a new value.
+ * 
+ * @param instruction_pointer the instruction pointer to modify.
+ * @param new_location new address for the instruction pointer.
+ */
 void go_to_instruction(InstructionPointer *instruction_pointer, InstructionPointer new_location)
 {
     *instruction_pointer = new_location;
 }
 
-InstructionCount get_instruction_count(Program *program)
-{
-    return get_array_count(program->instructions);
-}
-
-Instruction *get_instruction(Program *program, InstructionPointer instruction_pointer)
-{
-    Instruction *instruction = (Instruction *) get_array_item(program->instructions, instruction_pointer);
-    return instruction;
-}
-
-Array *new_instruction_array()
-{
-    Array *instruction_array = new_array();
-
-    if (instruction_array != NULL)
-    {
-        instruction_array->free_array_item_function = free_instruction_array_item;
-    }
-    
-    return instruction_array;
-}
-
-void free_instruction_array_item(ArrayItem *instruction)
-{
-    free_instruction((Instruction *) instruction);
-}

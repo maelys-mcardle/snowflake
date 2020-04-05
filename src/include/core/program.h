@@ -17,6 +17,10 @@ typedef struct {
 
 Program *new_program();
 void free_program(Program *program);
+Array *new_instruction_array();
+void free_instruction_array_item(ArrayItem *instruction);
+InstructionCount get_instruction_count(Program *program);
+Instruction *get_instruction(Program *program, InstructionPointer instruction_pointer);
 bool append_instruction_to_program(Program *program, Instruction *instruction);
 bool append_bank_to_program(Program *program, Bank *bank);
 bool set_program_bank(Program *program, Bank *bank);
@@ -32,9 +36,5 @@ BankType get_type_from_parameter(Parameters *parameters);
 void increment_instruction(InstructionPointer *instruction_pointer);
 void skip_next_instruction(InstructionPointer *instruction_pointer);
 void go_to_instruction(InstructionPointer *instruction_pointer, InstructionPointer new_location);
-InstructionCount get_instruction_count(Program *program);
-Instruction *get_instruction(Program *program, InstructionPointer instruction_pointer);
-Array *new_instruction_array();
-void free_instruction_array_item(ArrayItem *instruction);
 
 #endif
