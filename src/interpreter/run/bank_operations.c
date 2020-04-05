@@ -5,6 +5,16 @@
 #include "core/string.h"
 #include "platforms/logging.h"
 
+/**
+ * Executes a function that requires a single defined bank.
+ * 
+ * @param program the full snowflake program.
+ * @param parameters parameters for the instruction being executed.
+ * @param instruction_pointer the current instruction pointer.
+ * @param operation_function the function to execute.
+ * @param operation_name the name for the operation, used for logging.
+ * @return whether the operation was successful.
+ */
 bool single_bank_operation(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer, 
     SingleBankOperation operation_function, char *operation_name)
 {
@@ -28,6 +38,16 @@ bool single_bank_operation(Program *program, Parameters *parameters, Instruction
     return instruction_ok;
 }
 
+/**
+ * Executes a function that requires a two defined banks.
+ * 
+ * @param program the full snowflake program.
+ * @param parameters parameters for the instruction being executed.
+ * @param instruction_pointer the current instruction pointer.
+ * @param operation_function the function to execute.
+ * @param operation_name the name for the operation, used for logging.
+ * @return whether the operation was successful.
+ */
 bool dual_bank_operation(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer, 
     DualBankOperation operation_function, char *operation_name)
 {
@@ -59,6 +79,14 @@ bool dual_bank_operation(Program *program, Parameters *parameters, InstructionPo
     return instruction_ok;
 }
 
+/**
+ * Perform addition using the bank values.
+ * 
+ * @param first_bank the first bank.
+ * @param second_bank the second bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_addition(Bank *first_bank, Bank *second_bank, char *operation_name)
 {
     if (first_bank->type == TYPE_INTEGER)
@@ -90,6 +118,14 @@ bool bank_operation_addition(Bank *first_bank, Bank *second_bank, char *operatio
     return false;
 }
 
+/**
+ * Perform subtraction using the bank values.
+ * 
+ * @param first_bank the first bank.
+ * @param second_bank the second bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_subtraction(Bank *first_bank, Bank *second_bank, char *operation_name)
 {
     if (first_bank->type == TYPE_INTEGER)
@@ -110,6 +146,14 @@ bool bank_operation_subtraction(Bank *first_bank, Bank *second_bank, char *opera
     return false;
 }
 
+/**
+ * Perform multiplication using the bank values.
+ * 
+ * @param first_bank the first bank.
+ * @param second_bank the second bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_multiplication(Bank *first_bank, Bank *second_bank, char *operation_name)
 {
     if (first_bank->type == TYPE_INTEGER)
@@ -130,6 +174,14 @@ bool bank_operation_multiplication(Bank *first_bank, Bank *second_bank, char *op
     return false;
 }
 
+/**
+ * Perform division using the bank values.
+ * 
+ * @param first_bank the first bank.
+ * @param second_bank the second bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_division(Bank *first_bank, Bank *second_bank, char *operation_name)
 {
     if (first_bank->type == TYPE_INTEGER)
@@ -150,6 +202,14 @@ bool bank_operation_division(Bank *first_bank, Bank *second_bank, char *operatio
     return false;
 }
 
+/**
+ * Perform modulo using the bank values.
+ * 
+ * @param first_bank the first bank.
+ * @param second_bank the second bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_modulo(Bank *first_bank, Bank *second_bank, char *operation_name)
 {
     if (first_bank->type == TYPE_INTEGER)
@@ -170,6 +230,14 @@ bool bank_operation_modulo(Bank *first_bank, Bank *second_bank, char *operation_
     return false;
 }
 
+/**
+ * Perform exponential using the bank values.
+ * 
+ * @param first_bank the first bank.
+ * @param second_bank the second bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_power(Bank *first_bank, Bank *second_bank, char *operation_name)
 {
     if (first_bank->type == TYPE_INTEGER)
@@ -191,6 +259,13 @@ bool bank_operation_power(Bank *first_bank, Bank *second_bank, char *operation_n
     return false;
 }
 
+/**
+ * Perform square root using the bank value.
+ * 
+ * @param bank the first bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_square_root(Bank *bank, char *operation_name)
 {
     if (bank->type == TYPE_INTEGER)
@@ -209,6 +284,13 @@ bool bank_operation_square_root(Bank *bank, char *operation_name)
     return false;
 }
 
+/**
+ * Perform logical NOT using the bank value.
+ * 
+ * @param bank the first bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_not(Bank *bank, char *operation_name)
 {
     if (bank->type == TYPE_INTEGER)
@@ -227,6 +309,14 @@ bool bank_operation_not(Bank *bank, char *operation_name)
     return false;
 }
 
+/**
+ * Perform logical AND using the bank values.
+ * 
+ * @param first_bank the first bank.
+ * @param second_bank the second bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_and(Bank *first_bank, Bank *second_bank, char *operation_name)
 {
     if (first_bank->type == TYPE_INTEGER)
@@ -247,6 +337,14 @@ bool bank_operation_and(Bank *first_bank, Bank *second_bank, char *operation_nam
     return false;
 }
 
+/**
+ * Perform logical OR using the bank values.
+ * 
+ * @param first_bank the first bank.
+ * @param second_bank the second bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_or(Bank *first_bank, Bank *second_bank, char *operation_name)
 {
     if (first_bank->type == TYPE_INTEGER)
@@ -267,6 +365,14 @@ bool bank_operation_or(Bank *first_bank, Bank *second_bank, char *operation_name
     return false;
 }
 
+/**
+ * Perform logical XOR using the bank values.
+ * 
+ * @param first_bank the first bank.
+ * @param second_bank the second bank.
+ * @param operation_name the name of the operation (for logging).
+ * @return whether the operation was successful.
+ */
 bool bank_operation_xor(Bank *first_bank, Bank *second_bank, char *operation_name)
 {
     if (first_bank->type == TYPE_INTEGER)
@@ -287,6 +393,13 @@ bool bank_operation_xor(Bank *first_bank, Bank *second_bank, char *operation_nam
     return false;
 }
 
+/**
+ * Join two strings together.
+ * 
+ * @param left_string the left string to join.
+ * @param right_string the right string to join.
+ * @return the joined strings.
+ */
 char *join_strings(char *left_string, char *right_string)
 {
     char *joined_string = new_string("");
