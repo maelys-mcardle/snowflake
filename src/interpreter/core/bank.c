@@ -1,19 +1,25 @@
 #include <stdlib.h>
 #include <string.h>
+#include "core/array.h"
 #include "core/string.h"
-#include "core/bank.h"
+#include "core/type_conversion.h"
 #include "platforms/logging.h"
 #include "errors.h"
-#include "core/type_conversion.h"
-#include "core/array.h"
+#include "core/bank.h"
 
+/**
+ * Creates a new bank.
+ * 
+ * @param identifier unique identifier for the bank.
+ * @return allocated bank.
+ */
 Bank *new_bank(Identifier identifier)
 {
     Bank *bank = (Bank *) malloc(sizeof(Bank));
     if (bank != NULL)
     {
         bank->identifier = identifier;
-        bank->type = TYPE_VARIABLE;
+        bank->type = TYPE_UNDEFINED;
     }
     else
     {
@@ -22,7 +28,12 @@ Bank *new_bank(Identifier identifier)
     return bank;
 }
 
-void free_bank(void *bank)
+/**
+ * Frees the allocated bank.
+ * 
+ * @param bank to free.
+ */
+void free_bank(Bank *bank)
 {
     if (bank != NULL)
     {
@@ -33,6 +44,11 @@ void free_bank(void *bank)
     }
 }
 
+/**
+ * Frees an array stored in a bank.
+ * 
+ * @param bank bank containing the array.
+ */
 void free_bank_array(Bank *bank)
 {
     if (bank != NULL &&
@@ -44,6 +60,11 @@ void free_bank_array(Bank *bank)
     }
 }
 
+/**
+ * Frees a string stored in a bank.
+ * 
+ * @param bank bank containing the string.
+ */
 void free_string(Bank *bank)
 {
     if (bank != NULL &&
@@ -55,13 +76,25 @@ void free_string(Bank *bank)
     }
 }
 
+/**
+ * Clears the value of a bank.
+ * 
+ * @param bank bank to clear.
+ */
 void clear_bank_value(Bank *bank)
 {
     free_string(bank);
     free_bank_array(bank);
-    bank->type = TYPE_VARIABLE;
+    bank->type = TYPE_UNDEFINED;
 }
 
+/**
+ * Sets the bank as a boolean.
+ * 
+ * @param bank bank to set.
+ * @param value value to assign.
+ * @return whether the operation was successful.
+ */
 bool set_bank_boolean(Bank *bank, bool value)
 {
     log_debug("Set boolean for Bank %02i.\n", bank->identifier);
@@ -71,6 +104,13 @@ bool set_bank_boolean(Bank *bank, bool value)
     return true;
 }
 
+/**
+ * Sets the bank as an integer.
+ * 
+ * @param bank bank to set.
+ * @param value value to assign.
+ * @return whether the operation was successful.
+ */
 bool set_bank_integer(Bank *bank, int value)
 {
     log_debug("Set integer for Bank %02i.\n", bank->identifier);
@@ -80,6 +120,13 @@ bool set_bank_integer(Bank *bank, int value)
     return true;
 }
 
+/**
+ * Sets the bank as a floating point value.
+ * 
+ * @param bank bank to set.
+ * @param value value to assign.
+ * @return whether the operation was successful.
+ */
 bool set_bank_float(Bank *bank, float value)
 {
     log_debug("Set float for Bank %02i.\n", bank->identifier);
@@ -89,6 +136,13 @@ bool set_bank_float(Bank *bank, float value)
     return true;
 }
 
+/**
+ * Sets the bank as a string.
+ * 
+ * @param bank bank to set.
+ * @param value value to assign.
+ * @return whether the operation was successful.
+ */
 bool set_bank_string(Bank *bank, char *value)
 {
     log_debug("Set string for Bank %02i.\n", bank->identifier);
@@ -98,6 +152,28 @@ bool set_bank_string(Bank *bank, char *value)
     return true;
 }
 
+/**
+ * Sets the bank as an array.
+ * 
+ * @param bank bank to set.
+ * @param value value to assign.
+ * @return whether the operation was successful.
+ */
+bool set_bank_array(Bank *bank, Array *value)
+{
+    log_debug("Set array for Bank %02i.\n", bank->identifier);
+    clear_bank_value(bank);
+    bank->type = TYPE_ARRAY;
+    bank->value.array = copy_array(value);
+    return true;
+}
+
+/**
+ * Sets the bank as an empty array.
+ * 
+ * @param bank bank to set.
+ * @return whether the operation was successful.
+ */
 bool set_empty_bank_array(Bank *bank)
 {
     log_debug("Set array for Bank %02i.\n", bank->identifier);
@@ -107,14 +183,25 @@ bool set_empty_bank_array(Bank *bank)
     return true;
 }
 
+/**
+ * Creates a new array specific to banks.
+ * 
+ * @return array formatted for banks.
+ */
 Array *new_bank_array()
 {
     Array *array = new_array();
-    array->free_array_item_function = free_bank;
+    array->free_array_item_function = free_bank_array_item;
     array->copy_array_item_function = copy_bank_array_item;
     return array;
 }
 
+/**
+ * Copies a bank in an array.
+ * 
+ * @param source_item item to copy from.
+ * @return copy of item.
+ */
 ArrayItem *copy_bank_array_item(ArrayItem *source_item)
 {
     Bank *destination = new_bank(0);
@@ -122,13 +209,14 @@ ArrayItem *copy_bank_array_item(ArrayItem *source_item)
     return destination;
 }
 
-bool set_bank_array(Bank *bank, Array *value)
+/**
+ * Frees a bank in an array.
+ * 
+ * @param bank bank item to free.
+ */
+void free_bank_array_item(ArrayItem *bank)
 {
-    log_debug("Set array for Bank %02i.\n", bank->identifier);
-    clear_bank_value(bank);
-    bank->type = TYPE_ARRAY;
-    bank->value.array = copy_array(value);
-    return true;
+    free_bank((Bank *) bank);
 }
 
 bool get_bank_as_boolean(Bank *bank)

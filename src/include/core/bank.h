@@ -22,12 +22,13 @@ typedef union {
 } BankValue;
 
 typedef enum {
-    TYPE_VARIABLE = 10,
-    TYPE_BOOLEAN  = 11,
-    TYPE_INTEGER  = 12,
-    TYPE_FLOAT    = 13,
-    TYPE_STRING   = 14,
-    TYPE_ARRAY    = 15
+    TYPE_UNDEFINED = 0,
+    TYPE_VARIABLE  = 10,
+    TYPE_BOOLEAN   = 11,
+    TYPE_INTEGER   = 12,
+    TYPE_FLOAT     = 13,
+    TYPE_STRING    = 14,
+    TYPE_ARRAY     = 15
 } BankType;
 
 typedef struct {
@@ -37,7 +38,7 @@ typedef struct {
 } Bank;
 
 Bank *new_bank(Identifier identifier);
-void free_bank(void *bank);
+void free_bank(Bank *bank);
 void clear_bank_value(Bank *bank);
 void free_bank_array(Bank *bank);
 void free_string(Bank *bank);
@@ -64,5 +65,6 @@ char *get_bank_as_string(Bank *bank);
 
 Array *new_bank_array();
 ArrayItem *copy_bank_array_item(ArrayItem *source_item);
+void free_bank_array_item(ArrayItem *bank);
 
 #endif
