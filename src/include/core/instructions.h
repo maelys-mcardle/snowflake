@@ -72,7 +72,7 @@ typedef struct {
 } InstructionInfo;
 
 Instruction *new_instruction();
-void free_instruction(void *instruction);
+void free_instruction(Instruction *instruction);
 InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists);
 void set_mnemonic(InstructionInfo *info, char *mnemonic);
 

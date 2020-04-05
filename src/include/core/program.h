@@ -34,5 +34,6 @@ void skip_next_instruction(InstructionPointer *instruction_pointer);
 void go_to_instruction(InstructionPointer *instruction_pointer, InstructionPointer new_location);
 InstructionCount get_instruction_count(Program *program);
 Instruction *get_instruction(Program *program, InstructionPointer instruction_pointer);
+void free_instruction_array_item(ArrayItem *instruction);
 
 #endif

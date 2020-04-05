@@ -12,7 +12,7 @@ Program *new_program()
     if (program != NULL)
     {
         program->instructions = new_array();
-        program->instructions->free_array_item_function = free_instruction;
+        program->instructions->free_array_item_function = free_instruction_array_item;
 
         program->banks = new_bank_array();
     }
@@ -201,4 +201,9 @@ Instruction *get_instruction(Program *program, InstructionPointer instruction_po
 {
     Instruction *instruction = (Instruction *) get_array_item(program->instructions, instruction_pointer);
     return instruction;
+}
+
+void free_instruction_array_item(ArrayItem *instruction)
+{
+    free_instruction((Instruction *) instruction);
 }

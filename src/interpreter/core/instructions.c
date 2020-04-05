@@ -1,18 +1,27 @@
 #include <stdlib.h>
-#include "core/instructions.h"
-#include "platforms/logging.h"
 #include "core/bank.h"
 #include "core/string.h"
+#include "platforms/logging.h"
+#include "core/instructions.h"
 
+/**
+ * Creates a new program instruction.
+ * 
+ * @return the new instruction.
+ */
 Instruction *new_instruction()
 {
     Instruction *instruction = (Instruction *) malloc(sizeof(Instruction));
     return instruction;
 }
 
-void free_instruction(void *instruction_ptr)
+/**
+ * Creates a new program instruction.
+ * 
+ * @return the new instruction.
+ */
+void free_instruction(Instruction *instruction)
 {
-    Instruction *instruction = (Instruction *) instruction_ptr;
     if (instruction != NULL)
     {
         log_debug("Freeing instruction.\n");
@@ -35,7 +44,13 @@ void free_instruction(void *instruction_ptr)
     }
 }
 
-
+/**
+ * Retrieves information about a specified instruction.
+ * 
+ * @param instruction the instruction to get information from.
+ * @param exists whether the instruction exists.
+ * @return information about the instruction.
+ */
 InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
 {
     InstructionInfo info;
@@ -270,6 +285,12 @@ InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists)
     return info;
 }
 
+/**
+ * Sets the mnemonic for the instruction.
+ * 
+ * @param info the instruction information.
+ * @param mnemonic the mnemonic to insert into the instruction information.
+ */
 void set_mnemonic(InstructionInfo *info, char *mnemonic)
 {
     info->mnemonic[0] = mnemonic[0];
