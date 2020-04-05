@@ -11,9 +11,7 @@ Program *new_program()
     Program *program = (Program *) malloc(sizeof(Program));
     if (program != NULL)
     {
-        program->instructions = new_array();
-        program->instructions->free_array_item_function = free_instruction_array_item;
-
+        program->instructions = new_instruction_array();
         program->banks = new_bank_array();
     }
     else
@@ -201,6 +199,18 @@ Instruction *get_instruction(Program *program, InstructionPointer instruction_po
 {
     Instruction *instruction = (Instruction *) get_array_item(program->instructions, instruction_pointer);
     return instruction;
+}
+
+Array *new_instruction_array()
+{
+    Array *instruction_array = new_array();
+
+    if (instruction_array != NULL)
+    {
+        instruction_array->free_array_item_function = free_instruction_array_item;
+    }
+    
+    return instruction_array;
 }
 
 void free_instruction_array_item(ArrayItem *instruction)
