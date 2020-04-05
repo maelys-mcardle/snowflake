@@ -1,0 +1,170 @@
+;; Fizz Buzz
+;;
+;; Iterate 1..100:
+;; - For multiples of 3 and 5, print FizzBuzz
+;; - For multiples of 3, print Fizz
+;; - For multiples of 5, print Buzz
+
+;; Name Banks
+;;
+;; This is only for code legibility.
+;; It is not necessary for the program.
+
+02 00 FIZZ      ;; Name Bank @00 FIZZ
+02 01 BUZZ      ;; Name Bank @01 BUZZ
+02 02 FIZZBUZZ  ;; Name Bank @02 FIZZBUZZ
+
+02 03 INDEX     ;; Name Bank @03 INDEX
+02 04 MAX       ;; Name Bank @04 MAX
+
+02 05 ZERO      ;; Name Bank @05 ZERO
+02 06 THREE     ;; Name Bank @06 THREE
+02 07 FIVE      ;; Name Bank @07 FIVE
+02 08 VALUE     ;; Name Bank @08 VALUE
+
+;; Assign Values
+
+14 00 Fizz      ;; BANK @00 = "Fizz"
+14 01 Buzz      ;; BANK @01 = "Buzz"
+14 02 FizzBuzz  ;; BANK @02 = "Fizz"
+
+12 03 1         ;; BANK @03 = 1
+12 04 100       ;; BANK @04 = 100
+
+12 05 0         ;; BANK @05 = 0
+12 06 3         ;; BANK @06 = 3
+12 07 5         ;; BANK @07 = 5
+
+;; Main Loop
+
+01 00 START_LOOP
+
+22 03 04        ;; IF INDEX == MAX
+20 05           ;; ...then goto END_PROGRAM
+
+05 08 03        ;; VALUE = INDEX
+34 08 06        ;; VALUE = VALUE % 3
+22 08 05        ;; IF VALUE == 0
+20 01           ;; ...goto IS_FIZZ
+
+05 08 03        ;; VALUE = INDEX
+34 08 07        ;; VALUE = VALUE % 5
+22 08 05        ;; IF VALUE == 0
+20 02           ;; ...goto IS_BUZZ
+
+20 04           ;; ...goto END_LOOP
+
+01 01 IS_FIZZ
+
+05 08 03        ;; VALUE = INDEX
+34 08 07        ;; VALUE = VALUE % 5
+22 08 05        ;; IF VALUE == 0
+20 03           ;; ...goto IS_FIZZBUZZ
+
+03 00 03      ;; Output INDEX
+03 00 00      ;; Output FIZZ
+
+20 04         ;; Goto END_LOOP
+
+01 02 IS_BUZZ
+
+03 00 03      ;; Output INDEX
+03 00 01      ;; Output BUZZ
+
+20 04         ;; Goto END_LOOP
+
+01 03 IS_FIZZBUZZ
+
+03 00 03      ;; Output INDEX
+03 00 02      ;; Output FIZZBUZZ
+
+20 04         ;; Goto END_LOOP
+
+01 04 END_LOOP
+
+37 03         ;; Increment INDEX
+20 00         ;; Goto START_LOOP
+
+01 05 END_PROGRAM
+
+;; ./snowflake --print samples/fizz-buzz.sn 
+;;     @00 FIZZ
+;;     @01 BUZZ
+;;     @02 FIZZBUZZ
+;;     @03 INDEX
+;;     @04 MAX
+;;     @05 ZERO
+;;     @06 THREE
+;;     @07 FIVE
+;;     @08 VALUE
+;; STR FIZZ Fizz
+;; STR BUZZ Buzz
+;; STR FIZZBUZZ FizzBuzz
+;; INT INDEX 1
+;; INT MAX 100
+;; INT ZERO 0
+;; INT THREE 3
+;; INT FIVE 5
+;; ### :00 START_LOOP
+;; IF= INDEX MAX
+;;  -> END_PROGRAM
+;;   = VALUE INDEX
+;;   % VALUE THREE
+;; IF= VALUE ZERO
+;;  -> IS_FIZZ
+;;   = VALUE INDEX
+;;   % VALUE FIVE
+;; IF= VALUE ZERO
+;;  -> IS_BUZZ
+;;  -> END_LOOP
+;; ### :01 IS_FIZZ
+;;   = VALUE INDEX
+;;   % VALUE FIVE
+;; IF= VALUE ZERO
+;;  -> IS_FIZZBUZZ
+;;  << OUT INDEX
+;;  << OUT FIZZ
+;;  -> END_LOOP
+;; ### :02 IS_BUZZ
+;;  << OUT INDEX
+;;  << OUT BUZZ
+;;  -> END_LOOP
+;; ### :03 IS_FIZZBUZZ
+;;  << OUT INDEX
+;;  << OUT FIZZBUZZ
+;;  -> END_LOOP
+;; ### :04 END_LOOP
+;;  +1 INDEX
+;;  -> START_LOOP
+;; ### :05 END_PROGRAM
+
+;; ./snowflake --run samples/fizz-buzz.sn 
+;; 3
+;; Fizz
+;; 5
+;; Buzz
+;; 6
+;; Fizz
+;; 9
+;; Fizz
+;; 10
+;; Buzz
+;; 12
+;; Fizz
+;; 15
+;; FizzBuzz
+;; 18
+;; Fizz
+;; 20
+;; Buzz
+;; 21
+;; Fizz
+;; 24
+;; Fizz
+;; 25
+;; Buzz
+;; 27
+;; Fizz
+;; 30
+;; FizzBuzz
+;; ...
