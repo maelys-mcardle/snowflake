@@ -3,6 +3,14 @@
 #include "platforms/logging.h"
 #include "core/type_conversion.h"
 
+/**
+ * Parses the string as a boolean.
+ * String would contain "0" or "1".
+ * 
+ * @param string string to parse as a boolean.
+ * @param ok whether the parsing succeeded.
+ * @return the parsed boolean.
+ */
 bool string_to_boolean(char *string, bool *ok)
 {
     // 0: False
@@ -11,6 +19,13 @@ bool string_to_boolean(char *string, bool *ok)
     return string_to_integer(string, ok) != 0;
 }
 
+/**
+ * Parses the string as an integer.
+ * 
+ * @param string string to parse as an integer.
+ * @param ok whether the parsing succeeded.
+ * @return the parsed integer.
+ */
 int string_to_integer(char *string, bool *ok)
 {
     // Catch NULL strings.
@@ -35,6 +50,13 @@ int string_to_integer(char *string, bool *ok)
     return integer;
 }
 
+/**
+ * Parses the string as a float.
+ * 
+ * @param string string to parse as an float.
+ * @param ok whether the parsing succeeded.
+ * @return the parsed float.
+ */
 float string_to_float(char *string, bool *ok)
 {
     // Catch NULL strings.
@@ -59,6 +81,12 @@ float string_to_float(char *string, bool *ok)
     return floating_point;
 }
 
+/**
+ * Whether the string can be parsed as a boolean.
+ * 
+ * @param string string to parse.
+ * @return wether the string can be parsed as a boolean.
+ */
 bool is_boolean(char *string)
 {
     bool ok;
@@ -67,6 +95,12 @@ bool is_boolean(char *string)
     return ok;
 }
 
+/**
+ * Whether the string can be parsed as a float.
+ * 
+ * @param string string to parse.
+ * @return wether the string can be parsed as a float.
+ */
 bool is_float(char *string)
 {
     bool ok;
@@ -75,6 +109,12 @@ bool is_float(char *string)
     return ok;
 }
 
+/**
+ * Whether the string can be parsed as an integer.
+ * 
+ * @param string string to parse.
+ * @return wether the string can be parsed as an integer.
+ */
 bool is_integer(char *string)
 {
     bool ok;
