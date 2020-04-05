@@ -130,6 +130,15 @@ bool instruction_decrement(Program *program, Parameters *parameters, Instruction
     return add_value(program, parameters, instruction_pointer, -1);
 }
 
+/**
+ * Adds a value to a bank containing a numeric value.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @param value_to_add the integer value to add to the numeric value contained in the bank.
+ * @return whether the instruction executed successfully.
+ */
 bool add_value(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer, int value_to_add)
 {
     Bank *bank = get_bank_from_parameter(program, &(parameters->first));
