@@ -135,16 +135,19 @@ int parse_snowflake_file_and_run(bool print_code, bool run_code, bool line_numbe
     // Load the snowflake code.
     int return_code = parse_snowflake_file(program, snowflake_file);
     
-    // Print out the code.
-    if (print_code)
+    if (return_code == SUCCESS)
     {
-        print_program(program, line_numbers);
-    }
+        // Print out the code.
+        if (print_code)
+        {
+            print_program(program, line_numbers);
+        }
 
-    // Execute the code.
-    if (run_code)
-    {
-        run_program(program);
+        // Execute the code.
+        if (run_code)
+        {
+            return_code = run_program(program);
+        }
     }
     
     // Free the memory allocated to the program.

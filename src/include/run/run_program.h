@@ -6,7 +6,7 @@
 
 typedef bool (*InstructionFunction)(Program *, Parameters *, InstructionPointer *);
 
-void run_program(Program *program);
+int run_program(Program *program);
 bool run_instruction(Program *program, Instruction *instruction, InstructionPointer *instruction_pointer);
 
 #endif

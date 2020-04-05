@@ -46,5 +46,7 @@
 #define ERROR_MESG_IGNORING_OPERATION_LABEL_NOT_FOUND "Ignoring %s Label %02i does not exist.\n"
 #define ERROR_CODE_ARRAY_IS_NULL 22
 #define ERROR_MESG_ARRAY_IS_NULL "Array is NULL.\n"
+#define ERROR_CODE_NO_INSTRUCTION_EXECUTED_OK 23
+#define ERROR_MESG_NO_INSTRUCTION_EXECUTED_OK "No instruction executed successfully in the program.\n"
 
 #endif

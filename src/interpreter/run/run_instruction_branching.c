@@ -206,6 +206,13 @@ bool instruction_if_lesser_than(Program *program, Parameters *parameters, Instru
     return true;
 }
 
+/**
+ * Whether the two parameters are equal.
+ * 
+ * @param program the program.
+ * @param parameters the parameters to compare.
+ * @return whether the parameters are equal.
+ */
 bool is_parameters_equal(Program *program, Parameters *parameters)
 {
     Bank *first_bank = get_bank_from_parameter(program, &(parameters->first));
@@ -256,6 +263,13 @@ bool is_parameters_equal(Program *program, Parameters *parameters)
     return is_equal;
 }
 
+/**
+ * Whether the two strings are equal.
+ * 
+ * @param first_bank the bank containing the first string.
+ * @param second_bank the bank containing the second string.
+ * @return whether the strings are equal.
+ */
 bool is_string_equal(Bank *first_bank, Bank *second_bank)
 {
     // Get the strings.
@@ -284,6 +298,14 @@ bool is_string_equal(Bank *first_bank, Bank *second_bank)
     return is_equal;
 }
 
+/**
+ * Jump to the instruction pointer associated with a label.
+ * 
+ * @param program the program containing the label.
+ * @param instruction_pointer the current instruction pointer.
+ * @param target_label the label to jump to.
+ * @return whether the label was located.
+ */
 bool jump_to_label(Program *program, InstructionPointer *instruction_pointer, int target_label)
 {
     // Find the instruction with the label.
@@ -309,6 +331,14 @@ bool jump_to_label(Program *program, InstructionPointer *instruction_pointer, in
     }
 }
 
+/**
+ * Get the instruction pointer associated with a label.
+ * 
+ * @param program the program containing the label.
+ * @param target_label the label to get the instruction pointer from.
+ * @param target_found whether the label was located.
+ * @return the instruction pointer to the label.
+ */
 InstructionPointer get_label_instruction_pointer(Program *program, int target_label, bool *target_found)
 {
     // Locate instruction with label.

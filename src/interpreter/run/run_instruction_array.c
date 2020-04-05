@@ -124,6 +124,14 @@ bool instruction_index_to_last(Program *program, Parameters *parameters, Instruc
     return instruction_ok;
 }
 
+/**
+ * Inserts bank in the array.
+ * 
+ * @param program snowflake program.
+ * @param parameters parameters for the instruction that invoked this.
+ * @param position position in the array to insert the bank to.
+ * @return whether the operation was successful.
+ */
 bool bank_to_array(Program *program, Parameters *parameters, ArrayPosition position)
 {
     Bank *array_parameter = get_bank_from_parameter(program, &(parameters->first));
@@ -179,6 +187,14 @@ bool bank_to_array(Program *program, Parameters *parameters, ArrayPosition posit
     return instruction_ok;
 }
 
+/**
+ * Retrieves bank in the array.
+ * 
+ * @param program snowflake program.
+ * @param parameters parameters for the instruction that invoked this.
+ * @param position position in the array to retrieve the bank from.
+ * @return whether the operation was successful.
+ */
 bool array_to_bank(Program *program, Parameters *parameters, ArrayPosition position)
 {
     // Get the bank containing the array.
@@ -241,6 +257,15 @@ bool array_to_bank(Program *program, Parameters *parameters, ArrayPosition posit
     return set_bank_ok;
 }
 
+/**
+ * Shift the position of a bank in the array.
+ * 
+ * @param program snowflake program.
+ * @param parameters parameters for the instruction that invoked this.
+ * @param from position in the array that contains the bank.
+ * @param to position in the array to move the bank to.
+ * @return whether the operation was successful.
+ */
 bool array_shift_positions(Program *program, Parameters *parameters, ArrayPosition from, ArrayPosition to)
 {
     Bank *array_parameter = get_bank_from_parameter(program, &(parameters->first));
