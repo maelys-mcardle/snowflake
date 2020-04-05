@@ -16,9 +16,9 @@ Instruction *new_instruction()
 }
 
 /**
- * Creates a new program instruction.
+ * Frees the program instruction.
  * 
- * @return the new instruction.
+ * @param instruction instruction to free.
  */
 void free_instruction(Instruction *instruction)
 {
