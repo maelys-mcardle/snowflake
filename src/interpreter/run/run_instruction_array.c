@@ -301,8 +301,8 @@ bool array_shift_positions(Program *program, Parameters *parameters, ArrayPositi
         return false;
     }
     ArrayIndex index_in_bank = get_bank_as_integer(bank_parameter);
-    ArrayIndex from_index = get_array_index_from_position(from, array, index_in_bank);
-    ArrayIndex to_index = get_array_index_from_position(to, array, index_in_bank);
+    ArrayIndex from_index = get_array_index_from_position(array, from, index_in_bank);
+    ArrayIndex to_index = get_array_index_from_position(array, to, index_in_bank);
 
     bool move_ok = false;
     ArrayItem *item = remove_array_item(array, from_index);
@@ -314,7 +314,15 @@ bool array_shift_positions(Program *program, Parameters *parameters, ArrayPositi
     return move_ok;
 }
 
-ArrayIndex get_array_index_from_position(ArrayPosition position, Array *array, ArrayIndex index)
+/**
+ * Translates a named position (eg. first, last, index) into a numeric index.
+ * 
+ * @param array the array to get the index from.
+ * @param position named position.
+ * @param index the numeric index when the named position is INDEX.
+ * @return the numeric index for the named position.
+ */
+ArrayIndex get_array_index_from_position(Array *array, ArrayPosition position, ArrayIndex index)
 {
     ArrayCount array_size;
     switch (position)

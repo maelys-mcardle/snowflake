@@ -22,5 +22,5 @@ bool instruction_index_to_last(Program *program, Parameters *parameters, Instruc
 bool bank_to_array(Program *program, Parameters *parameters, ArrayPosition position);
 bool array_to_bank(Program *program, Parameters *parameters, ArrayPosition position);
 bool array_shift_positions(Program *program, Parameters *parameters, ArrayPosition from, ArrayPosition to);
-ArrayIndex get_array_index_from_position(ArrayPosition position, Array *array, ArrayIndex index);
+ArrayIndex get_array_index_from_position(Array *array, ArrayPosition position, ArrayIndex index);
 #endif
