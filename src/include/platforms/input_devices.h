@@ -5,7 +5,7 @@
 #define MAX_INPUT_LENGTH 255
 
 bool initialize_input_devices();
-bool receive_from_standard_input(int *string_size, char **string);
+bool receive_from_standard_input(char **string, int *string_size);
 bool receive_from_button(int *button_code);
 bool receive_from_random(int *random_number);
 

@@ -73,7 +73,7 @@ bool instruction_input(Program *program, Parameters *parameters, InstructionPoin
                 instruction_ok = false;
                 break;
             case DEVICE_IN:
-                instruction_ok = receive_from_standard_input(&string_size, &string);
+                instruction_ok = receive_from_standard_input(&string, &string_size);
                 if (instruction_ok)
                 {
                     log_debug("Setting '%s' to Bank %02i\n", string, bank->identifier);
