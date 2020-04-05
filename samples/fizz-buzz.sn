@@ -29,11 +29,13 @@
 14 02 FizzBuzz  ;; BANK @02 = "Fizz"
 
 12 03 1         ;; BANK @03 = 1
-12 04 31        ;; BANK @04 = 31
+12 04 30        ;; BANK @04 = 30
 
 12 05 0         ;; BANK @05 = 0
 12 06 3         ;; BANK @06 = 3
 12 07 5         ;; BANK @07 = 5
+
+37 04           ;; MAX++
 
 ;; Main Loop
 
@@ -101,10 +103,11 @@
 ;; STR BUZZ Buzz
 ;; STR FIZZBUZZ FizzBuzz
 ;; INT INDEX 1
-;; INT MAX 31
+;; INT MAX 30
 ;; INT ZERO 0
 ;; INT THREE 3
 ;; INT FIVE 5
+;;  +1 MAX
 ;; ### :00 START_LOOP
 ;; IF= INDEX MAX
 ;;  -> END_PROGRAM
