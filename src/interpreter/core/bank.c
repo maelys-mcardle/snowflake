@@ -556,8 +556,13 @@ bool copy_bank(Bank *destination, Bank *source)
 Array *new_bank_array()
 {
     Array *array = new_array();
-    array->free_array_item_function = free_bank_array_item;
-    array->copy_array_item_function = copy_bank_array_item;
+
+    if (array != NULL)
+    {
+        array->free_array_item_function = free_bank_array_item;
+        array->copy_array_item_function = copy_bank_array_item;
+    }
+    
     return array;
 }
 
