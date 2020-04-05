@@ -152,7 +152,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     if (has_parameter_string)
     {
         stored_parameter = store_parameter(
-            parameter_type, parameter_string, parameter_value);
+            parameter_value, parameter_type, parameter_string);
     }
     else
     {
@@ -164,38 +164,6 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     *parameter_missing = (stored_parameter == false && parameter_required);
 
     return end_position;
-}
-
-bool store_parameter(ParameterType parameter_type, char *parameter_string, ParameterValue *parameter_value)
-{
-    // Store the parameter.
-    // * Literals are stored as strings.
-    // * Banks, devices, labels as integers.
-    if (is_parameter_literal(parameter_type))
-    {
-        // If it's a literal, allocate memory, and copy the string.
-        parameter_value->literal = new_string(parameter_string);
-
-        if (parameter_value->literal == NULL)
-        {
-            log_error(ERROR_MESG_COULD_NOT_ALLOCATE_MEMORY);
-            return false;
-        }
-    }
-    else
-    {
-        // If it's any other value (banks, devices, labels, type) interpret as integer.
-        bool parsed_integer_ok;
-        parameter_value->identifier = string_to_integer(parameter_string, &parsed_integer_ok);
-        
-        if (!parsed_integer_ok)
-        {
-            log_error(ERROR_MESG_COULD_NOT_PARSE_INTEGER, parameter_string);
-            return false;
-        } 
-    }
-
-    return true;
 }
 
 /* Extracts the instruction from the line.

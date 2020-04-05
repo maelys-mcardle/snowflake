@@ -32,12 +32,12 @@ void free_instruction(Instruction *instruction)
         if (instruction_exists)
         {
             free_parameter(
-                info.parameters.first, 
-                instruction->parameters.first);
+                &(instruction->parameters.first),
+                info.parameters.first);
 
             free_parameter(
-                info.parameters.second, 
-                instruction->parameters.second);
+                &(instruction->parameters.second),
+                info.parameters.second);
         }
 
         free(instruction);

@@ -21,7 +21,8 @@ typedef union {
     char *literal;
 } ParameterValue;
 
-void free_parameter(ParameterType type, ParameterValue value);
+void free_parameter(ParameterValue *value, ParameterType type);
+bool store_parameter(ParameterValue *parameter_value, ParameterType parameter_type, char *parameter_string);
 bool is_parameter_optional(ParameterType type);
 bool is_parameter_none(ParameterType type);
 bool is_parameter_literal(ParameterType type);
