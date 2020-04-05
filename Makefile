@@ -1,3 +1,4 @@
+PLATFORM=linux
 BASE_CFLAGS=-Wall -Werror -Wextra -lm -Isrc/include
 RELEASE_FLAGS=-O3
 DEBUG_FLAGS=-g
@@ -74,14 +75,14 @@ run_instruction_types.o: src/interpreter/run/run_instruction_types.c src/include
 instructions.o: src/interpreter/core/instructions.c src/include/core/instructions.h
 	cc -c src/interpreter/core/instructions.c $(CFLAGS)
 
-logging.o: src/interpreter/platforms/linux/logging.c src/include/platforms/logging.h
-	cc -c src/interpreter/platforms/linux/logging.c $(CFLAGS)
+logging.o: src/interpreter/platforms/$(PLATFORM)/logging.c src/include/platforms/logging.h
+	cc -c src/interpreter/platforms/$(PLATFORM)/logging.c $(CFLAGS)
 
-output_devices.o: src/interpreter/platforms/linux/output_devices.c src/include/platforms/output_devices.h
-	cc -c src/interpreter/platforms/linux/output_devices.c $(CFLAGS)
+output_devices.o: src/interpreter/platforms/$(PLATFORM)/output_devices.c src/include/platforms/output_devices.h
+	cc -c src/interpreter/platforms/$(PLATFORM)/output_devices.c $(CFLAGS)
 
-input_devices.o: src/interpreter/platforms/linux/input_devices.c src/include/platforms/input_devices.h
-	cc -c src/interpreter/platforms/linux/input_devices.c $(CFLAGS)
+input_devices.o: src/interpreter/platforms/$(PLATFORM)/input_devices.c src/include/platforms/input_devices.h
+	cc -c src/interpreter/platforms/$(PLATFORM)/input_devices.c $(CFLAGS)
 
 string.o: src/interpreter/core/string.c src/include/core/string.h
 	cc -c src/interpreter/core/string.c $(CFLAGS)
