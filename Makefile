@@ -12,14 +12,14 @@ release: snowflake
 debug: CFLAGS=$(BASE_CFLAGS) $(DEBUG_FLAGS)
 debug: snowflake
 
-snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
+snowflake: main.o parse_snowflake_file.o instructions.o program.o type_conversion.o \
 		output_devices.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o input_devices.o \
 		string.o parameters.o run_instruction_branching.o \
 		run_instruction_math.o run_instruction_logic.o run_instruction_array.o \
 		logging.o array.o run_instruction_io.o bank_operations.o \
 		print_instruction.o 
-	cc -o snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
+	cc -o snowflake main.o parse_snowflake_file.o instructions.o program.o type_conversion.o \
 		output_devices.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o input_devices.o \
 		string.o parameters.o run_instruction_branching.o \
@@ -30,8 +30,8 @@ snowflake: main.o parse_file.o instructions.o program.o type_conversion.o \
 main.o: src/cli/main.c src/cli/main.h
 	cc -c src/cli/main.c $(CFLAGS)
 
-parse_file.o: src/interpreter/parse/parse_file.c src/include/parse/parse_file.h
-	cc -c src/interpreter/parse/parse_file.c $(CFLAGS)
+parse_snowflake_file.o: src/interpreter/parse/parse_snowflake_file.c src/include/parse/parse_snowflake_file.h
+	cc -c src/interpreter/parse/parse_snowflake_file.c $(CFLAGS)
 
 print_program.o: src/interpreter/print/print_program.c src/include/print/print_program.h 
 	cc -c src/interpreter/print/print_program.c $(CFLAGS)
@@ -100,7 +100,7 @@ bank_operations.o: src/interpreter/run/bank_operations.c src/include/run/bank_op
 	cc -c src/interpreter/run/bank_operations.c $(CFLAGS)
 
 clean:
-	rm snowflake main.o parse_file.o instructions.o program.o type_conversion.o \
+	rm snowflake main.o parse_snowflake_file.o instructions.o program.o type_conversion.o \
 		output_devices.o parse_instruction.o print_program.o run_program.o bank.o \
 		run_instruction_types.o run_instruction_basic.o input_devices.o \
 		string.o parameters.o run_instruction_branching.o \

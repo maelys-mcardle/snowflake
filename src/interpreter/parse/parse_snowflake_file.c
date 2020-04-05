@@ -1,11 +1,13 @@
 #include <stdlib.h>
-#include "parse/parse_file.h"
+#include "parse/parse_snowflake_file.h"
 #include "parse/parse_instruction.h"
 #include "errors.h"
 #include "platforms/logging.h"
 #include "core/string.h"
 
-/* Process a snowflake file. */
+/**
+ * Process a snowflake file. 
+ */
 int parse_snowflake_file(Program *program, const char *filename)
 {
     // Check that a file name was given.
