@@ -7,6 +7,10 @@
 
 /**
  * Process a snowflake file. 
+ * 
+ * @param program program that's been parsed from the file.
+ * @param filename the path to the snowflake file.
+ * @return error code.
  */
 int parse_snowflake_file(Program *program, const char *filename)
 {
