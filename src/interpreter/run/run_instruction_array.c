@@ -4,6 +4,14 @@
 #include "errors.h"
 #include "run/run_instruction_array.h"
 
+/**
+ * Implement +[] instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_bank_to_first(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = bank_to_array(program, parameters, FIRST);
@@ -11,6 +19,14 @@ bool instruction_bank_to_first(Program *program, Parameters *parameters, Instruc
     return instruction_ok;
 }
 
+/**
+ * Implement []+ instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_bank_to_last(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = bank_to_array(program, parameters, LAST);
@@ -18,6 +34,14 @@ bool instruction_bank_to_last(Program *program, Parameters *parameters, Instruct
     return instruction_ok;
 }
 
+/**
+ * Implement -[] instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_first_to_bank(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = array_to_bank(program, parameters, FIRST);
@@ -25,6 +49,14 @@ bool instruction_first_to_bank(Program *program, Parameters *parameters, Instruc
     return instruction_ok;
 }
 
+/**
+ * Implement []- instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_last_to_bank(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = array_to_bank(program, parameters, LAST);
@@ -32,6 +64,14 @@ bool instruction_last_to_bank(Program *program, Parameters *parameters, Instruct
     return instruction_ok;
 }
 
+/**
+ * Implement >[] instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_first_to_index(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = array_shift_positions(program, parameters, FIRST, INDEX);
@@ -39,6 +79,14 @@ bool instruction_first_to_index(Program *program, Parameters *parameters, Instru
     return instruction_ok;
 }
 
+/**
+ * Implement []< instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_last_to_index(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = array_shift_positions(program, parameters, LAST, INDEX);
@@ -46,6 +94,14 @@ bool instruction_last_to_index(Program *program, Parameters *parameters, Instruc
     return instruction_ok;
 }
 
+/**
+ * Implement [<] instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_index_to_first(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = array_shift_positions(program, parameters, INDEX, FIRST);
@@ -53,6 +109,14 @@ bool instruction_index_to_first(Program *program, Parameters *parameters, Instru
     return instruction_ok;
 }
 
+/**
+ * Implement [>] instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_index_to_last(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = array_shift_positions(program, parameters, INDEX, LAST);

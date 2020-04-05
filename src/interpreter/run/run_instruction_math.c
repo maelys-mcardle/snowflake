@@ -6,53 +6,125 @@
 #include "run/bank_operations.h"
 #include "errors.h"
 
+/**
+ * Implement + instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_add(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     return dual_bank_operation(
         program, parameters, instruction_pointer, bank_operation_addition, "Addition");
 }
 
+/**
+ * Implement - instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_subtract(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     return dual_bank_operation(
         program, parameters, instruction_pointer, bank_operation_subtraction, "Subtraction");
 }
 
+/**
+ * Implement * instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_multiply(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     return dual_bank_operation(
         program, parameters, instruction_pointer, bank_operation_multiplication, "Multiplication");
 }
 
+/**
+ * Implement / instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_divide(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     return dual_bank_operation(
         program, parameters, instruction_pointer, bank_operation_division, "Division");
 }
 
+/**
+ * Implement % instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_modulo(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     return dual_bank_operation(
         program, parameters, instruction_pointer, bank_operation_modulo, "Modulo");
 }
 
+/**
+ * Implement ** instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_power(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     return dual_bank_operation(
         program, parameters, instruction_pointer, bank_operation_power, "Power");
 }
 
+/**
+ * Implement SQR instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_square_root(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     return single_bank_operation(
         program, parameters, instruction_pointer, bank_operation_square_root, "Square Root");
 }
 
+/**
+ * Implement +1 instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_increment(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     return add_value(program, parameters, instruction_pointer, 1);
 }
 
+/**
+ * Implement -1 instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_decrement(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     return add_value(program, parameters, instruction_pointer, -1);

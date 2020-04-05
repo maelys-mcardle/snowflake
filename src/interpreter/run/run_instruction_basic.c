@@ -7,6 +7,14 @@
 #include "errors.h"
 #include "core/array.h"
 
+/**
+ * Implement no-op instructions (eg. !!!, ###).
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_noop(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     // Unused parameters. This is done to suppress compiler warnings.
@@ -20,6 +28,14 @@ bool instruction_noop(Program *program, Parameters *parameters, InstructionPoint
     return instruction_ok;
 }
 
+/**
+ * Implement DEL instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_delete(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *bank = get_bank_from_parameter(program, &(parameters->first));
@@ -40,6 +56,14 @@ bool instruction_delete(Program *program, Parameters *parameters, InstructionPoi
     return instruction_ok;
 }
 
+/**
+ * Implement TYP instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_type(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = false;
@@ -67,6 +91,14 @@ bool instruction_type(Program *program, Parameters *parameters, InstructionPoint
     return instruction_ok;
 }
 
+/**
+ * Implement = instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_copy(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = false;
@@ -96,6 +128,14 @@ bool instruction_copy(Program *program, Parameters *parameters, InstructionPoint
     return instruction_ok; 
 }
 
+/**
+ * Implement TO instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_convert(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool instruction_ok = false;
@@ -114,7 +154,14 @@ bool instruction_convert(Program *program, Parameters *parameters, InstructionPo
     return instruction_ok;
 }
 
-
+/**
+ * Implement LEN instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_length(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *bank_to_store_length_in = get_or_new_bank_from_parameter(program, &(parameters->first));

@@ -5,6 +5,14 @@
 #include "errors.h"
 #include "run/run_instruction_io.h"
 
+/**
+ * Implement << instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_output(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     Bank *bank = get_bank_from_parameter(program, &(parameters->second));
@@ -47,6 +55,14 @@ bool instruction_output(Program *program, Parameters *parameters, InstructionPoi
     return instruction_ok;
 }
 
+/**
+ * Implement >> instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_input(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     // Get the bank. If it doesn't exist, create it.

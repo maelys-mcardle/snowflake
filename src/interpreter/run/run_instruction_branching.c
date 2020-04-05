@@ -5,6 +5,14 @@
 #include "core/array.h"
 #include "errors.h"
 
+/**
+ * Implement -> LABEL instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_jump_label(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     int target_label = parameters->first.identifier;
@@ -12,6 +20,14 @@ bool instruction_jump_label(Program *program, Parameters *parameters, Instructio
     return instruction_ok;
 }
 
+/**
+ * Implement -> BANK instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_jump_bank(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     bool found_label = false;
@@ -32,6 +48,14 @@ bool instruction_jump_bank(Program *program, Parameters *parameters, Instruction
     return found_label;
 }
 
+/**
+ * Implement IF= instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_if_equal(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     log_debug("Comparing parameters for equality.\n");
@@ -50,6 +74,14 @@ bool instruction_if_equal(Program *program, Parameters *parameters, InstructionP
     return true;
 }
 
+/**
+ * Implement IF! instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_if_not_equal(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     log_debug("Comparing parameters for inequality.\n");
@@ -68,6 +100,14 @@ bool instruction_if_not_equal(Program *program, Parameters *parameters, Instruct
     return true;
 }
 
+/**
+ * Implement IF> instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_if_greater_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     log_debug("Comparing parameters for greater than.\n");
@@ -113,6 +153,14 @@ bool instruction_if_greater_than(Program *program, Parameters *parameters, Instr
     return true;
 }
 
+/**
+ * Implement IF< instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_if_lesser_than(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
      log_debug("Comparing parameters for lesser than.\n");

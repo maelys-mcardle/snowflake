@@ -7,8 +7,13 @@
 #include "errors.h"
 #include "core/string.h"
 
-/* Stores a variable in a bank; type is inferred.
- * VAR BANK LITERAL 
+/**
+ * Implement VAR instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
  */
 bool instruction_variable(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
@@ -28,8 +33,13 @@ bool instruction_variable(Program *program, Parameters *parameters, InstructionP
     }
 }
 
-/* Stores a boolean in a bank.
- * BLN BANK LITERAL 
+/**
+ * Implement BLN instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
  */
 bool instruction_boolean(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
@@ -62,8 +72,13 @@ bool instruction_boolean(Program *program, Parameters *parameters, InstructionPo
     return is_boolean;
 }
 
-/* Stores an integer in a bank.
- * INT BANK LITERAL 
+/**
+ * Implement INT instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
  */
 bool instruction_integer(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
@@ -96,8 +111,13 @@ bool instruction_integer(Program *program, Parameters *parameters, InstructionPo
     return is_integer;
 }
 
-/* Stores a float in a bank.
- * FLT BANK LITERAL 
+/**
+ * Implement FLT instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
  */
 bool instruction_float(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
@@ -130,8 +150,13 @@ bool instruction_float(Program *program, Parameters *parameters, InstructionPoin
     return is_float;
 }
 
-/* Stores a string in a bank.
- * STR BANK LITERAL 
+/**
+ * Implement STR instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
  */
 bool instruction_string(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
@@ -152,6 +177,14 @@ bool instruction_string(Program *program, Parameters *parameters, InstructionPoi
     return true;
 }
 
+/**
+ * Implement [] instruction.
+ * 
+ * @param program the snowflake program.
+ * @param parameters the parameters for the instruction.
+ * @param instruction_pointer the current instruction pointer for the program.
+ * @return whether the instruction executed successfully.
+ */
 bool instruction_array(Program *program, Parameters *parameters, InstructionPointer *instruction_pointer)
 {
     // Create a bank if it doesn't exist.
