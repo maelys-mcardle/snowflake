@@ -147,17 +147,9 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     strip_end_whitespace(parameter_string, max_parameter_size);
     
     // Has a parameter.
-    bool has_parameter_string = !is_string_end(parameter_string[0]);
-    bool stored_parameter = false;
-    if (has_parameter_string)
-    {
-        stored_parameter = set_parameter_value(
+    bool stored_parameter = 
+        set_parameter_value(
             parameter_value, parameter_type, parameter_string);
-    }
-    else
-    {
-        parameter_value->literal = NULL;
-    }
 
     // Determine if the parameter is missing.
     bool parameter_required = !is_parameter_optional(parameter_type);
