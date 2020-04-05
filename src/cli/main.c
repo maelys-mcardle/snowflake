@@ -76,8 +76,7 @@ bool parse_arguments(int argc, char **argv, bool *print_code, bool *run_code, bo
         int option_index = 0;
 
         int current_option = 
-            getopt_long (argc, argv, "f:dsr",
-            long_options, &option_index);
+            getopt_long(argc, argv, "dprl", long_options, &option_index);
 
         // End of options.
         if (current_option == -1)
