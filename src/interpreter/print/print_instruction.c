@@ -6,7 +6,12 @@
 #include "core/string.h"
 #include "print/print_instruction.h"
 
-/* Prints a line of Snowflake. */
+/** 
+ * Prints a line of Snowflake.
+ *
+ * @param program the entire program.
+ * @param instruction the instruction to display. 
+ */
 char *get_printable_instruction(Program *program, Instruction *instruction)
 {
     bool instruction_exists = false;
@@ -54,7 +59,13 @@ char *get_printable_instruction(Program *program, Instruction *instruction)
     return instruction_string;
 }
 
-/* Prints a parameter, if one is defined.
+/**
+ * Prints a parameter, if one is defined.
+ * 
+ * @param program the snowflake program.
+ * @param current_instruction the code for the current instruction.
+ * @param type the parameter type.
+ * @param value the parameter value.
  * @return True if a parameter is defined; false if not.
  */
 char *get_printable_parameter(Program *program, InstructionCode current_instruction, 
@@ -85,6 +96,21 @@ char *get_printable_parameter(Program *program, InstructionCode current_instruct
     }
 }
 
+/**
+ * Get the stringified identifier.
+ * 
+ * These identifiers can be labels, banks, etc. If an instruction was used to name
+ * these identifiers, it tries to locate it so that what's displayed is this name.
+ * If the identifier (eg. label, bank) was never given a name, then it's numeric
+ * value is displayed.
+ * 
+ * @param program the snowflake program.
+ * @param current_instruction the code for the current instruction.
+ * @param naming_instruction the code for the instruction that names this identifier.
+ * @param target_identifier the identifier defined by the naming instruction.
+ * @param format the format to display the identifier.
+ * @return the stringified identifier.
+ */
 char *get_printable_identifier(Program *program, InstructionCode current_instruction, 
     InstructionCode naming_instruction, int target_identifier, char *format)
 {
@@ -104,8 +130,11 @@ char *get_printable_identifier(Program *program, InstructionCode current_instruc
     return new_string(numeric_identifier);
 }
 
-/* Prints a device, if one is defined.
- * @return True if a device is defined; false if not.
+/** 
+ * Gets the stringified device, if one is defined.
+ * 
+ * @param device the device type.
+ * @return The stringified device.
  */
 char *get_printable_device(int device)
 {
@@ -124,6 +153,12 @@ char *get_printable_device(int device)
     }
 }
 
+/** 
+ * Gets the stringified type, if one is defined.
+ * 
+ * @param type the type type.
+ * @return The stringified type.
+ */
 char *get_printable_type(int type)
 {
     switch (type)
@@ -145,6 +180,14 @@ char *get_printable_type(int type)
     }
 }
 
+/**
+ * Locates the name for the target identifier in the program.
+ * 
+ * @param program the program.
+ * @param naming_instruction the instruction that assigns a name to the identifier.
+ * @param target_identifier the identifier to look for that might have been given a name.
+ * @return the name for the parameter. NULL if no name was found.
+ */
 char *get_name(Program *program, InstructionCode naming_instruction, int target_identifier)
 {
     for (InstructionPointer i = 0; i < get_instruction_count(program); i++)
