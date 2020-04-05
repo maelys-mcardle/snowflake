@@ -151,7 +151,7 @@ int extract_parameter(char *line, int max_line_length, int start_position,
     bool stored_parameter = false;
     if (has_parameter_string)
     {
-        stored_parameter = store_parameter(
+        stored_parameter = set_parameter_value(
             parameter_value, parameter_type, parameter_string);
     }
     else

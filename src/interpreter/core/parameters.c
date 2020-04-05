@@ -29,7 +29,7 @@ void free_parameter(ParameterValue *value, ParameterType type)
  * @param parameter_string string to store in the instruction parameter value.
  * @return whether the operation was successful.
  */
-bool store_parameter(ParameterValue *parameter_value, ParameterType parameter_type, char *parameter_string)
+bool set_parameter_value(ParameterValue *parameter_value, ParameterType parameter_type, char *parameter_string)
 {
     // Store the parameter.
     // * Literals are stored as strings.
