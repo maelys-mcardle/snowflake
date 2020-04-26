@@ -34,7 +34,7 @@ This is the first line of code, omitting the comments:
   The `VAR` instruction is for putting data in a variable. It has two 
   parameters.
 * The first parameter is what bank to store the data in, in this case Bank `01`.
-* The second parameter is what's being stored in the bank, in this case `Hello, World!`
+* The second parameter is what's being stored in the bank, in this case `Hello, World!`.
 
 To help in reading this code after, [the interpreter][2] has a `--print` 
 flag to help. This is what the first line of the code above looks like
@@ -71,8 +71,8 @@ through the Snowflake interpreter with the `--print` flag:
 
 **Note:**
 
-* An `@` in front of the `@01` denotes that it's referring to Bank 01.
-* An `:` in front of the `:01` denotes that it's referring to Label 01.
+* An `@` in front of the `@01` denotes that it's referring to Bank `01`.
+* An `:` in front of the `:01` denotes that it's referring to Label `01`.
 * A lack of `@` or `:` in front of a number/string denotes that it's referring to a literal.
 
 [1]: language-reference.md
