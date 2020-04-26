@@ -4,8 +4,8 @@
 #include "core/devices.h"
 #include "core/array.h"
 #include "core/string.h"
-#include "print/print_program.h"
 #include "print/print_instruction.h"
+#include "print_program.h"
 
 /** 
  * Gets the entire stringified Snowflake program.

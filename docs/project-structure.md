@@ -7,20 +7,27 @@ This repository has the following directory structure.
 ├── docs/
 ├── samples/
 ├── src/
-│   ├── cli/
 │   ├── include/
 │   │   ├── core/
 │   │   ├── parse/
 │   │   ├── platforms/
 │   │   ├── print/
-│   │   └── run/
-│   └── interpreter/
-│       ├── core/
-│       ├── parse/
-│       ├── platforms/
-│       │   └── linux/
-│       ├── print/
-│       └── run/
+│   |   ├── run/
+|   |   ├── parse_snowflake_file.h
+|   |   ├── print_program.h
+|   |   └── run_program.h
+│   ├── interpreter/
+│   |   ├── core/
+│   |   ├── parse/
+│   |   ├── platforms/
+│   |   │   └── linux/
+│   |   ├── print/
+│   |   ├── run/
+|   |   ├── parse_snowflake_file.c
+|   |   ├── print_program.c
+|   |   └── run_program.c
+│   ├── main.c
+|   └── main.h
 ├── test/
 ├── LICENSE
 ├── Makefile
@@ -40,10 +47,8 @@ The root project directory contains the following:
 ## The `src` directory
 
 The `src/` directory contains the code specific for the interpreter's
-command-line application.
-
-The `src/cli` directory contains the code for the command-line front-end
-to the Snowflake interpreter. **This is where the `main.c` file is found.**
+command-line application. The starting point for the application is 
+the `main.c` and `main.h` files.
 
 The `src/interpreter` directory contains the code for parsing, printing and
 running Snowflake code. Similarly:

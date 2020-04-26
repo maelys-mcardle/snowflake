@@ -35,8 +35,8 @@ snowflake: main.o parse_snowflake_file.o instructions.o program.o type_conversio
 		logging.o array.o run_instruction_io.o bank_operations.o \
 		print_instruction.o $(CFLAGS)
 
-main.o: src/cli/main.c src/cli/main.h
-	cc -c src/cli/main.c $(CFLAGS)
+main.o: src/main.c src/main.h
+	cc -c src/main.c $(CFLAGS)
 
 array.o: src/interpreter/core/array.c src/include/core/array.h
 	cc -c src/interpreter/core/array.c $(CFLAGS)
@@ -68,14 +68,14 @@ output_devices.o: src/interpreter/platforms/$(PLATFORM)/output_devices.c src/inc
 input_devices.o: src/interpreter/platforms/$(PLATFORM)/input_devices.c src/include/platforms/input_devices.h
 	cc -c src/interpreter/platforms/$(PLATFORM)/input_devices.c $(CFLAGS)
 
-parse_snowflake_file.o: src/interpreter/parse/parse_snowflake_file.c src/include/parse/parse_snowflake_file.h
-	cc -c src/interpreter/parse/parse_snowflake_file.c $(CFLAGS)
+parse_snowflake_file.o: src/interpreter/parse_snowflake_file.c src/include/parse_snowflake_file.h
+	cc -c src/interpreter/parse_snowflake_file.c $(CFLAGS)
 
 parse_instruction.o: src/interpreter/parse/parse_instruction.c src/include/parse/parse_instruction.h
 	cc -c src/interpreter/parse/parse_instruction.c $(CFLAGS)
 
-print_program.o: src/interpreter/print/print_program.c src/include/print/print_program.h 
-	cc -c src/interpreter/print/print_program.c $(CFLAGS)
+print_program.o: src/interpreter/print_program.c src/include/print_program.h 
+	cc -c src/interpreter/print_program.c $(CFLAGS)
 
 print_instruction.o: src/interpreter/print/print_instruction.c src/include/print/print_instruction.h 
 	cc -c src/interpreter/print/print_instruction.c $(CFLAGS)
@@ -83,8 +83,8 @@ print_instruction.o: src/interpreter/print/print_instruction.c src/include/print
 bank_operations.o: src/interpreter/run/bank_operations.c src/include/run/bank_operations.h
 	cc -c src/interpreter/run/bank_operations.c $(CFLAGS)
 
-run_program.o: src/interpreter/run/run_program.c src/include/run/run_program.h 
-	cc -c src/interpreter/run/run_program.c $(CFLAGS)
+run_program.o: src/interpreter/run_program.c src/include/run_program.h 
+	cc -c src/interpreter/run_program.c $(CFLAGS)
 
 run_instruction_array.o: src/interpreter/run/run_instruction_array.c src/include/run/run_instruction_array.h 
 	cc -c src/interpreter/run/run_instruction_array.c $(CFLAGS)

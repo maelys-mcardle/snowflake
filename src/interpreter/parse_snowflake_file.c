@@ -1,9 +1,9 @@
 #include <stdlib.h>
-#include "parse/parse_snowflake_file.h"
 #include "parse/parse_instruction.h"
-#include "errors.h"
 #include "platforms/logging.h"
 #include "core/string.h"
+#include "errors.h"
+#include "parse_snowflake_file.h"
 
 /**
  * Process a snowflake file. 

@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include "run/run_program.h"
 #include "run/run_instruction_array.h"
 #include "run/run_instruction_basic.h"
 #include "run/run_instruction_branching.h"
@@ -13,6 +12,7 @@
 #include "errors.h"
 #include "platforms/logging.h"
 #include "core/array.h"
+#include "run_program.h"
 
 /**
  * All the instructions and the functions to execute them.

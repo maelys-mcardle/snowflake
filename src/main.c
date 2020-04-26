@@ -4,10 +4,10 @@
 #include <string.h>
 #include <getopt.h>
 #include "core/program.h"
-#include "parse/parse_snowflake_file.h"
 #include "platforms/logging.h"
-#include "print/print_program.h"
-#include "run/run_program.h"
+#include "parse_snowflake_file.h"
+#include "print_program.h"
+#include "run_program.h"
 #include "errors.h"
 #include "main.h"
 
