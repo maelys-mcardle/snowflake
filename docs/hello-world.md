@@ -16,10 +16,22 @@ Each line of Snowflake code is an instruction.
 These lines in Snowflake have the following format:
 
 ```
-INSTRUCTION [PARAMETER] [PARAMETER]
+INSTRUCTION
 ```
 
-Instructions can have zero, one, or two parameters. All instructions
+...or:
+
+```
+INSTRUCTION PARAMETER
+```
+
+...or:
+
+```
+INSTRUCTION PARAMETER PARAMETER
+```
+
+The number of parameters depends on the instruction. All instructions
 and their parameters are documented in the [reference documentation][1]. 
 Comments are optional and follow a double semi-colon (`;;`),
 
