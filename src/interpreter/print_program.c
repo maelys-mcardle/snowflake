@@ -79,6 +79,25 @@ char *get_printable_instruction_line(Program *program, InstructionPointer instru
 }
 
 /**
+ * Gets the stringified line number.
+ * 
+ * @param string_format format for displaying the line number.
+ * @param current_line current line index.
+ * @return stringified line number.
+ */
+char *get_printable_line_number(char *string_format, InstructionCount current_line)
+{
+    if (string_format == NULL)
+    {
+        return NULL;
+    }
+
+    char line_number[MAX_IDENTIFIER_SIZE + 2];
+    snprintf(line_number, sizeof(line_number), string_format, current_line + 1);
+    return new_string(line_number);
+}
+
+/**
  * Gets the format for printing the line number.
  * 
  * It calculates how many leading zeroes to show in the line number,
@@ -102,23 +121,3 @@ char *get_printable_line_number_format(InstructionCount total_lines)
     snprintf(string_format, sizeof(string_format), "%%0%ii ", digits_wide);
     return new_string(string_format);
 }
-
-/**
- * Gets the stringified line number.
- * 
- * @param string_format format for displaying the line number.
- * @param current_line current line index.
- * @return stringified line number.
- */
-char *get_printable_line_number(char *string_format, InstructionCount current_line)
-{
-    if (string_format == NULL)
-    {
-        return NULL;
-    }
-
-    char line_number[MAX_IDENTIFIER_SIZE + 2];
-    snprintf(line_number, sizeof(line_number), string_format, current_line + 1);
-    return new_string(line_number);
-}
-
