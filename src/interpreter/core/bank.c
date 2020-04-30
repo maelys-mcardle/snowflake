@@ -183,7 +183,6 @@ bool set_empty_bank_array(Bank *bank)
     return true;
 }
 
-
 /**
  * Gets the bank value as a boolean.
  * The bank itself must be a boolean.
