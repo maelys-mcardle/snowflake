@@ -11,7 +11,7 @@
 12 02 06            ;; Store integer "06" in Bank @02
 
 ;; Provide a random number between 1 and 6.
-34 01 02            ;; Bank @01 = Bank @02 % Bank @01
+34 01 02            ;; Bank @01 = Bank @01 % Bank @02
 37 01               ;; Bank @01 = Bank @01 + 1
 03 00 01            ;; Output Bank @01 to screen
 
