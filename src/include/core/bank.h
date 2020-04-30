@@ -156,56 +156,6 @@ bool set_bank_array(Bank *bank, Array *value);
 bool set_empty_bank_array(Bank *bank);
 
 /**
- * Gets the bank value as a boolean.
- * The bank itself must be a boolean.
- * 
- * @param bank bank to get value from.
- * @param ok whether the value was obtained.
- * @return the interpreted value.
- */
-bool get_bank_boolean(Bank *bank, bool *ok);
-
-/**
- * Gets the bank value as an integer.
- * The bank itself must be a integer.
- * 
- * @param bank bank to get value from.
- * @param ok whether the value was obtained.
- * @return the interpreted value.
- */
-int get_bank_integer(Bank *bank, bool *ok);
-
-/**
- * Gets the bank value as a float.
- * The bank itself must be a float.
- * 
- * @param bank bank to get value from.
- * @param ok whether the value was obtained.
- * @return the interpreted value.
- */
-float get_bank_float(Bank *bank, bool *ok);
-
-/**
- * Gets the bank value as a string.
- * The bank itself must be a string.
- * 
- * @param bank bank to get value from.
- * @param ok whether the value was obtained.
- * @return the interpreted value.
- */
-char *get_bank_string(Bank *bank, bool *ok);
-
-/**
- * Gets the bank value as an array.
- * The bank itself must be an array.
- * 
- * @param bank bank to get value from.
- * @param ok whether the value was obtained.
- * @return the interpreted value.
- */
-Array *get_bank_array(Bank *bank, bool *ok);
-
-/**
  * Interprets the bank value as a boolean.
  * The bank itself can contain any value.
  * 
@@ -240,6 +190,15 @@ float get_bank_as_float(Bank *bank);
  * @return the interpreted value.
  */
 char *get_bank_as_string(Bank *bank);
+
+/**
+ * Interprets the bank value as an array.
+ * The bank itself can contain any value.
+ * 
+ * @param bank bank to get value from.
+ * @return the interpreted value.
+ */
+Array *get_bank_as_array(Bank *bank);
 
 /**
  * Creates a new array specific to banks.

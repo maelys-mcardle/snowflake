@@ -167,7 +167,6 @@ bool instruction_length(Program *program, Parameters *parameters, InstructionPoi
     Bank *bank_to_store_length_in = get_or_new_bank_from_parameter(program, &(parameters->first));
     Bank *bank_to_get_length_from = get_bank_from_parameter(program, &(parameters->second));
     bool instruction_ok = false;
-    bool parse_ok = true; 
 
     log_debug("Storing length in Bank %02i.\n",
             bank_to_store_length_in->identifier);
@@ -175,7 +174,7 @@ bool instruction_length(Program *program, Parameters *parameters, InstructionPoi
     if (bank_to_get_length_from != NULL &&
         bank_to_get_length_from->type == TYPE_STRING)
     {
-        char *string = get_bank_string(bank_to_get_length_from, &parse_ok);
+        char *string = get_bank_as_string(bank_to_get_length_from);
         instruction_ok = 
             set_bank_integer(bank_to_store_length_in, 
                 string != NULL ? strlen(string) : 0);
@@ -186,7 +185,7 @@ bool instruction_length(Program *program, Parameters *parameters, InstructionPoi
         instruction_ok = 
             set_bank_integer(bank_to_store_length_in, 
                 get_array_count(
-                    get_bank_array(bank_to_get_length_from, &parse_ok)));
+                    get_bank_as_array(bank_to_get_length_from)));
     }
     else
     {

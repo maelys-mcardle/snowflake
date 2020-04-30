@@ -159,10 +159,7 @@ bool bank_to_array(Program *program, Parameters *parameters, ArrayPosition posit
         array_parameter->identifier);
 
     // Get the array.
-    bool read_array_ok = false;
-    Array *array = get_bank_array(array_parameter, &read_array_ok);
-
-    if (!read_array_ok)
+    if (array_parameter->type != TYPE_ARRAY)
     {
         log_error(ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY,
             "bank insertion to array", array_parameter->identifier);
@@ -170,6 +167,7 @@ bool bank_to_array(Program *program, Parameters *parameters, ArrayPosition posit
     }
 
     // Add the bank to the array.
+    Array *array = get_bank_as_array(array_parameter);
     bool operation_ok = 
         (position == FIRST) ? 
             prepend_array(array, (ArrayItem *) bank_parameter):
@@ -207,9 +205,7 @@ bool array_to_bank(Program *program, Parameters *parameters, ArrayPosition posit
     }
 
     // Get the array from the bank.
-    bool read_array_ok = false;
-    Array *array = get_bank_array(array_parameter, &read_array_ok);
-    if (!read_array_ok)
+    if (array_parameter->type != TYPE_ARRAY)
     {
         log_error(ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY,
             "array item to bank", array_parameter->identifier);
@@ -217,6 +213,7 @@ bool array_to_bank(Program *program, Parameters *parameters, ArrayPosition posit
     }
 
     // Make sure the array contains values.
+    Array *array = get_bank_as_array(array_parameter);
     if (get_array_count(array) == 0)
     {
         log_debug("Bank %02i array is empty; aborting.\n",
@@ -292,14 +289,15 @@ bool array_shift_positions(Program *program, Parameters *parameters, ArrayPositi
         to == FIRST ? "first" : ((to == LAST) ? "last" : "index"));
 
     // Get the array from the bank.
-    bool read_array_ok = false;
-    Array *array = get_bank_array(array_parameter, &read_array_ok);
-    if (!read_array_ok)
+    if (array_parameter->type != TYPE_ARRAY)
     {
         log_error(ERROR_MESG_IGNORING_OPERATION_BANK_NOT_ARRAY,
             "array shift item", array_parameter->identifier);
         return false;
     }
+
+    //  Get the array from the bank.
+    Array *array = get_bank_as_array(array_parameter);
     ArrayIndex index_in_bank = get_bank_as_integer(bank_parameter);
     ArrayIndex from_index = get_array_index_from_position(array, from, index_in_bank);
     ArrayIndex to_index = get_array_index_from_position(array, to, index_in_bank);
