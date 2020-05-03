@@ -27,6 +27,15 @@ char *new_string(char *original_string);
 char *append_string(char *full_text, char *to_append);
 
 /**
+ * Join two strings together.
+ * 
+ * @param left_string the left string to join.
+ * @param right_string the right string to join.
+ * @return the joined strings.
+ */
+char *join_strings(char *left_string, char *right_string);
+
+/**
  * Identifies whether the character is whitespace.
  * 
  * @param character character to identify.

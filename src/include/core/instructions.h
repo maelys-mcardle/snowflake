@@ -5,6 +5,9 @@
 #include "parameters.h"
 #include "bank.h"
 
+// Max number of digits for an instruction code.
+#define MAX_INSTRUCTION_SIZE 3
+
 /**
  * Enum defining all supported instructions and associated op codes.
  */

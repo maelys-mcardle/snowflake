@@ -52,6 +52,35 @@ char *append_string(char *full_text, char *to_append)
 }
 
 /**
+ * Join two strings together.
+ * 
+ * @param left_string the left string to join.
+ * @param right_string the right string to join.
+ * @return the joined strings.
+ */
+char *join_strings(char *left_string, char *right_string)
+{
+    char *joined_string = new_string("");
+
+    if (left_string != NULL)
+    {
+        joined_string = append_string(joined_string, left_string);
+    }
+
+    if (left_string != NULL && right_string != NULL)
+    {
+        joined_string = append_string(joined_string, " ");
+    }
+
+    if (right_string != NULL)
+    {
+        joined_string = append_string(joined_string, right_string);
+    }
+
+    return joined_string;
+}
+
+/**
  * Strip the whitespace at the end of the string.
  * 
  * @param string string to edit.

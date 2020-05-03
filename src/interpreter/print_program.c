@@ -92,7 +92,7 @@ char *get_printable_line_number(char *string_format, InstructionCount current_li
         return NULL;
     }
 
-    char line_number[MAX_IDENTIFIER_SIZE + 2];
+    char line_number[MAX_CHARACTERS_FOR_SHORT_INT + 2];
     snprintf(line_number, sizeof(line_number), string_format, current_line + 1);
     return new_string(line_number);
 }
@@ -111,7 +111,7 @@ char *get_printable_line_number(char *string_format, InstructionCount current_li
 char *get_printable_line_number_format(InstructionCount total_lines)
 {
     unsigned int digits_wide = 1;
-    char string_format[MAX_IDENTIFIER_SIZE + 2];
+    char string_format[MAX_CHARACTERS_FOR_SHORT_INT + 2];
 
     while (total_lines + 1 > pow(10, digits_wide))
     {

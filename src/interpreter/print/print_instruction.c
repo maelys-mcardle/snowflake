@@ -7,7 +7,7 @@
 #include "print/print_instruction.h"
 
 /** 
- * Prints a line of Snowflake.
+ * Gets a Snowflake instruction with parameters as a string.
  *
  * @param program the entire program.
  * @param instruction the instruction to display. 
@@ -60,7 +60,7 @@ char *get_printable_instruction(Program *program, Instruction *instruction)
 }
 
 /**
- * Prints a parameter, if one is defined.
+ * Gets a parameter as a string, if one is defined.
  * 
  * @param program the snowflake program.
  * @param current_instruction the code for the current instruction.
@@ -125,8 +125,8 @@ char *get_printable_identifier(Program *program, InstructionCode current_instruc
     }
 
     // Did not find name.
-    char numeric_identifier[MAX_IDENTIFIER_SIZE];
-    snprintf(numeric_identifier, MAX_IDENTIFIER_SIZE, format, target_identifier);
+    char numeric_identifier[MAX_CHARACTERS_FOR_SHORT_INT];
+    snprintf(numeric_identifier, MAX_CHARACTERS_FOR_SHORT_INT, format, target_identifier);
     return new_string(numeric_identifier);
 }
 
