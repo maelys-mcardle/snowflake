@@ -5,6 +5,9 @@
 #include "parameters.h"
 #include "bank.h"
 
+/**
+ * Enum defining all supported instructions and associated op codes.
+ */
 typedef enum {
     INSTRUCTION_COMMENT         = 0,
     INSTRUCTION_LABEL           = 1,
@@ -51,29 +54,67 @@ typedef enum {
     INSTRUCTION_INDEX_TO_LAST   = 57,
 } InstructionCode;
 
+/**
+ * Parameters for an instruction.
+ */
 typedef struct {
     ParameterValue first;
     ParameterValue second;
 } Parameters;
 
+/**
+ * A single instruction, with its parameters.
+ */
 typedef struct {
     InstructionCode instruction;
     Parameters parameters;
 } Instruction;
 
+/**
+ * Information about instruction parameters.
+ */
 typedef struct {
     ParameterType first;
     ParameterType second;
 } ParameterInfo;
 
+/**
+ * Information about a single parameter.
+ */
 typedef struct {
     char mnemonic[4];
     ParameterInfo parameters;
 } InstructionInfo;
 
+/**
+ * Creates a new program instruction.
+ * 
+ * @return the new instruction.
+ */
 Instruction *new_instruction();
+
+/**
+ * Frees the program instruction.
+ * 
+ * @param instruction instruction to free.
+ */
 void free_instruction(Instruction *instruction);
+
+/**
+ * Retrieves information about a specified instruction.
+ * 
+ * @param instruction the instruction to get information from.
+ * @param exists whether the instruction exists.
+ * @return information about the instruction.
+ */
 InstructionInfo get_instruction_info(InstructionCode instruction, bool *exists);
+
+/**
+ * Sets the mnemonic for the instruction.
+ * 
+ * @param info the instruction information.
+ * @param mnemonic the mnemonic to insert into the instruction information.
+ */
 void set_mnemonic(InstructionInfo *info, char *mnemonic);
 
 #endif
