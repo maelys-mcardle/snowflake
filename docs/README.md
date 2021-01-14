@@ -10,9 +10,9 @@ The target hardware has these properties:
 
 The hypothetical device it is designed for is something in-between a 1970's microprocessor
 trainer like the [KIM-1][2] and a 1980's pocket computer like the [Sharp PC-1500][3]. The 
-language is likewise something between machine code and BASIC. It is plaintext [bytecode][4] 
-that the interpreter provides facilities to make human-readable. Snowflake is 
-[Turing-complete][5] and uses the [Polish notation][6].
+language is likewise something between machine code and BASIC. 
+
+Snowflake is [Turing-complete][5] and uses the [Polish notation][6].
 
 ## Documentation
 
@@ -27,7 +27,6 @@ The documentation is split into the following files:
 [1]: https://en.wikipedia.org/wiki/E.161
 [2]: https://en.wikipedia.org/wiki/KIM-1
 [3]: https://en.wikipedia.org/wiki/Sharp_PC-1500
-[4]: https://en.wikipedia.org/wiki/Bytecode
 [5]: https://en.wikipedia.org/wiki/Turing_completeness
 [6]: https://en.wikipedia.org/wiki/Polish_notation
 [7]: language-reference.md
