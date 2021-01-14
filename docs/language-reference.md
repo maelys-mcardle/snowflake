@@ -19,6 +19,7 @@ NOTE
 
    BANK is a positive integer preceded with a @ symbol (eg. @01).
 LITERAL can be anything (text, positive integer, float)
+  LABEL is a positive integer preceded with a : symbol (eg. :01).
  DEVICE is a positive integer.
    TYPE is a positive integer between 11 and 15, reflecting the TYPES instructions
 ```
@@ -83,7 +84,7 @@ BRANCHING
 CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
 20    ->        LABEL           Jumps to a LABEL.
-                                If the label does not exist, the jump is ignored.
+                LITERAL         If the label does not exist, the jump is ignored.
 21    ->        BANK            Jumps to the LABEL as stored in BANK.
                                 If the label does not exist, the jump is ignored.
 22   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, 
