@@ -7,8 +7,8 @@ trainer like the [KIM-1][2] and a 1980's pocket computer like the [Sharp PC-1500
 The target hardware has these properties:
 
 * Memory-bound rather than CPU-bound.
-* [Numeric keypad][1] as the alphanumeric input device.
-* 20 characters wide output.
+* 16-key keypad as an input device.
+* 20 character wide LCD as an output device.
 
 The resulting language is likewise something between machine code and BASIC. It is
 plaintext [bytecode][4] that the interpreter provides facilities to make human-readable.
@@ -23,7 +23,6 @@ The documentation is split into the following files:
 * Break-down of a snowflake file ([hello-world.md][8]).
 * The snowflake file format ([file-format.md][11]).
 * How this repository is laid out ([project-structure.md][10]).
-* Why this project exists ([rationale.md][12]).
 
 [1]: https://en.wikipedia.org/wiki/E.161
 [2]: https://en.wikipedia.org/wiki/KIM-1
@@ -36,4 +35,3 @@ The documentation is split into the following files:
 [9]: interpreter.md
 [10]: project-structure.md
 [11]: file-format.md
-[12]: rationale.md
