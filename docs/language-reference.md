@@ -15,6 +15,15 @@ interpreter will substitute the instruction code for its mnemonic when the code 
 displayed by the interpreter.
 
 ```
+NOTE
+
+   BANK is a positive integer preceded with a @ symbol (eg. @01).
+LITERAL can be anything (text, positive integer, float)
+ DEVICE is a positive integer.
+   TYPE is a positive integer between 11 and 15, reflecting the TYPES instructions
+```
+
+```
 BASIC
 
 CODE  MNEMONIC  PARAMETERS       DESCRIPTION
@@ -33,21 +42,21 @@ CODE  MNEMONIC  PARAMETERS       DESCRIPTION
                                  This instruction is not required to use a bank.
                                  You can only name each bank once.
 03    <<        DEVICE  BANK     Send BANK contents to a DEVICE.
-                                 Devices are positive integers.
+                        LITERAL  Devices are positive integers.
 04    >>        DEVICE  BANK     Receive DEVICE data into a BANK.
-                                 Devices are positive integers.
+                        LITERAL  Devices are positive integers.
 05     =        BANK1   BANK2    Copy BANK2 contents to BANK1.
-                                 BANK1 takes on the type of BANK2.
+                        LITERAL  BANK1 takes on the type of BANK2.
                                  If BANK2 is unallocated, BANK1 is deleted.
-06    TO        TYPE    BANK     Converts the contents of BANK to the type set by TYPE.
+06    TO        BANK    TYPE     Converts the contents of BANK to the type set by TYPE.
                                  If BANK is unallocated, default values are used.
                                  If TYPE is `15` (array), an empty array is created.
 07   TYP        BANK1   BANK2    Stores the TYPE of BANK2 into BANK1.
-                                 This type is stored as an integer.
+                        LITERAL  This type is stored as an integer.
                                  If BANK2 is unallocated, stores 0 in BANK1.
 08   DEL        BANK             Deletes all data associated with BANK.
 09   LEN        BANK1   BANK2    Stores the size of BANK2 into BANK1 as integer.
-                                 For string type, stores string length.
+                        LITERAL  For string type, stores string length.
                                  For array type, stores the number of items.
                                  For other types, stores 0.
 ```
@@ -78,16 +87,16 @@ CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 21    ->        BANK            Jumps to the LABEL as stored in BANK.
                                 If the label does not exist, the jump is ignored.
 22   IF=        BANK1   BANK2   If BANK1 is equal to BANK2, 
-                                run the next instruction (often a jump), 
+                        LITERAL run the next instruction (often a jump), 
                                 otherwise, skip the next instruction.
 23   IF!        BANK1   BANK2   If BANK1 is not equal to BANK2,
-                                run the next instruction (often a jump), 
+                        LITERAL run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
 24   IF>        BANK1   BANK2   If BANK1 is greater than BANK2,
-                                run the next instruction (often a jump), 
+                        LITERAL run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
 25   IF<        BANK1   BANK2   If BANK1 is less than BANK2,
-                                run the next instruction (often a jump), 
+                        LITERAL run the next instruction (often a jump), 
                                 otherwise skip the next instruction.
 
 Note: Equality checks can be performed on all types except ARRAY.
@@ -101,14 +110,18 @@ MATH
 CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
 30     +        BANK1   BANK2   Add BANK2 to BANK1. Result in BANK1.
+                        LITERAL
 31     -        BANK1   BANK2   Subtract BANK2 from BANK1. Result in BANK1.
+                        LITERAL
 32     *        BANK1   BANK2   Multiply BANK2 with BANK1. Result in BANK1.
+                        LITERAL
 33     /        BANK1   BANK2   Divide BANK1 by BANK2. Result in BANK1.
+                        LITERAL
 34     %        BANK1   BANK2   Modulo of BANK1 by BANK2. Result in BANK1.
+                        LITERAL
 35    **        BANK1   BANK2   Power of BANK1 to BANK2. Result in BANK1.
+                        LITERAL
 36   SQR        BANK            Square root of BANK.
-37    +1        BANK            Increment the value of BANK by one.
-38    -1        BANK            Decrement the value of BANK by one.
 
 Note: These instructions are only performed on INTEGER and FLOAT types.
       All other types are ignored. The addition instruction can be performed on 
@@ -138,21 +151,21 @@ CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
 15    []        BANK            Stores an empty array into BANK.
 50   +[]        BANK1   BANK2   Moves the contents of BANK2 into a 
-                                new first item of the BANK1 array.
+                        LITERAL new first item of the BANK1 array.
 51   []+        BANK1   BANK2   Moves the contents of BANK2 into a 
-                                new last item of the BANK1 array.
+                        LITERAL new last item of the BANK1 array.
 52   -[]        BANK1   BANK2   Moves the first item of the BANK1 array
-                                into BANK2.
+                        LITERAL into BANK2.
 53   []-        BANK1   BANK2   Moves the last item of the BANK1 array
-                                into BANK2.
+                        LITERAL into BANK2.
 54   >[]        BANK1   BANK2   Moves the first item of the BANK1 array 
-                                to the index specified in BANK2.
+                        LITERAL to the index specified in BANK2.
 55   []<        BANK1   BANK2   Moves the last item of the BANK1 array 
-                                to the index specified in BANK2.
+                        LITERAL to the index specified in BANK2.
 56   [<]        BANK1   BANK2   Moves an item at the index specified in BANK2 
-                                to the first item of the array BANK1.
+                        LITERAL to the first item of the array BANK1.
 57   [>]        BANK1   BANK2   Moves an item at the index specified in BANK2 
-                                to the last item of the array BANK1.
+                        LITERAL to the last item of the array BANK1.
 
 Note: These instructions are only performed on ARRAY types.
       All other types are ignored. Instruction is ignored if the
