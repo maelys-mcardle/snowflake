@@ -137,8 +137,11 @@ CODE  MNEMONIC  PARAMETERS      DESCRIPTION
 ---  ---------  --------------  -----------
 40   !          BANK            Logical NOT. Inverts the value of BANK.
 41   &          BANK1   BANK2   Logical AND. Result stored in BANK1.
+                        LITERAL 
 42   |          BANK1   BANK2   Logical OR. Result stored in BANK1.
+                        LITERAL 
 43   ^          BANK1   BANK2   Logical XOR. Result stored in BANK1.
+                        LITERAL 
 
 Note: These instructions are only performed on BOOLEAN and INTEGER types.
       All other types are ignored. Instruction is ignored if a bank
