@@ -6,10 +6,6 @@ This is what "hello world" looks like in Snowflake:
 << OUT Hello, World!  ;; Display "Hello, World!"
 ```
 
-## Breaking it down
-
-### Instructions
-
 Each line of Snowflake code is an instruction. These lines in Snowflake have the following format:
 
 ```
