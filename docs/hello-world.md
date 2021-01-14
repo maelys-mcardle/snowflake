@@ -16,9 +16,7 @@ In this case, the instructions take two parameters. But other instructions
 can take zero or one parameter, depending on the instruction. All instructions
 and their parameters are documented in the [reference documentation][1].
 
-```
-<< OUT Hello, World!
-```
+With the line above:
 
 * The `<<` is the output instruction. It's for sending data to a device
   (see [reference documentation][1]). It takes two parameters.
@@ -27,6 +25,8 @@ and their parameters are documented in the [reference documentation][1].
 * The second parameter can be a literal or a bank. A bank is a place in memory to 
   store things. This isn't that. This is a literal, which is a value. In this case,
   the text "Hello, World!".
+* `;; Display "Hello, World!"` is an optional comment that explains what the line
+  does. Sometimes it's not obvious just from reading the line of code.
 
 [1]: language-reference.md
 [2]: interpreter.md
