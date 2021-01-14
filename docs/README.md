@@ -20,8 +20,7 @@ The documentation is split into the following files:
 
 * Documentation for compiling and using the interpreter ([interpreter.md][9]).
 * The complete reference to the Snowflake programming language ([language-reference.md][7]).
-* Break-down of a snowflake file ([hello-world.md][8]).
-* The snowflake file format ([file-format.md][11]).
+* Break-down of a simple snowflake program  ([hello-world.md][8]).
 * How this repository is laid out ([project-structure.md][10]).
 
 [1]: https://en.wikipedia.org/wiki/E.161
@@ -33,4 +32,3 @@ The documentation is split into the following files:
 [8]: hello-world.md
 [9]: interpreter.md
 [10]: project-structure.md
-[11]: file-format.md
