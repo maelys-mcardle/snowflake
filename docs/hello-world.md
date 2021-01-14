@@ -9,13 +9,12 @@ This is what "hello world" looks like in Snowflake:
 Each line of Snowflake code is an instruction. These lines in Snowflake have the following format:
 
 ```
-INSTRUCTION PARAMETER PARAMETER
+INSTRUCTION PARAMETER PARAMETER ;; COMMENTS
 ```
 
 In this case, the instructions take two parameters. But other instructions
 can take zero or one parameter, depending on the instruction. All instructions
-and their parameters are documented in the [reference documentation][1]. 
-Comments are optional and follow a double semi-colon (`;;`),
+and their parameters are documented in the [reference documentation][1].
 
 ```
 << OUT Hello, World!
